@@ -22,7 +22,8 @@ class Company(models.Model):
     #competitors = models.Foreignkey("")
     competitors = models.CharField()
     offices = models.ForeignKey("Office")
-    others_people = models.ForeignKey("Contact")
+    # Need to be modified in the future
+    # others_people = models.ForeignKey("Contact")
     funding = models.CharField()
     acquisition = models.CharField()
     product = models.ForeignKey("Product")
