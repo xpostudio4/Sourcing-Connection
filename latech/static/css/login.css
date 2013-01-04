@@ -1,0 +1,221 @@
+/**
+ * Service Auth proxy iframe
+ */
+.proxy-iframe {
+ width: 1px;
+ height: 1px;
+ visibility: hidden;
+ display: none;
+}
+
+/**
+ * Service Auth buttons
+ * Form action buttons
+ */
+#btn-facebook-auth.btn-service-auth,
+#btn-twitter-auth.btn-service-auth,
+.btn-service-auth {
+ display: block;
+ position: relative;
+ color: #fff;
+ padding: 9px 10px;
+ font-weight: bold;
+ font-size: 13px;
+
+ border-radius: 3px;
+ -moz-border-radius: 3px;
+ -webkit-border-radius: 3px;
+ padding-left: 42px;
+ 
+text-shadow: 0px -1px 0px rgba(0, 0, 0, .25);
+filter: dropshadow(color=#000000, offx=0, offy=-1);
+cursor: pointer;
+
+behavior:url('/static/css/external/PIE.htc');
+}
+
+.ie7 #btn-facebook-auth.btn-service-auth,
+.ie7 #btn-twitter-auth.btn-service-auth,
+.ie7 .btn-service-auth,
+.ie8 #btn-facebook-auth.btn-service-auth,
+.ie8 #btn-twitter-auth.btn-service-auth,
+.ie8 .btn-service-auth {
+ text-shadow: 0 0 0 #000;
+}
+
+.btn-service-auth.connected span {
+	display: none;
+}
+
+.btn-service-auth .checkmark, .btn-service-auth .btn-service-remove {
+	color: #acacab;
+	float: right;
+	display: none;
+	font-size: 13px;
+}
+
+.btn-service-auth .btn-service-remove {
+    display: none;
+    margin-right: 6px;
+}
+
+.btn-service-auth .btn-service-remove:hover {
+    color: #006699;
+    cursor: pointer;
+}
+
+.settings .btn-service-auth.connected:hover .btn-service-remove {
+    display: block;
+}
+
+.btn-service-auth.connected .checkmark {
+	display: block;
+}
+
+.settings .btn-service-auth:hover .checkmark {
+    display: none;
+}
+
+.btn-service-auth:hover {
+ text-decoration: none;
+}
+
+.btn-service-auth .auth-ico {
+    position: absolute;
+}
+
+.btn-twitter-auth .auth-ico {
+    width: 26px;
+    height: 20px;
+    margin-left: -35px;
+    background: url('/static/images/icon_twitter.png') no-repeat;
+}
+
+.btn-twitter-auth.connected .auth-ico {
+    background: url('/static/images/icon_twitter_gray.png') no-repeat;
+}
+
+.btn-facebook-auth .auth-ico {
+    width: 18px;
+    height: 18px;
+    margin-left: -30px;
+    background: url('/static/images/icon_facebook.png') no-repeat;
+}
+
+.btn-facebook-auth.connected .auth-ico {
+    background: url('/static/images/icon_facebook_gray.png') no-repeat;
+}
+
+#btn-twitter-auth,
+.btn-twitter-auth {
+ background-position: 10px 10px;
+ background-repeat: no-repeat;
+ margin:0 0 10px;
+ background: #1ab9f0; /* Old browsers */
+ background: -moz-linear-gradient(top,  #1ab9f0 0%, #1ea7e7 50%, #229ae1 100%); /* FF3.6+ */
+ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1ab9f0), color-stop(50%,#1ea7e7), color-stop(100%,#229ae1)); /* Chrome,Safari4+ */
+ background: -webkit-linear-gradient(top,  #1ab9f0 0%,#1ea7e7 50%,#229ae1 100%); /* Chrome10+,Safari5.1+ */
+ background: -o-linear-gradient(top,  #1ab9f0 0%,#1ea7e7 50%,#229ae1 100%); /* Opera 11.10+ */
+ background: -ms-linear-gradient(top,  #1ab9f0 0%,#1ea7e7 50%,#229ae1 100%); /* IE10+ */
+ background: linear-gradient(to bottom,  #1ab9f0 0%,#1ea7e7 50%,#229ae1 100%); /* W3C */
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ab9f0', endColorstr='#229ae1',GradientType=0 ); /* IE6-9 */
+ -webkit-box-shadow: 0px 1px #FFF;
+ box-shadow: 0px 1px #FFF;
+}
+
+
+#btn-twitter-auth:hover,
+.btn-twitter-auth:hover {
+ background: -moz-linear-gradient(top,  #10ADE5 0%, #1A92D6 100%); /* FF3.6+ */
+ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#10ADE5), color-stop(100%,#1A92D6)); /* Chrome,Safari4+ */
+ background: -webkit-linear-gradient(top,  #10ADE5 0%,#1A92D6 100%); /* Chrome10+,Safari5.1+ */
+ background: -o-linear-gradient(top,  #10ADE5 0%,#1A92D6 100%); /* Opera 11.10+ */
+ background: -ms-linear-gradient(top,  #10ADE5 0%,#1A92D6 100%); /* IE10+ */
+ background: linear-gradient(top,  #10ADE5 0%,#1A92D6 100%); /* W3C */
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#10ADE5', endColorstr='#1A92D6',GradientType=0 ); /* IE6-9 */
+ }
+
+#btn-twitter-auth:active,
+.btn-twitter-auth:active {
+ background: -moz-linear-gradient(top,  #1A92D6 0%, #1A92D6 100%); /* FF3.6+ */
+ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#10ADE5), color-stop(100%,#1A92D6)); /* Chrome,Safari4+ */
+ background: -webkit-linear-gradient(top,  #1A92D6 0%,#1A92D6 100%); /* Chrome10+,Safari5.1+ */
+ background: -o-linear-gradient(top,  #1A92D6 0%,#1A92D6 100%); /* Opera 11.10+ */
+ background: -ms-linear-gradient(top,  #1A92D6 0%,#1A92D6 100%); /* IE10+ */
+ background: linear-gradient(top,  #1A92D6 0%,#1A92D6 100%); /* W3C */
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1A92D6', endColorstr='#1A92D6',GradientType=0 ); /* IE6-9 */
+-webkit-box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,.15);
+box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,.15);
+ }
+
+
+#btn-facebook-auth,
+.btn-facebook-auth {
+
+ background-position: 10px 8px;
+ background-repeat: no-repeat;
+ margin:0 0 10px;
+ background: #5771A7;
+ background: -moz-linear-gradient(top,  #5771A7 0%, #3B5998 100%); /* FF3.6+ */
+ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5771A7), color-stop(100%,#3B5998)); /* Chrome,Safari4+ */
+ background: -webkit-linear-gradient(top,  #5771A7 0%,#3B5998 100%); /* Chrome10+,Safari5.1+ */
+ background: -o-linear-gradient(top,  #5771A7 0%,#3B5998 100%); /* Opera 11.10+ */
+ background: -ms-linear-gradient(top,  #5771A7 0%,#3B5998 100%); /* IE10+ */
+ background: linear-gradient(top,  #5771A7 0%,#3B5998 100%); /* W3C */
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5771A7', endColorstr='#3B5998',GradientType=0 ); /* IE6-9 */
+ -webkit-box-shadow: 0px 1px #FFF;
+ box-shadow: 0px 1px #FFF;
+}
+
+
+#btn-facebook-auth:hover, 
+.btn-facebook-auth:hover {
+ background: -moz-linear-gradient(top,  #48629B 0%, #34518E 100%); /* FF3.6+ */
+ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#48629B), color-stop(100%,#34518E)); /* Chrome,Safari4+ */
+ background: -webkit-linear-gradient(top,  #48629B 0%,#34518E 100%); /* Chrome10+,Safari5.1+ */
+ background: -o-linear-gradient(top,  #48629B 0%,#34518E 100%); /* Opera 11.10+ */
+ background: -ms-linear-gradient(top,  #48629B 0%,#34518E 100%); /* IE10+ */
+ background: linear-gradient(top,  #48629B 0%,#34518E 100%); /* W3C */
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#48629B', endColorstr='#34518E',GradientType=0 ); /* IE6-9 */
+ }
+
+#btn-facebook-auth:active, 
+.btn-facebook-auth:active {
+ background: -moz-linear-gradient(top,  #34518E 0%, #34518E 100%); /* FF3.6+ */
+ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#48629B), color-stop(100%,#34518E)); /* Chrome,Safari4+ */
+ background: -webkit-linear-gradient(top,  #34518E 0%,#34518E 100%); /* Chrome10+,Safari5.1+ */
+ background: -o-linear-gradient(top,  #34518E 0%,#34518E 100%); /* Opera 11.10+ */
+ background: -ms-linear-gradient(top,  #34518E 0%,#34518E 100%); /* IE10+ */
+ background: linear-gradient(top,  #34518E 0%,#34518E 100%); /* W3C */
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#34518E', endColorstr='#34518E',GradientType=0 ); /* IE6-9 */
+ -webkit-box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,.15);
+box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,.15);
+}
+ 
+ 
+
+.btn-service-auth.connected {   
+    color: #acacab;
+    text-shadow: 0px 1px 0px #ffffff;
+    filter: dropshadow(color=#ffffff, offx=0, offy=1);
+    -webkit-box-shadow: inset 0px 1px 1px 0pxrgba(0, 0, 0, .5);
+    -moz-box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .5);
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .5);
+
+    behavior:url('/static/css/external/PIE.htc');
+}
+
+.btn-service-auth.connected span {
+	display: none;
+}
+
+.btn-twitter-auth.connected {
+ background: #D9D8D7;
+ cursor: default;
+ color: #ACACAB 
+}
+.btn-facebook-auth.connected {
+ background: #D9D8D7;
+ cursor: default;
+ color: #ACACAB 
+}
