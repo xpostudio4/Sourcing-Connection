@@ -1,6 +1,7 @@
 from django.db import models
 from taxonomy.models import *
 from location.models import *
+from django.forms import ModelForm
 # Create your models here.
 
 class Company(models.Model):
@@ -85,6 +86,11 @@ class Company(models.Model):
 
     class Meta:
          verbose_name_plural = "Companies"
+
+class CompanyForm(ModelForm):
+    class Meta:
+       model = Company
+       
 
 
 class Office(models.Model): 

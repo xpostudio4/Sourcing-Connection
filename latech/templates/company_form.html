@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+
+{% block content %}
+<form method="post" action="/">{% csrf_token %}
+<ul>
+{{ cf.as_p }}
+</ul>
+<input type="submit" value="Submit Form"/>
+</form>
+{% endblock %}

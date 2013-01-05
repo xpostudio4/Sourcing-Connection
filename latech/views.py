@@ -1,21 +1,25 @@
-# -*- coding: utf-8 -*-
 from django.utils import simplejson
 from django.http import HttpResponse
 from django.template import RequestContext, Context
 from django.shortcuts import render_to_response
 from taxonomy.models import Tag
+from companies.models import *
 
 #def index(request):
-#   tags = Tag.objects.all()
-#   result = []
-#   result = [x.name for x in tags]
-#   return render_to_response("index.html", {'result':result},context_instance=RequestContext(request))
+def tagit(request):
+
+   tags = Tag.objects.all()
+   result = []
+   result = [x.name for x in tags]
+   f = simplejson.dumps(result)
+   return render_to_response("tagit.html", {'f':f},context_instance=RequestContext(request))
 
 def base(request):
    return render_to_response("index.html",context_instance=RequestContext(request))
  
 #def tag_array(request):
-def tagit(request):
+#def tagit(request):
+def nana(request):
    tags = Tag.objects.all()
    f = "["
    for tag  in tags:
@@ -46,3 +50,20 @@ def tagsplete(request):
       results.append(tag_dict)
    return HttpResponse(simplejson.dumps(results),mimetype='application/json')
 
+def tagitt(request):
+   tags = Tag.objects.all()
+   result = []
+   result = [x.name for x in tags]
+   return HttpResponse(simplejson.dumps(result),mimetype='application/json')
+
+def company_form(request):
+    f_a = {}
+    if request.POST:
+       f_a['data'] = request.POST
+       if cf.is_valid():
+          cfs = cf.save(commit=True)
+
+    cf = CompanyForm(**f_a)
+    if cf.is_valid():
+       cfs = cf.save(commit=True)
+    return render_to_response('company_form.html', {'cf': cf },context_instance=RequestContext(request)) 

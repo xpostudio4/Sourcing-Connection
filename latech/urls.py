@@ -16,6 +16,8 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
      url(r'^$', "latech.views.base"),
      url(r'^tagit', "latech.views.tagit"),
+     url(r'^company/new/$', 'latech.views.company_form'),
+     url(r'^tags', "latech.views.tagitt"),
      url(r'^admin/', include(admin.site.urls)),
  
 )
