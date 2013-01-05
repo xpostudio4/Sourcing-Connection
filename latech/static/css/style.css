@@ -289,7 +289,7 @@
      left: 0;
      width: 100%;
      z-index: 999;
-     /*background: #fff url('/static/images/nm-logo.png') 50% 10px no-repeat;*/
+     /*background: #fff url('/static/images/GTBFinal.jpg') 50% 10px no-repeat;*/
 
      font-family: "source-sans-pro", "Helvetica Neue", sans-serif;
     }
@@ -329,7 +329,7 @@
     #site-header-logo {
      width: 62px;
      height: 27px;
-     background: url('/static/images/logo-digg.png') 0 0 no-repeat;
+     background: url('/static/images/GTBFinal.jpg') 0 0 no-repeat;
     }
     @media all and (-webkit-min-device-pixel-ratio: 2) 
        only screen and (-moz-min-device-pixel-ratio: 2),
@@ -339,7 +339,7 @@
          padding-bottom: 15px;
         }
         #site-header-logo {
-            background: url('/static/images/logo-digg@2x.png') 0 0 no-repeat;
+            background: url('/static/images/GTBFinal.jpg') 0 0 no-repeat;
             background-size: 62px 27px;
             -webkit-background-size: 62px 27px;
         }

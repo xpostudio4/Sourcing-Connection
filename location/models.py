@@ -6,41 +6,47 @@ from django.db import models
 
 class Country(models.Model):
     name = models.CharField(max_length=30)
-    flag = models.Imagefield()
+    #flag = models.Imagefield()
     government_type = models.CharField(max_length=30)
     stability_rating = models.CharField(max_length=30)
     policy_favorability_Rating= models.CharField(max_length=30)
-    url_wolfram= models.URLField()
-    url_wiki= models.URLField()
+    url_wolfram= models.URLField(blank=True)
+    url_wiki= models.URLField(blank=True)
 
     def __unicode__(self):
         return self.title
 
+    class Meta:
+         verbose_name_plural = "Countries"
+
 #Region_Table
 
-class Region_Table(models.Model):
-    country = models.CharField(max_length=30)
-    region_Name = models.CharField(max_length=30)
+class Region(models.Model):
+    country = models.ForeignKey(Country, related_name="countries",max_length=30)
+    region_name = models.CharField(max_length=30)
     accesiblity_rating = models.CharField(max_length=30)
     transportations = models.CharField(max_length=30)
-    url_wolfram= models.URLField()
-    url_wiki= models.URLField()
+    url_wolfram= models.URLField(blank=True)
+    url_wiki= models.URLField(blank=True)
 
     def __unicode__(self):
         return self.title
 
 #City_Tablet
 
-class City_Table(models.Model):
-    country = models.CharField(max_length=30)
-    region_name = models.CharField(max_length=30)
+class City(models.Model):
+    country = models.ForeignKey(Country, related_name="country",max_length=50)
+    region_name = models.ForeignKey(Region, related_name="region",max_length=50) 
     city_name = models.CharField(max_length=30)
     universities = models.CharField(max_length=30)
     telecom_facilities = models.CharField(max_length=30)
     local_talent_pool_rating = models.CharField(max_length=30)
-    url_wolfram= models.URLField()
-    url_wiki= models.URLField()
+    url_wolfram= models.URLField(blank=True)
+    url_wiki= models.URLField(blank=True)
     
     def __unicode__(self):
         return self.title
+
+    class Meta:
+         verbose_name_plural = "Cities"
     
