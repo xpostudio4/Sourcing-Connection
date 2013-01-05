@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Home!{% endblock %}
+{% block external %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#id_tag").tagit({
+      //source: "tagsplete"
+      availableTags: {{ f|safe }}
+});
+     
+    });
+
+</script>
+{% endblock %}
+{% block content %}
+Welcome to the LATech Web page!
+<p>Probando tagit:</p>
+<br/>
+  <h3>Halando tags </h3>
+<br/>
+        <form>
+    <input type="text" id="id_tag" name="tag" /></p>
+        </form>
+
+{% endblock %}
+
+
