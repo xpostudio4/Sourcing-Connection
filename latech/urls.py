@@ -17,6 +17,12 @@ urlpatterns = patterns('',
      url(r'^$', "latech.views.base"),
      url(r'^tagit', "latech.views.tagit"),
      url(r'^company/new/$', 'latech.views.company_form'),
+     url(r'^profile/(\w+)/$', 'latech.views.user_prof'),
+     url(r'^login/$', 'django.contrib.auth.views.login'),
+     url(r'^logout/$', 'latech.views.logout_page'),
+
+     #url(r'^profile/<user>/edit$', 'latech.views.company_form'),
+     #url(r'^profile/new/$', 'latech.views.company_form'),
      url(r'^tags', "latech.views.tagitt"),
      url(r'^admin/', include(admin.site.urls)),
  
