@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+<title>{% block title %}Globaltech - Your connection to the enterprise world{% endblock %}</title>
+{% block external %}
+<link rel="stylesheet" href="{{STATIC_URL}}css/normalize.min.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="{{STATIC_URL}}css//modal.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="{{STATIC_URL}}css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.tagit.css" type="text/css" />
+<script src="{{STATIC_URL}}js/modernizr.min.js" type="text/javascript" charset="utf-8"></script>
+{% endblock %}
+{% block header %}
+<div class="site-header-container page-container" id="site-header-container">
+<div class="header-wrapper">
+<header class="site-header">
+<h1 class="site-header-logo-container"><a href="/" id="site-header-logo" class="image-replace">Digg</a></h1>
+<ul id="page-nav" class="horizontal-list">
+<li class="page-nav-top-stories"><a href="/#top-stories" class="page-anchor-link">Clients</a></li>
+
+<li class="page-nav-popular-stories"><a href="/#popular-stories" class="page-anchor-link">Services</a></li>
+<li class="page-nav-top-stories"><a href="/#top-stories" class="page-anchor-link">Team</a></li>
+
+<li class="page-nav-new-stories"><a href="/#new-stories" class="page-anchor-link page-nav-new-stories">Experience</a></li>
+
+</ul>
+<ul id="site-nav" class="horizontal-list">
+
+{% if user.username %}
+<li id="btn-hdr-submit-link"> Hi <a href="/profile/{{ user.username }}">{{ user.username }}</a></li>
+<li class="site-nav-anonymous"><a href="/logout">logout</a></li>
+
+{% else %}
+<li><a href="/login" id="btn-hdr-submit-link">Login</a></li>
+<li class="site-nav-anonymous"><a href="/#community" class="page-anchor-link" id="nav-subscribe-link">Community</a></li>
+{% endif %}
+
+
+<li id="site-nav-user-widget"></li>
+
+</ul>
+<div id="site-header-digg-social">
+<ul class="horizontal-list">
+<li><a href="https://twitter.com/globaltechbeat" target="_blank" class="digg-social-twitter digg-social-icon image-replace">Twitter</a></li>
+<li><a href="http://www.facebook.com/globaltechbridge?fref=ts" target="_blank" class="digg-social-fb digg-social-icon image-replace">Facebook</a></li>
+
+<!-- built with love by an amateur! -->
+
+{% endblock %}
+{% block content %}
+{% endblock %}
+

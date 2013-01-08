@@ -27,10 +27,12 @@ class Company(models.Model):
     tech_area = models.CharField(max_length=512, blank=True)
 
     #Comma separated list from Category table
-    category = models.ForeignKey(Category, related_name="categories", blank=True)
+    category = models.ForeignKey(Category, related_name="categories",
+            blank=True, null=True)
 
     #Comma separated list from Application table
-    application = models.ForeignKey(Application, related_name="categories", blank=True)
+    application = models.ForeignKey(Application, related_name="categories",
+            blank=True, null=True)
 
    
     #Comma separated list from Tags table, also accept new tags input by users ("folksonomy")
@@ -72,14 +74,14 @@ class Company(models.Model):
     contact = models.CharField(max_length=512, blank=True)
     
     # Visible for LATech members
-    scalability_rating = models.IntegerField(blank=True)
-    expansion_rating = models.IntegerField(blank=True)
-    physical_plant_rating = models.IntegerField(blank=True)
-    profilatibily_rating = models.IntegerField(blank=True)
-    ret_talent_rating = models.IntegerField(blank=True)
-    financials_rating = models.IntegerField(blank=True)
-    rating_of_ownership = models.IntegerField(blank=True)
-    gtb_overall_rating = models.IntegerField(blank=True)
+    scalability_rating = models.IntegerField(blank=True, null=True)
+    expansion_rating = models.IntegerField(blank=True, null=True)
+    physical_plant_rating = models.IntegerField(blank=True, null=True)
+    profilatibily_rating = models.IntegerField(blank=True, null=True)
+    ret_talent_rating = models.IntegerField(blank=True, null=True)
+    financials_rating = models.IntegerField(blank=True, null=True)
+    rating_of_ownership = models.IntegerField(blank=True, null=True)
+    gtb_overall_rating = models.IntegerField(blank=True, null=True)
 
     def __unicode__(self):
         return self.name
@@ -90,8 +92,6 @@ class Company(models.Model):
 class CompanyForm(ModelForm):
     class Meta:
        model = Company
-       
-
 
 class Office(models.Model): 
     city = models.ForeignKey(City, related_name="location", blank=True)

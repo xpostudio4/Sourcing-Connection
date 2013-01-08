@@ -1,8 +1,38 @@
 {% extends "index.html" %}
 
 {% block content %}
-<br/> 
-       <h1>Something for {{ username }}</h1>
+<br/>
+       <h1>Something for {{ username }} {% if user.username %} edit your profile <a href="/profile/{{ user.username }}/edit">Here</a> </h1>
+
+<p> {{ contact.fr_name  }}</p>
+<p> {{ contact.ls_name  }}</p>
+<p> {{ contact.m_name  }}</p>
+<p> {{ contact.overview  }}</p>
+<p> {{ contact.phone  }}</p>
+<p> {{ contact.degrees  }}</p>
+<p> {{ contact.ld_url  }}</p>
+<p> {{ contact.t_url  }}</p>
+<p> {{ contact.blog_url  }}</p>
+<p> {{ contact.ext_url  }}</p>
+<p> {{ contact.lt_contact  }}</p>
+<p> {{ contact.tag.all  }}</p>
+<p> {{ contact.company.name }}</p>
+<p> {{ contact.financial_organization  }}</p>
+<p> {{ contact.government_organization  }}</p>
+<p> {{ contact.title  }}</p>
+{% if contact.industry.all %}
+<p> {{ contact.industry.all  }}</p>
+{% endif %}
+{% if contact.technology.all %}
+<p> {{ contact.technology.all  }}</p>
+{% endif %}
+
+{% if contact.application %}
+{%for app in contact.application %}
+<p> {{ app.name  }} </p>
+{% endfor %}
+{% endif %}
+{% endif %}
 {% endblock %}
 
 

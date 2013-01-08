@@ -2,14 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from taxonomy.models import *
 from companies.models import Company
-# Create your models here.
+from django.forms import ModelForm
 
-class Contact(User):
-
+class Contact(models.Model):
+    user = models.ForeignKey(User)
+    fr_name = models.CharField(max_length=255, blank=True)
+    ls_name = models.CharField(max_length=255, blank=True)
+    m_name = models.CharField(max_length=255, blank=True)
     #Special Information about contact
     overview = models.TextField(blank=True)
-
-    m_name = models.CharField(max_length=255, blank=True)
     #photo = models.ImageField()
     phone = models.CharField(max_length=255, blank=True)
 
@@ -35,7 +36,7 @@ class Contact(User):
     tag = models.CharField(max_length=255, blank=True)
 
     #Pointer to  company from Company table
-    company = models.ForeignKey(Company, related_name="company", blank=True)
+    company = models.ForeignKey(Company, related_name="company", blank=True, null=True, on_delete=models.SET_NULL)
 
     #Comma separated list of Companies
     financial_organization = models.CharField(max_length=255, blank=True)
@@ -47,13 +48,21 @@ class Contact(User):
     title = models.CharField(max_length=255, blank=True)
 
     #Pointer to Industry (industries) from Industry table
-    industry = models.ManyToManyField(Industry, related_name="industries", blank=True)
+    industry = models.ManyToManyField(Industry, related_name="industries", blank=True, null=True)
 
     #Pointer to list of Technologies from Technology Table
-    technology = models.ManyToManyField(Technology, related_name="technologies", blank=True) 
+    technology = models.ManyToManyField(Technology, related_name="technologies", blank=True, null=True) 
 
     #Pointer to list of Applications from Application Table
-    application = models.ManyToManyField(Application, related_name="applications", blank=True)
+    application = models.ManyToManyField(Application, related_name="applications", blank=True, null=True)
 
     def __unicode__(self):
-        return self.contact
+        return self.fr_name
+
+class ContactForm(ModelForm):
+    class Meta:
+       model = Contact
+       exclude = ('username','password','is_active','is_staff','is_superuser','last_login','groups', 'user_permissions','date_joined', )
+       
+
+
