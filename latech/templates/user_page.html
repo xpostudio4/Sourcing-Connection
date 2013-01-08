@@ -24,11 +24,12 @@
 <p> {{ contact.industry.all  }}</p>
 {% endif %}
 {% if contact.technology.all %}
-<p> {{ contact.technology.all  }}</p>
+{%for app in contact.technology.all %}
+<p> {{ app.name  }} </p>
+{% endfor %}
 {% endif %}
-
-{% if contact.application %}
-{%for app in contact.application %}
+{% if contact.application.all %}
+{%for app in contact.application.all %}
 <p> {{ app.name  }} </p>
 {% endfor %}
 {% endif %}
