@@ -9,9 +9,12 @@
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/tagit.min.js"></script>
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.tagit.css" type="text/css" />
+        <script src="{{STATIC_URL}}js/modernizr.min.js" type="text/javascript" charset="utf-8"></script>
         {% block external %}{% endblock %}
     </head>
-    <body class="homepage">
+    <body
+>
         {% block header %}{% endblock %}
         {% block content %}{% endblock %}
     </body>

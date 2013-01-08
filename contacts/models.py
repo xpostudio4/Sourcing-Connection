@@ -8,6 +8,8 @@ class Contact(models.Model):
     user = models.ForeignKey(User)
     fr_name = models.CharField(max_length=255, blank=True)
     ls_name = models.CharField(max_length=255, blank=True)
+#    slug = models.SlugField(max_length=80, unique=True,
+#        help_text='Unique value for Contact page URL, created from name.')
     m_name = models.CharField(max_length=255, blank=True)
     #Special Information about contact
     overview = models.TextField(blank=True)
@@ -57,12 +59,11 @@ class Contact(models.Model):
     application = models.ManyToManyField(Application, related_name="applications", blank=True, null=True)
 
     def __unicode__(self):
-        return self.fr_name
+        return str(self.fr_name +" "+ self.ls_name)
 
 class ContactForm(ModelForm):
     class Meta:
        model = Contact
-       exclude = ('username','password','is_active','is_staff','is_superuser','last_login','groups', 'user_permissions','date_joined', )
+       exclude = ('user', )
        
-
 

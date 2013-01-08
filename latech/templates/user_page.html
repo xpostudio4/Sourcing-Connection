@@ -2,7 +2,12 @@
 
 {% block content %}
 <br/>
-       <h1>Something for {{ username }} {% if user.username %} edit your profile <a href="/profile/{{ user.username }}/edit">Here</a> </h1>
+{% if user.is_authenticated %}
+
+       <h1>Hello {{ username }}, you canedit your profile <a href="/profile/{{ user.username }}/edit">Here</a> </h1>
+{% endif %}
+
+<h1> <p> {{ username  }}</p></h1>
 
 <p> {{ contact.fr_name  }}</p>
 <p> {{ contact.ls_name  }}</p>
@@ -32,7 +37,6 @@
 {%for app in contact.application.all %}
 <p> {{ app.name  }} </p>
 {% endfor %}
-{% endif %}
 {% endif %}
 {% endblock %}
 

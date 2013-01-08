@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from taxonomy.models import *
 from location.models import *
 from django.forms import ModelForm
@@ -6,12 +7,13 @@ from django.forms import ModelForm
 
 class Company(models.Model):
     name = models.CharField(max_length=80)
+#    slug = models.SlugField(max_length=80, unique=True,
+ #       help_text='Unique value for Company page URL, created from name.')
     #logo = models.ImageField()
     description = models.TextField(blank=True)
     value_proposition = models.CharField(max_length=144, blank=True)
     overview = models.CharField(max_length=512, blank=True)
-
-
+#    created_by = models.ForeignKey(User, related_name="LATech user")
     #Input into Contacts table, point back to Company
     management = models.CharField(max_length=144, blank=True)
     web_url = models.URLField(blank=True)
@@ -33,7 +35,6 @@ class Company(models.Model):
     #Comma separated list from Application table
     application = models.ForeignKey(Application, related_name="categories",
             blank=True, null=True)
-
    
     #Comma separated list from Tags table, also accept new tags input by users ("folksonomy")
     tag = models.ManyToManyField(Tag, related_name="tags", blank=True)
@@ -86,12 +87,17 @@ class Company(models.Model):
     def __unicode__(self):
         return self.name
 
+#    @models.permalink
+#    def get_absolute_url(self):
+#          return ('companies_company', (), { 'company_slug': self.slug })
+ 
     class Meta:
          verbose_name_plural = "Companies"
 
 class CompanyForm(ModelForm):
     class Meta:
        model = Company
+#       exclude = ('slug', )
 
 class Office(models.Model): 
     city = models.ForeignKey(City, related_name="location", blank=True)

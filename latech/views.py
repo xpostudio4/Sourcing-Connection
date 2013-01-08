@@ -1,5 +1,5 @@
 from django.utils import simplejson
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, get_object_or_404
 from taxonomy.models import *
@@ -62,31 +62,49 @@ def tagitt(request):
    return HttpResponse(simplejson.dumps(result),mimetype='application/json')
 
 def company_form(request):
-#    f_a = {}
     if request.POST:
-        cf = CompanyForm(request.POST)
-        if cf.is_valid():
-            cf.save()
+        company_form = CompanyForm(request.POST)
+        if company_form.is_valid():
+            company_form.save()
     else:
-        cf = CompanyForm()
- #      f_a['data'] = request.POST
-#       if cf.is_valid():
-#          cfs = cf.save(commit=True)
-#
-#    cf = CompanyForm(**f_a)
-#    if cf.is_valid():
-#       cfs = cf.save(commit=True)
-    return render_to_response('company_form.html', {'cf': cf },context_instance=RequestContext(request)) 
+        company_form = CompanyForm()
+    return render_to_response('company_form.html', {'company_form': company_form },context_instance=RequestContext(request)) 
 
 @login_required
 def contact_form(request, username):
     if request.POST:
-        cof = ContactForm(request.POST, instance=User.objects.get(username=request.user))
-        if cof.is_valid():
-            cof.save()
+        contact_form = ContactForm(request.POST, instance=User.objects.get(username=request.user))
+        if contact_form.is_valid():
+            contact_form.save()
     else:
-        cof = ContactForm()
-    return render_to_response('contact_form.html', {'cof': cof, 'username':username },context_instance=RequestContext(request)) 
+        contact_form = ContactForm()
+    return render_to_response('contact_form.html', {'contact_form': contact_form, 'username':username },context_instance=RequestContext(request)) 
+
+@login_required
+def contact_edit(request, username):
+    if company_name == '':
+        companysub = Company()
+    else:
+        companysub = Company.objects.get(name=company_name)
+    if request.method == 'POST':
+        company_form = CompanyForm(request.POST, instance=companysub)
+        if company_form.is_valid():
+            company_form.save()
+            return HttpResponseRedirect('/company/'+company_name)
+    else:
+        company_form = CompanyForm(instance = companysub)
+    return render_to_response('company_form.html', context_instance=RequestContext(request, {'company_form': company_form })) 
+    return render_to_response('contact_form.html', {'contact_form': contact_form, 'username':username },context_instance=RequestContext(request)) 
+
+def contact_edit(request, username):
+    if request.POST:
+        contact_form = ContactForm(request.POST, instance=User.objects.get(username=request.user))
+        if contact_form.is_valid():
+            contact_form.save()
+    else:
+        contact_form = ContactForm()
+    return render_to_response('contact_form.html', {'contact_form': contact_form, 'username':username },context_instance=RequestContext(request)) 
+
 
 def user_prof(request, username):
     user = User.objects.get(username=username)
@@ -95,7 +113,28 @@ def user_prof(request, username):
         'contact':uc,
         })
     return render_to_response('user_page.html', variables) 
- 
+
+def company_page(request, name):
+    try:
+       comp = Company.objects.get(name=name)
+    except Company.DoesNotExist:
+       raise Http404
+    return render_to_response('company_page.html',{'comp':comp},context_instance=RequestContext(request)) 
+
+@login_required
+def company_edit(request, company_name):
+    if company_name == '':
+        companysub = Company()
+    else:
+        companysub = Company.objects.get(name=company_name)
+    if request.method == 'POST':
+        company_form = CompanyForm(request.POST, instance=companysub)
+        if company_form.is_valid():
+            company_form.save()
+            return HttpResponseRedirect('/company/'+company_name)
+    else:
+        company_form = CompanyForm(instance = companysub)
+    return render_to_response('company_form.html', context_instance=RequestContext(request, {'company_form': company_form })) 
 
 def logout_page(request):
     logout(request)

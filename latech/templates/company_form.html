@@ -1,10 +1,8 @@
 {% extends "index.html" %}
 {% block content %}
+{{ company_form.as_table }}
 <form method="post" action=".">{% csrf_token %}
 <input type="submit" value="Submit Form"/>
-<input type="hidden" name="next" value="/" />
-<ul>
-{{ cf.as_p }}
-</ul>
+<input type="hidden" name="next" value="/company/{{ company_form.name}}" />
 </form>
 {% endblock %}

@@ -3,7 +3,9 @@ from django.contrib import admin
 
 
 class CompanyAdmin(admin.ModelAdmin):
+#    prepopulated_fields = {'slug' : ('name',)}
     pass
+
 class OfficeAdmin(admin.ModelAdmin):
     pass
 

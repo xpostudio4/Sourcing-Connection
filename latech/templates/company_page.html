@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+
+{% block content %}
+<br/>
+{% if user.is_authenticated %}
+<h1>Hello {{ user }}, you are able to edit this company <a href="/company/{{ comp.name }}/edit">Here</a> </h1>
+{% endif %}
+<p> {{ comp.name  }}</p>
+<p> {{ comp.description  }}</p>
+<p> {{ comp.value_proposition  }}</p>
+<p> {{ comp.overview  }}</p>
+<p> {{ comp.management  }}</p>
+<p> {{ comp.web_url }}</p>
+<p> {{ comp.blog_url  }}</p>
+<p> {{ comp.t_url  }}</p>
+<p> {{ comp.main_phone  }}</p>
+<p> {{ comp.email  }}</p>
+<p> {{ comp.industries  }}</p>
+<p> {{ comp.tech_area }}</p>
+<p> {{ comp.category }}</p>
+<p> {{ comp.application }}</p>
+{% if comp.tag.all %}
+{%for app in comp.tag.all %}
+<p> {{ app.name  }} </p>
+{% endfor %}
+{% endif %}
+<p> {{ comp.offices }}</p>
+<p> {{ comp.funding }}</p>
+<p> {{ comp.acquisition }}</p>
+<p> {{ comp.product }}</p>
+<p> {{ comp.certification }}</p>
+<p> {{ comp.customer }}</p>
+<!--#    project = models.ManyToManyField("Project")
+#    links = models.ForeignKey("URLs") -->
+<p> {{ comp.contact }}</p>
+<!-- These data is only available for the LATech Users-->
+{% if user.is_authenticated %}
+{% if comp.scalability_rating %}
+<p> {{ comp.scalability_rating }}</p>
+{% endif %}
+{% if comp.expansion_rating %}
+<p> {{ comp.expansion_rating }}</p>
+{% endif %}
+{% if comp.physical_plant_rating %}
+<p> {{ comp.physical_plant_rating }}</p>
+{% endif %}
+{% if comp.profilatibily_rating %}
+<p> {{ comp.profilatibily_rating}}</p>
+{% endif %}
+{% if comp.ret_talent_rating %}
+<p> {{ comp.ret_talent_rating }}</p>
+{% endif %}
+{% if comp.financials_rating %}
+<p> {{ comp.financials_rating }}</p>
+{% endif %}
+{% if comp.rating_of_ownership %}
+<p> {{ comp.rating_of_ownership }}</p>
+{% endif %}
+{% if comp.gtb_overall_rating %}
+<p> {{ comp.gtb_overall_rating }}</p>
+{% endif %}
+{% endif %}
+{% endblock %}
+
+
