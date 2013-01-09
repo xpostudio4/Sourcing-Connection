@@ -1,16 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>{% block head %}User Login{% endblock %}</h1>
 {% if form.has_errors %}
 <p>Your username and password didn't match.
 Please try again.</p>
 {% endif %}
-<form method="post" action=".">{% csrf_token %}
-<p><label for="id_username">Username:</label>
-{{ form.username }}</p>
-<p><label for="id_password">Password:</label>
-{{ form.password }}</p>
-<input type="submit" value="login" />
+
+<div style="padding: 100px 0 0 250px;">
+
+ <script>  $(document).ready(function(){
+            $('#id_username, #id_password').addClass("form-login"); 
+       });</script>
+
+<div id="login-box" style="background: url({{STATIC_URL}}images/login-box-backg.png) no-repeat left top;">
+	<h2>Login</h2>
+	Welcome to LATech Bridge, please login.
+	<br>
+	<br>
+<form method="post" id="login_form" action=".">{% csrf_token %}
+<div id="login-box-name" style="margin-top:20px;">Username:</div><div id="login-box-field" style="margin-top:20px;">
+{{ form.username }}</div>
+<div id="login-box-name">Password:</div><div id="login-box-field">
+{{ form.password }}</div>
+
+<br>
+<span class="login-box-options"><input type="checkbox" name="1" value="1"> Remember Me <a href="http://www.psdgraphics.com/demos/blue-login-box-html/index.html#" style="margin-left:30px;">Forgot password?</a></span>
+<br>
+<br>
+<input type="submit" class = "login-submit" value="LOGIN" />
 <input type="hidden" name="next" value="/" />
 </form>
 {% endblock %}

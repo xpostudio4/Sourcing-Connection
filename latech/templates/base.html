@@ -10,13 +10,35 @@
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/tagit.min.js"></script>
         <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.tagit.css" type="text/css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" />
         <script src="{{STATIC_URL}}js/modernizr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script>  $(document).ready(function(){
+            $('label').addClass('left'); 
+            $('.p').after('<br>');
+            $('.helptext').remove();
+       });</script>
         {% block external %}{% endblock %}
     </head>
-    <body
->
+    <body>
+    <header id="navigation">
+        <a href="/#top-stories" class="page-anchor-link">Clients</a>
+        <a href="/#popular-stories" >Services</a>
+        <a href="/#top-stories">Team</a>
+        <a href="/#new-stories">Experience</a>
+        {% if user.username %}
+        Hi <a href="/profile/{{ user.username }}">{{ user.username }}</a>
+        <a href="/logout">logout</a>
+        {% else %}
+        <a href="/login" id="btn-hdr-submit-link">Login</a>
+        <a href="/#community">Community</a>
+        {% endif %}
+
+    </header> 
+   <div id="body">
+
         {% block header %}{% endblock %}
         {% block content %}{% endblock %}
+    </div>
     </body>
 </html>
 

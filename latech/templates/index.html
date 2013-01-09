@@ -2,19 +2,8 @@
 <title>{% block title %}Globaltech - Your connection to the enterprise world{% endblock %}</title>
 {% block header %}
 <div id="navi">
-<a href="/#top-stories" class="page-anchor-link">Clients</a>
 
-<a href="/#popular-stories" >Services</a>
-<a href="/#top-stories">Team</a>
-<a href="/#new-stories">Experience</a>
-{% if user.username %}
-Hi <a href="/profile/{{ user.username }}">{{ user.username }}</a>
-<a href="/logout">logout</a>
 
-{% else %}
-<a href="/login" id="btn-hdr-submit-link">Login</a>
-<a href="/#community">Community</a>
-{% endif %}
 {% endblock %}
 {% block content %}
 {% endblock %}
