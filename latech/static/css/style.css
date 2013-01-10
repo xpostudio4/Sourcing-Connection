@@ -53,6 +53,11 @@ time, mark, audio, video {
 
 }
 
+#hi{
+
+  color: white;
+}
+
 #body{
 
         margin-top: 55px; 
@@ -62,23 +67,10 @@ hide{
         display:none;
 }
 
-label
-{
-        width: 15em;
-        float: left;
-        text-align: right;
-        margin-left: 20px;
-        margin-right: 5.5em;
-        display: block;
-}
 
 
-/*form {
-        width: 800px;
-        padding: 2%;
-        margin-left: 20%;
-        border: 1px solid #270644;
-}*/
+
+
 
 /*Login Form info*/
 #login-box {

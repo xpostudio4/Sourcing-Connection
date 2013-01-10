@@ -1,8 +1,10 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 {% block content %}
-{{ company_form.as_table }}
+<div id="company-form-container" class="container">
 <form method="post" action=".">{% csrf_token %}
-<input type="submit" value="Submit Form"/>
-<input type="hidden" name="next" value="/company/{{ company_form.name}}" />
+	{{ company_form.as_p }}					
+<input type="submit" value="Submit Form"></input>
+
 </form>
+</div>
 {% endblock %}

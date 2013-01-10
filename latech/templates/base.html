@@ -11,6 +11,10 @@
         <script type="text/javascript" src="{{ STATIC_URL }}js/tagit.min.js"></script>
         <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.tagit.css" type="text/css" />
         <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap/bootstrap-responsive.css" type="text/css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap/bootstrap-responsive.min.css" type="text/css" />
         <script src="{{STATIC_URL}}js/modernizr.min.js" type="text/javascript" charset="utf-8"></script>
         <script>  $(document).ready(function(){
             $('label').addClass('left'); 
@@ -26,18 +30,22 @@
         <a href="/#top-stories">Team</a>
         <a href="/#new-stories">Experience</a>
         {% if user.username %}
-        Hi <a href="/profile/{{ user.username }}">{{ user.username }}</a>
+        <a href="/profile/{{ user.username }}">Hi, {{ user.username }}</a>
         <a href="/logout">logout</a>
         {% else %}
         <a href="/login" id="btn-hdr-submit-link">Login</a>
         <a href="/#community">Community</a>
         {% endif %}
+        {% block header %}{% endblock %}
 
     </header> 
    <div id="body">
-
-        {% block header %}{% endblock %}
+    <div class="row"></div>
+    <div class="span2"></div>
+    <div class="span10">
+    
         {% block content %}{% endblock %}
+    </div>
     </div>
     </body>
 </html>
