@@ -5,6 +5,7 @@
 {% if user.is_authenticated %}
 <h1>Hello {{ user }}, you are able to edit this company <a href="/company/{{ comp.name }}/edit">Here</a> </h1>
 {% endif %}
+
 <p> {{ comp.name  }}</p>
 <p> {{ comp.description  }}</p>
 <p> {{ comp.value_proposition  }}</p>

@@ -1,43 +1,139 @@
 {% extends "index.html" %}
+{% block external %}
+<script>
+       $(document).ready(function(){
+
+       	//A list of all the classes and Id's of the elements to be treated as read only tags.
+       	var tag_ids  = ['#degreescontact','#financial-organization','#titlecontact','#industry-contact', 
+       		'#goverment-contact', '#technology-contact','#application-contact']; 
+
+
+
+       	for(i in tag_ids){
+
+       		//Create read only tags for the degrees field
+       		var degrees =  $(this).find(tag_ids[i]).html().split(",");
+       		var string_degrees = ""; 
+
+
+        	for( j  in degrees){
+       			string_degrees += "<code>" + degrees[j] + "</code>  ";
+       		}
+
+       		$(tag_ids[i]).html(string_degrees);
+
+       	}
+       	//Obtain twitter name and prettify it for the profile
+       	var twitter_name  = $(this).find('#twitter-contact-url').text().split("/").pop();
+       	$('#twitter-contact-url').text("@"+twitter_name)
+
+
+       })
+</script>
+
+{% endblock %}
 
 {% block content %}
 <br/>
 {% if user.is_authenticated %}
-
-       <h1>Hello {{ username }}, you canedit your profile <a href="/profile/{{ user.username }}/edit">Here</a> </h1>
+	<div class="page-header">
+       <h1>Hello {{ username }}, you can edit your profile <a href="/profile/{{ user.username }}/edit">Here</a> </h1>
+    </div>
 {% endif %}
 
-<h1> <p> {{ username  }}</p></h1>
 
-<p> {{ contact.fr_name  }}</p>
-<p> {{ contact.ls_name  }}</p>
-<p> {{ contact.m_name  }}</p>
-<p> {{ contact.overview  }}</p>
-<p> {{ contact.phone  }}</p>
-<p> {{ contact.degrees  }}</p>
-<p> {{ contact.ld_url  }}</p>
-<p> {{ contact.t_url  }}</p>
-<p> {{ contact.blog_url  }}</p>
-<p> {{ contact.ext_url  }}</p>
-<p> {{ contact.lt_contact  }}</p>
-<p> {{ contact.tag.all  }}</p>
-<p> {{ contact.company.name }}</p>
-<p> {{ contact.financial_organization  }}</p>
-<p> {{ contact.government_organization  }}</p>
-<p> {{ contact.title  }}</p>
-{% if contact.industry.all %}
-<p> {{ contact.industry.all  }}</p>
-{% endif %}
-{% if contact.technology.all %}
-{%for app in contact.technology.all %}
-<p> {{ app.name  }} </p>
-{% endfor %}
-{% endif %}
-{% if contact.application.all %}
-{%for app in contact.application.all %}
-<p> {{ app.name  }} </p>
-{% endfor %}
-{% endif %}
+<div class="span10"> 
+<div class="media">
+	<a class="pull-left" href="#">
+		<img class="media-object" data-src="holder.js/64x64" src="https://lh5.googleusercontent.com/-1aRlNGIw-Ds/AAAAAAAAAAI/AAAAAAAAAAA/wSDKpraSvbs/s250-c-k/photo.jpg" height="64" width="64">
+	 </a>
+	 <div class="media-body">
+         <h4 class="media-heading">{{ contact.fr_name  }} {{ contact.m_name  }} {{ contact.ls_name  }} </h4>
+         <p> <strong class="muted">Company:</strong> {{ contact.company.name }}</p>
+         <p><strong class="muted"></strong></p>
+         
+     </div>
+</div>
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Summary:</strong></h4>
+	<p> {{ contact.overview  }}</p>
+</div>
+
+<div class="media">
+<table class="table">
+	<tbody>
+		<tr>
+			<td>Email:</td>
+<!--{{contact.email}}-->
+			<td>{{ contact.lt_contact  }}</td>
+			<td>Phone:</td>
+			<td>{{ contact.phone  }}</td>
+		</tr>
+		<tr>
+			<td>Twitter:</td>
+			<td><a  id = "twitter-contact-url" href="{{ contact.t_url  }}">{{contact.t_url }} </a></td>
+			
+			<td>LinkedIn:</td>
+			<td><a href="{{ contact.ld_url  }}">{{ contact.ld_url  }}</a></td>
+		</tr>
+		<tr>
+			<td>Blog: </td>
+			<td> <a href="{{ contact.blog_url}}">{{ contact.blog_url}}</a></td>
+			<td>External URL</td>
+			<td><a href="{{ contact.ext_url  }}">{{ contact.ext_url  }}</a></td>
+		</tr>
+		<tr>
+			<td>Degrees:</td>
+			<td  id="degreescontact">{{ contact.degrees  }}</td>
+			<td>Titles:</td>
+			<td id="titlecontact"> {{ contact.title  }}</td>
+		</tr>
+
+	</tbody>
+
+</table>
+
+</div>
+
+
+
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Skills and Expertise: :</strong></h4>
+<p> {{ contact.tag.all  }}</p><br>
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Related Financial Organization:</strong></h4>
+	<p id="financial-organization"> {{ contact.financial_organization  }}</p><br>
+</div>
+
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Related Government Organization:</strong></h4>
+	<p id="goverment-contact"> {{ contact.government_organization  }}</p><br>
+</div>
+
+
+
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Industries:</strong></h4>
+	<p id="industry-contact">{{ contact.industry }}</p><br>
+</div>
+ 
+
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Used Technologies:</strong></h4>
+
+	<p id="technology-contact">{{ contact.technology }}</p>
+
+</div>
+
+
+
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Related Applications:</strong></h4>
+	<p id="application-contact">{{ contact.application }}</p>
+	<br>
+
+	</div>
+
+
 {% endblock %}
-
-
+</div>
