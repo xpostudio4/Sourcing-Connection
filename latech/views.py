@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
-from django.views.generic import DetailView, ListView, UpdateView
+from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
 #def index(request):
 def tagit(request):
@@ -88,9 +88,22 @@ def contact_edit(request, username):
         contact_form = ContactForm(instance=contactsubmit)
     return render_to_response('contact_form.html', {'contact_form': contact_form, 'username':username },context_instance=RequestContext(request)) 
 
-#@login_required
+@login_required
 class ContactUpdate(UpdateView):
     model = Company
+    form_class = ContactForm
+    template_name = 'contact_form.html'
+    success_url = '/contact/%(user)s/'
+
+class CompanyCreate(CreateView):
+    model = Company
+    form_class = CompanyForm
+    template_name = 'company_form.html'
+    success_url = '/company/%(slug)s/'
+
+@login_required
+class ContactUpdate(UpdateView):
+    model = Contact
     form_class = ContactForm
     template_name = 'contact_form.html'
     success_url = '/contact/%(user)s/'
@@ -128,29 +141,6 @@ class CompanyUpdate(UpdateView):
     form_class = CompanyForm
     template_name = 'company_form.html'
     success_url = '/company/%(slug)s/'
-
-def company_form(request):
-    if request.method == 'POST':
-        form = CompanyForm(request.POST)
-        if form.is_valid():
-            new_company = form.save()
-            return HttpResponseRedirect('new_company.get_absolute_url()')
-    else:
-        form = CompanyForm()
-    return render_to_response('company_form.html', {'form': form },context_instance=RequestContext(request)) 
-
-
-
-#def company_edit(request, company_id):
-#    company = Company.objects.get(name=name)	
-#    if request.method == 'POST':
-#        form = CompanyForm(instance=company, data=request.POST)
-#        if form.is_valid():
-#            form.save()
-#            return HttpResponseRedirect('/')
-#    else:
-#        form = CompanyForm()
-#    return render_to_response('company_form.html', context_instance=RequestContext(request, {'form': form })) 
 
 def logout_page(request):
     logout(request)
