@@ -2,7 +2,7 @@
 {% block content %}
 <div id="company-form-container" class="container">
 <form method="post" action=".">{% csrf_token %}
-	{{ company_form.as_p }}					
+	{{ form.as_p }}					
 <input type="submit" value="Submit Form"></input>
 
 </form>

@@ -37,7 +37,7 @@
 <br/>
 {% if user.is_authenticated %}
 	<div class="page-header">
-       <h1>Hello {{ username }}, you can edit your profile <a href="/profile/{{ user.username }}/edit">Here</a> </h1>
+       <h1>Hello {{ contact.user }}, you can edit your profile <a href="/profile/{{ contact.id }}/edit">Here</a> </h1>
     </div>
 {% endif %}
 
@@ -64,8 +64,7 @@
 	<tbody>
 		<tr>
 			<td>Email:</td>
-<!--{{contact.email}}-->
-			<td>{{ contact.lt_contact  }}</td>
+			<td>{{ contact.email  }}</td>
 			<td>Phone:</td>
 			<td>{{ contact.phone  }}</td>
 		</tr>
@@ -92,7 +91,7 @@
 	</tbody>
 
 </table>
-
+			<td>{{ contact.lt_contact  }}</td>
 </div>
 
 
