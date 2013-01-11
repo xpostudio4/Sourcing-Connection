@@ -69,7 +69,14 @@ hide{
 
 
 
+/*Related to the company CSS*/
 
+#profile-overview{
+  border: 1px solid #ccc;
+  height: 300px;
+  margin-top: 40px;
+
+}
 
 
 /*Login Form info*/

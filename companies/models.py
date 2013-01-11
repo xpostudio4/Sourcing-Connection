@@ -4,7 +4,6 @@ from taxonomy.models import *
 from location.models import *
 from django.forms import ModelForm
 from django.template import defaultfilters
-from taggit.managers import TaggableManager
 # Create your models here.
 
 class Company(models.Model):
@@ -20,7 +19,8 @@ class Company(models.Model):
     management = models.CharField(max_length=144, blank=True)
     web_url = models.URLField(blank=True)
     blog_url = models.URLField(blank=True)
-    twitter_username = models.CharField(max_length=512, blank=True)
+    twitter_url = models.URLField(blank=True)
+    facebook_link = models.URLField(blank=True)
     main_phone = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
 

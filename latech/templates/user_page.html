@@ -36,9 +36,9 @@
 {% block content %}
 <br/>
 {% if user.is_authenticated %}
-	<div class="page-header">
-       <h1>Hello {{ contact.user }}, you can edit your profile <a href="/profile/{{ contact.id }}/edit">Here</a> </h1>
-    </div>
+	<div class="pull-right">
+		<button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/profile/{{ contact.username }}/update'">  Edit  </button>
+	</div>
 {% endif %}
 
 
