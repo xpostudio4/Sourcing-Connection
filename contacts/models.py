@@ -5,12 +5,11 @@ from companies.models import Company
 from django.forms import ModelForm
 
 class Contact(models.Model):
-    user = models.ForeignKey(User)
-    fr_name = models.CharField(max_length=255, blank=True)
-    ls_name = models.CharField(max_length=255, blank=True)
-#    slug = models.SlugField(max_length=80, unique=True,
-#        help_text='Unique value for Contact page URL, created from name.')
+    user = models.OneToOneField(User)
+    fr_name = models.CharField(max_length=255, blank=True, verbose_name="First Name")
+    ls_name = models.CharField(max_length=255, blank=True, verbose_name="Last Name")
     m_name = models.CharField(max_length=255, blank=True)
+    email = models.EmailField(blank=True)
     #Special Information about contact
     overview = models.TextField(blank=True)
     #photo = models.ImageField()
@@ -35,7 +34,7 @@ class Contact(models.Model):
     lt_contact = models.CharField(max_length=255, blank=True)
 
     #List of Tags associated w/ contact
-    tag = models.CharField(max_length=255, blank=True)
+    tags = models.CharField(max_length=255, blank=True)
 
     #Pointer to  company from Company table
     company = models.ForeignKey(Company, related_name="company", blank=True, null=True, on_delete=models.SET_NULL)
@@ -50,20 +49,25 @@ class Contact(models.Model):
     title = models.CharField(max_length=255, blank=True)
 
     #Pointer to Industry (industries) from Industry table
-    industry = models.ManyToManyField(Industry, related_name="industries", blank=True, null=True)
+    industry = models.CharField(max_length=255, blank=True)
 
     #Pointer to list of Technologies from Technology Table
-    technology = models.ManyToManyField(Technology, related_name="technologies", blank=True, null=True) 
+    technology = models.CharField(max_length=255, blank=True)
 
     #Pointer to list of Applications from Application Table
-    application = models.ManyToManyField(Application, related_name="applications", blank=True, null=True)
+    application = models.CharField(max_length=255, blank=True)
 
     def __unicode__(self):
         return str(self.fr_name +" "+ self.ls_name)
 
+    @models.permalink
+    def get_absolute_url(self):
+          return ("/profile/%s/" % self.user)
+
+
 class ContactForm(ModelForm):
     class Meta:
        model = Contact
-       exclude = ('user', )
+       exclude = ('user', 'slug', )
        
 

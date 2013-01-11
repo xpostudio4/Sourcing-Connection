@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
 #def index(request):
@@ -88,7 +89,7 @@ def contact_edit(request, username):
         contact_form = ContactForm(instance=contactsubmit)
     return render_to_response('contact_form.html', {'contact_form': contact_form, 'username':username },context_instance=RequestContext(request)) 
 
-@login_required
+#@login_required
 class ContactUpdate(UpdateView):
     model = Company
     form_class = ContactForm
@@ -101,21 +102,30 @@ class CompanyCreate(CreateView):
     template_name = 'company_form.html'
     success_url = '/company/%(slug)s/'
 
-@login_required
-class ContactUpdate(UpdateView):
+class ProfileCreate(CreateView):
     model = Contact
     form_class = ContactForm
     template_name = 'contact_form.html'
-    success_url = '/contact/%(user)s/'
+    success_url = ('/') 
+#    success_url = ('/contact/%s/' % str(slug.user)) 
 
+
+#@login_required
+class ProfileUpdate(UpdateView):
+    model = Contact
+    form_class = ContactForm
+    template_name = 'contact_form.html'
+    success_url = '/'
+
+@login_required
 def contact_edit(request, username):
     if request.POST:
         contact_form = ContactForm(request.POST, instance=User.objects.get(username=request.user))
-        if contact_form.is_valid():
-            contact_form.save()
+        if form.is_valid():
+            form.save()
     else:
-        contact_form = ContactForm()
-    return render_to_response('contact_form.html', {'contact_form': contact_form, 'username':username },context_instance=RequestContext(request)) 
+        form = ContactForm()
+    return render_to_response('contact_form.html', {'form': form, 'username':username },context_instance=RequestContext(request)) 
 
 def file_not_found_404(request):
     return render_to_response('404.html',context_instance=RequestContext(request))
@@ -135,12 +145,22 @@ def company_page(request, slug):
        raise Http404
     return render_to_response('company_page.html',{'comp':comp},context_instance=RequestContext(request)) 
 
-#@login_required
+class CompanyView(DetailView):
+    queryset = Company.objects.all()
+    template_name = 'company_detail.html'
+#    success_url = '/company/%(slug)s/'
+    
+
+
 class CompanyUpdate(UpdateView):
     model = Company
     form_class = CompanyForm
     template_name = 'company_form.html'
     success_url = '/company/%(slug)s/'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CompanyUpdate, self).dispatch(*args, **kwargs)
 
 def logout_page(request):
     logout(request)

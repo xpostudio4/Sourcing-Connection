@@ -3,11 +3,13 @@ from django.contrib.auth.models import User
 from taxonomy.models import *
 from location.models import *
 from django.forms import ModelForm
+from django.template import defaultfilters
+from taggit.managers import TaggableManager
 # Create your models here.
 
 class Company(models.Model):
-    name = models.CharField(max_length=80)
-#    slug = models.SlugField(max_length=80, unique=True,
+    name = models.CharField(max_length=80, unique= True)
+    slug = models.SlugField(max_length=80, unique= True)
  #       help_text='Unique value for Company page URL, created from name.')
     #logo = models.ImageField()
     description = models.TextField(blank=True)
@@ -24,21 +26,21 @@ class Company(models.Model):
 
     #Comma separated list from Industry table
     industries = models.CharField(max_length=512, blank=True)
-
+#    industries = TaggableManager(verbose_name='Industries', through=IndustryTaggedItem, blank=True)
     #Comma separated list from Technologies table
-    tech_area = models.CharField(max_length=512, blank=True)
+    technologies = models.CharField(max_length=512, blank=True)
+#    technologies = TaggableManager(verbose_name='Technologies', through=TechnologyTaggedItem, blank=True)
 
     #Comma separated list from Category table
-    category = models.ForeignKey(Category, related_name="categories",
-            blank=True, null=True)
+    categories = models.CharField(max_length=512, blank=True)
 
     #Comma separated list from Application table
-    application = models.ForeignKey(Application, related_name="categories",
-            blank=True, null=True)
+    applications = models.CharField(max_length=512, blank=True)
    
     #Comma separated list from Tags table, also accept new tags input by users ("folksonomy")
-    tag = models.ManyToManyField(Tag, related_name="tags", blank=True)
-    
+    tags = models.CharField(max_length=512, blank=True)
+#    tags = TaggableManager(blank=True)
+
     #Comma separated list of entries from Company table
     #competitors = models.Foreignkey("")
     competitors = models.CharField(max_length=512, blank=True)
@@ -87,9 +89,13 @@ class Company(models.Model):
     def __unicode__(self):
         return self.name
 
-#    @models.permalink
-#    def get_absolute_url(self):
-#          return ('companies_company', (), { 'company_slug': self.slug })
+    def save(self, *args, **kwargs):
+        self.slug = defaultfilters.slugify(self.name)
+        super(Company, self).save(*args, **kwargs)
+
+    @models.permalink
+    def get_absolute_url(self):
+          return ("/company/%s/" % self.slug)
  
     class Meta:
          verbose_name_plural = "Companies"
@@ -97,7 +103,7 @@ class Company(models.Model):
 class CompanyForm(ModelForm):
     class Meta:
        model = Company
-#       exclude = ('slug', )
+       exclude = ['slug']
 
 class Office(models.Model): 
     city = models.ForeignKey(City, related_name="location", blank=True)
