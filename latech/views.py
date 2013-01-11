@@ -89,13 +89,6 @@ def contact_edit(request, username):
         contact_form = ContactForm(instance=contactsubmit)
     return render_to_response('contact_form.html', {'contact_form': contact_form, 'username':username },context_instance=RequestContext(request)) 
 
-#@login_required
-class ContactUpdate(UpdateView):
-    model = Company
-    form_class = ContactForm
-    template_name = 'contact_form.html'
-    success_url = '/contact/%(user)s/'
-
 class CompanyCreate(CreateView):
     model = Company
     form_class = CompanyForm
@@ -117,6 +110,10 @@ class ProfileUpdate(UpdateView):
     template_name = 'contact_form.html'
     success_url = '/'
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProfileUpdate, self).dispatch(*args, **kwargs)
+
 @login_required
 def contact_edit(request, username):
     if request.POST:
@@ -130,8 +127,8 @@ def contact_edit(request, username):
 def file_not_found_404(request):
     return render_to_response('404.html',context_instance=RequestContext(request))
 
-def user_prof(request, username):
-    user = User.objects.get(username=username)
+def user_prof(request, pk):
+    profile = Contact.objects.get(user=pk)
     uc = get_object_or_404(Contact)
     variables = RequestContext(request,{
         'contact':uc,
@@ -149,8 +146,18 @@ class CompanyView(DetailView):
     queryset = Company.objects.all()
     template_name = 'company_detail.html'
 #    success_url = '/company/%(slug)s/'
-    
 
+class ProfileView(DetailView):
+    model = Contact
+    template_name = 'user_page.html'
+
+#    def get_context_data(self, **kwargs)
+#        context = super.(ProfileView, self).get_context_data(**kwargs)
+#        return context
+
+class SelfProfileView(ProfileView):
+    def get_object(self):
+        return self.request.user
 
 class CompanyUpdate(UpdateView):
     model = Company

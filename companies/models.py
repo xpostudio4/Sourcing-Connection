@@ -4,7 +4,6 @@ from taxonomy.models import *
 from location.models import *
 from django.forms import ModelForm
 from django.template import defaultfilters
-from taggit.managers import TaggableManager
 # Create your models here.
 
 class Company(models.Model):

@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url, handler404
-from latech.views import file_not_found_404, CompanyUpdate, CompanyCreate, ProfileUpdate, CompanyView
+from latech.views import ProfileView, ProfileUpdate, CompanyUpdate, CompanyCreate, CompanyView, SelfProfileView
 from django.views.generic import DetailView, ListView, UpdateView
+from django.contrib.auth.decorators import login_required
 from companies.models import *
 # Uncomment the next two lines to enable the admin:
 
@@ -27,7 +28,9 @@ urlpatterns = patterns('',
      url('^company/(?P<slug>[\w-]+)/$', CompanyView.as_view(), name='company_view'),
 
      # Profile
-     url(r'^profile/(\w+)/$', 'latech.views.user_prof'),
+     url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),
+     url(r'^profile/self/$', login_required(SelfProfileView.as_view()), name='profile_self_view'),
+#     url(r'^profile/(\w+)/$', 'latech.views.user_prof'),
 #     url(r'^profile/(\w+)/edit/$', 'latech.views.contact_edit'),  
      url(r'^profile/(?P<pk>[\w-]+)/edit/$', ProfileUpdate.as_view(), name='profile_update'),
      url(r'^login/$', 'django.contrib.auth.views.login'),
