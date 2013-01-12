@@ -144,7 +144,7 @@ def company_page(request, slug):
 
 class CompanyView(DetailView):
     queryset = Company.objects.all()
-    template_name = 'company_detail.html'
+    template_name = 'company_page.html'
 #    success_url = '/company/%(slug)s/'
 
 class ProfileView(DetailView):

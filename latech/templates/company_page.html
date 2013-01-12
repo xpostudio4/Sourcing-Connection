@@ -1,66 +1,133 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
+{% block external %}
+{% endblock %}
 
 {% block content %}
 <br/>
 {% if user.is_authenticated %}
-<h1>Hello {{ user }}, you are able to edit this company <a href="/company/{{ comp.name }}/edit">Here</a> </h1>
-{% endif %}
+		<div class="pull-right" style="margin-right:80px;">
+			<button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}/update'">  Edit  </button>
+		</div>
+		{% endif %}
+<br/>
+		<div class="media">
+			<a class="pull-left" href="#">
+				<img class="img-polaroid" data-src="holder.js/64x64" src="http://stancedata.com/wp-content/uploads/2012/03/LOGO-STANCE-300x84.jpg" >
+	 		</a>
+	 	<div class="pull-right" style="margin-right:80px;"> 
+	 	<div class="btn-group">
+        	<button class="btn">Follow</button>
+  				<button class="btn dropdown-toggle" data-toggle="dropdown">
+   				<span class="caret"></span>
+  			</button>
+  			<ul class="dropdown-menu">
+    			<li><a tabindex="-1" href="#">Follow Company</a></li>
+				<li><a tabindex="-1" href="#">Follow Blog</a></li>
+				<li class="divider"></li>
+				<li><a tabindex="-1" href="#">Something else here</a></li>
+ 			</ul>
+         </div>
+    	</div>
+     <div class="media">
+		<h2 class="media-heading">{{ company.name  }} </h2>
+         
+	</div>
+	<div class="span10">
+		
+		
+     	
+    	<div class="media">
+			<h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
+			<p> {{ company.description  }}</p>
+     	</div>
+	
+	<div class="media">
+<table class="table">
+	<tbody>
+		<tr>
+			<td>Company Link:</td>
+			<td><a href="{{ company.web_url }}">{{ company.web_url }}</a></td>
+			<td>Company Blog:</td>
+			<td><a href="{{ company.blog_url  }}">{{ company.blog_url  }}</a></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td> </td>
+			<td></td>
+			<td></a></td>
+		</tr>
+		<tr>
+			<td>Degrees:</td>
+			<td  id="degreescontact">{{ contact.degrees  }}</td>
+			<td>Titles:</td>
+			<td id="titlecontact"> {{ contact.title  }}</td>
+		</tr>
 
-<p> {{ comp.name  }}</p>
-<p> {{ comp.description  }}</p>
-<p> {{ comp.value_proposition  }}</p>
-<p> {{ comp.overview  }}</p>
-<p> {{ comp.management  }}</p>
-<p> {{ comp.web_url }}</p>
-<p> {{ comp.blog_url  }}</p>
-<p> {{ comp.t_url  }}</p>
-<p> {{ comp.main_phone  }}</p>
-<p> {{ comp.email  }}</p>
-<p> {{ comp.industries  }}</p>
-<p> {{ comp.tech_area }}</p>
-<p> {{ comp.category }}</p>
-<p> {{ comp.application }}</p>
-{% if comp.tag.all %}
-{%for app in comp.tag.all %}
-<p> {{ app.name  }} </p>
-{% endfor %}
-{% endif %}
-<p> {{ comp.offices }}</p>
-<p> {{ comp.funding }}</p>
-<p> {{ comp.acquisition }}</p>
-<p> {{ comp.product }}</p>
-<p> {{ comp.certification }}</p>
-<p> {{ comp.customer }}</p>
+	</tbody>
+
+</table>
+			<td>{{ contact.lt_contact  }}</td>
+</div>
+	
+
+<div>
+<p> {{ company.value_proposition  }}
+<p> {{ company.overview  }}</p>
+<p> {{ company.management  }}</p>
+<p> </p>
+<p> {{ company.t_url  }}</p>
+<p> {{ company.main_phone  }}</p>
+<p> {{ company.email  }}</p>
+<p> {{ company.industries }}</p>
+<p> {{ company.tech_area }}</p>
+<p> {{ company.category }}</p>
+<p> {{ company.application }}</p>
+<p> {{ company.tags }}</p>
+<p> {{ company.offices }}</p>
+<p> {{ company.funding }}</p>
+<p> {{ company.acquisition }}</p>
+<p> {{ company.product }}</p>
+<p> {{ company.certification }}</p>
+<p> {{ company.customer }}</p>
+</div>
 <!--#    project = models.ManyToManyField("Project")
 #    links = models.ForeignKey("URLs") -->
-<p> {{ comp.contact }}</p>
+<p> {{ company.contact }}</p>
 <!-- These data is only available for the LATech Users-->
 {% if user.is_authenticated %}
-{% if comp.scalability_rating %}
-<p> {{ comp.scalability_rating }}</p>
+{% if company.scalability_rating %}
+<p> {{ company.scalability_rating }}</p>
 {% endif %}
-{% if comp.expansion_rating %}
-<p> {{ comp.expansion_rating }}</p>
+{% if company.expansion_rating %}
+<p> {{ company.expansion_rating }}</p>
 {% endif %}
-{% if comp.physical_plant_rating %}
-<p> {{ comp.physical_plant_rating }}</p>
+{% if company.physical_plant_rating %}
+<p> {{ company.physical_plant_rating }}</p>
 {% endif %}
-{% if comp.profilatibily_rating %}
-<p> {{ comp.profilatibily_rating}}</p>
+{% if company.profilatibily_rating %}
+<p> {{ company.profilatibily_rating}}</p>
 {% endif %}
-{% if comp.ret_talent_rating %}
-<p> {{ comp.ret_talent_rating }}</p>
+{% if company.ret_talent_rating %}
+<p> {{ company.ret_talent_rating }}</p>
 {% endif %}
-{% if comp.financials_rating %}
-<p> {{ comp.financials_rating }}</p>
+{% if company.financials_rating %}
+<p> {{ company.financials_rating }}</p>
 {% endif %}
-{% if comp.rating_of_ownership %}
-<p> {{ comp.rating_of_ownership }}</p>
+{% if company.rating_of_ownership %}
+<p> {{ company.rating_of_ownership }}</p>
 {% endif %}
-{% if comp.gtb_overall_rating %}
-<p> {{ comp.gtb_overall_rating }}</p>
+{% if company.gtb_overall_rating %}
+<p> {{ company.gtb_overall_rating }}</p>
 {% endif %}
 {% endif %}
 {% endblock %}
 
 
+</div>
