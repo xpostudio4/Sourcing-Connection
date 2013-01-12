@@ -5,7 +5,9 @@
 <ul>
 {{ form.as_p }}
 </ul>
-<input type="submit" value="Submit Form"/>
+
+<button type="submit" class="btn">Submit Form</button>
+
 <input type="hidden" name="next" value="/profile/{{ user.username}}" />
 </form>
 {% endblock %}

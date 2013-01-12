@@ -1,5 +1,38 @@
 {% extends "base.html" %}
 {% block external %}
+<script>
+       $(document).ready(function(){
+
+       	//A list of all the classes and Id's of the elements to be treated as read only tags.
+       	var tag_ids  = []; 
+
+
+
+       	for(i in tag_ids){
+
+       		//Create read only tags for the degrees field
+       		var degrees =  $(this).find(tag_ids[i]).html().split(",");
+       		var string_degrees = ""; 
+
+
+        	for( j  in degrees){
+       			string_degrees += "<code>" + degrees[j] + "</code>  ";
+       		}
+
+       		$(tag_ids[i]).html(string_degrees);
+
+       	}
+       	//Obtain twitter name and prettify it for the profile
+       	var twitter_name  = $(this).find('#company-twitter-url').text().split("/").pop();
+       	$('#company-twitter-url').text("@"+twitter_name)
+
+       	//Obtain the facebook profile name.
+       	var facebook_name  = $(this).find('#company-facebook-url').text().split("/").pop();
+       	$('#company-facebook-url').text(facebook_name)
+
+
+       })
+</script>
 {% endblock %}
 
 {% block content %}
@@ -30,6 +63,7 @@
     	</div>
      <div class="media">
 		<h2 class="media-heading">{{ company.name  }} </h2>
+		<p class="muted">{{ company.value_proposition  }}</p>
          
 	</div>
 	<div class="span10">
@@ -51,41 +85,51 @@
 			<td><a href="{{ company.blog_url  }}">{{ company.blog_url  }}</a></td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
+			<td>Twitter:</td>
+			<td ><a href="{{ company.twitter_url  }}" id = "company-twitter-url" >{{ company.twitter_url  }}</a></td>
 			
-			<td></td>
-			<td></td>
+			<td>Facebook:</td>
+			<td ><a href="{{ company.facebook_link  }}" id="company-facebook-url">{{ company.facebook_link  }}</a></td>
 		</tr>
 		<tr>
-			<td></td>
-			<td> </td>
-			<td></td>
-			<td></a></td>
+			<td>Email: </td>
+			<td><a href="mailto:{{ company.email  }}">{{ company.email  }} </a></td>
+			<td>Phone Contact:</td>
+			<td>{{ company.main_phone }}</td>
 		</tr>
 		<tr>
-			<td>Degrees:</td>
-			<td  id="degreescontact">{{ contact.degrees  }}</td>
-			<td>Titles:</td>
-			<td id="titlecontact"> {{ contact.title  }}</td>
+			<td>Products:</td>
+			<td  id="company-product">{{ company.product }}</td>
+			<td>Certifications:</td>
+			<td id="company-certification"> {{ company.certification }}</td>
 		</tr>
 
 	</tbody>
 
 </table>
-			<td>{{ contact.lt_contact  }}</td>
+			
 </div>
 	
 
 <div>
-<p> {{ company.value_proposition  }}
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Related Industries:</strong></h4>
+	<p id="company-industries">{{ company.industries }}</p>
+
+</div>
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Clients:</strong></h4>
+	<p id="company-customers">{{ company.customer }}</p>
+
+</div>
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Used Technologies:</strong></h4>
+	<p id=""></p>
+
+</div>
 <p> {{ company.overview  }}</p>
 <p> {{ company.management  }}</p>
-<p> </p>
-<p> {{ company.t_url  }}</p>
-<p> {{ company.main_phone  }}</p>
-<p> {{ company.email  }}</p>
-<p> {{ company.industries }}</p>
+
 <p> {{ company.tech_area }}</p>
 <p> {{ company.category }}</p>
 <p> {{ company.application }}</p>
@@ -93,9 +137,7 @@
 <p> {{ company.offices }}</p>
 <p> {{ company.funding }}</p>
 <p> {{ company.acquisition }}</p>
-<p> {{ company.product }}</p>
-<p> {{ company.certification }}</p>
-<p> {{ company.customer }}</p>
+<p> </p>
 </div>
 <!--#    project = models.ManyToManyField("Project")
 #    links = models.ForeignKey("URLs") -->
@@ -119,6 +161,8 @@
 {% endif %}
 {% if company.financials_rating %}
 <p> {{ company.financials_rating }}</p>
+{%else%}
+       <p>Not Available</p>
 {% endif %}
 {% if company.rating_of_ownership %}
 <p> {{ company.rating_of_ownership }}</p>
