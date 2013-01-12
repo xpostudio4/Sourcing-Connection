@@ -1,0 +1,10 @@
+{% if companies %}
+<ul class="companies">
+{% for company in company_list %}
+<li>
+<a href="{{ company.slug }}" class="title">
+{{ company.slug }}</a></li>
+
+<br />
+{% endfor %}
+{% endif %}
