@@ -1,10 +1,10 @@
-{% if companies %}
-<ul class="companies">
-{% for company in company_list %}
-<li>
-<a href="{{ company.slug }}" class="title">
-{{ company.slug }}</a></li>
-
-<br />
-{% endfor %}
+{% if company_list %}
+    <h2>Companies</h2>
+    <ul class="companies">
+        {% for company in company_list %}
+            <li><a href="/company/{{ company.slug }}">{{ company.name }} </li>
+        {% endfor %}
+    </ul>
 {% endif %}
+
+

@@ -7,12 +7,11 @@ from companies.models import *
 from contacts.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
-from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, ListView, UpdateView, CreateView
+from django.views.generic import DetailView, ListView, UpdateView, CreateView, ListView
+from forms import SearchForm
 
-#def index(request):
 def tagit(request):
    tags = Tag.objects.all()
    result = []
@@ -64,30 +63,6 @@ def tagitt(request):
    result = [x.name for x in tags]
    return HttpResponse(simplejson.dumps(result),mimetype='application/json')
 
-@login_required
-def contact_form(request, username):
-    if request.POST:
-        contact_form = ContactForm(request.POST, instance=User.objects.get(username=request.user))
-        if contact_form.is_valid():
-            contact_form.save()
-    else:
-        contact_form = ContactForm()
-    return render_to_response('contact_form.html', {'contact_form': contact_form, 'username':username },context_instance=RequestContext(request)) 
-
-@login_required
-def contact_edit(request, username):
-    if username == '':
-        contactsubmit = Contact()
-    else:
-        contactsubmit = Contact.objects.get(user=username)
-    if request.method == 'POST':
-        contact_form = ContactForm(request.POST, instance=contactsubmit)
-        if contact_form.is_valid():
-            contact_form.save()
-            return HttpResponseRedirect('/profile/'+username)
-    else:
-        contact_form = ContactForm(instance=contactsubmit)
-    return render_to_response('contact_form.html', {'contact_form': contact_form, 'username':username },context_instance=RequestContext(request)) 
 
 class CompanyCreate(CreateView):
     model = Company
@@ -103,7 +78,11 @@ class ProfileCreate(CreateView):
 #    success_url = ('/contact/%s/' % str(slug.user)) 
 
 
-#@login_required
+class ProfileView(DetailView):
+    model = Contact
+    template_name = 'user_page.html'
+
+
 class ProfileUpdate(UpdateView):
     model = Contact
     form_class = ContactForm
@@ -113,16 +92,6 @@ class ProfileUpdate(UpdateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(ProfileUpdate, self).dispatch(*args, **kwargs)
-
-@login_required
-def contact_edit(request, username):
-    if request.POST:
-        contact_form = ContactForm(request.POST, instance=User.objects.get(username=request.user))
-        if form.is_valid():
-            form.save()
-    else:
-        form = ContactForm()
-    return render_to_response('contact_form.html', {'form': form, 'username':username },context_instance=RequestContext(request)) 
 
 def file_not_found_404(request):
     return render_to_response('404.html',context_instance=RequestContext(request))
@@ -168,6 +137,30 @@ class CompanyUpdate(UpdateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(CompanyUpdate, self).dispatch(*args, **kwargs)
+
+class CompanyList(ListView):
+    model = Company
+    template_name = 'company_list.html'    
+
+
+def search_page(request):
+    form = SearchForm()
+    company_list = []
+    show_results = False
+    if 'query' in request.GET:
+       show_results = True
+       query = request.GET['query'].strip()
+       if query:
+           form = SearchForm({'query': query})
+           company_list = Company.objects.filter(name__icontains=query)[:10]
+    variables = RequestContext(request, {
+        'form':form,    
+        'company_list': company_list,
+        'show_results': show_results
+    })
+#    return render_to_response('company_list.html', variables)
+#    else:
+    return render_to_response('search.html', variables)
 
 def logout_page(request):
     logout(request)

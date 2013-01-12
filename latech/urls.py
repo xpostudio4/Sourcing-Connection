@@ -1,8 +1,11 @@
-from django.conf.urls import patterns, include, url, handler404
-from latech.views import ProfileView, ProfileUpdate, CompanyUpdate, CompanyCreate, CompanyView, SelfProfileView
+from django.conf.urls import patterns, include, url
+from latech.views import search_page
+from latech.views import ProfileView, ProfileUpdate, CompanyUpdate, CompanyCreate, CompanyView, SelfProfileView, search_page, CompanyList
+from latech.views import search_page
 from django.views.generic import DetailView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from companies.models import *
+
 # Uncomment the next two lines to enable the admin:
 
 from django.contrib import admin
@@ -24,8 +27,10 @@ urlpatterns = patterns('',
      # Company URLs
      url(r'^company/new/$', CompanyCreate.as_view(), name='company_create'),
 #     url(r'^company/(\w+)/$', 'latech.views.company_page'),
-     url('^company/(?P<slug>[\w-]+)/update/$', CompanyUpdate.as_view(), name='company_update'),
-     url('^company/(?P<slug>[\w-]+)/$', CompanyView.as_view(), name='company_view'),
+     url(r'^company/(?P<slug>[\w-]+)/update/$', CompanyUpdate.as_view(), name='company_update'),
+     url(r'^company/(?P<slug>[\w-]+)/$', CompanyView.as_view(), name='company_view'),
+     url(r'^companies/$', CompanyList.as_view(), name='company_list'),
+
 
      # Profile
      url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),
@@ -36,13 +41,13 @@ urlpatterns = patterns('',
      url(r'^login/$', 'django.contrib.auth.views.login'),
      url(r'^logout/$', 'latech.views.logout_page'),
 
-     #url(r'^profile/<user>/edit$', 'latech.views.company_form'),
-     #url(r'^profile/new/$', 'latech.views.company_form'),
+     # Search Urls
+     url(r'^search/', 'latech.views.search_page'),
+
      url(r'^tags', "latech.views.tagitt"),
      url(r'^admin/', include(admin.site.urls)),
+
  
 )
-
-handler404 = 'latech.views.file_not_found_404'
 
 

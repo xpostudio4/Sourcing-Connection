@@ -37,7 +37,7 @@
 <br/>
 {% if user.is_authenticated %}
 	<div class="pull-right">
-		<button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/profile/{{ contact.username }}/update'">  Edit  </button>
+		<button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/profile/{{ contact.id }}/edit'">  Edit  </button>
 	</div>
 {% endif %}
 
