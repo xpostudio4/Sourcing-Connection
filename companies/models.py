@@ -125,9 +125,13 @@ class Funding(models.Model):
 #class Round(models.Model):
 #   round = models.CharField(max_length=50)
 
+
 class Competitors(models.Model):
     company = models.ForeignKey(Company, related_name="Source Company")
     name = models.ForeignKey(Company, related_name="Competitor")
+
+    def __unicode__(self):
+        return self.company +":" self.name
 
 
 class Office(models.Model):

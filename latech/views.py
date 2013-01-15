@@ -26,22 +26,14 @@ def base(request):
    return render_to_response("index.html",{'user': request.user}, 
 context_instance=RequestContext(request))
 
-def nana(request):
-   tags = Tag.objects.all()
-   f = "["
-   for tag  in tags:
-     f+= "'"+tag.name+"',"
-   f = f[:-1]
-   f = f+"]"
-   return render_to_response("tagit.html", {'f':f},context_instance=RequestContext(request))
-
-def tagsplete(request):
-   tags = Tag.objects.filter(name__istartswith=request.REQUEST['term'])
-   results = []
-   for tag in tags:
-      tag_dict = {'id':tag.id, 'label':tag.name, 'value':tag.name}
-      results.append(tag_dict)
-   return HttpResponse(simplejson.dumps(results),mimetype='application/json')
+#Used to obtain the list of tags as a Ajax request returns a Json Array
+#def tagsplete(request):
+#   tags = Tag.objects.filter(name__istartswith=request.REQUEST['term'])
+#   results = []
+#   for tag in tags:
+#      tag_dict = {'id':tag.id, 'label':tag.name, 'value':tag.name}
+#      results.append(tag_dict)
+#   return HttpResponse(simplejson.dumps(results),mimetype='application/json')
 
 def tagitt(request):
    tags = Tag.objects.all()
@@ -119,9 +111,7 @@ class ProfileView(DetailView):
 #        context = super.(ProfileView, self).get_context_data(**kwargs)
 #        return context
 
-class SelfProfileView(ProfileView):
-    def get_object(self):
-        return self.request.user
+
 
 class CompanyUpdate(UpdateView):
     model = Company

@@ -11,7 +11,7 @@ from companies.models import *
 from django.contrib import admin
 admin.autodiscover()
 urlpatterns = patterns('',
-    # Examples:
+    # Examples:e
     # url(r'^$', 'latech.views.home', name='home'),
     # url(r'^latech/', include('latech.foo.urls')),
 
@@ -20,7 +20,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
      url(r'^$', "latech.views.base"),
-     url(r'^tagit', "latech.views.tagit"),
+     #url(r'^tagit', "latech.views.tagit"),
 
 #     url(r'^contact/new/$', 'latech.views.contact_form'), 
      
@@ -44,7 +44,8 @@ urlpatterns = patterns('',
      # Search Urls
      url(r'^search/', 'latech.views.search_page'),
 
-     url(r'^tags', "latech.views.tagitt"),
+     #This is the url for Ajax requests for taggit
+     #url(r'^tags', "latech.views.tagitt"),
      url(r'^admin/', include(admin.site.urls)),
 
  
