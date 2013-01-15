@@ -10,7 +10,9 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, ListView
-from forms import SearchForm
+from django.forms.formsets import formset_factory
+from latech.forms import SearchForm
+from django.db.models import Q
 
 def tagit(request):
    tags = Tag.objects.all()
@@ -23,9 +25,7 @@ def base(request):
    
    return render_to_response("index.html",{'user': request.user}, 
 context_instance=RequestContext(request))
- 
-#def tag_array(request):
-#def tagit(request):
+
 def nana(request):
    tags = Tag.objects.all()
    f = "["
@@ -35,20 +35,6 @@ def nana(request):
    f = f+"]"
    return render_to_response("tagit.html", {'f':f},context_instance=RequestContext(request))
 
-#def tagsplete(request):
-## Vieja
-#    out = ["hola", "mundo", "adios", "universo"]
-#    return HttpResponse(simplejson.dumps(out))
-#    result = []
-#    if 'q' in request.GET:
-#        tags = Tag.objects.filter(name__istartswith=request.GET['q'])[:10]
-#        result = [name for x in tags ]
-##        return HttpResponse(u'\n'.join(tag.name for tag in tags))
-#    tags = Tag.objects.all()
-#    result = [x.name for x in tags]
-#    json = simplejson.dumps(result)
-#    return HttpResponse(json, mimetype="application/json")
-#def venue_lookup(request):
 def tagsplete(request):
    tags = Tag.objects.filter(name__istartswith=request.REQUEST['term'])
    results = []
@@ -70,12 +56,21 @@ class CompanyCreate(CreateView):
     template_name = 'company_form.html'
     success_url = '/company/%(slug)s/'
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CompanyCreate, self).dispatch(*args, **kwargs)
+    
+
 class ProfileCreate(CreateView):
     model = Contact
     form_class = ContactForm
     template_name = 'contact_form.html'
     success_url = ('/') 
 #    success_url = ('/contact/%s/' % str(slug.user)) 
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProfileCreate, self).dispatch(*args, **kwargs)
 
 
 class ProfileView(DetailView):
@@ -146,21 +141,36 @@ class CompanyList(ListView):
 def search_page(request):
     form = SearchForm()
     company_list = []
+    contact_list = []    
     show_results = False
     if 'query' in request.GET:
        show_results = True
        query = request.GET['query'].strip()
        if query:
            form = SearchForm({'query': query})
-           company_list = Company.objects.filter(name__icontains=query)[:10]
+           company_list = Company.objects.filter(
+              Q(name__icontains=query)|
+              Q(description__icontains=query)|
+              Q(technologies__icontains=query)|
+              Q(industries__icontains=query)
+           )[:10]
+           contact_list = Contact.objects.filter(
+              Q(fr_name__icontains=query)|
+              Q(ls_name__icontains=query)|
+              Q(m_name__icontains=query)|
+              Q(overview__icontains=query)
+           )[:10]
+           
     variables = RequestContext(request, {
         'form':form,    
         'company_list': company_list,
+        'contact_list': contact_list,        
         'show_results': show_results
     })
 #    return render_to_response('company_list.html', variables)
 #    else:
     return render_to_response('search.html', variables)
+
 
 def logout_page(request):
     logout(request)
