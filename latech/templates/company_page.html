@@ -1,10 +1,12 @@
 {% extends "base.html" %}
+
+{% block title %}{{ company.name  }}{% endblock %}
 {% block external %}
 <script>
        $(document).ready(function(){
 
        	//A list of all the classes and Id's of the elements to be treated as read only tags.
-       	var tag_ids  = []; 
+       	var tag_ids  = ['#company-product','#company-certification', '#company-industries', '#company-customers', '#company-offices', '#company-tags', '#company-applications', '#company-technologies']; 
 
 
 
@@ -103,15 +105,24 @@
 			<td>Certifications:</td>
 			<td id="company-certification"> {{ company.certification }}</td>
 		</tr>
+		<tr>
+			<td>Related Categories:</td>
+			<td id="company-tags">{{ company.tags }}</td>
+			<td>Applications:</td>
+			<td id="company-applications">{{ company.applications }}</td>
+		</tr>
 
 	</tbody>
 
 </table>
 			
 </div>
-	
 
 <div>
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Overview:</strong></h4>
+	<p id="company-overview">{{ company.overview  }}</p>
+</div>
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Related Industries:</strong></h4>
 	<p id="company-industries">{{ company.industries }}</p>
@@ -123,25 +134,38 @@
 
 </div>
 <div class="media">
-	<h4 class="media-heading"><strong class="muted">Used Technologies:</strong></h4>
-	<p id=""></p>
+	<h4 class="media-heading"><strong class="muted">Technologies:</strong></h4>
+	<p id="company-technologies">{{ company.technologies }}</p>
+</div>
+
+
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Funding:</strong></h4>
+	<p id="#company-funding">{{ company.funding }}</p>
 
 </div>
-<p> {{ company.overview  }}</p>
-<p> {{ company.management  }}</p>
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Offices:</strong></h4>
+	<p id="company-offices">{{ company.offices }}</p>
 
-<p> {{ company.tech_area }}</p>
-<p> {{ company.category }}</p>
-<p> {{ company.application }}</p>
-<p> {{ company.tags }}</p>
-<p> {{ company.offices }}</p>
-<p> {{ company.funding }}</p>
-<p> {{ company.acquisition }}</p>
-<p> </p>
+</div>
+
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Management:</strong></h4>
+	<p id="company-management">{{ company.management  }}</p>
+
+</div>
 </div>
 <!--#    project = models.ManyToManyField("Project")
+
 #    links = models.ForeignKey("URLs") -->
-<p> {{ company.contact }}</p>
+
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Latech Contact:</strong></h4>
+	<p id="company-contact">{{ company.contact }}</p>
+
+</div>
+<p> </p>
 <!-- These data is only available for the LATech Users-->
 {% if user.is_authenticated %}
 {% if company.scalability_rating %}

@@ -6,6 +6,7 @@ from django.forms import ModelForm
 from django.template import defaultfilters
 # Create your models here.
 
+
 class Company(models.Model):
     name = models.CharField(max_length=80, unique= True)
     slug = models.SlugField(max_length=80, unique= True)
@@ -43,7 +44,7 @@ class Company(models.Model):
 
     #Comma separated list of entries from Company table
     #competitors = models.Foreignkey("")
-    competitors = models.CharField(max_length=512, blank=True)
+    
 
     #Comma separated list of <City, address, phone #>
     offices = models.CharField(max_length=512, blank=True)
@@ -65,6 +66,9 @@ class Company(models.Model):
     #Comma separated list of certifications from Certification Table
     #certification = models.ForeignKey("Certification")
     certification = models.CharField(max_length=512, blank=True)
+
+
+    award = models.CharField(max_length=512, blank=True)
     
     #Comma separated list of Customers form Company Table
     customer = models.CharField(max_length=512, blank=True)
@@ -100,15 +104,48 @@ class Company(models.Model):
     class Meta:
          verbose_name_plural = "Companies"
 
+ROUND_CHOICES = (
+    ('Seed','Seed'), ('Angel','Angel'), 
+    ('Series A','Series A'),('Series B','Series B'),
+    ('Series C','Series C'), ('Series D','Series D'),
+    ('Series E','Series E'), ('Series F','Series F'), 
+    ('Series G','Series G'), ('Private Equity','Private Equity'), 
+    ('Grant','Grant'),('Debt','Debt'), 
+    ('Venture Round','Venture Round'),('Post IPO Equity','Post IPO Equity'), 
+    ('Post IPO Debt','Post IPO Debt') 
+    )
+
+
+class Funding(models.Model):
+    company = models.ForeignKey(Company, related_name="Funds Delivered to")
+    round = models.CharField(max_length=16, choices=ROUND_CHOICES, default = 'Seed')
+    raised = models.DecimalField(max_digits = 15, decimal_places = 2)
+
+#Comented for future uses
+#class Round(models.Model):
+#   round = models.CharField(max_length=50)
+
+class Competitors(models.Model):
+    company = models.ForeignKey(Company, related_name="Source Company")
+    name = models.ForeignKey(Company, related_name="Competitor")
+
+
 class CompanyForm(ModelForm):
     class Meta:
        model = Company
        exclude = ['slug']
 
-class Office(models.Model): 
-    city = models.ForeignKey(City, related_name="location", blank=True)
-    address = models.CharField(max_length=512, blank=True)
-    phone = models.CharField(max_length=512, blank=True)
 
+class Office(models.Model):
+    company = models.ForeignKey(Company)
+    description = models.CharField(max_length=255)
+    address_1 = models.CharField(max_length=512, blank=True)
+    address_2 = models.CharField(max_length=512, blank=True)
+    city = models.ForeignKey(City, related_name="location", blank=True)
+    phone = models.CharField(max_length=512, blank=True)
+    zip_code = models.CharField(max_length=512, blank=True)
+    country = models.ForeignKey(Country, related_name = "Office Country")
+ 
+    
     def __unicode__(self):
         return self.address

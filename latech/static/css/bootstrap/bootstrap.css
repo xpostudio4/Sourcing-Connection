@@ -1285,6 +1285,10 @@ textarea::-webkit-input-placeholder {
   width: 530px;
 }
 
+.input-xxxlarge{
+  width: 750px;
+}
+
 input[class*="span"],
 select[class*="span"],
 textarea[class*="span"],
