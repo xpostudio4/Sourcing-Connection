@@ -130,12 +130,6 @@ class Competitors(models.Model):
     name = models.ForeignKey(Company, related_name="Competitor")
 
 
-class CompanyForm(ModelForm):
-    class Meta:
-       model = Company
-       exclude = ['slug']
-
-
 class Office(models.Model):
     company = models.ForeignKey(Company)
     description = models.CharField(max_length=255)

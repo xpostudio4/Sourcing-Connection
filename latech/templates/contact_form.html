@@ -1,5 +1,14 @@
 {% extends "index.html" %}
 
+{% block external %}
+ <script type="text/javascript">
+    $(document).ready(function() {
+        //$("#id_tags").tagit();
+    });
+</script>
+
+{% endblock %}
+
 {% block content %}
 <form method="post" action=".">{% csrf_token %}
 <ul>
