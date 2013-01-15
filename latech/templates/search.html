@@ -7,8 +7,14 @@
 </form>
 <div id="search-results">
 {% if show_results %}
+{% if company_list %}
 {% include "company_list.html" %}
 {% endif %}
+{% if contact_list %}
+{% include "contact_list.html" %}
+{% endif %}
+{% endif %}
+
 </div>
 {% endblock %}
 
