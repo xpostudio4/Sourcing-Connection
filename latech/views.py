@@ -3,15 +3,11 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, get_object_or_404
 from taxonomy.models import *
-from companies.models import *
-from contacts.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, ListView, UpdateView, CreateView, ListView
-from django.forms.formsets import formset_factory
-from latech.forms import SearchForm
+from latech.forms import SearchForm, AdvanceSearchForm
 from django.db.models import Q
 
 def tagit(request):
@@ -41,92 +37,8 @@ def tagitt(request):
    result = [x.name for x in tags]
    return HttpResponse(simplejson.dumps(result),mimetype='application/json')
 
-
-class CompanyCreate(CreateView):
-    model = Company
-    form_class = CompanyForm
-    template_name = 'company_form.html'
-    success_url = '/company/%(slug)s/'
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(CompanyCreate, self).dispatch(*args, **kwargs)
-    
-
-class ProfileCreate(CreateView):
-    model = Contact
-    form_class = ContactForm
-    template_name = 'contact_form.html'
-    success_url = ('/') 
-#    success_url = ('/contact/%s/' % str(slug.user)) 
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ProfileCreate, self).dispatch(*args, **kwargs)
-
-
-class ProfileView(DetailView):
-    model = Contact
-    template_name = 'user_page.html'
-
-
-class ProfileUpdate(UpdateView):
-    model = Contact
-    form_class = ContactForm
-    template_name = 'contact_form.html'
-    success_url = '/'
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ProfileUpdate, self).dispatch(*args, **kwargs)
-
 def file_not_found_404(request):
     return render_to_response('404.html',context_instance=RequestContext(request))
-
-def user_prof(request, pk):
-    profile = Contact.objects.get(user=pk)
-    uc = get_object_or_404(Contact)
-    variables = RequestContext(request,{
-        'contact':uc,
-        })
-    return render_to_response('user_page.html', variables) 
-
-def company_page(request, slug):
-    try:
-       comp = Company.objects.get(slug=slug)
-    except Company.DoesNotExist:
-       raise Http404
-    return render_to_response('company_page.html',{'comp':comp},context_instance=RequestContext(request)) 
-
-class CompanyView(DetailView):
-    queryset = Company.objects.all()
-    template_name = 'company_page.html'
-#    success_url = '/company/%(slug)s/'
-
-class ProfileView(DetailView):
-    model = Contact
-    template_name = 'user_page.html'
-
-#    def get_context_data(self, **kwargs)
-#        context = super.(ProfileView, self).get_context_data(**kwargs)
-#        return context
-
-
-
-class CompanyUpdate(UpdateView):
-    model = Company
-    form_class = CompanyForm
-    template_name = 'company_form.html'
-    success_url = '/company/%(slug)s/'
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(CompanyUpdate, self).dispatch(*args, **kwargs)
-
-class CompanyList(ListView):
-    model = Company
-    template_name = 'company_list.html'    
-
 
 def search_page(request):
     form = SearchForm()
@@ -161,6 +73,30 @@ def search_page(request):
 #    else:
     return render_to_response('search.html', variables)
 
+def advance_search(request):
+    form = AdvanceSearchForm()
+    company_list = []
+    show_results = False
+    if 'query' in request.GET:
+       show_results = True
+       query = request.GET['query'].strip()
+       if query:
+           form = AdvanceSearchForm({'query': query})
+           company_list = Company.objects.filter(
+              Q(name__icontains=query)|
+              Q(description__icontains=query)|
+              Q(technologies__icontains=query)|
+              Q(industries__icontains=query)
+           )[:10]
+    variables = RequestContext(request, {
+        'form':form,    
+        'company_list': company_list,
+        'show_results': show_results
+    })
+#    return render_to_response('company_list.html', variables)
+#    else:
+    return render_to_response('advance_search.html', variables)
+    
 
 def logout_page(request):
     logout(request)

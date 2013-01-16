@@ -1,10 +1,10 @@
 from django.conf.urls import patterns, include, url
 from latech.views import search_page
-from latech.views import ProfileView, ProfileUpdate, CompanyUpdate, CompanyCreate, CompanyView, SelfProfileView, search_page, CompanyList
-from latech.views import search_page
+from companies.views import CompanyUpdate, CompanyCreate, CompanyView, CompanyList
 from django.views.generic import DetailView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
-from companies.models import *
+from contacts.views import ProfileView, ProfileUpdate, ProfileCreate
+#from companies.models import *
 
 # Uncomment the next two lines to enable the admin:
 
@@ -34,15 +34,17 @@ urlpatterns = patterns('',
 
      # Profile
      url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),
-     url(r'^profile/self/$', login_required(SelfProfileView.as_view()), name='profile_self_view'),
-#     url(r'^profile/(\w+)/$', 'latech.views.user_prof'),
+#     url(r'^profile/self/$', login_required(SelfProfileView.as_view()), name='profile_self_view'),
 #     url(r'^profile/(\w+)/edit/$', 'latech.views.contact_edit'),  
      url(r'^profile/(?P<pk>[\w-]+)/edit/$', ProfileUpdate.as_view(), name='profile_update'),
+      # This is the Form to create a new Contact/Profile
+#     url(r'^profile/(?P<pk>[\w-]+)/create/$', ProfileCreate.as_view(), name='profile_update'),
      url(r'^login/$', 'django.contrib.auth.views.login'),
      url(r'^logout/$', 'latech.views.logout_page'),
 
      # Search Urls
      url(r'^search/', 'latech.views.search_page'),
+     url(r'^advance_search/', 'latech.views.advance_search'),
 
      #This is the url for Ajax requests for taggit
      #url(r'^tags', "latech.views.tagitt"),

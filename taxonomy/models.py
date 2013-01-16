@@ -22,9 +22,14 @@ class Technology(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=80)
+    slug = models.SlugField(max_length=80)
 
     def __unicode__(self):
         return self.name
+
+    @models.permalink
+    def get_absolute_url(self):
+          return ("/categories/%s/" % self.slug)
 
     class Meta:
          verbose_name_plural = "Categories"
