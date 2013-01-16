@@ -16,8 +16,6 @@ class Company(models.Model):
     value_proposition = models.CharField(max_length=144, blank=True)
     overview = models.CharField(max_length=512, blank=True)
 #    created_by = models.ForeignKey(User, related_name="LATech user")
-    #Input into Contacts table, point back to Company
-    management = models.CharField(max_length=144, blank=True)
     web_url = models.URLField(blank=True)
     blog_url = models.URLField(blank=True)
     twitter_url = models.URLField(blank=True)
