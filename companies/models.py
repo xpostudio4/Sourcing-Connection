@@ -31,7 +31,7 @@ class Company(models.Model):
 #    technologies = TaggableManager(verbose_name='Technologies', through=TechnologyTaggedItem, blank=True)
 
     #Comma separated list from Category table
-    categories = models.CharField(max_length=512, blank=True)
+    categories = models.ForeignKey(Category, related_name="Categories", null=True, blank=True)
 
     #Comma separated list from Application table
     applications = models.CharField(max_length=512, blank=True)
