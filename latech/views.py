@@ -12,6 +12,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, ListView
 from django.forms.formsets import formset_factory
 from latech.forms import SearchForm
+from companies.forms import CompanyForm
 from django.db.models import Q
 
 def tagit(request):
@@ -160,7 +161,6 @@ def search_page(request):
 #    return render_to_response('company_list.html', variables)
 #    else:
     return render_to_response('search.html', variables)
-
 
 def logout_page(request):
     logout(request)

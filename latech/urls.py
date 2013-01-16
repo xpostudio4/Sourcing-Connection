@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from latech.views import search_page
-from latech.views import ProfileView, ProfileUpdate, CompanyUpdate, CompanyCreate, CompanyView, SelfProfileView, search_page, CompanyList
+from latech.views import ProfileView, ProfileUpdate, CompanyUpdate, CompanyCreate, CompanyView, search_page, CompanyList
 from latech.views import search_page
 from django.views.generic import DetailView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
@@ -34,7 +34,7 @@ urlpatterns = patterns('',
 
      # Profile
      url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),
-     url(r'^profile/self/$', login_required(SelfProfileView.as_view()), name='profile_self_view'),
+     #url(r'^profile/self/$', login_required(SelfProfileView.as_view()), name='profile_self_view'),
 #     url(r'^profile/(\w+)/$', 'latech.views.user_prof'),
 #     url(r'^profile/(\w+)/edit/$', 'latech.views.contact_edit'),  
      url(r'^profile/(?P<pk>[\w-]+)/edit/$', ProfileUpdate.as_view(), name='profile_update'),
