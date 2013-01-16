@@ -8,7 +8,7 @@ class CompanyForm(ModelForm):
 
 class FundingForm(ModelForm):
 	class Meta:
-		model = Company
+		model = Funding 
 
 class CompetitorsForm(ModelForm):
 	class Meta:

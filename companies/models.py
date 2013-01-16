@@ -16,8 +16,6 @@ class Company(models.Model):
     value_proposition = models.CharField(max_length=144, blank=True)
     overview = models.CharField(max_length=512, blank=True)
 #    created_by = models.ForeignKey(User, related_name="LATech user")
-    #Input into Contacts table, point back to Company
-    management = models.CharField(max_length=144, blank=True)
     web_url = models.URLField(blank=True)
     blog_url = models.URLField(blank=True)
     twitter_url = models.URLField(blank=True)
@@ -115,11 +113,23 @@ ROUND_CHOICES = (
     ('Post IPO Debt','Post IPO Debt') 
     )
 
+class Management(models.Model):
+    company = models.ForeignKey(Company, related_name="Management of the company")
+    full_name = models.CharField(max_length=56)
+    title = models.CharField(max_length=56)
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
+
+    def __unicode__(self):
+        return str(self.company) + " : " + self.full_name
 
 class Funding(models.Model):
     company = models.ForeignKey(Company, related_name="Funds Delivered to")
     round = models.CharField(max_length=16, choices=ROUND_CHOICES, default = 'Seed')
     raised = models.DecimalField(max_digits = 15, decimal_places = 2)
+
+    def __unicode__(self):
+        return str(self.company) +" : " + self.round
 
 #Comented for future uses
 #class Round(models.Model):
@@ -131,7 +141,7 @@ class Competitors(models.Model):
     name = models.ForeignKey(Company, related_name="Competitor")
 
     def __unicode__(self):
-        return self.company +":" self.name
+        return self.company +":" + self.name
 
 
 class Office(models.Model):
