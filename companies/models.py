@@ -39,7 +39,7 @@ class Company(models.Model):
     #Comma separated list from Tags table, also accept new tags input by users ("folksonomy")
     tags = models.CharField(max_length=512, blank=True)
 #    tags = TaggableManager(blank=True)
-
+    
     #Comma separated list of entries from Company table
     #competitors = models.Foreignkey("")
     
@@ -149,7 +149,7 @@ class Office(models.Model):
     description = models.CharField(max_length=255)
     address_1 = models.CharField(max_length=512, blank=True)
     address_2 = models.CharField(max_length=512, blank=True)
-    city = models.ForeignKey(City, related_name="location", blank=True)
+    city = models.ForeignKey(City, related_name="location", blank=True, null=True)
     phone = models.CharField(max_length=512, blank=True)
     zip_code = models.CharField(max_length=512, blank=True)
     country = models.ForeignKey(Country, related_name = "Office Country")
