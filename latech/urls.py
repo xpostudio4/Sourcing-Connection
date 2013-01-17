@@ -25,7 +25,7 @@ urlpatterns = patterns('',
 #     url(r'^contact/new/$', 'latech.views.contact_form'), 
      
      # Company URLs
-     url(r'^company/new/$', CompanyCreate.as_view(), name='company_create'),
+     url(r'^company/new/$', 'companies.views.CompanyCreate'),
 #     url(r'^company/(\w+)/$', 'latech.views.company_page'),
      url(r'^company/(?P<slug>[\w-]+)/update/$', CompanyUpdate.as_view(), name='company_update'),
      url(r'^company/(?P<slug>[\w-]+)/$', CompanyView.as_view(), name='company_view'),

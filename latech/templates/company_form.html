@@ -2,10 +2,53 @@
 
 {% block title %}{{ company.name  }}{% endblock %}
 
+{% block external %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        //$("select[id*='id_company']").remove();
+        //$("label[for ='id_company']").remove();
+
+    //    $("#id_funding-company").remove();
+
+    //    $("#id_funding-round").append('<p><input type="hidden" name="funding-company" id="id_funding-company" value="3"></input></p>');
+
+    //    $('#id_company-company').keyup(function(){
+    //    	var value = $(this).val();
+    //    	$("#id_funding-company").attr("value", value);
+    //    }).keyup();    });
+</script>
+{% endblock %}
+
 {% block content %}
 <div id="company-form-container" class="container">
 <form method="post" action=".">{% csrf_token %}
-	{{ form.as_p }}					
+	
+
+<h2> New Company Submission </h2> 
+<hr class="bs-docs-separator">
+<p>Welcome! To submit a company, please enter as much information as you can (otherwise leave blank).</p>
+
+	{{ company_form.as_p }}
+
+<h2>Funding</h2>
+<hr class="bs-docs-separator">
+<p>Please include all previous funding rounds.</p>
+
+	{{ funding_form.as_p }}					
+
+<h2>Competitors</h2>
+<hr class="bs-docs-separator">
+<p>Click add to submit competitors.</p>
+
+	{{ competitors_form.as_p }}
+
+Offices
+<hr class="bs-docs-separator">
+Please list office addresses, if any.
+
+	{{ office_form.as_p }}
+
+
 <button type="submit" class="btn">Submit Form</button>
 
 </form>

@@ -18,7 +18,6 @@ def tagit(request):
    return render_to_response("tagit.html", {'f':f},context_instance=RequestContext(request))
 
 def base(request):
-   
    return render_to_response("index.html",{'user': request.user}, 
 context_instance=RequestContext(request))
 
