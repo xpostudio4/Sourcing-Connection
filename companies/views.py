@@ -100,7 +100,7 @@ class CompanyView(DetailView):
 class CompanyUpdate(UpdateView):
     model = Company
     form_class = CompanyForm
-    template_name = 'company_page.html'
+    template_name = 'company_form.html'
     success_url = '/company/%(slug)s/'
 
     @method_decorator(login_required)
