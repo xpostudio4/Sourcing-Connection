@@ -1,0 +1,9 @@
+{% if contact_list %}
+    <h2>Contacts</h2>
+    <ul class="contacts">
+        {% for contact in contact_list %}
+            <li><a href="/profile/{{ contact.id }}">{{ contact.user }} </a></li>    
+        {% endfor %}
+    </ul>
+{% endif %}
+
