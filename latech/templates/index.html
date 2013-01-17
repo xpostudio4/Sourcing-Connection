@@ -6,5 +6,44 @@
 
 {% endblock %}
 {% block content %}
+<hr>
+<div class="container">
+	<div class="row">
+		<div class="span3">
+			<div class="tabbable"> <!-- Only required for left/right tabs -->
+				  <ul class="nav nav-tabs">
+				    <li class="active"><a href="#company-tab" data-toggle="tab">Companies</a></li>
+				    <li><a class="mute" href="#employee-tab" data-toggle="tab">Employees</a></li>
+				  </ul>
+				  <div class="tab-content">
+				    <div class="tab-pane active" id="company-tab">
+				      <form id="search-company-form" method="get" action=".">
+{{ form.as_p }}
+<input type="submit" value="search">
+</form>
+<div>
+				    </div>
+				    <div class="tab-pane" id="employee-tab">
+				      <p>Howdy, I'm in Section 2.</p>
+				    </div>
+  				</div>
+			</div>
+		</div>
+	</div>
+	<div class="span9">
+		<div id="search-company">
+			{% if show_results %}
+    			{% include "company_list.html" %}
+			{% endif %}
+		</div>
+		<!---<div id="search-contact">
+			{% if show_results %}
+			    {% include "contact_list.html" %}
+			{% endif %}
+		</div>-->
+
+	</div>
+</div>
+
 {% endblock %}
 
