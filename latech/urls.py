@@ -31,9 +31,11 @@ urlpatterns = patterns('',
 
      # Search Urls
      url(r'^search/$', 'latech.search.search_page'),
+     url(r'^$', "latech.search.advanced_search"),
+
 #     url(r'^advance_search/', 'latech.views.advance_search'),
-     url(r'^$', "latech.search.advance_contact_search"),
-     url(r'^search/companies$', "latech.search.advance_company_search"),
+#     url(r'^$', "latech.search.advance_contact_search"),
+#     url(r'^search/companies$', "latech.search.advance_company_search"),
 
      #This is the url for Ajax requests for taggit
      #url(r'^tags', "latech.views.tagitt"),
