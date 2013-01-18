@@ -2,7 +2,7 @@
     <h2>Companies</h2>
     <ul class="companies">
         {% for company in company_list %}
-            <li><a href="/company/{{ company.slug }}">{{ company.name }} </li>
+            <li><a href="/company/{{ company.slug }}">{{ company.name }}</a> </li>
         {% endfor %}
     </ul>
 {% endif %}
