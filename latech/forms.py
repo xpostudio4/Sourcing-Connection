@@ -16,41 +16,41 @@ class CompanySearchForm(forms.Form):
         widget=forms.TextInput(attrs={'size': 20} ),
                 required = False
     )
-    category = forms.ModelChoiceField(
+    category_company = forms.ModelChoiceField(
         label=u'Categories',
         queryset=Category.objects.all(),
         required = False
     )
-    country = forms.ModelChoiceField(
+    country_company = forms.ModelChoiceField(
         label=u'Country',
         queryset=Country.objects.all(),
         required = False
     )
 
-    industry = forms.CharField(
+    industry_company = forms.CharField(
         label=u'Industries',
         widget=forms.TextInput(attrs={'size': 20}),
         required = False
     )
-    technology = forms.CharField(
+    technology_company = forms.CharField(
         label=u'Technologies',
         widget=forms.TextInput(attrs={'size': 20}),
         required = False
     )
     
 class ContactSearchForm(forms.Form):
-    keywords = forms.CharField(
+    terms = forms.CharField(
         label=u'Keywords',
         widget=forms.TextInput(attrs={'size': 20} ),
                 required = False
     )
     overview = forms.CharField(
-        label=u'Keywords',
+        label=u'Overview',
         widget=forms.TextInput(attrs={'size': 20} ),
                 required = False
     )
     tags = forms.CharField(
-        label=u'Keywords',
+        label=u'Tags',
         widget=forms.TextInput(attrs={'size': 20} ),
                 required = False
     )

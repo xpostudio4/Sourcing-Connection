@@ -55,21 +55,39 @@ def advanced_search(request):
     show_results = False
     if 'keywords' in request.GET:
         keywords = request.GET['keywords'].strip()
-        category = request.GET['category']
-        if keywords or category:
+        category = request.GET['category_company']
+        industry = request.GET['industry_company'].strip()
+        technology = request.GET['technology_company'].strip()
+        if (keywords or category or industry or technology):
             show_results = True
             company_list = Company.objects.filter(
-                Q(name__icontains=keywords))
-            query1 = "Field 1: %s" % (keywords)
+                Q(name__icontains=keywords)|Q(overview__icontains=keywords)
+            ).filter(
+                industries__icontains=industry
+            ).filter(
+                categories__id__icontains=category
+            ).filter(
+                technologies__icontains=technology
+            )
+            query1 = "%s  %s %s %s" % (keywords, technology, industry, category)
             company_form = CompanySearchForm({'query1': query1})
 
-    if 'keywords' in request.GET:
-        keywords = request.GET['keywords'].strip()
-        if keywords:
+    if 'terms' in request.GET:
+        terms = request.GET['terms'].strip()
+        tags = request.GET['tags']
+        overview = request.GET['overview'].strip()
+        technology = request.GET['technology'].strip()
+        industry = request.GET['industry'].strip()
+
+        if (terms or tags or overview or technology or industry):
             show_results = True
             contact_list = Contact.objects.filter(
-                Q(fr_name__icontains=keywords))
-            query2 = "Field 1: %s" % (keywords)
+                Q(fr_name__icontains=terms)|Q(overview__icontains=terms)|Q(ls_name__icontains=terms)|Q(m_name__icontains=terms)
+                ).filter(Q(tags__contains=tags)
+                ).filter(Q(technology__contains=technology)
+                ).filter(Q(overview__icontains=overview)
+                ).filter(Q(industry__contains=industry))
+            query2 = "%s %s %s %s %s" % (terms, tags, overview, technology, industry)
             contact_form = CompanySearchForm({'query2': query2})
            
     variables = RequestContext(request, {
