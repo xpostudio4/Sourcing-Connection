@@ -31,18 +31,43 @@
         {% block external %}{% endblock %}
     </head>
     <body>
-    <header id="navigation">
-        <a href="/#top-stories" class="page-anchor-link">Clients</a>
-        <a href="/#popular-stories" >Services</a>
-        <a href="/#top-stories">Team</a>
-        <a href="/#new-stories">Experience</a>
-        {% if user.is_authenticated %}
-        <a href="/profile/{{ user.id }}">Hi, {{ user.username }}</a>
-        <a href="/logout">logout</a>
-        {% else %}
-        <a href="/login" id="btn-hdr-submit-link">Login</a>
-        <a href="/#community">Community</a>
-        {% endif %}  
+        <div class="navbar" style="background-color: #45AEEA;">
+              <div class="navbar-inner">
+                <ul class="nav">
+                  <li class="active"><a href="#">Globaltech</a></li>
+                  <li class="divider-vertical"></li>
+                  <li><a href="#">Clients</a></li>
+                  <li class="divider-vertical"></li>
+                  <li><a href="#">Services</a></li>
+                  <li class="divider-vertical"></li>
+                  <li><a href="#">Team</a></li>
+                  <li class="divider-vertical"></li>
+                  <li><a href="#">Experience</a></li>
+                  <li class="divider-vertical"></li>
+                </ul>
+                {% if user.is_authenticated %}
+                <ul class="nav pull-right">
+                    <li class="divider-vertical"></li>
+                    <li><a href="/profile/{{ user.id }}">Hi, {{ user.username }}</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="/logout">logout</a></li>
+                    {% else %}
+                    <ul class="nav pull-right">
+                        <li class="divider-vertical"></li>
+                        <li><a href="/login" id="btn-hdr-submit-link">Login</a></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="/#community">Community</a></li>
+                    {% endif %} 
+                </ul>
+                <form class="navbar-form pull-right">
+                    <input type="text" class="span2">
+                    <button type="submit" class="btn">Search</button>
+                </form>
+              </div>
+            </div>
+
+
+   
 
         
         {% block header %}{% endblock %}
