@@ -57,9 +57,10 @@ def advanced_search(request):
     if 'keywords' in request.GET:
         keywords = request.GET['keywords'].strip()
         category = request.GET['category_company']
+        country = request.GET['country_company']
         industry = request.GET['industry_company'].strip()
         technology = request.GET['technology_company'].strip()
-        if (keywords or category or industry or technology):
+        if (keywords or category or industry or country or technology):
             show_results = True
             company_list = Company.objects.filter(
                 Q(name__icontains=keywords)|Q(overview__icontains=keywords)
@@ -68,9 +69,11 @@ def advanced_search(request):
             ).filter(
                 categories__id__icontains=category
             ).filter(
+                country__id__icontains=country
+            ).filter(
                 technologies__icontains=technology
             )
-            query1 = "%s  %s %s %s" % (keywords, technology, industry, category)
+            query1 = ("%s %s %s %s %s") % (keywords, technology, industry, category, country)
             company_form = CompanySearchForm({'query1': query1})
 
     if 'terms' in request.GET:
@@ -99,79 +102,4 @@ def advanced_search(request):
         'show_results': show_results
     })
     return render_to_response('index.html', variables)
-            
-def advance_contact_search(request):
-    contact_form = ContactSearchForm()
-    contact_list = []
-    errors = []
-    show_results = False
-    if 'keywords' in request.GET:
-        keywords = request.GET['keywords']
-        tags = request.GET['tags']
-        industry = request.GET['industry']
-        technology = request.GET['technology']
-        if not (keywords or industry or technology or tags):
-            errors.append('Enter a search term.')
-        else:
-            show_results = True
-            contact_list = Contact.objects.filter(
-                Q(fr_name__icontains=keywords)|Q(ls_name__icontains=keywords)|Q(m_name__icontains=keywords)
-                |Q(overview__icontains=keywords)
-            ).filter(
-                industry__icontains=industry
-            ).filter(
-                tags__icontains=tags
-            ).filter(
-                technology__icontains=technology
-            )
-            query = "Field 1: %s, Field 2: %s, Field 3: %s Field 4: %s" % (keywords, technology, industry, tags)
-
-            contact_form = ContactSearchForm({
-               'query': query,
-            })
-    variables = RequestContext(request, {
-            'contact_form':contact_form,    
-            'contact_list': contact_list,
-            'show_results': show_results
-             })
-   
-    return render_to_response('index.html', variables)
-
-def advance_company_search(request):
-    company_form = CompanySearchForm()
-    company_list = []
-    errors = []
-
-    show_results = False
-    if 'keywords' in request.GET:
-        keywords = request.GET['keywords'].strip()
-        category = request.GET['category']
-        industry = request.GET['industry'].strip()
-        technology = request.GET['technology'].strip()
-        if not (keywords or industry or technology or category):
-            errors.append('Enter a search term.')
-        else:
-            
-            show_results = True
-            
-            company_list = Company.objects.filter(
-                name__icontains=keywords
-            ).filter(
-                industries__icontains=industry
-            ).filter(
-                categories__id__icontains=category
-            ).filter(
-                technologies__icontains=technology
-            )
-            query = "Field 1: %s, Field 2: %s, Field 3: %s Field 4: %s" % (keywords, technology, industry, category)
-            company_form = CompanySearchForm({
-               'query': query,
-            })
-    variables = RequestContext(request, {
-            'company_form':company_form,    
-            'company_list': company_list,
-            'show_results': show_results
-             })
-    return render_to_response('search_company.html', variables)
-
-
+    

@@ -42,8 +42,10 @@ class Company(models.Model):
     
     #Comma separated list of entries from Company table
     #competitors = models.Foreignkey("")
-    
 
+    #Company Country
+    country = models.ForeignKey(Country, related_name="Company Country", null=True, blank=True)
+            
     #Comma separated list of <City, address, phone #>
     offices = models.CharField(max_length=512, blank=True)
 
