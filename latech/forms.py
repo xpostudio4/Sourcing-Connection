@@ -3,6 +3,7 @@ from django import forms
 from companies.models import *
 from contacts.models import *
 from location.models import *
+from django.contrib.auth.models import User 
 
 class SearchForm(forms.Form):
     query = forms.CharField(
@@ -66,4 +67,10 @@ class ContactSearchForm(forms.Form):
         required = False
     )
 
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+
+        fields = ('username', 'password')
+        action="login"
 

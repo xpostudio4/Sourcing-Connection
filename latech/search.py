@@ -1,10 +1,11 @@
-from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm
+from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm, UserForm
 from django.template import RequestContext, Context
 from django.shortcuts import render_to_response
 from taxonomy.models import *
 from companies.models import *
 from contacts.models import *
 from django.db.models import Q
+
 
 def search_page(request):
     form = SearchForm()
