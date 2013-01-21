@@ -7,11 +7,13 @@ from taxonomy.models import *
 from companies.models import *
 from contacts.models import *
 from django.contrib.auth.models import User
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.db.models import Q
+
 
 def tagit(request):
    tags = Tag.objects.all()
@@ -46,4 +48,19 @@ def file_not_found_404(request):
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+def authenticationView(request):
+  username = request.POST['username']
+  password = request.POST['password']
+  user = authenticate(username = username, password = password)
+  if user is not None:
+    if user.is_active:
+      login(request,user)
+  else:
+    return HttpResponseRedirect('/')
+
+  
+  return HttpResponseRedirect('/')
+
+
 

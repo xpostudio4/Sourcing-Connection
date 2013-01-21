@@ -26,7 +26,7 @@ urlpatterns = patterns('',
 
       # This is the Form to create a new Contact/Profile
 #     url(r'^profile/(?P<pk>[\w-]+)/create/$', ProfileCreate.as_view(), name='profile_update'),
-     url(r'^login/$', 'django.contrib.auth.views.login'),
+     url(r'^login/$', 'latech.views.authenticationView'),
      url(r'^logout/$', 'latech.views.logout_page'),
 
      # Search Urls

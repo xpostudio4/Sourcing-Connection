@@ -5,6 +5,7 @@ from taxonomy.models import *
 from companies.models import *
 from contacts.models import *
 from django.db.models import Q
+from django.contrib.auth.forms import AuthenticationForm
 
 
 def search_page(request):
@@ -49,7 +50,8 @@ def empty_search_form():
     return contact_form, company_form
 
 def advanced_search(request):
-    contact_form, company_form = empty_search_form()
+    contact_form, company_form, = empty_search_form()
+    user_form  = AuthenticationForm()
     contact_list = []
     company_list = []
     errors = []
@@ -99,7 +101,12 @@ def advanced_search(request):
         'contact_form': contact_form,
         'company_list': company_list,
         'contact_list': contact_list,        
-        'show_results': show_results
+        'show_results': show_results,
+        'user_form': user_form
     })
-    return render_to_response('index.html', variables)
+    return render_to_response(
+        'index.html', 
+        variables, 
+        context_instance = RequestContext(request)
+        )
     
