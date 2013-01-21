@@ -1,6 +1,8 @@
+import PIL
 from django.db import models
 from django.contrib.auth.models import User
 from taxonomy.models import *
+from location.models import Country, City
 from companies.models import Company
 from django.forms import ModelForm
 
@@ -13,8 +15,12 @@ class Contact(models.Model):
     #Special Information about contact
     overview = models.TextField(blank=True)
     #photo = models.ImageField()
+#    photo_profile = models.ImageField(blank=True, null=True, upload_to="images/profile_img/")
+    
     phone = models.CharField(max_length=255, blank=True)
-
+    # Contact Country
+    country = models.ForeignKey(Country, related_name="Country", null=True, blank=True)
+    city = models.ForeignKey(City, related_name="City", null=True, blank=True)
     #Comma separated list of Degrees
     degrees = models.CharField(max_length=255, blank=True)
 
