@@ -8,8 +8,9 @@ def dump_data():
 
 def load_data():
 	local('python manage.py syncdb')
+	local('python manage.py loaddata user.json')
 	local('python manage.py loaddata companies.json')
 	local('python manage.py loaddata contacts.json')
-	local('python manage.py loaddata user.json')
+	
  
     
