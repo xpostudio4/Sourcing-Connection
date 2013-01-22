@@ -45,7 +45,12 @@
 <div class="span10"> 
 <div class="media">
 	<a class="pull-left" href="#">
+	{% if contact.photo_profile %}
+        <img class="media-object"  src="/media/{{ contact.photo_profile }}" height="64" width="64">
+
+	{% else %}
 		<img class="media-object" data-src="holder.js/64x64" src="https://lh5.googleusercontent.com/-1aRlNGIw-Ds/AAAAAAAAAAI/AAAAAAAAAAA/wSDKpraSvbs/s250-c-k/photo.jpg" height="64" width="64">
+    {% endif %}
 	 </a>
 	 <div class="media-body">
          <h4 class="media-heading">{{ contact.fr_name  }} {{ contact.m_name  }} {{ contact.ls_name  }} </h4>

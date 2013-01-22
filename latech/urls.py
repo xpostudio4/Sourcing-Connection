@@ -1,10 +1,9 @@
 from django.conf.urls import patterns, include, url
-#from latech.views import search_page, advance_company_search
-#from latech.search import advance_contact_search, advance_company_search
 from companies.views import CompanyUpdate, CompanyCreate, CompanyView, CompanyList
 from django.views.generic import DetailView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from contacts.views import ProfileView, ProfileUpdate, ProfileCreate
+import settings
 #from companies.models import *
 
 # Uncomment the next two lines to enable the admin:
@@ -45,3 +44,7 @@ urlpatterns = patterns('',
 )
 
 
+if settings.DEBUG:
+    urlpatterns += patterns('django.views.static',
+        (r'media/(?P<path>.*)', 'serve', {'document_root': settings.MEDIA_ROOT}),
+    )
