@@ -47,7 +47,13 @@
 <br/>
 		<div class="media">
 			<a class="pull-left" href="#">
-				<img class="img-polaroid" data-src="holder.js/64x64" src="http://stancedata.com/wp-content/uploads/2012/03/LOGO-STANCE-300x84.jpg" >
+				{% if company.logo %}
+	
+				<img class="img-polaroid" data-src="holder.js/64x64" src="/media/{{ company.logo }}" >
+				{% else %}
+				<img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png"  >
+				
+				{% endif %}
 	 		</a>
 	 	<div class="pull-right" style="margin-right:80px;"> 
 	 	<div class="btn-group">

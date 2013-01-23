@@ -8,13 +8,23 @@ from django.template import defaultfilters
 
 
 class Company(models.Model):
+    EMPLOYEE_QUANTITY_CHOICES = (
+        (1, "1 - 10"),
+        (2, "11 - 50"),
+        (3, "51 - 150"),
+        (4, "151 - 500"),
+        (5, "501 - 1000"),
+        (6, "1001 - 5000"),
+        (7, "+ 5001"),
+    )
+        
     name = models.CharField(max_length=80, unique= True)
     slug = models.SlugField(max_length=80, unique= True)
- #       help_text='Unique value for Company page URL, created from name.')
-    #logo = models.ImageField()
+    logo = models.ImageField(blank=True, null=True, upload_to="images/company_imgs/")
     description = models.TextField(blank=True)
     value_proposition = models.CharField(max_length=144, blank=True)
     overview = models.CharField(max_length=512, blank=True)
+    employee_quantity = models.IntegerField(choices=EMPLOYEE_QUANTITY_CHOICES, blank=True, null=True)
 #    created_by = models.ForeignKey(User, related_name="LATech user")
     web_url = models.URLField(blank=True)
     blog_url = models.URLField(blank=True)
