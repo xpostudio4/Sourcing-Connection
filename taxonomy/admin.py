@@ -9,7 +9,7 @@ class TechAdmin(admin.ModelAdmin):
     pass
 
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    prepopulated_fields = {'slug' : ('name',)}
 
 class AppAdmin(admin.ModelAdmin):
     pass
