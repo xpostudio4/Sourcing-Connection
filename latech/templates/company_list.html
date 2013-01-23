@@ -1,19 +1,45 @@
 {% if company_list %}
     <h2 class="lead">Companies</h2>
     <ul class="companies">
-    	<div class="accordion" id="accordion2">
+    	<table class="table table-hover">
+            <tbody>
         {% for company in company_list %}
 
-  			<div class="accordion-group">
-    			<div class="accordion-heading">
-      				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-        				{{ company.name }}
-      				</a>
-    			</div>
-    		</div>
-            <li><a href="/company/{{ company.slug }}"></a> </li>
+  			<td>
+                <div class="media">
+                    <a class="pull-left thumbnail" href="#">
+                        <img class="media-object" data-src="/media/{{ company.logo }}">
+                    </a>
+                    <div class="media-body">
+      				<h3 class="media-heading" >
+                        <a href="/company/{{ company.slug }}">
+        			         {{ company.name }}
+      			        </a>
+                    </h3>
+                
+                  <h4 class="mute"> {{ company.categories }} </h4>
+                <p class="mute"> 
+                    {% if company.country%}
+                        {{ company.country }} 
+                    {% endif %}
+                     {% if company.employee_quantity%}
+                       | {{ company.employee_quantity }} 
+                    {% endif %}
+                    {% if company.industries%}
+                       | {{ company.industries }}
+                    {% endif %}
+
+                </p>
+                    </div>
+                </div>
+            </td>   
+    			
+             
         {% endfor %}
-    	</div>
+          
+    	   </tbody>
+        </table>
+         <hr/>
 
     </ul>
 {% endif %}

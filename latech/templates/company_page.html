@@ -26,8 +26,13 @@
        	}
        	//Obtain twitter name and prettify it for the profile
        	var twitter_name  = $(this).find('#company-twitter-url').text().split("/").pop();
-       	$('#company-twitter-url').text("@"+twitter_name)
 
+       	if (twitter_name == ""){
+       		$('#company-twitter-url').text("--");
+      	 	
+       	}else{
+       		$('#company-twitter-url').text("@"+twitter_name);
+       	}
        	//Obtain the facebook profile name.
        	var facebook_name  = $(this).find('#company-facebook-url').text().split("/").pop();
        	$('#company-facebook-url').text(facebook_name)
