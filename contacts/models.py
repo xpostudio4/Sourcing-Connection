@@ -1,10 +1,13 @@
-import PIL
+from PIL import Image
+from os.path import join
 from django.db import models
 from django.contrib.auth.models import User
 from taxonomy.models import *
 from location.models import Country, City
 from companies.models import Company
 from django.forms import ModelForm
+from django.core.files.base import ContentFile
+from latech.settings import MEDIA_ROOT
 
 class Contact(models.Model):
     user = models.OneToOneField(User)
@@ -15,7 +18,7 @@ class Contact(models.Model):
     #Special Information about contact
     overview = models.TextField(blank=True)
     #photo = models.ImageField()
-#    photo_profile = models.ImageField(blank=True, null=True, upload_to="images/profile_img/")
+    photo_profile = models.ImageField(blank=True, null=True, upload_to="images/")
     
     phone = models.CharField(max_length=255, blank=True)
     # Contact Country
@@ -69,11 +72,5 @@ class Contact(models.Model):
     @models.permalink
     def get_absolute_url(self):
           return ("/profile/%s/" % self.user)
-
-
-class ContactForm(ModelForm):
-    class Meta:
-       model = Contact
-       exclude = ('user', 'slug', )
-       
+    
 

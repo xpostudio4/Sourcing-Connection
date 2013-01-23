@@ -23,6 +23,8 @@ urlpatterns = patterns('',
      url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),
      url(r'^profile/(?P<pk>[\w-]+)/edit/$', ProfileUpdate.as_view(), name='profile_update'),
 
+    #Image Cropper Package URLs
+     url('^cropper/', include('cropper.urls')),    
       # This is the Form to create a new Contact/Profile
 #     url(r'^profile/(?P<pk>[\w-]+)/create/$', ProfileCreate.as_view(), name='profile_update'),
      url(r'^login/$', 'latech.views.authenticationView'),

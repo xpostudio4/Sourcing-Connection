@@ -5,6 +5,7 @@ from contacts.forms import *
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from latech import settings
 
 class ProfileCreate(CreateView):
     model = Contact
@@ -21,11 +22,12 @@ class ProfileView(DetailView):
     model = Contact
     template_name = 'user_page.html'
 
+
 class ProfileUpdate(UpdateView):
     model = Contact
     form_class = ContactForm
     template_name = 'contact_form.html'
-    success_url = '/'
+    success_url = '/profile/%'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
