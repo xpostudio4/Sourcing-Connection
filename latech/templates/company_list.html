@@ -1,9 +1,20 @@
 {% if company_list %}
-    <h2>Companies</h2>
+    <h2 class="lead">Companies</h2>
     <ul class="companies">
+    	<div class="accordion" id="accordion2">
         {% for company in company_list %}
-            <li><a href="/company/{{ company.slug }}">{{ company.name }}</a> </li>
+
+  			<div class="accordion-group">
+    			<div class="accordion-heading">
+      				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        				{{ company.name }}
+      				</a>
+    			</div>
+    		</div>
+            <li><a href="/company/{{ company.slug }}"></a> </li>
         {% endfor %}
+    	</div>
+
     </ul>
 {% endif %}
 
