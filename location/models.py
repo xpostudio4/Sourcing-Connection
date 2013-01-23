@@ -7,14 +7,14 @@ from django.db import models
 class Country(models.Model):
     name = models.CharField(max_length=30)
     #flag = models.Imagefield()
-    government_type = models.CharField(max_length=30)
-    stability_rating = models.CharField(max_length=30)
-    policy_favorability_Rating= models.CharField(max_length=30)
+    government_type = models.CharField(max_length=30, blank=True)
+    stability_rating = models.CharField(max_length=30, blank=True)
+    policy_favorability_Rating= models.CharField(max_length=30, blank=True)
     url_wolfram= models.URLField(blank=True)
     url_wiki= models.URLField(blank=True)
 
     def __unicode__(self):
-        return self.title
+        return self.name
 
     class Meta:
          verbose_name_plural = "Countries"
@@ -24,13 +24,13 @@ class Country(models.Model):
 class Region(models.Model):
     country = models.ForeignKey(Country, related_name="countries",max_length=30)
     region_name = models.CharField(max_length=30)
-    accesiblity_rating = models.CharField(max_length=30)
-    transportations = models.CharField(max_length=30)
+    accesiblity_rating = models.CharField(max_length=30,blank=True)
+    transportations = models.CharField(max_length=30, blank=True)
     url_wolfram= models.URLField(blank=True)
     url_wiki= models.URLField(blank=True)
 
     def __unicode__(self):
-        return self.title
+        return self.region_name
 
 #City_Tablet
 
@@ -38,14 +38,14 @@ class City(models.Model):
     country = models.ForeignKey(Country, related_name="country",max_length=50)
     region_name = models.ForeignKey(Region, related_name="region",max_length=50) 
     city_name = models.CharField(max_length=30)
-    universities = models.CharField(max_length=30)
-    telecom_facilities = models.CharField(max_length=30)
-    local_talent_pool_rating = models.CharField(max_length=30)
+    universities = models.CharField(max_length=30,blank=True)
+    telecom_facilities = models.CharField(max_length=30, blank=True)
+    local_talent_pool_rating = models.CharField(max_length=30, blank=True)
     url_wolfram= models.URLField(blank=True)
     url_wiki= models.URLField(blank=True)
     
     def __unicode__(self):
-        return self.title
+        return self.city_name
 
     class Meta:
          verbose_name_plural = "Cities"

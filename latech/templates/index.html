@@ -81,31 +81,30 @@
 		<div id="search-company">
 			{% if show_results %}
     			{% include "company_list.html" %}
-			{% endif %}
 		</div>
 		<div id="search-contact">
-			{% if show_results %}
 			    {% include "contact_list.html" %}
-			{% endif %}
 		</div>
 
 
-
-
-		
-
-	
-
-		<div>
-			<ul class="media-list">
-				<li class="media">
-					<p class="media-heading"><a href="http://tomdale.net/2013/01/my-ios-7-wishlist/">Tron Legacy (2010)</a> (jtnimoy.net)</p>
-
-				</li>
-
-
-			</ul>
-		</div>
+		{% else %}
+		<table class="table table-bordered table-hover">
+			<tbody>
+				<tr>
+					<th>#</th>
+					<th>Post Info</th>
+					<th>User</th>
+				</tr>
+				{% for news in hacked_news %}
+				<tr>
+					<td>{{ news.id }}</td>
+					<td><a href="{{ news.url }}">{{ news.text }}</a></td>
+					<td>published by: {{news.user }}</td>
+				</tr>
+				{% endfor %}
+		</tbody>
+		</table>
+	{% endif %}
 	</div>
 </div>
 </div>

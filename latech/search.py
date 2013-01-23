@@ -6,7 +6,7 @@ from companies.models import *
 from contacts.models import *
 from django.db.models import Q
 from django.contrib.auth.forms import AuthenticationForm
-
+from latech.views import hacked_news
 
 def search_page(request):
     form = SearchForm()
@@ -102,7 +102,8 @@ def advanced_search(request):
         'company_list': company_list,
         'contact_list': contact_list,        
         'show_results': show_results,
-        'user_form': user_form
+        'user_form': user_form,
+        'hacked_news': hacked_news()
     })
     return render_to_response(
         'index.html', 

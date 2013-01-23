@@ -13,7 +13,8 @@ from django.utils.decorators import method_decorator
 from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.db.models import Q
-
+import requests
+from bs4 import BeautifulSoup
 
 def tagit(request):
    tags = Tag.objects.all()
@@ -63,4 +64,32 @@ def authenticationView(request):
   return HttpResponseRedirect('/')
 
 
+
+def hacked_news():
+  """Steals the info from Hacker News to use in our demo"""
+  r = requests.get("http://news.ycombinator.com/")
+  webpage = BeautifulSoup(r.text)
+
+  pub_table = webpage.find_all('table')[2]
+  link_collection = pub_table.select('.title')
+
+  users = pub_table.select('a[href^="user?id="]')
+  for  i in range(0, len(users)):
+    users[i] = users[i].contents[0]
+
+  array_links = []
+
+  for i in link_collection:
+    if str(i.a) != 'None' :
+      array_links.append({'url': str(i.a['href']), 'text': i.a.text})
+
+
+  for i in range(0, len(users)):
+     array_links[i]["user"] = users[i]
+
+  for i in range(0, len(array_links)):
+     array_links[i]["id"] = 1+i
+
+  array_links.pop()
+  return array_links
 
