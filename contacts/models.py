@@ -18,7 +18,7 @@ class Contact(models.Model):
     #Special Information about contact
     overview = models.TextField(blank=True)
     #photo = models.ImageField()
-    photo_profile = models.ImageField(blank=True, null=True, upload_to="images/")
+    photo_profile = models.ImageField(blank=True, null=True, upload_to="images/profile_img/")
     
     phone = models.CharField(max_length=255, blank=True)
     # Contact Country

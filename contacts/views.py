@@ -27,7 +27,7 @@ class ProfileUpdate(UpdateView):
     model = Contact
     form_class = ContactForm
     template_name = 'contact_form.html'
-    success_url = '/profile/%'
+    success_url = '/'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
