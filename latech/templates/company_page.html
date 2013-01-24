@@ -99,7 +99,7 @@
 		</tr>
 		<tr>
 			<td>Twitter:</td>
-			<td ><a href="{{ company.twitter_url  }}" id = "company-twitter-url" >{{ company.twitter_url  }}</a></td>
+			<td >{% if  company_twitter_url  %}<a href="{{ company.twitter_url  }}" id = "company-twitter-url" >{{ company.twitter_url  }}</a>{% endif %}</td>
 			
 			<td>Facebook:</td>
 			<td ><a href="{{ company.facebook_link  }}" id="company-facebook-url">{{ company.facebook_link  }}</a></td>
