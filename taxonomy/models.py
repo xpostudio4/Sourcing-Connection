@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.template import defaultfilters
 # Create your models here.
 
 class Industry(models.Model): 
@@ -26,6 +26,10 @@ class Category(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = defaultfilters.slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
 
     @models.permalink
     def get_absolute_url(self):
