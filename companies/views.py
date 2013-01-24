@@ -37,12 +37,13 @@ def CompanyCreate(request):
 
 
         if company_form.is_valid():
-            forms_array.append(company_form)
             company = company_form.save()
 
             if funding_form.is_valid():
-                #funding_form.company_id = company
+                funding_form.company_id = company
                 forms_array.append(funding_form)
+            else: 
+                return HttpResponse("funding form is not useful")
 
             if competitors_form.is_valid():
                 #competitors_form.company_id = company

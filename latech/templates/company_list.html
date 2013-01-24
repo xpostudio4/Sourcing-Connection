@@ -4,36 +4,40 @@
     	<table class="table table-hover">
             <tbody>
         {% for company in company_list %}
+        <tr>
+    			<td>
+                  <div class="media">
+                      <a class="pull-left thumbnail" href="/company/{{ company.slug }}">
+                        {% if company.logo %}
+                          <img class="media-object" data-src="/media/{{ company.logo }}" height="64">
+                        {% else %}
+                          <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png"  >
+                        {% endif %}
+                      </a>
+                      <div class="media-body">
+        				<h3 class="media-heading" >
+                          <a href="/company/{{ company.slug }}">
+          			         {{ company.name }}
+        			        </a>
+                      </h3>
+                  
+                    <h4 class="mute"> {{ company.categories }} </h4>
+                  <p class="mute"> 
+                      {% if company.country%}
+                          {{ company.country }} 
+                      {% endif %}
+                       {% if company.employee_quantity%}
+                         | {{ company.employee_quantity }}  employees
+                      {% endif %}
+                      {% if company.industries%}
+                         | {{ company.industries }}
+                      {% endif %}
 
-  			<td>
-                <div class="media">
-                    <a class="pull-left thumbnail" href="#">
-                        <img class="media-object" data-src="/media/{{ company.logo }}">
-                    </a>
-                    <div class="media-body">
-      				<h3 class="media-heading" >
-                        <a href="/company/{{ company.slug }}">
-        			         {{ company.name }}
-      			        </a>
-                    </h3>
-                
-                  <h4 class="mute"> {{ company.categories }} </h4>
-                <p class="mute"> 
-                    {% if company.country%}
-                        {{ company.country }} 
-                    {% endif %}
-                     {% if company.employee_quantity%}
-                       | {{ company.employee_quantity }} 
-                    {% endif %}
-                    {% if company.industries%}
-                       | {{ company.industries }}
-                    {% endif %}
-
-                </p>
-                    </div>
-                </div>
-            </td>   
-    			
+                  </p>
+                      </div>
+                  </div>
+              </td>   
+      	</tr>
              
         {% endfor %}
           
