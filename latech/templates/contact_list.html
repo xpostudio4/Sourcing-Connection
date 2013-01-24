@@ -1,9 +1,49 @@
 {% if contact_list %}
     <h2>Contacts</h2>
     <ul class="contacts">
+    	<table class="table table-hover">
+            <tbody>
         {% for contact in contact_list %}
-            <li><a href="/profile/{{ contact.id }}">{{ contact.user }} </a></li>    
+            <tr>
+    			<td>
+                  <div class="media">
+                  	<div class="span2">
+                      <a class="pull-left thumbnail" href="/profile/{{ contact.id }}">
+                        {% if contact.photo_profile %}
+                          <img class="media-object" src="/media/{{ contact.photo_profile }}" height="64">
+                        {% else %}
+                          <img class="img-polaroid" data-src="holder.js/64x64" src="https://lh5.googleusercontent.com/-1aRlNGIw-Ds/AAAAAAAAAAI/AAAAAAAAAAA/wSDKpraSvbs/s250-c-k/photo.jpg" height="64" width="64" >
+                        {% endif %}
+                      </a>
+                      </div>
+                      <div class="media-body">
+        				<h3 class="media-heading" >
+                          <a href="/profile/{{ contact.id }}">
+          			         {{ contact.fr_name }} {{ contact.m_name }} {{ contact.ls_name }}
+        			        </a>
+                      </h3>
+                  
+                    <h4 class="mute"> {{ company.categories }} </h4>
+                  <p class="mute"> 
+                      {% if contact.country%}
+                          {{ contact.country }} 
+                      {% endif %}
+                       {% if contact.title %}
+                         | {{ contact.title }} 
+                      {% endif %}
+                      {% if contact.company%}
+                         | {{ contact.company }}
+                      {% endif %}
+
+                  </p>
+                      </div>
+                  </div>
+              </td>   
+      	</tr>    
         {% endfor %}
+        </tbody>
+        </table>
+         <hr/>
     </ul>
 {% endif %}
 
