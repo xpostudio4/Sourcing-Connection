@@ -1,10 +1,15 @@
 from companies.models import Company, Office, Management, Funding 
+from fileupload.models import Picture
 from django.contrib import admin
 
+class PictureInline(admin.StackedInline):
+    model = Picture
+    extra = 3
+    exclude = ["slug"]
 
 class CompanyAdmin(admin.ModelAdmin):
-	prepopulated_fields = {'slug' : ('name',)}
-    
+    prepopulated_fields = {'slug' : ('name',)}
+    inlines = [PictureInline]
 
 class OfficeAdmin(admin.ModelAdmin):
     pass
