@@ -7,6 +7,7 @@
         <tr>
     			<td>
                   <div class="media">
+                    <div class="span2">
                       <a class="pull-left thumbnail" href="/company/{{ company.slug }}">
                         {% if company.logo %}
                           <img class="media-object" src="/media/{{ company.logo }}" height="130" width="178">
@@ -14,6 +15,7 @@
                           <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png"  >
                         {% endif %}
                       </a>
+                    </div>
                       <div class="media-body">
         				<h3 class="media-heading" >
                           <a href="/company/{{ company.slug }}">

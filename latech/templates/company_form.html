@@ -23,31 +23,41 @@
 <div id="company-form-container" class="container">
 <form enctype="multipart/form-data" method="post" action=".">{% csrf_token %}
 	
-
+{% if company_form %}
 <h2> New Company Submission </h2> 
 <hr class="bs-docs-separator">
 <p>Welcome! To submit a company, please enter as much information as you can (otherwise leave blank).</p>
 
 	{{ company_form.as_p }}
+{% else %}
+      {{form.as_p}}
 
+{% endif %}
+
+    
+{% if funding_form %}
 <h2>Funding</h2>
 <hr class="bs-docs-separator">
 <p>Please include all previous funding rounds.</p>
 
 	{{ funding_form.as_p }}					
+{% endif %}
 
+{% if competitors_form %}
 <h2>Competitors</h2>
 <hr class="bs-docs-separator">
 <p>Click add to submit competitors.</p>
 
 	{{ competitors_form.as_p }}
+{% endif %}
 
+{% if office_form %}
 Offices
 <hr class="bs-docs-separator">
 Please list office addresses, if any.
 
 	{{ office_form.as_p }}
-
+{% endif %}
 
 <button type="submit" class="btn">Submit Form</button>
 
