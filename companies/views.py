@@ -2,6 +2,7 @@ from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, get_object_or_404, render 
 from companies.models import *
 from companies.forms import *
+from fileupload.models import Picture
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, ListView
@@ -88,7 +89,7 @@ def CompanyCreate(request):
             'company_form': company_form,
             'funding_form': funding_form,
             'competitors_form': competitors_form,
-            'office_form': office_form
+            'office_form': ofturfice_form
             })
 
 
@@ -97,6 +98,34 @@ class CompanyView(DetailView):
     queryset = Company.objects.all()
     template_name = 'company_page.html'
 #    success_url = '/company/%(slug)s/'
+
+def company_view(request, slug):
+    company = Company.objects.get(slug=slug)
+    
+    #obtain photos made against company models.
+    pictures = Picture.objects.filter(company_id=company.id)
+
+    return render_to_response(
+        "company_page.html",
+        {'company':company, 'pictures':pictures},
+        context_instance=RequestContext(request))
+
+
+def company_update(request, slug):
+
+    #obtain company with the slug and add 
+    company = Company.objects.get(slug=slug)
+    company_form = CompanyForm(instance=company)
+
+    #obtain photos made against company models.
+    pictures = Picture.objects.filter(company=company.id)
+
+    return render_to_response(
+        "company_page.html",
+        {'form':company_form, 'pictures':pictures},
+        context_instance=RequestContext(request))
+
+
 
 class CompanyUpdate(UpdateView):
     model = Company

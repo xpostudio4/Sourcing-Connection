@@ -173,9 +173,17 @@
 	<p id="company-contact">{{ company.contact }}</p>
 
 </div>
+{% if pictures %}
+	{% for picture in pictures %}
+		<a><img src="{{ MEDIA_URL }}/{{ picture.file}}"></a>
+
+	{% endfor %}
+{% endif %}
 <p> </p>
 <!-- These data is only available for the LATech Users-->
 {% if user.is_authenticated %}
+
+
 {% if company.scalability_rating %}
 <p> {{ company.scalability_rating }}</p>
 {% endif %}

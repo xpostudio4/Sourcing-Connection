@@ -134,7 +134,7 @@ INSTALLED_APPS = (
     'location',
 #    'taggit',
     'south',
-#    '',
+    'fileupload',
 #    'projects',
 #    'urls',
 
@@ -170,3 +170,4 @@ LOGGING = {
         },
     }
 }
+# Parse database configuration from $DATABASE_URL
