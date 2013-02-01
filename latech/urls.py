@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from companies.views import CompanyUpdate, CompanyCreate, CompanyView, CompanyList
+from companies.views import CompanyUpdate, CompanyCreate,  CompanyList
 from django.views.generic import DetailView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from contacts.views import ProfileView, ProfileUpdate, ProfileCreate
@@ -15,8 +15,8 @@ urlpatterns = patterns('',
 
      url(r'^company/new/$', 'companies.views.CompanyCreate'),
 #     url(r'^company/(\w+)/$', 'latech.views.company_page'),
-     url(r'^company/(?P<slug>[\w-]+)/update/$', CompanyUpdate.as_view(), name="company_update"),
-     url(r'^company/(?P<slug>[\w-]+)/$', CompanyView.as_view(), name='company_view'),
+     url(r'^company/(?P<slug>[\w-]+)/update/$','companies.views.company_update'),
+     url(r'^company/(?P<slug>[\w-]+)/$','companies.views.company_view'),
      url(r'^companies/$', CompanyList.as_view(), name='company_list'),
 
      # Profile

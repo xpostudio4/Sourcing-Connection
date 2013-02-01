@@ -6,7 +6,7 @@ from fileupload.models import Picture
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, ListView
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 #class CompanyCreate(CreateView):
 #    model = Company
@@ -43,30 +43,26 @@ def CompanyCreate(request):
             if funding_form.is_valid():
                 funding_form.save()
 
-                s = Funding.objects.latest('id')
-                s.company = company
-                s.save()
-                #forms_array.append(funding_form)
             else: 
 
 
                 return render_to_response('erros.html', {'form':funding_form})
 
-            if competitors_form.is_valid():
-                competitors_form.save()
+            #if competitors_form.is_valid():
+            #    competitors_form.save()
+#
+#            #    c = Competitors.objects.latest('id')
+            #    c.company = company
+            ##    c.save()
+             #   #forms_array.append(competitors_form)#
 
-                c = Competitors.objects.latest('id')
-                c.company = company
-                c.save()
-                #forms_array.append(competitors_form)
 
+            #if office_form.is_valid():
+            #    office_form.save()
 
-            if office_form.is_valid():
-                office_form.save()
-
-                o = Office.objects.latest('id')
-                o.company = company
-                o.save()
+            #    o = Office.objects.latest('id')
+            #    o.company = company
+            #    o.save()
                 #forms_array.append(office_form)
 
             
@@ -91,7 +87,7 @@ def CompanyCreate(request):
             
             pass
 
-        return HttpResponse(reference)
+        return HttpResponseRedirect("/company/" + company.slug)
     else:
         #generate the instances of the forms in the template
         company_form = CompanyForm(prefix = "company")
@@ -109,10 +105,7 @@ def CompanyCreate(request):
 
 
     
-class CompanyView(DetailView):
-    queryset = Company.objects.all()
-    template_name = 'company_page.html'
-#    success_url = '/company/%(slug)s/'
+
 
 def company_view(request, slug):
     company = Company.objects.get(slug=slug)
@@ -120,9 +113,18 @@ def company_view(request, slug):
     #obtain photos made against company models.
     pictures = Picture.objects.filter(company_id=company.id)
 
+    permissions = AccessCompanyProfile.objects.filter(contact=request.user.id)
+
+    edit = False
+
+    for i in permissions:
+        for j in range(0,len(i.company.all())):
+           if i.company.all()[j] == company.name:
+            edit = True
+
     return render_to_response(
         "company_page.html",
-        {'company':company, 'pictures':pictures},
+        {'company':company, 'pictures':pictures, 'permission': edit},
         context_instance=RequestContext(request))
 
 

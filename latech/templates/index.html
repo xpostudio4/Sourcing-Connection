@@ -5,24 +5,6 @@
 
 {% block external %}
 
-{% if user.is_authenticated %}
-	
-{% else %}
-	<script>  $(document).ready(function(){
-	           // $('#myModal').modal('show');
-			$('#myModal').modal({
-			  backdrop: 'static',
-			  keyboard: true
-			});
-
-
-
-	       });</script>
-
-{% endif %}
-
-
-
 
 {% endblock %}
 
@@ -54,24 +36,6 @@
 			</div>
 		</div>
 	
-<!--- Modal Form -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    
-    <h3 id="myModalLabel">Login</h3>
-  </div>
-  <div class="modal-body">
-  	<p>Sign in with Your Globaltech User.</p>
-    <form method="POST" action="/login/" >
-    	{% csrf_token %}
-    	{{ user_form.as_p}}
-    	<input type="submit" class="btn btn" value="Sign In" />
-    </form>
-  </div>
-  <div class="modal-footer">
-  </div>
-</div>
-
 
 	
 
