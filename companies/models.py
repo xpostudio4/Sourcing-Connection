@@ -136,7 +136,7 @@ class Management(models.Model):
         return str(self.company) + " : " + self.full_name
 
 class Funding(models.Model):
-    company = models.ForeignKey(Company, related_name="Funds Delivered to")
+    company = models.ForeignKey(Company, related_name="Funds Delivered to", blank=True)
     round = models.CharField(max_length=16, choices=ROUND_CHOICES, default = 'Seed')
     raised = models.CharField(max_length=45)
 
@@ -149,7 +149,7 @@ class Funding(models.Model):
 
 
 class Competitors(models.Model):
-    company = models.ForeignKey(Company, related_name="Source Company")
+    company = models.ForeignKey(Company, related_name="Source Company", blank=True)
     name = models.ForeignKey(Company, related_name="Competitor")
 
     def __unicode__(self):
@@ -157,7 +157,7 @@ class Competitors(models.Model):
 
 
 class Office(models.Model):
-    company = models.ForeignKey(Company)
+    company = models.ForeignKey(Company, blank=True)
     description = models.CharField(max_length=255)
     address_1 = models.CharField(max_length=512, blank=True)
     address_2 = models.CharField(max_length=512, blank=True)
