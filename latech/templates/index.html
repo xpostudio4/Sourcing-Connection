@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 <title>{% block title %}Globaltech - Your connection to the enterprise world{% endblock %}</title>
-{% block header %}
+
 
 
 {% block external %}
@@ -10,20 +10,18 @@
 {% else %}
 	<script>  $(document).ready(function(){
 	           // $('#myModal').modal('show');
-	            $('#myModal').modal({
-  backdrop: 'static',
-  keyboard: true
-});
+			$('#myModal').modal({
+			  backdrop: 'static',
+			  keyboard: true
+			});
 
 
 
 	       });</script>
 
-
-
 {% endif %}
 
-{% endblock %}
+
 
 
 {% endblock %}
@@ -74,6 +72,7 @@
   </div>
 </div>
 
+
 	
 
 
@@ -89,6 +88,7 @@
 
 
 		{% else %}
+		
 		<table class="table table-bordered table-hover">
 			<tbody>
 				<tr>

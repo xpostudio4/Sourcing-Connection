@@ -23,7 +23,6 @@
             $('.dropdown-toggle').dropdown();
 
 
-
        });</script> 
         {% block external %}{% endblock %}
     </head>
@@ -84,9 +83,7 @@
                     <li class="active"><a href="/">Home</a></li>
                     <li class="divider-vertical"></li>
                     <li><a href="#about">About</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li class="divider-vertical"></li>
+
                     <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                     {% if user.is_authenticated %}
         
@@ -94,11 +91,6 @@
                     <li><a href="/profile/{{ user.id }}">Hi, {{ user.username }}</a></li>
                     <li class="divider-vertical"></li>
                     <li><a href="/logout">logout</a></li>
-                    {% else %}
-                        <li class="divider-vertical"></li>
-                        <li><a href="/login" id="btn-hdr-submit-link">Login</a></li>
-                        <li class="divider-vertical"></li>
-                        <li><a href="/#community">Community</a></li>
                     {% endif %} 
                 <li><form class="navbar-form pull-right">
                     <input type="text" class="span2">
@@ -113,23 +105,25 @@
           </div> <!-- /.container -->
         </div><!-- /.navbar-wrapper -->
 
-
+        <!--- Modal Form -->
+       
 
         <!-- Carousel
         ================================================== -->
-        <div id="myCarousel" class="carousel slide">
-          <div class="carousel-inner">
-            <div class="item active">
-              <img src="{{ STATIC_URL }}/images/main_lock1.jpg" alt="">
-              <div class="container">
-                </div>
-            </div>
-      
+       
+          <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="{{ STATIC_URL }}/images/main_lock1.jpg" alt="">
+                <div class="container">
+                  </div>
+              </div>
+        
 
-            </div>
+              </div>
 
-        </div>
-
+          </div>
+        
        
         
         {% block header %}{% endblock %}

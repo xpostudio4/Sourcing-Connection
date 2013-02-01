@@ -41,7 +41,6 @@ def CompanyCreate(request):
             company = company_form.save()
 
             if funding_form.is_valid():
-                #funding_form.company = company
                 funding_form.save()
 
                 s = Funding.objects.latest('id')
@@ -53,13 +52,21 @@ def CompanyCreate(request):
 
                 return render_to_response('erros.html', {'form':funding_form})
 
-            #if competitors_form.is_valid():
-                #competitors_form.company_id = company
+            if competitors_form.is_valid():
+                competitors_form.save()
+
+                c = Competitors.objects.latest('id')
+                c.company = company
+                c.save()
                 #forms_array.append(competitors_form)
 
 
-            #if office_form.is_valid():
-                #office_form.company_id = company
+            if office_form.is_valid():
+                office_form.save()
+
+                o = Office.objects.latest('id')
+                o.company = company
+                o.save()
                 #forms_array.append(office_form)
 
             
