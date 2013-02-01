@@ -138,7 +138,7 @@ class Management(models.Model):
 class Funding(models.Model):
     company = models.ForeignKey(Company, related_name="Funds Delivered to")
     round = models.CharField(max_length=16, choices=ROUND_CHOICES, default = 'Seed')
-    raised = models.DecimalField(max_digits = 15, decimal_places = 2)
+    raised = models.CharField(max_length=45)
 
     def __unicode__(self):
         return str(self.company) +" : " + self.round
