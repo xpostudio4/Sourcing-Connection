@@ -4,12 +4,12 @@ from django.shortcuts import render_to_response
 from taxonomy.models import *
 from companies.models import *
 from contacts.models import *
-from django.db.models import Q
+from django.db.models import Q, F
 from django.contrib.auth.forms import AuthenticationForm
 from latech.views import hacked_news
 
 def search_page(request):
-    form = SearchForm()
+    search_form = SearchForm()
     company_list = []
     contact_list = []    
     show_results = False
@@ -32,9 +32,9 @@ def search_page(request):
                    Q(ls_name__icontains=keyword2)|
                    Q(m_name__icontains=keyword2)|
                    Q(overview__icontains=keyword2))[:10]
-           form = SearchForm({'query': query})
+           search_form = SearchForm({'query': query})
     variables = RequestContext(request, {
-        'form':form,    
+        'search_form':form,    
         'company_list': company_list,
         'contact_list': contact_list,        
         'show_results': show_results
@@ -51,6 +51,7 @@ def empty_search_form():
 
 def advanced_search(request):
     contact_form, company_form, = empty_search_form()
+    company_form = CompanySearchForm(request.GET or None)
     user_form  = AuthenticationForm()
     contact_list = []
     company_list = []
@@ -58,25 +59,33 @@ def advanced_search(request):
     show_results = False
     if 'keywords' in request.GET:
         keywords = request.GET['keywords'].strip()
-        category = request.GET['category_company']
-        country = request.GET['country_company']
-        industry = request.GET['industry_company'].strip()
-        technology = request.GET['technology_company'].strip()
-        if (keywords or category or industry or country or technology):
+        category_company = request.GET['category_company']
+        country_company = request.GET['country_company']
+        industry_company = request.GET['industry_company']
+        technology_company = request.GET['technology_company']
+        if (keywords !="*" or category_company or country_company or industry_company):
             show_results = True
             company_list = Company.objects.filter(
                 Q(name__icontains=keywords)|Q(overview__icontains=keywords)
             ).filter(
-                industries__icontains=industry
+                Q(industries__icontains=industry_company)
             ).filter(
-                categories__id__icontains=category
+                Q(categories__id__icontains=category_company)
             ).filter(
-                country__id__icontains=country
+                Q(country__id__icontains=country_company)
             ).filter(
-                technologies__icontains=technology
+                Q(technologies__icontains=technology_company)
             )
-            query1 = ("%s %s %s %s %s") % (keywords, technology, industry, category, country)
-            company_form = CompanySearchForm({'query1': query1})
+            company_form = CompanySearchForm({
+                'keywords':keywords,
+                'technology_company':technology_company, 
+                'industry_company':industry_company, 
+                'category_company':category_company, 
+                'country_company':country_company
+            })
+        else:
+            show_results = True
+            company_list = Company.objects.all()
 
     if 'terms' in request.GET:
         terms = request.GET['terms'].strip()
@@ -103,7 +112,8 @@ def advanced_search(request):
         'contact_list': contact_list,        
         'show_results': show_results,
         'user_form': user_form,
-        'hacked_news': hacked_news()
+        'hacked_news': hacked_news(),
+#        'search_page':search_page()
     })
     return render_to_response(
         'index.html', 
