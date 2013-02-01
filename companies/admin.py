@@ -23,7 +23,6 @@ class FundingAdmin(admin.ModelAdmin):
 class AccessCompanyProfileAdmin(admin.ModelAdmin):
 	pass
 
-
 admin.site.register(Company, CompanyAdmin)
 admin.site.register(Office, OfficeAdmin)
 admin.site.register(Management, ManagementAdmin)
