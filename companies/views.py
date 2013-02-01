@@ -44,11 +44,14 @@ def CompanyCreate(request):
                 funding_form.company_id = company
                 forms_array.append(funding_form)
             else: 
-                return HttpResponse("funding form is not useful")
+
+
+                return render_to_response('erros.html', {'form':funding_form})
 
             if competitors_form.is_valid():
                 #competitors_form.company_id = company
                 forms_array.append(competitors_form)
+
 
             if office_form.is_valid():
                 #office_form.company_id = company
@@ -89,7 +92,7 @@ def CompanyCreate(request):
             'company_form': company_form,
             'funding_form': funding_form,
             'competitors_form': competitors_form,
-            'office_form': ofturfice_form
+            'office_form': office_form
             })
 
 
