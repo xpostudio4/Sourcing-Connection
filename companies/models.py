@@ -169,3 +169,7 @@ class Office(models.Model):
     
     def __unicode__(self):
         return self.address
+
+class AccessCompanyProfile(models.Model):
+    contact = models.ForeignKey(User, related_name = "Contact User")
+    company = models.ManyToManyField(Company, related_name = "Companies ")

@@ -48,6 +48,8 @@ class Contact(models.Model):
     #Pointer to  company from Company table
     company = models.ForeignKey(Company, related_name="company", blank=True, null=True, on_delete=models.SET_NULL)
 
+    latech_contact = models.BooleanField(default=False)
+    
     #Comma separated list of Companies
     financial_organization = models.CharField(max_length=255, blank=True)
 
