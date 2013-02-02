@@ -153,7 +153,7 @@ class Competitors(models.Model):
     name = models.ForeignKey(Company, related_name="Competitor")
 
     def __unicode__(self):
-        return self.company +":" + self.name
+        return str(self.company) +":" + str(self.name)
 
 
 class Office(models.Model):
@@ -164,11 +164,11 @@ class Office(models.Model):
     city = models.ForeignKey(City, related_name="location", blank=True, null=True)
     phone = models.CharField(max_length=512, blank=True)
     zip_code = models.CharField(max_length=512, blank=True)
-    country = models.ForeignKey(Country, related_name = "Office Country")
+    country = models.ForeignKey(Country, related_name = "Office Country", blank=True)
  
     
     def __unicode__(self):
-        return self.address
+        return str(self.company)+ ": Address No."+ str(self.id)+" :"+ self.description
 
 class AccessCompanyProfile(models.Model):
     contact = models.ForeignKey(User, related_name = "Contact User")

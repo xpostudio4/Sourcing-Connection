@@ -41,30 +41,35 @@ def CompanyCreate(request):
             company = company_form.save()
 
             if funding_form.is_valid():
-                funding_form.save()
 
-            else: 
+                sff = funding_form.save(commit=False)
+                sff.company = company
+                sff.save()
+    
+
+            
+
+            if competitors_form.is_valid():
+                scf = competitors_form.save(commit=False)
+                scf.company = company
+                scf.save()
+                
+                #forms_array.append(competitors_form)#
 
 
-                return render_to_response('erros.html', {'form':funding_form})
+            if office_form.is_valid():
+                sof = office_form.save(commit=False)
+                sof.company = company
+                sof.save()
+                
+            #Else used to detect errrors in the process
+            #else: 
 
-            #if competitors_form.is_valid():
-            #    competitors_form.save()
-#
-#            #    c = Competitors.objects.latest('id')
-            #    c.company = company
-            ##    c.save()
-             #   #forms_array.append(competitors_form)#
+               # return render_to_response('erros.html', {'form':funding_form})
 
-
-            #if office_form.is_valid():
-            #    office_form.save()
-
-            #    o = Office.objects.latest('id')
-            #    o.company = company
-            #    o.save()
                 #forms_array.append(office_form)
-
+            c = Company.objects.latest('id')
+            return HttpResponseRedirect("/company/" + c.slug)
             
 
             #for i in range(1, len(forms_array)):
@@ -87,7 +92,7 @@ def CompanyCreate(request):
             
             pass
 
-        return HttpResponseRedirect("/company/" + company.slug)
+        return HttpResponseRedirect("company Duplicated")
     else:
         #generate the instances of the forms in the template
         company_form = CompanyForm(prefix = "company")
@@ -113,12 +118,17 @@ def company_view(request, slug):
     #obtain photos made against company models.
     pictures = Picture.objects.filter(company_id=company.id)
 
-    permissions = AccessCompanyProfile.objects.get(contact=request.user.id)
+    try:
+        #Does the user has permission to modify this claim?
+        permissions = AccessCompanyProfile.objects.get(contact=request.user.id)
 
-    edit = {}
-    for i in permissions.company.all():
-           if i.name == company.name:
-            edit['useful'] = True
+        
+        for i in permissions.company.all():
+               if i.name == company.name:
+                 edit['useful'] = True
+
+    except AccessCompanyProfile.DoesNotExist:
+        edit = {}
 
     return render_to_response(
         "company_page.html",
