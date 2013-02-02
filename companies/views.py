@@ -136,7 +136,7 @@ def company_update(request, slug):
     pictures = Picture.objects.filter(company=company.id)
 
     return render_to_response(
-        "company_page.html",
+        "company_form.html",
         {'form':company_form, 'pictures':pictures},
         context_instance=RequestContext(request))
 
