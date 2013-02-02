@@ -14,7 +14,7 @@ class SearchForm(forms.Form):
 class CompanySearchForm(forms.Form):
     keywords = forms.CharField(
         label=u'Keywords',
-        widget=forms.TextInput(attrs={'size': 20} ),
+        widget=forms.TextInput(attrs={'size': 20, 'placeholder': "For all the companies use *"} ),
                 required = False
     )
     category_company = forms.ModelChoiceField(
