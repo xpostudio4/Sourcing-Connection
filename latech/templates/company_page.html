@@ -41,15 +41,14 @@
 
 {% block content %}
 <br/>
-	{% if user.is_authenticated %}
-		{% if  permission = True %}
+	
+		{% if  permission.useful %}
 	        
 				<div class="pull-right" style="margin-right:80px;">
 					<button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}/update'">  Edit  </button>
 				</div>
  		 
 		{% endif %}
-	{% endif%}
 <br/>
 		<div class="media">
 			<a class="pull-left" href="#">

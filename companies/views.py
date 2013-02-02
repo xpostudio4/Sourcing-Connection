@@ -113,14 +113,12 @@ def company_view(request, slug):
     #obtain photos made against company models.
     pictures = Picture.objects.filter(company_id=company.id)
 
-    permissions = AccessCompanyProfile.objects.filter(contact=request.user.id)
+    permissions = AccessCompanyProfile.objects.get(contact=request.user.id)
 
-    edit = False
-
-    for i in permissions:
-        for j in range(0,len(i.company.all())):
-           if i.company.all()[j] == company.name:
-            edit = True
+    edit = {}
+    for i in permissions.company.all():
+           if i.name == company.name:
+            edit['useful'] = True
 
     return render_to_response(
         "company_page.html",

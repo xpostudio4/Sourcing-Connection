@@ -175,4 +175,4 @@ class AccessCompanyProfile(models.Model):
     company = models.ManyToManyField(Company, related_name = "Companies ")
 
     def __unicode__(self):
-        return str(self.contact) + ":" + str(self.company)
+        return str(self.contact) + ":" + str(self.company.all()[0])
