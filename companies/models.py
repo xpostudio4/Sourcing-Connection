@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
-from taxonomy.models import *
-from location.models import *
 from django.forms import ModelForm
 from django.template import defaultfilters
+from taxonomy.models import *
+from location.models import *
+#from contacts.models import Contact
 # Create your models here.
-
 
 class Company(models.Model):
     EMPLOYEE_QUANTITY_CHOICES = (
@@ -19,6 +19,7 @@ class Company(models.Model):
     )
 
     COMPANY_STATUS_CHOICES = (
+        (0, "-----"),
         (1, "GTB-0"),
         (2, "GTB-1"),
         (3, "GTB-2"),
@@ -164,6 +165,9 @@ class Competitors(models.Model):
     def __unicode__(self):
         return str(self.company) +":" + str(self.name)
 
+    class Meta:
+         verbose_name_plural = "Competitors"
+
 
 class Office(models.Model):
     company = models.ForeignKey(Company, blank=True)
@@ -185,3 +189,16 @@ class AccessCompanyProfile(models.Model):
 
     def __unicode__(self):
         return str(self.contact) + ":" + str(self.company.all()[0])
+        
+class ContactCompany(models.Model):
+    company = models.ForeignKey(Company, related_name = "Contact Company")
+    first_name = models.CharField(max_length=255, blank=True, verbose_name="First Name")
+    last_name = models.CharField(max_length=255, blank=True, verbose_name="Last Name")
+    contact = models.ForeignKey('contacts.Contact', blank=True, null=True, related_name = "Contact's Profile")
+
+    def __unicode__(self):
+        return str(self.first_name +" "+ self.last_name)
+
+    class Meta:
+         verbose_name_plural = "Contact Company"
+
