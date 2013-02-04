@@ -17,7 +17,15 @@ class Company(models.Model):
         (6, "1001 - 5000"),
         (7, "+ 5001"),
     )
-        
+
+    COMPANY_STATUS_CHOICES = (
+        (1, "GTB-0"),
+        (2, "GTB-1"),
+        (3, "GTB-2"),
+        (4, "GTB-3"),
+        (5, "GTB-4"),
+    )
+   
     name = models.CharField(max_length=80, unique= True)
     slug = models.SlugField(max_length=80, unique= True)
     logo = models.ImageField(blank=True, null=True, upload_to="images/company_imgs/")
@@ -25,6 +33,7 @@ class Company(models.Model):
     value_proposition = models.CharField(max_length=144, blank=True)
     overview = models.CharField(max_length=512, blank=True)
     employee_quantity = models.IntegerField(choices=EMPLOYEE_QUANTITY_CHOICES, blank=True, null=True)
+    company_status = models.IntegerField(choices=COMPANY_STATUS_CHOICES, blank=True, null=True)
 #    created_by = models.ForeignKey(User, related_name="LATech user")
     web_url = models.URLField(blank=True)
     blog_url = models.URLField(blank=True)
