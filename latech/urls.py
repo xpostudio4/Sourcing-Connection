@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from companies.views import CompanyUpdate, CompanyCreate,  CompanyList
+from companies.views import CompanyCreate,  CompanyList
 from django.views.generic import DetailView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from contacts.views import ProfileView, ProfileUpdate, ProfileCreate
