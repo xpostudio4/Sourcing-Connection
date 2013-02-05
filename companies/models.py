@@ -100,16 +100,6 @@ class Company(models.Model):
     #<Person, Phone, email>
     contact = models.CharField(max_length=512, blank=True)
     
-    # Visible for LATech members
-    scalability_rating = models.IntegerField(blank=True, null=True)
-    expansion_rating = models.IntegerField(blank=True, null=True)
-    physical_plant_rating = models.IntegerField(blank=True, null=True)
-    profilatibily_rating = models.IntegerField(blank=True, null=True)
-    ret_talent_rating = models.IntegerField(blank=True, null=True)
-    financials_rating = models.IntegerField(blank=True, null=True)
-    rating_of_ownership = models.IntegerField(blank=True, null=True)
-    gtb_overall_rating = models.IntegerField(blank=True, null=True)
-
     def __unicode__(self):
         return self.name
 
@@ -123,6 +113,19 @@ class Company(models.Model):
  
     class Meta:
          verbose_name_plural = "Companies"
+
+class Company_Rating(models.Model):
+    # Visible for LATech members
+    company = models.ForeignKey(Company, related_name="Ratings for Companies")
+    scalability_rating = models.IntegerField(blank=True, null=True)
+    expansion_rating = models.IntegerField(blank=True, null=True)
+    physical_plant_rating = models.IntegerField(blank=True, null=True)
+    profilatibily_rating = models.IntegerField(blank=True, null=True)
+    ret_talent_rating = models.IntegerField(blank=True, null=True)
+    financials_rating = models.IntegerField(blank=True, null=True)
+    rating_of_ownership = models.IntegerField(blank=True, null=True)
+    gtb_overall_rating = models.IntegerField(blank=True, null=True)
+
 
 ROUND_CHOICES = (
     ('Seed','Seed'), ('Angel','Angel'), 
