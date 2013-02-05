@@ -114,7 +114,7 @@ class Company(models.Model):
     class Meta:
          verbose_name_plural = "Companies"
 
-class Company_Rating(models.Model):
+class CompanyRating(models.Model):
     # Visible for LATech members
     company = models.ForeignKey(Company, related_name="Ratings for Companies")
     scalability_rating = models.IntegerField(blank=True, null=True)
