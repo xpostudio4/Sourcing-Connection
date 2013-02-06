@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+
+
+	<head>
+		<title>Errors Page</title> 
+	</head>
+
+
+	<body>
+		{% if form.errors %}
+		    <div id="form-error">
+			<p>The operation could not be performed because one or more error(s) occurred.<br />Please resubmit the form after making the following changes:</p>
+			<ul>
+				{% for field in form %}
+					<li>{{ field.errors|striptags }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+
+		<ul>
+			<li>{{ form.}}</li>
+			<li></li>
+			<li></li>
+			<li></li>
+
+		</ul>
+
+
+	</body>
+
+
+</html>
