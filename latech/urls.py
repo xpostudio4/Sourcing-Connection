@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from companies.views import CompanyUpdate, CompanyCreate,  CompanyList
+from companies.views import CompanyCreate,  CompanyList
 from django.views.generic import DetailView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from contacts.views import ProfileView, ProfileUpdate, ProfileCreate
@@ -25,12 +25,16 @@ urlpatterns = patterns('',
 
       # This is the Form to create a new Contact/Profile
 #     url(r'^profile/(?P<pk>[\w-]+)/create/$', ProfileCreate.as_view(), name='profile_update'),
-     url(r'^login/$', 'latech.views.authenticationView'),
+     url(r'^login/$', 'latech.views.authentication_view'),
      url(r'^logout/$', 'latech.views.logout_page'),
 
      # Search Urls
      url(r'^search/$', 'latech.search.search_page'),
      url(r'^$', "latech.search.advanced_search"),
+
+     #Tickets for site reports
+     url(r'ticket/$','latech.views.ticket_create'),
+     url(r'create/$','latech.views.asana_create'),
 
 #     url(r'^advance_search/', 'latech.views.advance_search'),
 #     url(r'^$', "latech.search.advance_contact_search"),

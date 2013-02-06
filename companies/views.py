@@ -2,6 +2,7 @@ from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, get_object_or_404, render 
 from companies.models import *
 from companies.forms import *
+from contacts.models import Contact
 from fileupload.models import Picture
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -108,35 +109,71 @@ def CompanyCreate(request):
             'office_form': office_form
             })
 
+def check_company_access(user):
+    try:
+        #Does the user has permission to modify this claim?
+        permissions = AccessCompanyProfile.objects.get(contact=user.id)
 
+        for i in permissions.company.all():
+               if i.name == company.name:
+                 edit['useful'] = True
+                 return edit
+    except AccessCompanyProfile.DoesNotExist:
+        edit = {}
+        return edit
     
 
 
 def company_view(request, slug):
-    company = Company.objects.get(slug=slug)
+    try:
+        company = Company.objects.get(slug=slug)
+
+    except Company.DoesNotExist:
+        return HttpResponse("This company does not Exist in our database")
+
     
     #obtain photos made against company models.
     pictures = Picture.objects.filter(company_id=company.id)
 
-    try:
-        #Does the user has permission to modify this claim?
-        permissions = AccessCompanyProfile.objects.get(contact=request.user.id)
+    #If the user is a globaltech employee does not have to  check for the company
+    #All globaltech employees have access to modify all the Companies.
 
-        
-        for i in permissions.company.all():
-               if i.name == company.name:
-                 edit['useful'] = True
+    if request.user :
+        user_id = request.user.id 
 
-    except AccessCompanyProfile.DoesNotExist:
+        try:
+            contact = Contact.objects.get(id = user_id)
+            if contact.latech_contact == True:
+                edit= {'useful':True}
+            else:
+                edit = check_company_acces(request.user)
+               
+        except Contact.DoesNotExist:
+            edit ={}
+    else:
         edit = {}
+    
 
     return render_to_response(
         "company_page.html",
         {'company':company, 'pictures':pictures, 'permission': edit},
         context_instance=RequestContext(request))
 
-
+@login_required
 def company_update(request, slug):
+
+    #Does the user is from Globaltech or does not have access to modify the claim?
+    user_id = request.user.id
+    try:
+            contact = Contact.objects.get(id = user_id)
+            #If the user is not a latech employee
+            if contact.latech_contact == False:
+                #verify the person does not have access
+                if not check_company_access.useful: 
+                    return HttpResponseRedirect('/company/'+str(slug))
+    except Contact.DoesNotExist:
+        return HttpResponseRedirect('/company/'+str(slug))
+
 
     #obtain company with the slug and add 
     company = Company.objects.get(slug=slug)
@@ -151,16 +188,6 @@ def company_update(request, slug):
         context_instance=RequestContext(request))
 
 
-
-class CompanyUpdate(UpdateView):
-    model = Company
-    form_class = CompanyForm
-    template_name = 'company_form.html'
-    success_url = '/company/%(slug)s/'
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(CompanyUpdate, self).dispatch(*args, **kwargs)
 
 class CompanyList(ListView):
     model = Company

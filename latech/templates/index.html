@@ -17,7 +17,9 @@
 			<div class="tabbable"> <!-- Only required for left/right tabs -->
 				  <ul class="nav nav-tabs">
 				    <li class="active"><a href="#company-tab" data-toggle="tab">Companies</a></li>
+				     {% if latech.contact %}
 				    <li><a class="mute" href="#employee-tab" data-toggle="tab">Contacts</a></li>
+				    {% endif%}
 				  </ul>
 				  <div class="tab-content">
 				    <div class="tab-pane active" id="company-tab">
@@ -26,22 +28,25 @@
 						<input type="submit" value="search">
 				    	</form>
 				    </div>
+				    {% if latech.contact %}
 				    <div class="tab-pane" id="employee-tab">
 				      <form id="search-contact-form" method="get" action=".">
 						{{ contact_form.as_p }}
 						<input type="submit" value="search">
 						</form>
+					
 				    </div>
+				    {% endif %}
   				</div>
 			</div>
 		</div>
-	
 
 	
 
+	
 
-	<div class="span9">
 
+	<div class="span8">
 			{% if show_results %}
 		<div id="search-company">
 

@@ -74,3 +74,28 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'password')
         action="login"
 
+
+class TicketForm(forms.Form):
+    email = forms.EmailField(
+        widget=forms.TextInput(attrs={'class':"input-xlarge",'size': 20})
+        )
+    name = forms.CharField(
+        label=u'Brief description of the Bug:',
+        widget=forms.TextInput(attrs={'class':"input-xlarge",'size': 20 })
+        )
+    url = forms.URLField(
+        label=u'Url where the error happened:',
+        widget=forms.TextInput(attrs={'class':"input-xlarge",'size': 20 })
+        )
+    error = forms.CharField(
+        label=u'What We need to do to reproduce the error',
+        widget=forms.Textarea(attrs={'class':"input-xlarge",'size':20})
+        )
+    expectation = forms.CharField(
+        label=u'What You were expecting when doing that action',
+        widget=forms.Textarea(attrs={'class':"input-xlarge",'size':20})
+        )
+    actual = forms.CharField(
+        label=u'What error presented the application',
+        widget=forms.Textarea(attrs={'class':"input-xlarge",'size':20})
+        )

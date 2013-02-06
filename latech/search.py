@@ -8,23 +8,47 @@ from django.db.models import Q, F
 from django.contrib.auth.forms import AuthenticationForm
 from latech.views import hacked_news
 
+
+
+
 def search_page(request):
     search_form = SearchForm()
     company_list = []
     contact_list = []    
     show_results = False
+
+    if request.user :
+        user_id = request.user.id 
+
+        try:
+            contact = Contact.objects.get(id = user_id)
+            if contact.latech_contact == True:
+                latech= {'contact':True}
+            else:
+                latech = {}
+        except Contact.DoesNotExist:
+            latech ={}
+    else:
+        latech = {}
+
     if 'query' in request.GET:
        show_results = True
        query = request.GET['query'].strip()
+    
+
        if query:
            keywords = query.split()
            # Splitting Keywords for companies searchs
+    
+
            for keyword in keywords:
                company_list = Company.objects.filter(
                    Q(name__icontains=keyword)|
                    Q(description__icontains=keyword)|
                    Q(technologies__icontains=keyword)|
                    Q(industries__icontains=keyword))[:10]
+    
+
            # Splitting Keywords for contacts searchs
            for keyword2 in keywords:
                contact_list = Contact.objects.filter(
@@ -33,11 +57,14 @@ def search_page(request):
                    Q(m_name__icontains=keyword2)|
                    Q(overview__icontains=keyword2))[:10]
            search_form = SearchForm({'query': query})
+    
+
     variables = RequestContext(request, {
         'search_form':form,    
         'company_list': company_list,
         'contact_list': contact_list,        
-        'show_results': show_results
+        'show_results': show_results,
+        'latech': latech,
     })
     
 #    return render_to_response('company_list.html', variables)
@@ -57,6 +84,22 @@ def advanced_search(request):
     company_list = []
     errors = []
     show_results = False
+
+    if request.user :
+        user_id = request.user.id 
+
+        try:
+            contact = Contact.objects.get(id = user_id)
+            if contact.latech_contact == True:
+                latech= {'contact':True}
+            else:
+                latech = {}
+               
+        except Contact.DoesNotExist:
+            latech ={}
+    else:
+        latech = {}
+
     if 'keywords' in request.GET:
         keywords = request.GET['keywords'].strip()
         category_company = request.GET['category_company']
@@ -113,6 +156,7 @@ def advanced_search(request):
         'show_results': show_results,
         'user_form': user_form,
         'hacked_news': hacked_news(),
+        'latech': latech,
 #        'search_page':search_page()
     })
     return render_to_response(

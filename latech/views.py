@@ -12,7 +12,9 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm
 from django.contrib.auth.forms import AuthenticationForm
-from django.db.models import Q
+from django.db.models import Q 
+from latech.forms import TicketForm
+from latech.asana import AsanaAPI, AsanaException
 import requests
 from bs4 import BeautifulSoup
 
@@ -43,6 +45,8 @@ def tagitt(request):
    return HttpResponse(simplejson.dumps(result),mimetype='application/json')
 
 def file_not_found_404(request):
+    """Creates a file error with the info to display the user"""
+
     return render_to_response('404.html',context_instance=RequestContext(request))
 
 
@@ -50,7 +54,7 @@ def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-def authenticationView(request):
+def authentication_view(request):
   username = request.POST['username']
   password = request.POST['password']
   user = authenticate(username = username, password = password)
@@ -66,7 +70,7 @@ def authenticationView(request):
 
 
 def hacked_news():
-  """Steals the info from Hacker News to use in our demo"""
+  """Steals the info from Hacker News to use in our demo Homepage """
   r = requests.get("http://news.ycombinator.com/")
   webpage = BeautifulSoup(r.text)
 
@@ -93,3 +97,73 @@ def hacked_news():
   array_links.pop()
   return array_links
 
+def ticket_create(request):
+  """This view generates the view of the ticket form"""
+  #create empty ticket
+  ticket_form = TicketForm()
+  return render_to_response('ticket_form.html', {'ticket_form': ticket_form},context_instance=RequestContext(request) )
+
+
+def asana_create(request): 
+  """ Creates a bugs report in asana Bugs Database for evaluation of the Team"""
+  #Create form from POST part of the request
+  if request.method =="POST":
+    #Verify the form is completeley filled with information
+    ticket_form = TicketForm(request.POST)
+    
+    #if not created return to the previous ticket page
+    if ticket_form.is_valid():
+      #Verifies the Workplace 'Stance Labs' exists or renames the last one
+      asana_api = AsanaAPI('nnZRaTW.3iyzMjyjZ3rSsNbU9sKs7haf', debug=False)
+      work_spaces = asana_api.list_workspaces()
+
+      for space in work_spaces:
+
+        if space['name'] == 'Stance Labs': 
+          work_space = space
+      #verify the variable was assigned, otherwise assign it arbitrarily
+      try:
+        space
+      except NameError:
+        asana_api.update_workspace(work_spaces[-1]['id'], 'Stance Labs')
+        work_space = work_spaces[-2]
+
+      #Verifies there's a 'Bugs' project in the asana Workplace or creates it
+      projects_list = asana_api.list_projects(work_space['id'])
+
+      for project in projects_list:
+        if project['name'] == 'Bugs':
+          bugs_project = project
+      try:
+        bugs_project
+      except NameError:
+        bugs_note="""Place to work with all the tickets generated with our sites"""
+        bugs_project = asana_api.create_project('Bugs', work_space, notes=bugs_note, archived=False)
+      
+      #Then it Creates a new Task with a person assigned to it.
+      task_note  = "URL of the Error: \n" + str(ticket_form.data['url'])+ "\n\n"
+      task_note += "Error description:\n" + str(ticket_form.data['error'])+ "\n\n"
+      task_note += "Expected: \n" + str(ticket_form.data['expectation']) +"\n\n"
+      task_note += "Actual:\n" + str(ticket_form.data['actual'])+"\n\n"
+      task_note += "Contact Email: \n"+ str(ticket_form.data['email']) + "\n\n"
+
+      task = asana_api.create_task(str(ticket_form.data['name']),
+        workspace=work_space['id'], 
+        assignee='me',
+        notes=task_note)
+      #Assign the task to a project
+      asana_api.add_project_task(task['id'], bugs_project['id'])
+      return render_to_response('ticket_form.html', {'ticket_form': TicketForm(), 'ticket_confirmation': str(task['id'])},context_instance=RequestContext(request) )
+
+    else:
+      return render_to_response('ticket_form.html', { 'form_errors': ticket_form.errors},context_instance=RequestContext(request) )
+
+
+  else: 
+    return HttpResponseRedirect("/ticket")
+
+
+  
+  
+  
+  
