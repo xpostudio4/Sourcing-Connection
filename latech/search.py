@@ -15,6 +15,7 @@ def search_page(request):
     search_form = SearchForm()
     company_list = []
     contact_list = []    
+    errors =[]
     show_results = False
 
     if request.user :
@@ -57,10 +58,10 @@ def search_page(request):
                    Q(m_name__icontains=keyword2)|
                    Q(overview__icontains=keyword2))[:10]
            search_form = SearchForm({'query': query})
-    
-
+ 
     variables = RequestContext(request, {
-        'search_form':form,    
+        'search_form':search_form,    
+        'errors':errors,
         'company_list': company_list,
         'contact_list': contact_list,        
         'show_results': show_results,
@@ -104,21 +105,41 @@ def advanced_search(request):
         keywords = request.GET['keywords'].strip()
         category_company = request.GET['category_company']
         country_company = request.GET['country_company']
-        industry_company = request.GET['industry_company']
-        technology_company = request.GET['technology_company']
-        if (keywords !="*" or category_company or country_company or industry_company):
+        industry_company = request.GET['industry_company'].strip()
+        technology_company = request.GET['technology_company'].strip()
+        if (keywords or category_company or country_company or industry_company or technology_company):
+            industry_keys = industry_company.split()
+            technology_keys = technology_company.split()
+            
             show_results = True
-            company_list = Company.objects.filter(
-                Q(name__icontains=keywords)|Q(overview__icontains=keywords)
-            ).filter(
-                Q(industries__icontains=industry_company)
-            ).filter(
-                Q(categories__id__icontains=category_company)
-            ).filter(
-                Q(country__id__icontains=country_company)
-            ).filter(
-                Q(technologies__icontains=technology_company)
-            )
+            q = Q()
+            if country_company:
+                q = q & Q(country__id__icontains=country_company)
+                
+            if keywords !="*":
+                keys = keywords.split()
+                
+                #Splitting keywords      
+                for key in keys:
+                    q = q & (Q(name__icontains=key)|
+                        Q(description__icontains=key)|
+                        Q(overview__icontains=key))
+            else:
+                company_list = Company.objects.all()            
+
+            if  category_company !="1":
+                q = q & (Q(categories__id__icontains=category_company))
+            else:
+                company_list = Company.objects.all()            
+
+            #Spliiting Industries
+            for ikey in industry_keys:
+               q = q & (Q(industries__icontains=ikey))
+            
+            # Spliting Technologies
+            for tkey in technology_keys:
+               q = q & (Q(technologies__icontains=tkey))
+            
             company_form = CompanySearchForm({
                 'keywords':keywords,
                 'technology_company':technology_company, 
@@ -126,9 +147,9 @@ def advanced_search(request):
                 'category_company':category_company, 
                 'country_company':country_company
             })
+            company_list = Company.objects.filter(q)
         else:
-            show_results = True
-            company_list = Company.objects.all()
+            errors.append("Please, search Something")
 
     if 'terms' in request.GET:
         terms = request.GET['terms'].strip()
@@ -154,14 +175,16 @@ def advanced_search(request):
         'company_list': company_list,
         'contact_list': contact_list,        
         'show_results': show_results,
+        'errors':errors,
         'user_form': user_form,
-        'hacked_news': hacked_news(),
+        
+#        'hacked_news': hacked_news(),
         'latech': latech,
 #        'search_page':search_page()
     })
     return render_to_response(
         'index.html', 
-        variables, 
+        variables,
         context_instance = RequestContext(request)
         )
     
