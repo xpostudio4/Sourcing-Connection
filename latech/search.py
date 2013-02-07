@@ -177,8 +177,7 @@ def advanced_search(request):
         'show_results': show_results,
         'errors':errors,
         'user_form': user_form,
-        
-#        'hacked_news': hacked_news(),
+        'hacked_news': hacked_news(),
         'latech': latech,
 #        'search_page':search_page()
     })
