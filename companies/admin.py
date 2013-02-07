@@ -1,4 +1,4 @@
-from companies.models import Company, Office, Management, Funding, AccessCompanyProfile, Competitors, ContactCompany
+from companies.models import Company, Office, Management, Funding, AccessCompanyProfile, Competitors, ContactCompany, CompanyRating
 from fileupload.models import Picture
 from django.contrib import admin
 
