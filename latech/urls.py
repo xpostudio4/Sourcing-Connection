@@ -20,7 +20,7 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/$','companies.views.company_view'),
      url(r'^companies/$', CompanyList.as_view(), name='company_list'),
      #Loading Companies from the CSV file
-     url(r'^companies/load/$','latech.views.load_company'),
+#     url(r'^companies/load/$','latech.views.load_company'),
 
 
      # Profile
