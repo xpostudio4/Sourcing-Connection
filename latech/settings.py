@@ -12,7 +12,8 @@ ADMINS = (
 MANAGERS = ADMINS
 
 #DATABASES = {'default': dj_database_url.config(default='postgres://latech_user:Latech123$%&@localhost:5432/latech_db')}
-DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'latech.db',}}
+DATABASES = {
+'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2', 'NAME': '',}}
 
 #DATABASES = {
 #    'default': {
@@ -52,21 +53,20 @@ USE_TZ = True
 # Example: "/home/media/media.lawrence.com/media/"
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
-MEDIA_ROOT = os.path.dirname(SITE_ROOT, 'media')
+MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/media/'
-
-ADMIN_MEDIA_PREFIX = '/admin-media/'
+ 
+ADMIN_MEDIA_PREFIX = '/static/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
-
+STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -176,3 +176,4 @@ LOGGING = {
     }
 }
 # Parse database configuration from $DATABASE_URL
+DATABASES['default'] =  dj_database_url.config()
