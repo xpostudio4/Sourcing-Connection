@@ -10,6 +10,7 @@ import settings
 
 from django.contrib import admin
 admin.autodiscover()
+
 urlpatterns = patterns('',
      # Company URLs
 
@@ -18,6 +19,9 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/update/$','companies.views.company_update'),
      url(r'^company/(?P<slug>[\w-]+)/$','companies.views.company_view'),
      url(r'^companies/$', CompanyList.as_view(), name='company_list'),
+     #Loading Companies from the CSV file
+     url(r'^companies/load/$', 'latech.views.load_company'),
+
 
      # Profile
      url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),
