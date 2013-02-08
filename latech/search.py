@@ -84,20 +84,20 @@ def advanced_search(request):
     errors = []
     show_results = False
 
-#    if request.user :
-#        user_id = request.user.id 
+    if request.user :
+        user_id = request.user.id 
 
-#        try:
-#            contact = Contact.objects.get(id = user_id)
-#            if contact.latech_contact == True:
-#                latech= {'contact':True}
-#            else:
-#                latech = {}
-#               
-#        except Contact.DoesNotExist:
-#            latech ={}
-#    else:
-#        latech = {}
+        try:
+            contact = Contact.objects.get(id = user_id)
+            if contact.latech_contact == True:
+                latech= {'contact':True}
+            else:
+                latech = {}
+               
+        except Contact.DoesNotExist:
+            latech ={}
+    else:
+        latech = {}
 
     if 'keywords' in request.GET:
         keywords = request.GET['keywords'].strip()
