@@ -20,11 +20,13 @@ class CompanySearchForm(forms.Form):
     category_company = forms.ModelChoiceField(
         label=u'Categories',
         queryset=Category.objects.all(),
+        empty_label = "Any",
         required = False
     )
     country_company = forms.ModelChoiceField(
         label=u'Country',
         queryset=Country.objects.all(),
+        empty_label = "Any",
         required = False
     )
 
