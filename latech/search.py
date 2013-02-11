@@ -1,4 +1,4 @@
-from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm, UserForm
+from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm, UserForm, CompanyStatusForm
 from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, HttpResponse
 from taxonomy.models import *
@@ -77,6 +77,7 @@ def empty_search_form():
 
 def advanced_search(request):
     contact_form, company_form, = empty_search_form()
+    company_status_form = CompanyStatusForm()
     user_form  = AuthenticationForm()
     contact_list = []
     company_list = []
@@ -126,38 +127,55 @@ def advanced_search(request):
                         Q(overview__icontains=key))
             else:
                 company_list = Company.objects.all()
+
             # Category Search
             if category_company:
                 q = q & Q(categories__id__contains=category_company)
 
-
-            #Spliiting Industries
+            #Splitting Industries
             industry_keys = industry_company.split()
             for ikey in industry_keys:
                q = q & (Q(industries__icontains=ikey))
             
-            # Spliting Technologies
+            # Splitting Technologies
             technology_keys = technology_company.split()
             for tkey in technology_keys:
                q = q & (Q(technologies__icontains=tkey))
-            
+
             company_form = CompanySearchForm({
                 'keywords':keywords,
                 'technology_company':technology_company, 
                 'industry_company':industry_company, 
                 'category_company':category_company, 
-                'country_company':country_company
+                'country_company':country_company,
+
             })
             company_list = Company.objects.filter(q)
         else:
+            show_results = True
+            company_list = Company.objects.all()
+
+   # Company Status Search
+
+    if 'company_status' in request.GET:
+        company_status = request.GET['company_status']
+        if company_status:
+            show_results = True
+            company_list = Company.objects.filter(company_status__exact=company_status)
+          
+            company_status_form = CompanyStatusForm({
+                'company_status':company_status
+            })
+
+        elif company_status == 0 or None:
             show_results = True
             company_list = Company.objects.all()
            
     variables = RequestContext(request, {
         'company_form': company_form,
         'contact_form': contact_form,
+        'company_status_form':company_status_form,
         'company_list': company_list,
- #       'company_list2': company_list2,
         'contact_list': contact_list,        
         'show_results': show_results,
         'errors':errors,

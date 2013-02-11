@@ -19,7 +19,7 @@ class Company(models.Model):
     )
 
     COMPANY_STATUS_CHOICES = (
-        (0, "-----"),
+        ("", "-----"),
         (1, "GTB-0"),
         (2, "GTB-1"),
         (3, "GTB-2"),
@@ -73,9 +73,6 @@ class Company(models.Model):
     # Need to be modified in the future
     # others_people = models.ForeignKey("Contact")
     
-    #set of multiple <Date, Value, Round> entries (i.e. 2/12/12, $2.5M, A)
-    funding = models.CharField(max_length=512, blank=True)
-
     #Comma separated list of entries from Company table
     acquisition = models.CharField(max_length=512, blank=True)
 
@@ -86,7 +83,6 @@ class Company(models.Model):
     #Comma separated list of certifications from Certification Table
     #certification = models.ForeignKey("Certification")
     certification = models.CharField(max_length=512, blank=True)
-
 
     award = models.CharField(max_length=512, blank=True)
     

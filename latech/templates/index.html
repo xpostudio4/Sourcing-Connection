@@ -25,6 +25,10 @@
 				    <div class="tab-pane active" id="company-tab">
 				      <form id="search-company-form" method="get" action=".">
  						{{ company_form.as_p }}
+				     {% if latech.contact %}
+ 						{{ company_status_form.as_p }}
+				    {% endif%}
+
 						<input type="submit" value="search">
 				    	</form>
 				    </div>
