@@ -146,7 +146,7 @@ def company_view(request, slug):
             if contact.latech_contact == True:
                 edit= {'useful':True}
             else:
-                edit = check_company_acces(request.user)
+                edit = check_company_access(request.user)
                
         except Contact.DoesNotExist:
             edit ={}
