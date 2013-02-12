@@ -15,7 +15,7 @@ options, args = parser.parse_args()
 def runserver():
     app_dir = os.path.abspath(os.path.dirname(__file__))
     sys.path.append(os.path.dirname(app_dir))
-    os.environ['DJANGO_SETTINGS_MODULE'] = 'burstolio.settings'
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'latech.settings'
     wsgi_app = wsgi.WSGIContainer(django.core.handlers.wsgi.WSGIHandler())
     application = web.Application([
         (r"/media/(.*)", web.StaticFileHandler, {"path": "latech/media"}),
