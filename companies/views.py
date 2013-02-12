@@ -9,6 +9,35 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, ListView
 from django.http import HttpResponse, HttpResponseRedirect
 
+def update_completion(id_company):
+    #calculate info from the 
+    pass
+
+def percentage_completion(id_company): 
+    """This function makes sure that the Profile Completion percentage is available for use """
+    try:
+        p = ProfileCompletion.objects.get(company_id = id_company)
+        return {'percentage': p.completion}
+    except: ProfileCompletion.DoesNotExist: 
+        
+        try:
+            c = Company.objects.get(id=id_company)
+            count = 0
+            length = len(c.__dict__)
+
+            for i in c.__dict__:
+                if c.__dict__[i]:
+                    count += 1
+            percentage = round(float(count/length),2)
+
+            p = ProfileCompletion(completion=percentage, company_id= id_company)
+            p.save()
+
+            return {'percentage': percentage}
+        except Company.DoesNotExist:
+            return {'percentage':{}}
+
+
 #class CompanyCreate(CreateView):
 #    model = Company
 #    form_class = CompanyForm
@@ -123,7 +152,7 @@ def check_company_access(user):
         return edit
     
 
-
+@login_required
 def company_view(request, slug):
     try:
         company = Company.objects.get(slug=slug)
@@ -134,6 +163,9 @@ def company_view(request, slug):
     
     #obtain photos made against company models.
     pictures = Picture.objects.filter(company_id=company.id)
+
+    #obtain percentage of fullfilment
+    percentage = percentage_completion(company.id)
 
     #If the user is a globaltech employee does not have to  check for the company
     #All globaltech employees have access to modify all the Companies.
@@ -188,7 +220,7 @@ def company_update(request, slug):
         context_instance=RequestContext(request))
 
 
-
+@login_required
 class CompanyList(ListView):
     model = Company
     template_name = 'company_list.html'    
