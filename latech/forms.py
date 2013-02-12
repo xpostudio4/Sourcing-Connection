@@ -11,6 +11,13 @@ class SearchForm(forms.Form):
         widget=forms.TextInput(attrs={'size': 20})
     )
 
+class CompanyStatusForm(forms.Form):
+    company_status = forms.TypedChoiceField(
+        label=u'GTB Status',
+        empty_value='Nada', 
+        choices=Company.COMPANY_STATUS_CHOICES
+    )
+
 class CompanySearchForm(forms.Form):
     keywords = forms.CharField(
         label=u'Keywords',
@@ -20,11 +27,13 @@ class CompanySearchForm(forms.Form):
     category_company = forms.ModelChoiceField(
         label=u'Categories',
         queryset=Category.objects.all(),
+        empty_label = "Any",
         required = False
     )
     country_company = forms.ModelChoiceField(
         label=u'Country',
         queryset=Country.objects.all(),
+        empty_label = "Any",
         required = False
     )
 
@@ -38,6 +47,11 @@ class CompanySearchForm(forms.Form):
         widget=forms.TextInput(attrs={'size': 20}),
         required = False
     )
+#    company_status = forms.ChoiceField(
+#        label=u'GTB Status',
+#        choices=Company.COMPANY_STATUS_CHOICES
+#    )
+
     
 class ContactSearchForm(forms.Form):
     terms = forms.CharField(
@@ -55,7 +69,6 @@ class ContactSearchForm(forms.Form):
         widget=forms.TextInput(attrs={'size': 20} ),
                 required = False
     )
-
     industry = forms.CharField(
         label=u'Industries',
         widget=forms.TextInput(attrs={'size': 20}),

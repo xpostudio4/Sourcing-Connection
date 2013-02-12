@@ -1,5 +1,5 @@
 import os
-
+import dj_database_url
 # Django settings for latech project.
 
 DEBUG = True
@@ -13,8 +13,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'latech.db',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '',#'latech.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -52,9 +52,9 @@ MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = 'http://localhost:8000/media/'
+MEDIA_URL = 'http://latech.herokuapp.com/media/'
 
-ADMIN_MEDIA_PREFIX = '/admin-media/'
+#ADMIN_MEDIA_PREFIX = '/static/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -171,3 +171,4 @@ LOGGING = {
     }
 }
 # Parse database configuration from $DATABASE_URL
+DATABASES['default'] =  dj_database_url.config()
