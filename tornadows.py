@@ -19,8 +19,6 @@ def runserver():
     wsgi_app = wsgi.WSGIContainer(django.core.handlers.wsgi.WSGIHandler())
     application = web.Application([
         (r"/media/(.*)", web.StaticFileHandler, {"path": "latech/media"}),
-        (r"/static/(.*)", web.StaticFileHandler, {"path": "latech/static"}),
-        (r"/templates/(.*)", web.StaticFileHandler, {"path": "latech/templates"}),
         (r".*", web.FallbackHandler, dict(fallback=wsgi_app)),
     ])
  
