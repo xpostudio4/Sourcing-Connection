@@ -47,11 +47,6 @@ class CompanySearchForm(forms.Form):
         widget=forms.TextInput(attrs={'size': 20}),
         required = False
     )
-#    company_status = forms.ChoiceField(
-#        label=u'GTB Status',
-#        choices=Company.COMPANY_STATUS_CHOICES
-#    )
-
     
 class ContactSearchForm(forms.Form):
     terms = forms.CharField(

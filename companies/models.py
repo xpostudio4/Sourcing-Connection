@@ -205,14 +205,3 @@ class ProfileCompletion(models.Model):
     """The purpose of this class is to calculate the percentage of completion of the profile of companies."""
     company = models.ForeignKey(Company, related_name='Company Profile Completion ')
     completion = models.DecimalField(max_digits=3, decimal_places=2)
-
-
-
-
-
-    
-
-
-
-
-

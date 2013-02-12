@@ -1,3 +1,4 @@
+import csv
 import operator
 from django.utils import simplejson
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -96,6 +97,13 @@ def hacked_news():
 
   array_links.pop()
   return array_links
+  
+def load_company(request):
+    reader = csv.reader(open("gltclients2.csv"), dialect='excel')
+    for row in reader:
+        company = Company(name=row[0], slug=row[1], industries=row[3], technologies=row[7], applications=row[9] )
+        company.save()
+    return HttpResponseRedirect('/')    
 
 def ticket_create(request):
   """This view generates the view of the ticket form"""
@@ -156,7 +164,7 @@ def asana_create(request):
       return render_to_response('ticket_form.html', {'ticket_form': TicketForm(), 'ticket_confirmation': str(task['id'])},context_instance=RequestContext(request) )
 
     else:
-      return render_to_response('ticket_form.html', { 'ticket_form':ticket_form, 'form_errors': ticket_form.errors},context_instance=RequestContext(request) )
+      return render_to_response('ticket_form.html', { 'form_errors': ticket_form.errors},context_instance=RequestContext(request) )
 
 
   else: 
