@@ -3,15 +3,20 @@ import dj_database_url
 # Django settings for latech project.
 
 DEBUG = True
+IN_HEROKU = bool(os.environ.get('HEROKU_ENV', ''))
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 MANAGERS = ADMINS
-DATABASES = {'default': {'ENGINE': 'django.db.backends.psycopg2_postgresql',}}
-DATABASES['default'] =  dj_database_url.config()
-#DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
+if os.getenv('HEROKU_ENV') == True:
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.psycopg2_postgresql',}}
+    DATABASES['default'] =  dj_database_url.config()
+else:
+
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
