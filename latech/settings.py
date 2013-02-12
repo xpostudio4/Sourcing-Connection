@@ -11,7 +11,7 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 MANAGERS = ADMINS
-if os.getenv('HEROKU_ENV') == True:
+if os.getenv ('HEROKU_ENV') == 'True':
     DATABASES = {'default': {'ENGINE': 'django.db.backends.psycopg2_postgresql',}}
     DATABASES['default'] =  dj_database_url.config()
 else:
