@@ -109,6 +109,7 @@ class Company(models.Model):
  
     class Meta:
          verbose_name_plural = "Companies"
+         ordering = ['id']
 
 class CompanyRating(models.Model):
     # Visible for LATech members
