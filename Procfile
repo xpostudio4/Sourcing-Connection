@@ -1,4 +1,1 @@
-web: python manage.py runserver 0.0.0.0:$PORT --noreload;python tornadows.py
---port=$PORT
-
-
+web: python manage.py collectstatic --noinput ;python tornadows.py --port=$PORT
