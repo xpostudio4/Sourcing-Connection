@@ -18,11 +18,15 @@ if os.getenv('HEROKU_ENV') == 'True':
     DATABASES['default'] =  dj_database_url.config()
     MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
     MEDIA_URL = '/media/'
+    STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
+    
 else:
 
     DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
     MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
     MEDIA_URL = '/media/'
+    STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -69,12 +73,12 @@ STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
 STATIC_URL = '/static/'
 
 # Additional locations of static files
-STATICFILES_DIRS = (
+#STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     #os.path.join(os.path.dirname(__file__), 'static'),
-)
+#)
 
 # List of finder classes that know how to find static files in
 # various locations.
