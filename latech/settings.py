@@ -22,9 +22,9 @@ if os.getenv('HEROKU_ENV') == 'True':
     
 else:
 
-#    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
-    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'latech_db','USER':'latech_user', 'PASSWORD':'Latech123$%&'}}
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
+#    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'latech_db','USER':'latech_user', 'PASSWORD':'Latech123$%&'}}
     MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
     MEDIA_URL = '/media/'
     STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
