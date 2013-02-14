@@ -16,16 +16,16 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 if os.getenv('HEROKU_ENV') == 'True':
     DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',}}
     DATABASES['default'] =  dj_database_url.config()
-    MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
-    MEDIA_URL = '/static/media/'
+    MEDIA_ROOT = os.path.join(SITE_ROOT, 'static/media')
+    MEDIA_URL = '/media/'
     STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
     
 else:
 
-    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
-#    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'latech_db','USER':'latech_user', 'PASSWORD':'Latech123$%&'}}
-    MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
+#    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'latech_db','USER':'latech_user', 'PASSWORD':'Latech123$%&'}}
+    MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'static/media')
     MEDIA_URL = '/media/'
     STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
 
@@ -67,7 +67,7 @@ USE_TZ = True
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
+#STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
 
 
 # URL prefix for static files.
