@@ -32,7 +32,7 @@
 						<input type="submit" value="search">
 				    	</form>
 				    </div>
-				    {% if latec.contact %}
+				     {% if user.contact.latech_contact %}
 				    <div class="tab-pane" id="employee-tab">
 				      <form id="search-contact-form" method="get" action=".">
 						{{ contact_form.as_p }}
