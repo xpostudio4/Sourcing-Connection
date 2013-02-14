@@ -14,15 +14,17 @@ MANAGERS = ADMINS
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 if os.getenv('HEROKU_ENV') == 'True':
-    DATABASES = {'default': {'ENGINE': 'django.db.backends.psycopg2_postgresql',}}
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',}}
     DATABASES['default'] =  dj_database_url.config()
     MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
-    MEDIA_URL = '/media/'
+    MEDIA_URL = '/static/media/'
     STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
     
 else:
 
-    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
+#    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'latech_db','USER':'latech_user', 'PASSWORD':'Latech123$%&'}}
     MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
     MEDIA_URL = '/media/'
     STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
