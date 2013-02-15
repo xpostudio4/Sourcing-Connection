@@ -16,16 +16,18 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 if os.getenv('HEROKU_ENV') == 'True':
     DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',}}
     DATABASES['default'] =  dj_database_url.config()
-    MEDIA_ROOT = os.path.join(SITE_ROOT, 'static/media')
-    MEDIA_URL = '/media/'
+    MEDIA_URL = 'http://commondatastorage.googleapis.com/stancetolatech/'
+    MEDIA_ROOT = ''
     STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
+    GS_ACCESS_KEY_ID=os.environ.get('GS_SECRET_KEY_ID')
+    GS_SECRET_ACCESS_KEY=os.environ.get('GS_SECRET_ACCESS_KEY')
+    GS_BUCKET_NAME=os.environ.get('GS_BUCKET_NAME')
+    DEFAULT_FILE_STORAGE = 'storages.backends.gs.GSBotoStorage'
     
 else:
 
-#    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
-    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'latech_db','USER':'latech_user', 'PASSWORD':'Latech123$%&'}}
-    MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'static/media')
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
+    MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
     MEDIA_URL = '/media/'
     STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
 
@@ -142,13 +144,18 @@ INSTALLED_APPS = (
 #    'taggit',
     'south',
     'fileupload',
+    'storages',
+#    'django_boto',    
 #    'projects',
 #    'urls',
 
 )
 
+
 ACCOUNT_INVITATION_DAYS = 1
 INVITATIONS_PER_USER = 1
+
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

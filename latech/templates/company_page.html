@@ -54,7 +54,7 @@
 			<a class="pull-left" href="#">
 				{% if company.logo %}
 	
-				<img class="img-polaroid" data-src="holder.js/64x64" src="/media/{{ company.logo }}" height="130", width="178">
+				<img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ company.logo }}" height="130", width="178">
 				{% else %}
 				<img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height=96, width=140  >
 				
