@@ -6,7 +6,7 @@ from django.template import defaultfilters
 from taxonomy.models import *
 from location.models import *
 from django.core.files.storage import FileSystemStorage
-from storages.backends.gs import GSBotoStorage
+from storagess.backends.gs import GSBotoStorage
 
 
 # Detecting Heroku Deployment
