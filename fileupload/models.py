@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from companies.models import Company
 from django.core.files.storage import FileSystemStorage
