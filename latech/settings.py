@@ -144,7 +144,7 @@ INSTALLED_APPS = (
 #    'taggit',
     'south',
     'fileupload',
-    'storages',
+    'storagess',
 #    'django_boto',    
 #    'projects',
 #    'urls',
