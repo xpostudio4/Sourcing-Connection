@@ -6,9 +6,13 @@ from django.template import defaultfilters
 from taxonomy.models import *
 from location.models import *
 from django.core.files.storage import FileSystemStorage
+from storages.backends.gs import GSBotoStorage
+
 
 # Detecting Heroku Deployment
-if os.getenv('HEROKU_ENV') != 'True':
+if os.getenv('HEROKU_ENV') == 'True':
+    gs = GSBotoStorage()
+else:
     gs = FileSystemStorage()
 
 class Company(models.Model):

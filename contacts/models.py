@@ -11,8 +11,13 @@ from django.core.files.base import ContentFile
 #from storages.backends.gs import GSBotoStorage
 from django.core.files.storage import FileSystemStorage
 
+from storages.backends.gs import GSBotoStorage
+
+
 # Detecting Heroku Deployment
-if os.getenv('HEROKU_ENV') != 'True':
+if os.getenv('HEROKU_ENV') == 'True':
+    gs = GSBotoStorage()
+else:
     gs = FileSystemStorage()
 
 
