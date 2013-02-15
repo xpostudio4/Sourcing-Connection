@@ -10,8 +10,7 @@ from django.forms import ModelForm
 from django.core.files.base import ContentFile
 #from storages.backends.gs import GSBotoStorage
 from django.core.files.storage import FileSystemStorage
-
-from storages.backends.gs import GSBotoStorage
+from storagess.backends.gs import GSBotoStorage
 
 
 # Detecting Heroku Deployment
@@ -19,8 +18,7 @@ if os.getenv('HEROKU_ENV') == 'True':
     gs = GSBotoStorage()
 else:
     gs = FileSystemStorage()
-
-
+    
 class Contact(models.Model):
     user = models.OneToOneField(User)
     fr_name = models.CharField(max_length=255, blank=True, verbose_name="First Name")
