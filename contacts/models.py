@@ -1,3 +1,4 @@
+import os
 from PIL import Image
 from os.path import join
 from django.db import models
@@ -7,7 +8,13 @@ from location.models import Country, City
 from companies.models import Company
 from django.forms import ModelForm
 from django.core.files.base import ContentFile
-from latech.settings import MEDIA_ROOT
+#from storages.backends.gs import GSBotoStorage
+from django.core.files.storage import FileSystemStorage
+
+# Detecting Heroku Deployment
+if os.getenv('HEROKU_ENV') != 'True':
+    gs = FileSystemStorage()
+
 
 class Contact(models.Model):
     user = models.OneToOneField(User)
@@ -18,7 +25,7 @@ class Contact(models.Model):
     #Special Information about contact
     overview = models.TextField(blank=True)
     #photo = models.ImageField()
-    photo_profile = models.ImageField(blank=True, null=True, upload_to="images/profile_img/")
+    photo_profile = models.ImageField(blank=True, null=True, storage=gs, upload_to="images/profile_img/")
     
     phone = models.CharField(max_length=255, blank=True)
     # Contact Country
@@ -49,7 +56,7 @@ class Contact(models.Model):
     company = models.ForeignKey(Company, related_name="company", blank=True, null=True, on_delete=models.SET_NULL)
 
     latech_contact = models.BooleanField(default=False)
-    
+   
     #Comma separated list of Companies
     financial_organization = models.CharField(max_length=255, blank=True)
 

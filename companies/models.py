@@ -5,13 +5,10 @@ from django.forms import ModelForm
 from django.template import defaultfilters
 from taxonomy.models import *
 from location.models import *
-from storages.backends.gs import GSBotoStorage
 from django.core.files.storage import FileSystemStorage
 
 # Detecting Heroku Deployment
-if os.getenv('HEROKU_ENV') == 'True':
-    gs = GSBotoStorage()
-else:
+if os.getenv('HEROKU_ENV') != 'True':
     gs = FileSystemStorage()
 
 class Company(models.Model):
