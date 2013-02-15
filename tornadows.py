@@ -18,7 +18,7 @@ def runserver():
     os.environ['DJANGO_SETTINGS_MODULE'] = 'latech.settings'
     wsgi_app = wsgi.WSGIContainer(django.core.handlers.wsgi.WSGIHandler())
     application = web.Application([
-        (r"/media/(.*)", web.StaticFileHandler, {"path": "latech/static/media/"}),
+        (r"/media/(.*)", web.StaticFileHandler, {"path": "./latech/media/"}),
         (r"/static/(.*)", web.StaticFileHandler, {"path": "latech/static/"}),
         (r".*", web.FallbackHandler, dict(fallback=wsgi_app)),
     ])
