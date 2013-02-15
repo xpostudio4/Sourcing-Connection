@@ -1,5 +1,14 @@
 from django.db import models
 from companies.models import Company
+from django.core.files.storage import FileSystemStorage
+from storagess.backends.gs import GSBotoStorage
+
+
+# Detecting Heroku Deployment
+if os.getenv('HEROKU_ENV') == 'True':
+    gs = GSBotoStorage()
+else:
+    gs = FileSystemStorage()
 
 class Picture(models.Model):
 
@@ -9,7 +18,7 @@ class Picture(models.Model):
     # problems installing pillow, use a more generic FileField instead.
 
     #file = models.FileField(upload_to="pictures")
-    file = models.ImageField(upload_to="images")
+    file = models.ImageField(storage=gs, upload_to="images/companies_imgs/")
     slug = models.SlugField(max_length=50, blank=True)
     company = models.ForeignKey(Company, related_name="Company Images")
 
