@@ -136,10 +136,6 @@ class CompanyRating(models.Model):
 
     def __unicode__(self):
         return str(self.company) + " Ratings"
-<<<<<<< HEAD
-
-=======
->>>>>>> 54f1d34ca383c926da13d9c1c79042d07015fb45
 
 ROUND_CHOICES = (
     ('Seed','Seed'), ('Angel','Angel'), 
