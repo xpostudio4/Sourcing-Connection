@@ -42,6 +42,12 @@ def CompanyCreate(request):
         if company_form.is_valid():
             company = company_form.save()
 
+            #create a company completion element for this company
+            company_rating = CompanyRating()
+            company_rating.company = company
+            company_rating.save()
+
+
             if funding_form.is_valid():
 
                 sff = funding_form.save(commit=False)

@@ -132,6 +132,9 @@ class CompanyRating(models.Model):
     rating_of_ownership = models.IntegerField(blank=True, null=True)
     gtb_overall_rating = models.IntegerField(blank=True, null=True)
 
+    def __unicode__(self):
+        return str(self.company) + " Ratings"
+
 
 ROUND_CHOICES = (
     ('Seed','Seed'), ('Angel','Angel'), 
