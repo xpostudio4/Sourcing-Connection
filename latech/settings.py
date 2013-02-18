@@ -2,10 +2,9 @@ import os
 import dj_database_url
 # Django settings for latech project.
 
-DEBUG = True
+
 IN_HEROKU = bool(os.environ.get('HEROKU_ENV', ''))
 
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -23,6 +22,7 @@ if os.getenv('HEROKU_ENV') == 'True':
     GS_SECRET_ACCESS_KEY=os.environ.get('GS_SECRET_ACCESS_KEY')
     GS_BUCKET_NAME=os.environ.get('GS_BUCKET_NAME')
     DEFAULT_FILE_STORAGE = 'storages.backends.gs.GSBotoStorage'
+    DEBUG = False
     
 else:
 
@@ -30,6 +30,7 @@ else:
     MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
     MEDIA_URL = '/media/'
     STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
+    DEBUG = True
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
