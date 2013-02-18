@@ -26,15 +26,7 @@ class Company(models.Model):
         (7, "+ 5001"),
     )
 
-    COMPANY_STATUS_CHOICES = (
-        ("", "-----"),
-        (1, "GTB-0"),
-        (2, "GTB-1"),
-        (3, "GTB-2"),
-        (4, "GTB-3"),
-        (5, "GTB-4"),
-    )
-   
+  
     name = models.CharField(max_length=80, unique= True)
     slug = models.SlugField(max_length=80, unique= True)
 #    logo = models.ImageField(blank=True, null=True, upload_to="images/company_imgs/")
@@ -43,7 +35,6 @@ class Company(models.Model):
     value_proposition = models.CharField(max_length=144, blank=True)
     overview = models.CharField(max_length=512, blank=True)
     employee_quantity = models.IntegerField(choices=EMPLOYEE_QUANTITY_CHOICES, blank=True, null=True)
-    company_status = models.IntegerField(choices=COMPANY_STATUS_CHOICES, blank=True, null=True)
 #    created_by = models.ForeignKey(User, related_name="LATech user")
     web_url = models.URLField(blank=True)
     blog_url = models.URLField(blank=True)
@@ -122,7 +113,18 @@ class Company(models.Model):
 
 class CompanyRating(models.Model):
     # Visible for LATech members
+    COMPANY_STATUS_CHOICES = (
+        ("", "-----"),
+        (1, "GTB-0"),
+        (2, "GTB-1"),
+        (3, "GTB-2"),
+        (4, "GTB-3"),
+        (5, "GTB-4"),
+    )
+
+
     company = models.ForeignKey(Company, related_name="Ratings for Companies")
+    company_status = models.IntegerField(choices=COMPANY_STATUS_CHOICES, blank=True, null=True)
     scalability_rating = models.IntegerField(blank=True, null=True)
     expansion_rating = models.IntegerField(blank=True, null=True)
     physical_plant_rating = models.IntegerField(blank=True, null=True)
@@ -132,6 +134,8 @@ class CompanyRating(models.Model):
     rating_of_ownership = models.IntegerField(blank=True, null=True)
     gtb_overall_rating = models.IntegerField(blank=True, null=True)
 
+    def __unicode__(self):
+        return str(self.company) + " Ratings"
 
 ROUND_CHOICES = (
     ('Seed','Seed'), ('Angel','Angel'), 
