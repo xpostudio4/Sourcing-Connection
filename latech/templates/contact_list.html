@@ -10,7 +10,7 @@
                   	<div class="span2">
                       <a class="pull-left thumbnail" href="/profile/{{ contact.id }}">
                         {% if contact.photo_profile %}
-                          <img class="media-object" src="/media/{{ contact.photo_profile }}" height="64">
+                          <img class="media-object" src="{{ MEDIA_URL }}{{ contact.photo_profile }}" height="64">
                         {% else %}
                           <img class="img-polaroid" data-src="holder.js/64x64" src="https://lh5.googleusercontent.com/-1aRlNGIw-Ds/AAAAAAAAAAI/AAAAAAAAAAA/wSDKpraSvbs/s250-c-k/photo.jpg" height="64" width="64" >
                         {% endif %}
