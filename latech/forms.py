@@ -5,6 +5,14 @@ from contacts.models import *
 from location.models import *
 from django.contrib.auth.models import User 
 
+BROWSER = (
+    ("Chrome","Chrome" ),
+    ("Firefox","Firefox"),
+    ("Safari","Safari"),
+    ("Internet Explorer","Internet Explorer"),
+    ("Opera","Opera"),
+    )
+
 class SearchForm(forms.Form):
     query = forms.CharField(
         label=u'Enter a keyword to search for',
@@ -90,6 +98,11 @@ class TicketForm(forms.Form):
     name = forms.CharField(
         label=u'Brief description of the Bug:',
         widget=forms.TextInput(attrs={'class':"input-xlarge",'size': 20 })
+        )
+    browser = forms.TypedChoiceField(
+        label=u'Which Browser where You using',
+        choices=BROWSER,
+        widget=forms.RadioSelect(attrs={'class':"input-xlarge",'size': 20 })
         )
     url = forms.URLField(
         label=u'Url where the error happened:',
