@@ -2,6 +2,7 @@ from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, get_object_or_404, render 
 from companies.models import *
 from companies.forms import *
+from companies.functions import percentage_completion, update_completion
 from contacts.models import Contact
 from fileupload.models import Picture
 from django.utils.decorators import method_decorator
@@ -109,20 +110,6 @@ def CompanyCreate(request):
             'office_form': office_form
             })
 
-def check_company_access(user):
-    try:
-        #Does the user has permission to modify this claim?
-        permissions = AccessCompanyProfile.objects.get(contact=user.id)
-
-        for i in permissions.company.all():
-               if i.name == company.name:
-                 edit['useful'] = True
-                 return edit
-    except AccessCompanyProfile.DoesNotExist:
-        edit = {}
-        return edit
-    
-
 
 def company_view(request, slug):
     try:
@@ -146,8 +133,18 @@ def company_view(request, slug):
             if contact.latech_contact == True:
                 edit= {'useful':True}
             else:
-                edit = check_company_access(request.user)
-               
+                #verify the person does not have access
+                try:
+                    #Does the user has permission to modify this claim?
+                    permissions = AccessCompanyProfile.objects.get(contact=user_id)
+                    edit = {}
+                    for i in permissions.company.all():
+                           if i.name == company.name:
+                              edit = {'useful':True}
+                    
+                        
+                except AccessCompanyProfile.DoesNotExist:
+                    edit = {}
         except Contact.DoesNotExist:
             edit ={}
     else:
@@ -161,6 +158,8 @@ def company_view(request, slug):
 
 @login_required
 def company_update(request, slug):
+    #obtain company with the slug and add 
+    company = Company.objects.get(slug=slug)
 
     #Does the user is from Globaltech or does not have access to modify the claim?
     user_id = request.user.id
@@ -169,14 +168,23 @@ def company_update(request, slug):
             #If the user is not a latech employee
             if contact.latech_contact == False:
                 #verify the person does not have access
-                if not check_company_access.useful: 
+                try:
+                    #Does the user has permission to modify this claim?
+                    permissions = AccessCompanyProfile.objects.get(contact=user_id)
+                    edit = False
+
+                    for i in permissions.company.all():
+                           if i.name == company.name:
+                              edit = True
+                    if edit == False: 
+                        return HttpResponseRedirect('/company/'+str(slug))
+                except AccessCompanyProfile.DoesNotExist:
                     return HttpResponseRedirect('/company/'+str(slug))
     except Contact.DoesNotExist:
         return HttpResponseRedirect('/company/'+str(slug))
 
 
-    #obtain company with the slug and add 
-    company = Company.objects.get(slug=slug)
+    
     company_form = CompanyForm(instance=company)
 
     #obtain photos made against company models.
@@ -197,7 +205,9 @@ def company_page(request, slug):
     try:
        comp = Company.objects.get(slug=slug)
     except Company.DoesNotExist:
-       raise Http404
+       return HttpResponse('The page You are looking does not exist <a href="/"> click here</a> to return home')
+       #A 404 page must be rised when needed.
+       #raise Http404
     return render_to_response('company_page.html',{'comp':comp},context_instance=RequestContext(request)) 
 
 
