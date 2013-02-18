@@ -41,7 +41,22 @@
 
 {% block content %}
 <br/>
-	
+		{% if percentage_profile %}
+			<h2 class="pagination-centered">Profile {{ percentage_profile.percentage }}% complete</h2>
+			<div class="percentage-box ">
+				
+			   <div class="progress span5">
+
+			   		<div class="bar" style="width: {{ percentage_profile.percentage }}%;"></div>
+			   </div>
+			</div>
+
+
+
+		{% endif %}
+		<br/>
+
+
 		{% if  permission.useful %}
 	        
 				<div class="pull-right" style="margin-right:80px;">
@@ -50,6 +65,7 @@
  		 
 		{% endif %}
 <br/>
+		
 		<div class="media">
 			<a class="pull-left" href="#">
 				{% if company.logo %}
