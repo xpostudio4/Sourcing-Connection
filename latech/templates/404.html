@@ -1,4 +1,4 @@
-% extends "base.html" %}
+{% extends "base.html" %}
 <title>{% block title %}404 - {{ error.model }} not Found{% endblock %}</title>
 
 
@@ -6,12 +6,12 @@
 {% block external %}
 
 
-{% endblock %}
+{% endblock external %}
 
 
 
 {% block content %}
 
-{{ error.message }}
+The webpage You are looking for does not exist. click <a href="/">here</a> to return home. 
 
-{% endblock %}
+{% endblock content %}
