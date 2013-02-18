@@ -118,6 +118,9 @@ def company_view(request, slug):
     except Company.DoesNotExist:
         return HttpResponse("This company does not Exist in our database")
 
+
+    #This variable keeps the percentage of completion of the profile. 
+    percentage_profile = percentage_completion(company.id)
     
     #obtain photos made against company models.
     pictures = Picture.objects.filter(company_id=company.id)
@@ -153,7 +156,7 @@ def company_view(request, slug):
 
     return render_to_response(
         "company_page.html",
-        {'company':company, 'pictures':pictures, 'permission': edit},
+        {'company':company, 'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile},
         context_instance=RequestContext(request))
 
 @login_required

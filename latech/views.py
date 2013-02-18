@@ -164,7 +164,7 @@ def asana_create(request):
       return render_to_response('ticket_form.html', {'ticket_form': TicketForm(), 'ticket_confirmation': str(task['id'])},context_instance=RequestContext(request) )
 
     else:
-      return render_to_response('ticket_form.html', { 'form_errors': ticket_form.errors},context_instance=RequestContext(request) )
+      return render_to_response('ticket_form.html', { 'form_errors': ticket_form.errors, 'ticket_form':ticket_form},context_instance=RequestContext(request) )
 
 
   else: 

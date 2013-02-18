@@ -216,3 +216,6 @@ class ProfileCompletion(models.Model):
     
     company = models.ForeignKey(Company, related_name='Company Profile Completion ')
     completion = models.DecimalField(max_digits=3, decimal_places=2)
+
+    def __unicode__(self):
+        return str(self.company)+ ":" + str(int(self.completion*100))+ "%"
