@@ -1,11 +1,19 @@
+import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.template import defaultfilters
 from taxonomy.models import *
 from location.models import *
-#from contacts.models import Contact
-# Create your models here.
+from django.core.files.storage import FileSystemStorage
+from storagess.backends.gs import GSBotoStorage
+
+
+# Detecting Heroku Deployment
+if os.getenv('HEROKU_ENV') == 'True':
+    gs = GSBotoStorage()
+else:
+    gs = FileSystemStorage()
 
 class Company(models.Model):
     EMPLOYEE_QUANTITY_CHOICES = (
@@ -29,7 +37,8 @@ class Company(models.Model):
    
     name = models.CharField(max_length=80, unique= True)
     slug = models.SlugField(max_length=80, unique= True)
-    logo = models.ImageField(blank=True, null=True, upload_to="images/company_imgs/")
+#    logo = models.ImageField(blank=True, null=True, upload_to="images/company_imgs/")
+    logo = models.ImageField(blank=True, null=True, storage=gs, upload_to="images/companies_imgs/")
     description = models.TextField(blank=True)
     value_proposition = models.CharField(max_length=144, blank=True)
     overview = models.CharField(max_length=512, blank=True)
@@ -95,7 +104,7 @@ class Company(models.Model):
 
     #<Person, Phone, email>
     contact = models.CharField(max_length=512, blank=True)
-    
+
     def __unicode__(self):
         return self.name
 
@@ -109,6 +118,7 @@ class Company(models.Model):
  
     class Meta:
          verbose_name_plural = "Companies"
+         ordering = ['id']
 
 class CompanyRating(models.Model):
     # Visible for LATech members

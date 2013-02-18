@@ -11,12 +11,25 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 MANAGERS = ADMINS
-if os.getenv ('HEROKU_ENV') == 'True':
-    DATABASES = {'default': {'ENGINE': 'django.db.backends.psycopg2_postgresql',}}
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+
+if os.getenv('HEROKU_ENV') == 'True':
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',}}
     DATABASES['default'] =  dj_database_url.config()
+    MEDIA_URL = 'http://commondatastorage.googleapis.com/stancetolatech/'
+    MEDIA_ROOT = ''
+    STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
+    GS_ACCESS_KEY_ID=os.environ.get('GS_SECRET_KEY_ID')
+    GS_SECRET_ACCESS_KEY=os.environ.get('GS_SECRET_ACCESS_KEY')
+    GS_BUCKET_NAME=os.environ.get('GS_BUCKET_NAME')
+    DEFAULT_FILE_STORAGE = 'storages.backends.gs.GSBotoStorage'
+    
 else:
 
     DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
+    MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
+    MEDIA_URL = '/media/'
+    STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -43,12 +56,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
+#MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = 'http://latech.herokuapp.com/media/'
+#MEDIA_URL = '/media/'
 
 #ADMIN_MEDIA_PREFIX = '/static/'
 
@@ -56,7 +69,7 @@ MEDIA_URL = 'http://latech.herokuapp.com/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+#STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
 
 
 # URL prefix for static files.
@@ -64,12 +77,12 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 # Additional locations of static files
-STATICFILES_DIRS = (
+#STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(os.path.dirname(__file__), 'static'),
-)
+    #os.path.join(os.path.dirname(__file__), 'static'),
+#)
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -131,13 +144,18 @@ INSTALLED_APPS = (
 #    'taggit',
     'south',
     'fileupload',
+    'storagess',
+#    'django_boto',    
 #    'projects',
 #    'urls',
 
 )
 
+
 ACCOUNT_INVITATION_DAYS = 1
 INVITATIONS_PER_USER = 1
+
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
