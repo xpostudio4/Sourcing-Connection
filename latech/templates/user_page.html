@@ -45,9 +45,9 @@
 <div class="span10"> 
 <div class="media">
 	{% if contact.photo_profile %}
-		<a class="pull-left" href="/media/{{ contact.photo_profile }}">
+		<a class="pull-left" href="{{ MEDIA_URL }}{{ contact.photo_profile }}">
 
-        <img class="media-object"  src="/media/{{ contact.photo_profile }}" height="128" width="96">
+        <img class="media-object"  src="{{ MEDIA_URL }}{{ contact.photo_profile }}" height="128" width="96">
 	 </a>
 
 	{% else %}
