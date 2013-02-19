@@ -19,6 +19,11 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 
+.ticket-ul{
+  list-style-type: none;
+  
+}
+
 #navigation{
 
         position: fixed;
