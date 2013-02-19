@@ -10,6 +10,15 @@
 {% endblock %}
 
 {% block content %}
+	{% if form_errors %}
+		<div class="alert" > <strong>Warning!</strong>The Following fields need to be completed corretly:</div>
+			{% for error in form_errors %}
+				<div class="text-error">{{ error }}</div>
+
+
+			{% endfor %}
+	{% endif %}
+
 <form enctype="multipart/form-data" method="post" action=".">{% csrf_token %}
 <ul>
 {{ form.as_p }}

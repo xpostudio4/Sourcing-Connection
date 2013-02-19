@@ -118,12 +118,10 @@ def CompanyCreate(request):
 
 
 def company_view(request, slug):
-    try:
-        company = Company.objects.get(slug=slug)
+    
+    company = get_object_or_404(Company,slug=slug)
 
-    except Company.DoesNotExist:
-        return HttpResponse("This company does not Exist in our database")
-
+    
 
     #This variable keeps the percentage of completion of the profile. 
     percentage_profile = percentage_completion(company.id)
@@ -168,7 +166,7 @@ def company_view(request, slug):
 @login_required
 def company_update(request, slug):
     #obtain company with the slug and add 
-    company = Company.objects.get(slug=slug)
+    company = get_object_or_404(Company, slug=slug)
 
     #Does the user is from Globaltech or does not have access to modify the claim?
     user_id = request.user.id
@@ -192,17 +190,34 @@ def company_update(request, slug):
     except Contact.DoesNotExist:
         return HttpResponseRedirect('/company/'+str(slug))
 
-
-    
-    company_form = CompanyForm(instance=company)
-
     #obtain photos made against company models.
     pictures = Picture.objects.filter(company=company.id)
 
-    return render_to_response(
-        "company_form.html",
-        {'form':company_form, 'pictures':pictures},
-        context_instance=RequestContext(request))
+    if request.method == 'GET':
+    
+            company_form = CompanyForm(instance=company, prefix="company")
+
+            
+
+            return render_to_response(
+                "company_form.html",
+                {'form':company_form, 'pictures':pictures},
+                context_instance=RequestContext(request))
+
+    else: 
+        #obtain the data of the form for manipulation
+        company_form = CompanyForm(request.POST, prefix="company", instance=company)
+
+        if company_form.is_valid():
+            #if the form is ok, save and redirect to the original page. 
+            company_form.save()
+            return HttpResponseRedirect('/company/'+str(slug))
+        else: 
+            
+            return render_to_response(
+                'company_form.html', 
+                {'form': company_form, 'form_errors':company_form.errors,'pictures':pictures},
+                context_instance=RequestContext(request))
 
 
 

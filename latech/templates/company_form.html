@@ -23,6 +23,18 @@
 <div id="company-form-container" class="container">
 <form enctype="multipart/form-data" method="post" action=".">{% csrf_token %}
 	
+
+
+    {% if form_errors %}
+        <div class="alert" > <strong>Warning!</strong>The Following fields need to be completed corretly:</div>
+            {% for error in form_errors %}
+                <div class="text-error">{{ error }}</div>
+
+
+            {% endfor %}
+    {% endif %}
+
+
 {% if company_form %}
 <h2> New Company Submission </h2> 
 <hr class="bs-docs-separator">
