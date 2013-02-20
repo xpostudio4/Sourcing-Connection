@@ -161,7 +161,7 @@ def advanced_search(request):
         company_status = request.GET['company_status']
         if company_status:
             show_results = True
-            company_list = Company.objects.filter(CompanyRating.objects.filter(company_status__exact=company_status))
+            company_list = Company.objects.filter(company_status__exact=company_status)
           
             company_status_form = CompanyStatusForm({
                 'company_status':company_status
