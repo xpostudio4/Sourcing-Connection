@@ -97,10 +97,21 @@ def CompanyCreate(request):
         #    office_form.company = company_form
         #    office_form = office_form.save()
         else: 
-            
-            pass
 
-        return HttpResponseRedirect("company Duplicated")
+            variable = {
+            'company_form':company_form, 
+            'funding_form': funding_form,
+            'competitors_form':competitors_form, 
+            'office_form':office_form,
+            'form_errors': company_form.errors,
+            }
+            #return render_to_response(
+            #    "company_form.html",
+            #    variable,
+            #    context_instance=RequestContext(request)
+            #    )
+            return HttpResponse("This is the end of the Yellow road.")
+
     else:
         #generate the instances of the forms in the template
         company_form = CompanyForm(prefix = "company")
