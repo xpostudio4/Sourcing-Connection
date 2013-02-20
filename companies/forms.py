@@ -6,14 +6,19 @@ class CompanyForm(ModelForm):
        model = Company
        exclude = ("slug")
 
+class CompetitorsForm(ModelForm):
+	class Meta:
+		model = Competitors
+		exclude = ('company')
+
 class FundingForm(ModelForm):
 	class Meta:
 		model = Funding
 		fields = ('round', 'raised')
 
-class CompetitorsForm(ModelForm):
+class CompanyRatingForm(ModelForm):
 	class Meta:
-		model = Competitors
+		model = CompanyRating
 		exclude = ('company')
 
 class OfficeForm(ModelForm):
@@ -27,3 +32,4 @@ class OfficeForm(ModelForm):
 			"phone",
 			"zip_code",
 			"country")
+			
