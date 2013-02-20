@@ -30,6 +30,8 @@ def CompanyCreate(request):
         company_form = CompanyForm(request.POST, prefix="company")
         funding_form = FundingForm(request.POST, prefix="funding")
         competitors_form = CompetitorsForm(request.POST, prefix = "competitors")
+        company_rating_form = CompanyRatingForm(request.POST, prefix="company_ratings")
+
         office_form = OfficeForm(request.POST, prefix="office")
         
         #the forms can be empty
@@ -53,14 +55,18 @@ def CompanyCreate(request):
                 sff = funding_form.save(commit=False)
                 sff.company = company
                 sff.save()
+
     
-
-            
-
             if competitors_form.is_valid():
                 scf = competitors_form.save(commit=False)
                 scf.company = company
                 scf.save()
+            
+
+            if company_rating_form.is_valid():
+                srf = company_rating_form.save(commit=False)
+                srf.company = company
+                srf.save()
                 
                 #forms_array.append(competitors_form)#
 
@@ -118,13 +124,15 @@ def CompanyCreate(request):
         funding_form = FundingForm(prefix = "funding")
         competitors_form = CompetitorsForm(prefix = "competitors")
         office_form = OfficeForm(prefix = "office")
+        company_rating_form = CompanyRatingForm(prefix="company_ratings")
 
         #pass the instance to the view
         return render(request, "company_form.html",{
             'company_form': company_form,
             'funding_form': funding_form,
             'competitors_form': competitors_form,
-            'office_form': office_form
+            'office_form': office_form,
+            'company_rating_form':company_rating_form
             })
 
 

@@ -68,6 +68,14 @@
 	{{ competitors_form.as_p }}
 {% endif %}
 
+{% if company_rating_form %}
+<h2>Ratings</h2>
+<hr class="bs-docs-separator">
+<p>Please include all previous funding rounds.</p>
+
+	{{ company_rating_form.as_p }}					
+{% endif %}
+
 {% if office_form %}
 Offices
 <hr class="bs-docs-separator">
