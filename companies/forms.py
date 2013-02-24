@@ -32,4 +32,12 @@ class OfficeForm(ModelForm):
 			"phone",
 			"zip_code",
 			"country")
+
+class ManagementForm(ModelForm):
+	class Meta:
+		model = Management
+		fields = (
+			'full_name',
+			'title')
+			
 			
