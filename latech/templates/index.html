@@ -5,6 +5,21 @@
 
 {% block external %}
 
+<script src="{{ STATIC_URL }}js/html5slider.js"></script>
+
+<script type="text/javascript">
+onload = function() {
+  document.getElementById('one').onchange = function() {
+      document.getElementById('uno').innerHTML = this.value+"%";
+  };
+  document.getElementById('one').onchange();
+  document.getElementById('two').onchange = function() {
+      document.getElementById('dos').innerHTML = this.value+"%";
+  };
+  document.getElementById('two').onchange();
+
+};
+</script>
 
 {% endblock %}
 
@@ -26,7 +41,15 @@
 				      <form id="search-company-form" method="get" action=".">
  						{{ company_form.as_p }}
 				     {% if user.contact.latech_contact %}
+				     
  						{{ company_status_form.as_p }}
+    <!-- Search by Porcentage code --> 
+    
+    <input name="minimum" type="range" min="0" max="100" value="0" id="one" /> 
+     <p><div id="uno">&nbsp;</div><p>
+
+    <input name="maximum" type="range" min="0" max="100" value="100" id="two" />
+     <p><div id="dos">&nbsp;</div><p>
 				    {% endif%}
 
 						<input type="submit" value="search">
