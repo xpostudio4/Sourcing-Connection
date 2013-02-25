@@ -57,7 +57,7 @@
 		<br/>
 
 
-		{% if  permission.useful %}
+		{% if  user.is_staff or user.is_superuser or permission %}
 	        
 				<div class="pull-right" style="margin-right:80px;">
 					<button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}/update'">  Edit  </button>

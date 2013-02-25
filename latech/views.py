@@ -56,12 +56,15 @@ def logout_page(request):
     return HttpResponseRedirect('/')
 
 def authentication_view(request):
-  username = request.POST['username']
-  password = request.POST['password']
-  user = authenticate(username = username, password = password)
-  if user is not None:
-    if user.is_active:
-      login(request,user)
+  if request.method =='POST':
+      username = request.POST['username']
+      password = request.POST['password']
+      user = authenticate(username = username, password = password)
+      if user is not None:
+        if user.is_active:
+          login(request,user)
+      else:
+        return HttpResponseRedirect('/')
   else:
     return HttpResponseRedirect('/')
 

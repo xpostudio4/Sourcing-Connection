@@ -1,4 +1,4 @@
-from models import *
+from companies.models import *
 from contacts.models import Contact
 
 def update_completion(id_company):

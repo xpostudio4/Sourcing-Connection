@@ -65,6 +65,18 @@ def CompanyCreate(request):
 
             #create a new reference for the company in the company profile of LAtech
             #must create a reference for the user in company access
+            #verify if the user has an access model if not 
+            try: 
+                access = AccessCompanyProfile.objects.get(contact=request.user)
+            
+            except AccessCompanyProfile.DoesNotExist:
+                access = AccessCompanyProfile.objects.create(contact=request.user)
+                access.save()
+
+            #independent of the user provided the access will be created.            
+            access.company.add(company)
+            access.save()
+
 
             if funding_form.is_valid():
 
@@ -159,28 +171,32 @@ def company_view(request, slug):
     if request.user :
         user_id = request.user.id 
 
+
         try:
-            contact = Contact.objects.get(id = user_id)
-            if contact.latech_contact == True:
-                edit= {'useful':True}
+            contact = Contact.objects.get(user=request.user)
+            if contact.latech_contact or request.user.is_staff or request.user.is_superuser  == True:
+                edit= True
+
             else:
+                
                 #verify the person does not have access
                 try:
                     #Does the user has permission to modify this claim?
-                    permissions = AccessCompanyProfile.objects.get(contact=user_id)
-                    edit = {}
-                    for i in permissions.company.all():
-                           if i.name == company.name:
-                              edit = {'useful':True}
+                    permissions = AccessCompanyProfile.objects.get(contact=request.user)
                     
-                        
+                    if permissions.company.all().filter(name__icontains=company.name) :
+                              edit = True
+                    else: 
+                            edit = False
                 except AccessCompanyProfile.DoesNotExist:
-                    edit = {}
+
+                    edit = False
         except Contact.DoesNotExist:
-            edit ={}
+            edit =False
     else:
-        edit = {}
+        edit = False
     
+
 
     return render_to_response(
         "company_page.html",
