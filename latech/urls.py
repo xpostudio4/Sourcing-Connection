@@ -22,6 +22,11 @@ urlpatterns = patterns('',
      #Loading Companies from the CSV file
 #     url(r'^companies/load/$','latech.views.load_company'),
 
+     #Management for the item
+     url(r'^company/(?P<slug>[\w-]+)/management/new/$','companies.views.management_create'),
+     url(r'^company/(?P<slug>[\w-]+)/management/(?P<id>[\d]+)/update/$','companies.views.management_update'),
+     url(r'^company/(?P<slug>[\w-]+)/management/(?P<id>[\d]+)/delete/$','companies.views.management_delete'),
+     url(r'^company/(?P<slug>[\w-]+)/management/(?P<id>[\d]+)/$','companies.views.management_view'),
 
      # Profile
      url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),

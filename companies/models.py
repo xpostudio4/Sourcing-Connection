@@ -151,7 +151,7 @@ class Management(models.Model):
     company = models.ForeignKey(Company, related_name="Management of the company")
     full_name = models.CharField(max_length=56)
     title = models.CharField(max_length=56)
-    start_date = models.DateField()
+    start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
 
     def __unicode__(self):
@@ -189,7 +189,7 @@ class Office(models.Model):
     city = models.ForeignKey(City, related_name="location", blank=True, null=True)
     phone = models.CharField(max_length=512, blank=True)
     zip_code = models.CharField(max_length=512, blank=True)
-    country = models.ForeignKey(Country, related_name = "Office Country", blank=True)
+    country = models.ForeignKey(Country, related_name = "Office Country", null=True,  blank=True)
  
     
     def __unicode__(self):

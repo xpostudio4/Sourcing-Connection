@@ -2,7 +2,7 @@ from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, get_object_or_404, render 
 from companies.models import *
 from companies.forms import *
-from companies.functions import percentage_completion, update_completion
+from companies.functions import percentage_completion, update_completion, validate_user_company_access_or_redirect
 from contacts.models import Contact
 from fileupload.models import Picture
 from django.utils.decorators import method_decorator
@@ -49,6 +49,22 @@ def CompanyCreate(request):
             company_rating.company = company
             company_rating.save()
 
+            #Create company percentage object in that table.
+            c = Company.objects.get(id=company.id)
+            count = 0 
+            length = len(c.__dict__)
+
+            for i in c.__dict__:
+                if c.__dict__[i]:
+                    count += 1
+
+            percentage = round(count/float(length),2)
+
+            p = ProfileCompletion(completion=percentage, company_id= company.id)
+            p.save()
+
+            #create a new reference for the company in the company profile of LAtech
+            #must create a reference for the user in company access
 
             if funding_form.is_valid():
 
@@ -205,8 +221,6 @@ def company_update(request, slug):
     
             company_form = CompanyForm(instance=company, prefix="company")
 
-            
-
             return render_to_response(
                 "company_form.html",
                 {'form':company_form, 'pictures':pictures},
@@ -233,13 +247,129 @@ class CompanyList(ListView):
     model = Company
     template_name = 'company_list.html'    
 
+
 def company_page(request, slug):
+    company = get_object_or_404(Company,slug=slug)
+    return render_to_response('company_page.html',{'comp':company},context_instance=RequestContext(request)) 
+
+##################################################################################################################
+################################################ Management Views ################################################
+##################################################################################################################
+
+def management_create(request, slug):
+    """The purpose of this function is to create  new management item associated with a created company"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+
+    #verifies the person has access to the company or is an incubator employee
+    user_id = request.user.id
     try:
-       comp = Company.objects.get(slug=slug)
-    except Company.DoesNotExist:
-       return HttpResponse('The page You are looking does not exist <a href="/"> click here</a> to return home')
-       #A 404 page must be rised when needed.
-       #raise Http404
-    return render_to_response('company_page.html',{'comp':comp},context_instance=RequestContext(request)) 
+            contact = Contact.objects.get(id = user_id)
+            #If the user is not a latech employee
+            #is the user an Admin?
+            if request.user.is_staff or request.user.is_superuser or contact.latech_contact :
+                edit = True
+
+            else:
+
+                #verify the person does not have access
+                try:
+                    #Does the user has permission to modify this claim?
+                    permissions = AccessCompanyProfile.objects.get(contact=user_id)
+                    edit = False
+
+                    
+                
+                    for i in permissions.company.all(): 
+                           if i.name == company.name:
+                              edit = True
+                    if edit == False: 
+                        return HttpResponseRedirect('/company/'+str(slug))
+                except AccessCompanyProfile.DoesNotExist:
+                    return HttpResponseRedirect('/company/'+str(slug))
+
+    except Contact.DoesNotExist:
+        return HttpResponseRedirect('/company/'+str(slug))
+
+    #if the request is GET presents empty form
+    if request.method == 'GET':
+
+        management_form = ManagementForm()
+        return render_to_response('management_form.html', {'form': management_form, 'company':company},
+            context_instance=RequestContext(request))
+     
+    else:
+        management_form = ManagementForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page
+        if management_form.is_valid():
+            mf = management_form.save(commit=False)
+            mf.company = company
+            mf.save()
+            return HttpResponseRedirect('/company/'+str(slug))
+
+        #if not well filled redirect to the original create and display error
+        else:
+            return render_to_response('management_form.html', 
+                {'form': management_form, 'form_errors': management_form.errors, 'company':company},
+                context_instance=RequestContext(request))
+
+
+def management_update(request, slug, id):
+    """The purpose of this view is to update the info of the management page"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    management_reference = get_object_or_404(Management, id=id,company=company)
+    management_form = ManagementForm(instance=management_reference)
+
+    #verifies the person has access to the company or is an incubator employee
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    #if the request is GET presents info, 
+    if request.method == 'GET':
+        return render_to_response('management_form.html',{'form':management_form, 'info': management_reference},context_instance=RequestContext(request))
+    else:
+        management_form = ManagementForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page 
+        if management_form.is_valid():
+            mf= management_form.save(commit = False)
+            mf.company = company
+            mf.save()
+
+            return HttpResponseRedirect('/company/'+str(slug))
+        #if not well filled redirect to the original update page and display error
+        else:
+            return render_to_response('management_form.html', 
+                {'form': management_form, 'form_errors': management_form.errors, 'info': management_reference},
+                context_instance=RequestContext(request))
+
+@login_required
+def management_delete(request, slug,id):
+    """This view deletes the management info and redirects to the company page"""
+    
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    if request.method == 'POST':
+        return HttpResponseRedirect('/company/'+str(slug))
+    else: 
+        #verifies if the company exists if not returns a 404 page
+        management_reference = get_object_or_404(Management, id=id,company=company)
+
+        #deletes the view and redirects to the page.
+        management_reference.delete()
+        return HttpResponseRedirect('/company/'+str(slug))
+
+
+
+@login_required
+def management_view(request, slug, id):
+    """This view makes possible to display a management item alone"""
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    management_reference = get_object_or_404(Management, id=id,company=company)
+
+    return render_to_response('management_form.html', 
+                {'details': management_reference,'info':management_reference},
+                context_instance=RequestContext(request))
 
 
