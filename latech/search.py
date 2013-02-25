@@ -3,6 +3,7 @@ from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, HttpResponse
 from taxonomy.models import *
 from companies.models import *
+from companies.functions import percentage_completion
 from contacts.models import *
 from django.db.models import Q, F
 from django.contrib.auth.forms import AuthenticationForm
@@ -170,6 +171,16 @@ def advanced_search(request):
         elif company_status == 0 or None:
             show_results = True
             company_list = Company.objects.all()
+
+    if 'maximum' in request.GET:
+        maximum = request.GET['maximum']
+        minimum = request.GET['minimum']
+        if maximum or minimum:
+            minimum = float(minimum)/100.0
+            maximum = float(maximum)/100.0
+            show_results = True
+            company_list = Company.objects.filter(pk__in=ProfileCompletion.objects.filter(completion__range=(minimum, maximum)))
+
            
     if 'terms' in request.GET:
         terms = request.GET['terms'].strip()
