@@ -179,7 +179,36 @@
 
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Management:</strong></h4>
-	<p id="company-management">{{ company.management  }}</p>
+
+	{% if  user.is_staff or user.is_superuser or permission %}
+		<ul class="nav nav-list pull-right">
+			<li><a href="/company/{{ company.slug }}/management/new"><i class="icon-plus"></i> Add Manager</a></li>
+		</ul>
+		{% for manager in management %}
+			<ul class="nav nav-list pull-left">
+				<li><a id="{{ company.slug }}-management-{{ manager.id }}" onclick="{{ company.slug }}_management_{{ manager.id }}(); return false;" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-trash"></i>Delete</a></li>
+		</ul>
+		<script>
+		function {{ company.slug }}_management_{{ manager.id }}(){
+			var r = confirm("Are You sure You want to delete Manager {{ manager.full_name }}");
+			if( r == true){
+				return document.location.href = "/company/{{ company.slug }}/management/{{manager.id}}/delete";
+			}else{
+				return false;
+			}
+		}
+		</script>
+			<h5 class="media-heading text-info"> <a href="/company/{{company.slug }}/management/{{ manager.id }}/update">{{ manager.full_name }}</a></h5>
+				<p> {{ manager.title }}</p>
+
+		{% endfor %}
+	{% else %}
+		{% for manager in management %}
+			<h5 class="media-heading text-info"> {{ manager.full_name }}</h5>
+				<p> {{ manager.title }}</p>
+
+		{% endfor %}
+	{% endif %}
 
 </div>
 </div>

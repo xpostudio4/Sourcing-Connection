@@ -173,7 +173,7 @@ def company_view(request, slug):
 
 
         try:
-            contact = Contact.objects.get(user=request.user)
+            contact = Contact.objects.get(user=user_id)
             if contact.latech_contact or request.user.is_staff or request.user.is_superuser  == True:
                 edit= True
 
@@ -196,11 +196,12 @@ def company_view(request, slug):
     else:
         edit = False
     
-
+    management = Management.objects.filter(company= company)
 
     return render_to_response(
         "company_page.html",
-        {'company':company, 'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile},
+        {'company':company, 'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
+        'management': management},
         context_instance=RequestContext(request))
 
 @login_required
