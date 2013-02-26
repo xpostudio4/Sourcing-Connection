@@ -155,11 +155,7 @@
 	<p id="company-industries">{{ company.industries }}</p>
 
 </div>
-<div class="media">
-	<h4 class="media-heading"><strong class="muted">Clients:</strong></h4>
-	<p id="company-customers">{{ company.customer }}</p>
 
-</div>
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Technologies:</strong></h4>
 	<p id="company-technologies">{{ company.technologies }}</p>
@@ -179,14 +175,17 @@
 
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Management:</strong></h4>
+	<br/>
 
 	{% if  user.is_staff or user.is_superuser or permission %}
 		<ul class="nav nav-list pull-right">
 			<li><a href="/company/{{ company.slug }}/management/new"><i class="icon-plus"></i> Add Manager</a></li>
 		</ul>
+
+		{############################################### Management #####################################}
 		{% for manager in management %}
 			<ul class="nav nav-list pull-left">
-				<li><a id="{{ company.slug }}-management-{{ manager.id }}" onclick="{{ company.slug }}_management_{{ manager.id }}(); return false;" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-trash"></i>Delete</a></li>
+				<li><a id="{{ company.slug }}-management-{{ manager.id }}" onclick="{{ company.slug }}_management_{{ manager.id }}(); return false;" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-remove"></i></a></li>
 		</ul>
 		<script>
 		function {{ company.slug }}_management_{{ manager.id }}(){
@@ -202,12 +201,54 @@
 				<p> {{ manager.title }}</p>
 
 		{% endfor %}
+
+		{############################################## Competitors #####################################}
+		<div class="media">
+		<h4 class="media-heading"><strong class="muted">Competitors:</strong></h4>
+			<ul class="nav nav-list pull-right">
+				<li><a href="/company/{{ company.slug }}/competitors/new"><i class="icon-plus"></i> Add Competitor</a></li>
+			</ul>
+
+		<br/>
+		<ul class="pull-left inline">
+		{% for competitor in competitors  %}
+		
+				<li><a id="{{ company.slug }}-competitors-{{ competitor.id }}" onclick="{{ company.slug }}_competitors_{{ competitor.id }}(); return false;" href="/company/{{ company.slug }}/competitors/{{competitor.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/competitors/{{competitor.id}}/update">{{ competitor.name }}</a></li>{% if not forloop.last %}, {% endif %}
+		
+		<script>
+		function {{ company.slug }}_competitors_{{ competitor.id }}(){
+			var r = confirm("Are You sure You want to delete Competitor {{ manager.name }}");
+			if( r == true){
+				return document.location.href = "/company/{{ company.slug }}/competitors/{{competitor.id}}/delete";
+			}else{
+				return false;
+			}
+		}
+		</script>
+			
+		{% endfor %}	
+		</ul>
+		</div>
+
 	{% else %}
 		{% for manager in management %}
 			<h5 class="media-heading text-info"> {{ manager.full_name }}</h5>
 				<p> {{ manager.title }}</p>
 
 		{% endfor %}
+
+		{############################################## Competitors #####################################}
+		<div class="media">
+		<h4 class="media-heading"><strong class="muted">Competitors:</strong></h4>
+		<ul class="pull-left inline">
+		{% for competitor in competitors  %}
+				<li>{{ competitor.name }}{% if not forloop.last %}, {% endif %}</li>
+
+		{% endfor %}
+		</ul>
+		</div>
+
+		
 	{% endif %}
 
 </div>
@@ -228,38 +269,6 @@
 	{% endfor %}
 {% endif %}
 <p> </p>
-<!-- These data is only available for the LATech Users-->
-{% if user.is_authenticated %}
 
-
-{% if company.scalability_rating %}
-<p> {{ company.scalability_rating }}</p>
-{% endif %}
-{% if company.expansion_rating %}
-<p> {{ company.expansion_rating }}</p>
-{% endif %}
-{% if company.physical_plant_rating %}
-<p> {{ company.physical_plant_rating }}</p>
-{% endif %}
-{% if company.profilatibily_rating %}
-<p> {{ company.profilatibily_rating}}</p>
-{% endif %}
-{% if company.ret_talent_rating %}
-<p> {{ company.ret_talent_rating }}</p>
-{% endif %}
-{% if company.financials_rating %}
-<p> {{ company.financials_rating }}</p>
-{%else%}
-       <p></p>
-{% endif %}
-{% if company.rating_of_ownership %}
-<p> {{ company.rating_of_ownership }}</p>
-{% endif %}
-{% if company.gtb_overall_rating %}
-<p> {{ company.gtb_overall_rating }}</p>
-{% endif %}
-{% endif %}
 {% endblock %}
-
-
 </div>

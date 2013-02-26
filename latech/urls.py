@@ -28,6 +28,12 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/management/(?P<id>[\d]+)/delete/$','companies.views.management_delete'),
      url(r'^company/(?P<slug>[\w-]+)/management/(?P<id>[\d]+)/$','companies.views.management_view'),
 
+     #competitors urls
+     url(r'^company/(?P<slug>[\w-]+)/competitors/new/$','companies.views.competitors_create'),
+     url(r'^company/(?P<slug>[\w-]+)/competitors/(?P<id>[\d]+)/update/$','companies.views.competitors_update'),
+     url(r'^company/(?P<slug>[\w-]+)/competitors/(?P<id>[\d]+)/delete/$','companies.views.competitors_delete'),
+     url(r'^company/(?P<slug>[\w-]+)/competitors/(?P<id>[\d]+)/$','companies.views.competitors_view'),
+
      # Profile
      url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),
      url(r'^profile/(?P<pk>[\w-]+)/edit/$', ProfileUpdate.as_view(), name='profile_update'),

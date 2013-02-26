@@ -197,11 +197,12 @@ def company_view(request, slug):
         edit = False
     
     management = Management.objects.filter(company= company)
+    competitors = Competitors.objects.filter(company=company)
 
     return render_to_response(
         "company_page.html",
         {'company':company, 'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
-        'management': management},
+        'management': management, 'competitors': competitors},
         context_instance=RequestContext(request))
 
 @login_required
@@ -273,40 +274,14 @@ def company_page(request, slug):
 ################################################ Management Views ################################################
 ##################################################################################################################
 
+@login_required
 def management_create(request, slug):
     """The purpose of this function is to create  new management item associated with a created company"""
     #verifies if the company exists if not returns a 404 page
     company =get_object_or_404(Company,slug=slug)
 
     #verifies the person has access to the company or is an incubator employee
-    user_id = request.user.id
-    try:
-            contact = Contact.objects.get(id = user_id)
-            #If the user is not a latech employee
-            #is the user an Admin?
-            if request.user.is_staff or request.user.is_superuser or contact.latech_contact :
-                edit = True
-
-            else:
-
-                #verify the person does not have access
-                try:
-                    #Does the user has permission to modify this claim?
-                    permissions = AccessCompanyProfile.objects.get(contact=user_id)
-                    edit = False
-
-                    
-                
-                    for i in permissions.company.all(): 
-                           if i.name == company.name:
-                              edit = True
-                    if edit == False: 
-                        return HttpResponseRedirect('/company/'+str(slug))
-                except AccessCompanyProfile.DoesNotExist:
-                    return HttpResponseRedirect('/company/'+str(slug))
-
-    except Contact.DoesNotExist:
-        return HttpResponseRedirect('/company/'+str(slug))
+    edit = validate_user_company_access_or_redirect(request,company)
 
     #if the request is GET presents empty form
     if request.method == 'GET':
@@ -330,7 +305,7 @@ def management_create(request, slug):
                 {'form': management_form, 'form_errors': management_form.errors, 'company':company},
                 context_instance=RequestContext(request))
 
-
+@login_required
 def management_update(request, slug, id):
     """The purpose of this view is to update the info of the management page"""
     #verifies if the company exists if not returns a 404 page
@@ -387,6 +362,98 @@ def management_view(request, slug, id):
 
     return render_to_response('management_form.html', 
                 {'details': management_reference,'info':management_reference},
+                context_instance=RequestContext(request))
+
+##################################################################################################################
+############################################### Competitors Views ################################################
+##################################################################################################################
+
+
+@login_required
+def competitors_create(request, slug):
+    """The purpose of this function is to create  new management item associated with a created company"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+
+    #verifies the person has access to the company or is an incubator employee
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    #if the request is GET presents empty form
+    if request.method == 'GET':
+
+        competitors_form = CompetitorsForm()
+        return render_to_response('competitors_form.html', {'form': competitors_form, 'company':company},
+            context_instance=RequestContext(request))
+     
+    else:
+        competitors_form = CompetitorsForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page
+        if competitors_form.is_valid():
+            cf = competitors_form.save(commit=False)
+            cf.company = company
+            cf.save()
+            return HttpResponseRedirect('/company/'+str(slug))
+
+        #if not well filled redirect to the original create and display error
+        else:
+            return render_to_response('competitors_form.html', 
+                {'form': competitors_form, 'form_errors': competitors_form.errors, 'company':company},
+                context_instance=RequestContext(request))
+
+
+@login_required
+def competitors_update(request, slug,id):
+    """The purpose of this view is to update the info of the competitors page"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    competitors_reference = get_object_or_404(Competitors, id=id,company=company)
+    competitors_form = CompetitorsForm(instance=competitors_reference)
+
+    #verifies the person has access to the company or is an incubator employee
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    #if the request is GET presents info, 
+    if request.method == 'GET':
+        return render_to_response('competitors_form.html',{'form':competitors_form, 'info': competitors_reference},context_instance=RequestContext(request))
+    else:
+        competitors_form = CompetitorsForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page 
+        if competitors_form.is_valid():
+            cf= competitors_form.save(commit = False)
+            cf.company = company
+
+            return HttpResponseRedirect('/company/'+str(slug))
+        #if not well filled redirect to the original update page and display error
+        else:
+            return render_to_response('competitors_form.html', 
+                {'form': competitors_form, 'form_errors': competitors_form.errors, 'info': competitors_reference},
+                context_instance=RequestContext(request))
+
+@login_required
+def competitors_delete(request, slug,id):
+    """This view deletes the competitors info and redirects to the company page"""
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    if request.method == 'POST':
+        return HttpResponseRedirect('/company/'+str(slug))
+    else: 
+        #verifies if the company exists if not returns a 404 page
+        competitors_reference = get_object_or_404(Competitors, id=id,company=company)
+
+        #deletes the view and redirects to the page.
+        competitors_reference.delete()
+        return HttpResponseRedirect('/company/'+str(slug))
+
+@login_required
+def competitors_view(request, slug, id):
+    """This view makes possible to display a competitor item alone"""
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    competitors_reference = get_object_or_404(Competitors, id=id,company=company)
+
+    return render_to_response('competitors_form.html', 
+                {'details': competitors_reference,'info':competitors_reference},
                 context_instance=RequestContext(request))
 
 

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Competitors Administration{% endblock title %}
+
+{% block external %}
+<script type="text/javascript">
+    $("ul.errorlist").addClass("alert");
+   
+</script>
+{% endblock external %}
+
+{% block content %}
+    {% if info %}
+        <ul class="breadcrumb">
+          <li><a href="/">Home</a> <span class="divider">/</span></li>
+          <li><a href="/company/{{ info.company }}">{{ info.company }}</a> <span class="divider">/</span></li>
+          <li class="active">{{ info.name }}</li>
+        </ul>
+    {% else %}
+        <ul class="breadcrumb">
+          <li><a href="/">Home</a> <span class="divider">/</span></li>
+          <li><a href="/company/{{ company.name }}">{{ company.name }}</a> <span class="divider">/</span></li>
+          <li class="active">New</li>
+        </ul>
+    {% endif %}
+
+    {% if form %}
+        <form method="Post" action=".">
+            {% csrf_token %} 
+                {% if form_errors %}
+                    <div class="alert" > <strong>Warning!</strong>The Following fields need to be completed correctly:
+                        {% for error in form_errors %}
+                            <div class="text-error">*{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% for field in form %}
+                        {{ field.label_tag }} {{ field }}
+                        {{ field_errors }}
+                {% endfor %}
+                <br/>
+            <button type="submit" class="btn">Submit Form</button>
+        </form>
+    {% endif %}
+    {% if details %}
+        <div class="media">
+            <h4 class="media-heading"> Competitor Name:</h4>
+            <p>{{ details.name }}</p>
+        </div>
+    {% endif %}
+
+{% endblock content %}
