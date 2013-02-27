@@ -1,5 +1,6 @@
 from companies.models import *
 from contacts.models import Contact
+from django.http import HttpResponse, HttpResponseRedirect
 
 def update_completion(id_company):
     #Not needed due to the fact that the info is update in the function below. 
@@ -68,9 +69,9 @@ def validate_user_company_access_or_redirect(request, company):
                            if i.name == company.name:
                               edit = True
                     if edit == False: 
-                        return HttpResponseRedirect('/company/'+str(slug))
+                        return HttpResponseRedirect('/company/'+str(company.slug))
                 except AccessCompanyProfile.DoesNotExist:
-                    return HttpResponseRedirect('/company/'+str(slug))
+                    return HttpResponseRedirect('/company/'+str(company.slug))
 
     except Contact.DoesNotExist:
-        return HttpResponseRedirect('/company/'+str(slug))
+        return HttpResponseRedirect('/company/'+str(company.slug))

@@ -390,8 +390,27 @@ def competitors_create(request, slug):
         #if is POST Validates the form is well filled and save it redirecting to the company page
         if competitors_form.is_valid():
             cf = competitors_form.save(commit=False)
-            cf.company = company
-            cf.save()
+
+            #verify if other companies with the same info exists anywhere
+            try: 
+                comparison = Competitors.objects.get(name=cf.name,company= company)
+                
+                if str(comparison.name) != str(cf.name):
+                    cf.company = company
+                    cf.save()
+                    
+                else:
+                    form_errors = {"Name - The competitor " + str(comparison.name).capitalize() + " has been already created for "+ str(company.name).capitalize() + "."}
+                    return render_to_response('competitors_form.html', 
+                    {'form': competitors_form, 'form_errors': form_errors, 'company':company},
+                    context_instance=RequestContext(request))
+
+            except Competitors.DoesNotExist :
+                cf.company = company
+                cf.save()
+
+
+            
             return HttpResponseRedirect('/company/'+str(slug))
 
         #if not well filled redirect to the original create and display error
@@ -420,7 +439,30 @@ def competitors_update(request, slug,id):
         #if is POST Validates the form is well filled and save it redirecting to the company page 
         if competitors_form.is_valid():
             cf= competitors_form.save(commit = False)
-            cf.company = company
+            #verify the item is not the same as the company page
+            if str(company.name) == str(cf.name):
+                
+                form_errors = {"Name - You can't be a competitor of Your own company. "}
+                return render_to_response('competitors_form.html', 
+                {'form': competitors_form, 'form_errors': form_errors, 'info': competitors_reference},
+                context_instance=RequestContext(request))
+            #verify if other companies with the same info exists anywhere
+            try: 
+                comparison = Competitors.objects.get(name=cf.name,company= company)
+
+                if competitors_reference.id == comparison.id:
+                    competitors_reference.name = cf.name
+                    competitors_reference.save()
+                else:
+                    form_errors = {"Name - The company " + str(cf.name).capitalize() + " already exists as a competitor of " +str(company.name).capitalize() +"."  }
+                    return render_to_response('competitors_form.html', 
+                    {'form': competitors_form, 'form_errors': form_errors, 'info': competitors_reference},
+                    context_instance=RequestContext(request))
+
+            except:
+                competitors_reference.name = cf.name
+                competitors_reference.save()
+
 
             return HttpResponseRedirect('/company/'+str(slug))
         #if not well filled redirect to the original update page and display error

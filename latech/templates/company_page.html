@@ -120,12 +120,14 @@
 			<td>Facebook:</td>
 			<td ><a href="{{ company.facebook_link  }}" id="company-facebook-url">{{ company.facebook_link  }}</a></td>
 		</tr>
+		{% if  user.is_staff or user.is_superuser or permission %}
 		<tr>
 			<td>Email: </td>
 			<td><a href="mailto:{{ company.email  }}">{{ company.email  }} </a></td>
 			<td>Phone Contact:</td>
 			<td>{{ company.main_phone }}</td>
 		</tr>
+		{% endif %}
 		<tr>
 			<td>Products:</td>
 			<td  id="company-product">{{ company.product }}</td>
@@ -201,13 +203,13 @@
 				<p> {{ manager.title }}</p>
 
 		{% endfor %}
+	</br>
 
-		{############################################## Competitors #####################################}
-		<div class="media">
-		<h4 class="media-heading"><strong class="muted">Competitors:</strong></h4>
-			<ul class="nav nav-list pull-right">
-				<li><a href="/company/{{ company.slug }}/competitors/new"><i class="icon-plus"></i> Add Competitor</a></li>
-			</ul>
+		{############################################## Competitors ##############################}
+		<h4 class="media-heading"><strong class="muted">Competitors:</strong></h4></br>
+		<ul class="nav nav-list pull-right">
+			<li><a href="/company/{{ company.slug }}/competitors/new"><i class="icon-plus"></i> Add Competitor</a></li>
+		</ul>
 
 		<br/>
 		<ul class="pull-left inline">
@@ -228,7 +230,7 @@
 			
 		{% endfor %}	
 		</ul>
-		</div>
+
 
 	{% else %}
 		{% for manager in management %}
