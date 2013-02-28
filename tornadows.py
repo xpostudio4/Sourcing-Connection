@@ -17,11 +17,14 @@ def runserver():
     sys.path.append(os.path.dirname(app_dir))
     os.environ['DJANGO_SETTINGS_MODULE'] = 'latech.settings'
     wsgi_app = wsgi.WSGIContainer(django.core.handlers.wsgi.WSGIHandler())
+    settings = {
+    'auto_reload': True,
+    }
     application = web.Application([
         (r"/media/(.*)", web.StaticFileHandler, {"path": "./latech/media/"}),
         (r"/static/(.*)", web.StaticFileHandler, {"path": "latech/static/"}),
         (r".*", web.FallbackHandler, dict(fallback=wsgi_app)),
-    ])
+    ], **settings)
  
     server = httpserver.HTTPServer(application)
     server.listen(options.port)
@@ -29,6 +32,7 @@ def runserver():
         ioloop.IOLoop.instance().start()
     except KeyboardInterrupt:
         sys.exit(0)
- 
+
+  
 if __name__ == '__main__':
     runserver()
