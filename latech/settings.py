@@ -1,7 +1,45 @@
 import os
 import dj_database_url
-# Django settings for latech project.
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
+
+# Django settings for latech project.
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+    'django.core.context_processors.request',
+)
+
+SUIT_CONFIG = {
+    # header
+    'ADMIN_NAME': 'Latech Administration',
+    # 'HEADER_DATE_FORMAT': 'l, j. F Y',
+    # 'HEADER_TIME_FORMAT': 'H:i',
+
+    # forms
+    # 'SHOW_REQUIRED_ASTERISK': True,  # Default True
+    # 'CONFIRM_UNSAVED_CHANGES': True, # Default True
+
+    # menu
+    # 'SEARCH_URL': '/admin/auth/user/',
+    'MENU_ICONS': {
+        'sites': 'icon-leaf',
+        'auth': 'icon-lock',
+        'companies': 'icon-briefcase',
+        'contacts':'icon-user',
+        'location':'icon-globe',
+        'fileupload':'icon-file',
+        'taxonomy':'icon-tag',
+
+    },
+    # 'MENU_OPEN_FIRST_CHILD': True, # Default True
+    # 'MENU_EXCLUDE': ('auth.group',),
+    # 'MENU_ORDER': (
+    #     ('sites',),
+    #     ('auth', ('user','group')),
+    # ),
+
+    # misc
+    'LIST_PER_PAGE': 15
+}
 
 IN_HEROKU = bool(os.environ.get('HEROKU_ENV', ''))
 
@@ -134,6 +172,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
+    'suit',
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
