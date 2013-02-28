@@ -173,7 +173,7 @@ class Funding(models.Model):
 
 class Competitors(models.Model):
     company = models.ForeignKey(Company, related_name="Source Company", blank=True)
-    name = models.CharField(max_length=255)
+    name = models.ForeignKey(Company, related_name="Competitor")
 
     def __unicode__(self):
         return str(self.company) +":" + str(self.name)
