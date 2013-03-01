@@ -20,6 +20,15 @@ class CompaniesCreate(CreateView):
     def dispatch(self, *args, **kwargs):
         return super(CompaniesCreate, self).dispatch(*args, **kwargs)
 
+class CompaniesUpdate(UpdateView):
+    model = Company
+    form_class = CompanyForm
+    template_name = 'company_form.html'
+    success_url = '/company/%(slug)s/'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CompaniesUpdate, self).dispatch(*args, **kwargs)
 
 def CompanyCreate(request):
     if request.method == "POST":
