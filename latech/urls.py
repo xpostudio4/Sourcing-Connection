@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from companies.views import CompanyCreate, CompanyList
+from companies.views import CompanyCreate, CompanyList, CompaniesCreate, CompaniesUpdate
 from django.views.generic import DetailView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from contacts.views import ProfileView, ProfileUpdate, ProfileCreate
@@ -14,9 +14,11 @@ admin.autodiscover()
 urlpatterns = patterns('',
      # Company URLs
 
-     url(r'^company/new/$', 'companies.views.CompanyCreate'),
+#     url(r'^company/new/$', 'companies.views.CompanyCreate'),
+     url(r'company/new/$', CompaniesCreate.as_view(), name='company_create'),
 #     url(r'^company/(\w+)/$', 'latech.views.company_page'),
-     url(r'^company/(?P<slug>[\w-]+)/update/$','companies.views.company_update'),
+#     url(r'^company/(?P<slug>[\w-]+)/update/$','companies.views.company_update'),
+     url(r'^company/(?P<slug>[\w-]+)/update/$',CompaniesUpdate.as_view(), name='company_update'),
      url(r'^company/(?P<slug>[\w-]+)/$','companies.views.company_view'),
      url(r'^companies/$', CompanyList.as_view(), name='company_list'),
      #Loading Companies from the CSV file

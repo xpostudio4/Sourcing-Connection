@@ -10,16 +10,25 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, ListView
 from django.http import HttpResponse, HttpResponseRedirect
 
-#class CompanyCreate(CreateView):
-#    model = Company
-#    form_class = CompanyForm
-#    template_name = 'company_form.html'
-#    success_url = '/company/%(slug)s/'
-#
-#    @method_decorator(login_required)
-#    def dispatch(self, *args, **kwargs):
-#        return super(CompanyCreate, self).dispatch(*args, **kwargs)
+class CompaniesCreate(CreateView):
+    model = Company
+    form_class = CompanyForm
+    template_name = 'company_form.html'
+    success_url = '/company/%(slug)s/'
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CompaniesCreate, self).dispatch(*args, **kwargs)
+
+class CompaniesUpdate(UpdateView):
+    model = Company
+    form_class = CompanyForm
+    template_name = 'company_form.html'
+    success_url = '/company/%(slug)s/'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CompaniesUpdate, self).dispatch(*args, **kwargs)
 
 def CompanyCreate(request):
     if request.method == "POST":
