@@ -176,23 +176,27 @@
 			<p id="company-offices">{{ offices.description }}</p>
 			<li><a href="/company/{{ company.slug }}/office/new"><i class="icon-plus"></i> Add Office</a></li>
 		</ul>
-		      
-				{% for office in offices %}
-        <ul>
-			<li class="media-heading text-info"> <strong><a href="/company/{{company.slug }}/office/{{ office.object.id }}/update">{{ office.object.description }}</a></strong></li>			
-			   <li>{{ office.object.address_1 }}></li>
-			   <li>{{ office.object.address_2 }}></li>
-			   {% if office.object.phone %}
-			   <li><{{ office.object.phone }}</li>
-			   {% endif %}
-			   <li>{{ office.object.country }}</li>
+		<ul class="pull-left inline">
+			{% for office in offices %}
+			 <li>
+			 	<address>
+			 		<strong><a href="/company/{{company.slug }}/office/{{ office.object.id }}/update">{{ office.object.country }}</a></strong><br>
+			 		{{ office.object.description }}<br>			
+			  		{{ office.object.address_1 }}<br>
+				    {{ office.object.address_2 }}<br>
+				   	{% if office.object.phone %}
+				      <abbr title="Phone">P:</abbr> {{ office.object.phone }}<br>
+				   	{% endif %}
+			   <address>
+			</li>
 
-        {% if office.ul == True %}
-        </ul>
-        
-        <ul>
-        {% endif %}    
-	   {% endfor %}
+	        	{% if office.ul  %}
+			        </ul><br>
+			        
+			        <ul class="pull-left inline">
+		        {% endif %}    
+	   		{% endfor %}
+		</ul><br>
 		
 </div>
 
@@ -205,7 +209,7 @@
 			<li><a href="/company/{{ company.slug }}/management/new"><i class="icon-plus"></i> Add Manager</a></li>
 		</ul>
 
-		{############################################### Management #####################################}
+		{####################################### Management #####################################}
 		{% for manager in management %}
 			<ul class="nav nav-list pull-left">
 				<li><a id="{{ company.slug }}-management-{{ manager.id }}" onclick="{{ company.slug }}_management_{{ manager.id }}(); return false;" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-remove"></i></a></li>

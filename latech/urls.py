@@ -57,6 +57,11 @@ urlpatterns = patterns('',
      url(r'ticket/$','latech.views.ticket_create'),
      url(r'create/$','latech.views.asana_create'),
 
+     #ckeditor configuration Url
+
+     #news related functions
+     url(r'^news/new$', 'news.views.news_create'),
+
 #     url(r'^advance_search/', 'latech.views.advance_search'),
 #     url(r'^$', "latech.search.advance_contact_search"),
 #     url(r'^search/companies$', "latech.search.advance_company_search"),

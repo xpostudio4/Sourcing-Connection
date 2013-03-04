@@ -222,26 +222,8 @@ def company_update(request, slug):
     company = get_object_or_404(Company, slug=slug)
 
     #Does the user is from Globaltech or does not have access to modify the claim?
-    user_id = request.user.id
-    try:
-            contact = Contact.objects.get(id = user_id)
-            #If the user is not a latech employee
-            if contact.latech_contact == False:
-                #verify the person does not have access
-                try:
-                    #Does the user has permission to modify this claim?
-                    permissions = AccessCompanyProfile.objects.get(contact=user_id)
-                    edit = False
-
-                    for i in permissions.company.all():
-                           if i.name == company.name:
-                              edit = True
-                    if edit == False: 
-                        return HttpResponseRedirect('/company/'+str(slug))
-                except AccessCompanyProfile.DoesNotExist:
-                    return HttpResponseRedirect('/company/'+str(slug))
-    except Contact.DoesNotExist:
-        return HttpResponseRedirect('/company/'+str(slug))
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
 
     #obtain photos made against company models.
     pictures = Picture.objects.filter(company=company.id)
@@ -517,37 +499,7 @@ def office_create(request, slug):
     """The purpose of this function is to create  new office item associated with a created company"""
     #verifies if the company exists if not returns a 404 page
     company =get_object_or_404(Company,slug=slug)
-
-    #verifies the person has access to the company or is an incubator employee
-    user_id = request.user.id
-    try:
-            contact = Contact.objects.get(id = user_id)
-            #If the user is not a latech employee
-            #is the user an Admin?
-            if request.user.is_staff or request.user.is_superuser or contact.latech_contact :
-                edit = True
-
-            else:
-
-                #verify the person does not have access
-                try:
-                    #Does the user has permission to modify this claim?
-                    permissions = AccessCompanyProfile.objects.get(contact=user_id)
-                    edit = False
-
-                    
-                
-                    for i in permissions.company.all(): 
-                           if i.name == company.name:
-                              edit = True
-                    if edit == False: 
-                        return HttpResponseRedirect('/company/'+str(slug))
-                except AccessCompanyProfile.DoesNotExist:
-                    return HttpResponseRedirect('/company/'+str(slug))
-
-    except Contact.DoesNotExist:
-        return HttpResponseRedirect('/company/'+str(slug))
-
+    edit = validate_user_company_access_or_redirect(request,company)
     #if the request is GET presents empty form
     if request.method == 'GET':
 
