@@ -186,6 +186,7 @@ INSTALLED_APPS = (
     'south',
     'fileupload',
     'storagess',
+    'news',
 #    'django_boto',    
 #    'projects',
 #    'urls',
