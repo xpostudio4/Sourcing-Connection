@@ -1,4 +1,4 @@
-from companies.models import Company, Office, Management, Funding, AccessCompanyProfile, Competitors, ContactCompany, CompanyRating, ProfileCompletion
+from companies.models import Company, Office, Management, Funding, AccessCompanyProfile, Competitors, ContactCompany, CompanyRating, ProfileCompletion, CompanyLink, Acquisition
 from fileupload.models import Picture
 from django.contrib import admin
 
@@ -23,6 +23,11 @@ class ManagementAdmin(admin.ModelAdmin):
 class FundingAdmin(admin.ModelAdmin):
 	pass
 
+class AcquisitionAdmin(admin.ModelAdmin):
+	pass
+
+class CompanyLinkAdmin(admin.ModelAdmin):
+	pass
 class AccessCompanyProfileAdmin(admin.ModelAdmin):
 	pass
 
@@ -38,6 +43,8 @@ admin.site.register(CompanyRating, CompanyRatingAdmin)
 admin.site.register(ContactCompany, ContactCompanyAdmin)
 admin.site.register(Office, OfficeAdmin)
 admin.site.register(Competitors,CompetitorsAdmin)
+admin.site.register(Acquisition,AcquisitionAdmin)
+admin.site.register(CompanyLink,CompanyLinkAdmin)
 admin.site.register(Management, ManagementAdmin)
 admin.site.register(Funding, FundingAdmin)
 admin.site.register(AccessCompanyProfile,AccessCompanyProfileAdmin)

@@ -41,24 +41,18 @@ class Company(models.Model):
 #    logo = models.ImageField(blank=True, null=True, upload_to="images/company_imgs/")
     logo = models.ImageField(blank=True, null=True, storage=gs, upload_to="images/companies_imgs/")
     description = models.TextField(blank=True)
-    value_proposition = models.CharField(max_length=144, blank=True)
-    overview = models.CharField(max_length=512, blank=True)
+    value_proposition = models.TextField(blank=True)
+    overview = models.TextField(blank=True)
     company_status = models.IntegerField(choices=COMPANY_STATUS_CHOICES, blank=True, null=True)
     employee_quantity = models.IntegerField(choices=EMPLOYEE_QUANTITY_CHOICES, blank=True, null=True)
 #    created_by = models.ForeignKey(User, related_name="LATech user")
-    web_url = models.URLField(blank=True)
-    blog_url = models.URLField(blank=True)
-    twitter_url = models.URLField(blank=True)
-    facebook_link = models.URLField(blank=True)
     main_phone = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
 
     #Comma separated list from Industry table
     industries = models.CharField(max_length=512, blank=True)
-#    industries = TaggableManager(verbose_name='Industries', through=IndustryTaggedItem, blank=True)
     #Comma separated list from Technologies table
     technologies = models.CharField(max_length=512, blank=True)
-#    technologies = TaggableManager(verbose_name='Technologies', through=TechnologyTaggedItem, blank=True)
 
 
     #Comma separated list from Category table
@@ -78,16 +72,11 @@ class Company(models.Model):
     country = models.ForeignKey(Country, related_name="Company Country", null=True, blank=True)
             
     #Comma separated list of <City, address, phone #>
-    offices = models.CharField(max_length=512, blank=True)
-
     #Input into Contacts table, point back to Company
     # Need to be modified in the future
     # others_people = models.ForeignKey("Contact")
     
-    #Comma separated list of entries from Company table
-    acquisition = models.CharField(max_length=512, blank=True)
-
-    #Comma separated list of products/services
+   #Comma separated list of products/services
     product = models.CharField(max_length=512, blank=True)
     #prod_ser_img = models.ManyToManyField("")
 
@@ -121,6 +110,16 @@ class Company(models.Model):
     class Meta:
          verbose_name_plural = "Companies"
          ordering = ['id']
+
+class CompanyLink(models.Model):
+    company = models.ForeignKey(Company, related_name="Links for Companies")
+    web_url = models.URLField(blank=True)
+    blog_url = models.URLField(blank=True)
+    twitter_url = models.URLField(blank=True)
+    facebook_link = models.URLField(blank=True)
+
+    def __unicode__(self):
+        return str(self.company) + " Links"
 
 class CompanyRating(models.Model):
     # Visible for LATech members
@@ -170,6 +169,28 @@ class Funding(models.Model):
 #class Round(models.Model):
 #   round = models.CharField(max_length=50)
 
+    #Comma separated list of entries from Company table
+
+class Acquisition(models.Model):
+    ACQUISITION_TERMS_CHOICES  = (
+        (1, "Cash"),
+        (2, "Stock"),
+        (3, "Cash and Stock"),
+    )
+    company = models.ForeignKey(Company, related_name="Acquisition Company", blank=True)
+    name = models.CharField(max_length=255, verbose_name='Acquired Company')
+    price = models.DecimalField(max_digits=10,decimal_places=2)
+    acquired_date = models.DateField()
+    terms = models.PositiveIntegerField(choices=ACQUISITION_TERMS_CHOICES, blank=True, null=True)
+
+
+
+    def __unicode__(self):
+        return str(self.company) +":" + str(self.name)
+
+    class Meta:
+         verbose_name_plural = "Adquisitions"
+    
 
 class Competitors(models.Model):
     company = models.ForeignKey(Company, related_name="Source Company", blank=True)
