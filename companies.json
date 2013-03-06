@@ -19,7 +19,7 @@
             "logo": "images/companies_imgs/logo_es.gif", 
             "technologies": ".net, cloud, data base management", 
             "slug": "asesoftware", 
-            "categories": 2, 
+            "categories": null, 
             "name": "Asesoftware"
         }
     }, 
@@ -91,7 +91,7 @@
             "logo": "images/companies_imgs/LogoElectroSoftware20.png", 
             "technologies": "", 
             "slug": "electrosoftware", 
-            "categories": 3, 
+            "categories": null, 
             "name": "Electrosoftware"
         }
     }, 
@@ -1675,7 +1675,7 @@
             "logo": "", 
             "technologies": "", 
             "slug": "dulces-adelita", 
-            "categories": 6, 
+            "categories": null, 
             "name": "Dulces Adelita"
         }
     }, 
@@ -1795,7 +1795,7 @@
             "logo": "", 
             "technologies": "", 
             "slug": "franz", 
-            "categories": 2, 
+            "categories": null, 
             "name": "Franz "
         }
     }, 
