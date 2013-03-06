@@ -80,15 +80,6 @@ class Company(models.Model):
     product = models.CharField(max_length=512, blank=True)
     #prod_ser_img = models.ManyToManyField("")
 
-    #Comma separated list of certifications from Certification Table
-    #certification = models.ForeignKey("Certification")
-    certification = models.CharField(max_length=512, blank=True)
-
-    award = models.CharField(max_length=512, blank=True)
-    
-    #Comma separated list of Customers form Company Table
-    customer = models.CharField(max_length=512, blank=True)
-
     #Comma separated list of entries from project table
 #    project = models.ManyToManyField("Project")
 #    links = models.ForeignKey("URLs")
@@ -184,12 +175,11 @@ class Acquisition(models.Model):
     terms = models.PositiveIntegerField(choices=ACQUISITION_TERMS_CHOICES, blank=True, null=True)
 
 
-
     def __unicode__(self):
         return str(self.company) +":" + str(self.name)
 
     class Meta:
-         verbose_name_plural = "Adquisitions"
+         verbose_name_plural = "Acquisitions"
     
 
 class Competitors(models.Model):
@@ -202,6 +192,36 @@ class Competitors(models.Model):
     class Meta:
          verbose_name_plural = "Competitors"
 
+#Comma separated list of certifications from Certification Table
+class Certification(models.Model):
+    company = models.ForeignKey(Company, related_name="Company certifications", blank=True)
+    name = models.CharField(max_length=255, verbose_name='Certification name')
+
+    def __unicode__(self):
+        return str(self.company) +":" + str(self.name)
+
+    class Meta:
+         verbose_name_plural = "Certifications"
+
+class Customer(models.Model):
+    company = models.ForeignKey(Company, related_name="Company Customers", blank=True)
+    name = models.CharField(max_length=255, verbose_name='Customer Name')
+
+    def __unicode__(self):
+        return str(self.company) +":" + str(self.name)
+
+    class Meta:
+         verbose_name_plural = "Customers"
+
+class Award(models.Model):
+    company = models.ForeignKey(Company, related_name="Company Awards", blank=True)
+    name = models.CharField(max_length=255, verbose_name='Customer Name')
+
+    def __unicode__(self):
+        return str(self.company) +":" + str(self.name)
+
+    class Meta:
+         verbose_name_plural = "Awards"
 
 class Office(models.Model):
     company = models.ForeignKey(Company, blank=True)

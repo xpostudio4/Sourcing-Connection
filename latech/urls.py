@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from companies.views import CompanyCreate, CompanyList, CompaniesCreate, CompaniesUpdate
+#from companies.views import CompanyCreate, CompanyList, CompaniesCreate, CompaniesUpdate
 from django.views.generic import DetailView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from contacts.views import ProfileView, ProfileUpdate, ProfileCreate
@@ -14,13 +14,13 @@ admin.autodiscover()
 urlpatterns = patterns('',
      # Company URLs
 
-#     url(r'^company/new/$', 'companies.views.CompanyCreate'),
-     url(r'company/new/$', CompaniesCreate.as_view(), name='company_create'),
+     url(r'^company/new/$', 'companies.views.CompanyCreate'),
+     #url(r'company/new/$', CompaniesCreate.as_view(), name='company_create'),
 #     url(r'^company/(\w+)/$', 'latech.views.company_page'),
-#     url(r'^company/(?P<slug>[\w-]+)/update/$','companies.views.company_update'),
-     url(r'^company/(?P<slug>[\w-]+)/update/$',CompaniesUpdate.as_view(), name='company_update'),
+     url(r'^company/(?P<slug>[\w-]+)/update/$','companies.views.company_update'),
+#     url(r'^company/(?P<slug>[\w-]+)/update/$',CompaniesUpdate.as_view(), name='company_update'),
      url(r'^company/(?P<slug>[\w-]+)/$','companies.views.company_view'),
-     url(r'^companies/$', CompanyList.as_view(), name='company_list'),
+#     url(r'^companies/$', CompanyList.as_view(), name='company_list'),
      #Loading Companies from the CSV file
 #     url(r'^companies/load/$','latech.views.load_company'),
 
@@ -36,7 +36,32 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/office/(?P<id>[\d]+)/delete/$','companies.views.office_delete'),
      url(r'^company/(?P<slug>[\w-]+)/office/(?P<id>[\d]+)/$','companies.views.office_view'),
 
-     #competitors urls
+    # Certification urls
+     url(r'^company/(?P<slug>[\w-]+)/certifications/new/$','companies.views.certification_create'),
+     url(r'^company/(?P<slug>[\w-]+)/certifications/(?P<id>[\d]+)/update/$','companies.views.certification_update'),
+     url(r'^company/(?P<slug>[\w-]+)/certifications/(?P<id>[\d]+)/delete/$','companies.views.certification_delete'),
+     url(r'^company/(?P<slug>[\w-]+)/certifications/(?P<id>[\d]+)/$','companies.views.certification_view'),
+
+    # Awards urls
+     url(r'^company/(?P<slug>[\w-]+)/awards/new/$','companies.views.award_create'),
+     url(r'^company/(?P<slug>[\w-]+)/awards/(?P<id>[\d]+)/update/$','companies.views.award_update'),
+     url(r'^company/(?P<slug>[\w-]+)/awards/(?P<id>[\d]+)/delete/$','companies.views.award_delete'),
+     url(r'^company/(?P<slug>[\w-]+)/awards/(?P<id>[\d]+)/$','companies.views.award_view'),
+
+
+    # Acquisitions urls
+     url(r'^company/(?P<slug>[\w-]+)/acquisitions/new/$','companies.views.acquisition_create'),
+     url(r'^company/(?P<slug>[\w-]+)/acquisitions/(?P<id>[\d]+)/update/$','companies.views.acquisition_update'),
+     url(r'^company/(?P<slug>[\w-]+)/acquisitions/(?P<id>[\d]+)/delete/$','companies.views.acquisition_delete'),
+     url(r'^company/(?P<slug>[\w-]+)/acquisitions/(?P<id>[\d]+)/$','companies.views.acquisition_view'),
+
+     # Customer urls
+     url(r'^company/(?P<slug>[\w-]+)/customers/new/$','companies.views.customer_create'),
+     url(r'^company/(?P<slug>[\w-]+)/customers/(?P<id>[\d]+)/update/$','companies.views.customer_update'),
+     url(r'^company/(?P<slug>[\w-]+)/customers/(?P<id>[\d]+)/delete/$','companies.views.customer_delete'),
+     url(r'^company/(?P<slug>[\w-]+)/customers/(?P<id>[\d]+)/$','companies.views.customer_view'),
+
+     # Competitors urls
      url(r'^company/(?P<slug>[\w-]+)/competitors/new/$','companies.views.competitors_create'),
      url(r'^company/(?P<slug>[\w-]+)/competitors/(?P<id>[\d]+)/update/$','companies.views.competitors_update'),
      url(r'^company/(?P<slug>[\w-]+)/competitors/(?P<id>[\d]+)/delete/$','companies.views.competitors_delete'),
@@ -47,7 +72,9 @@ urlpatterns = patterns('',
      url(r'^profile/(?P<pk>[\w-]+)/edit/$', ProfileUpdate.as_view(), name='profile_update'),
 
       # This is the Form to create a new Contact/Profile
-#     url(r'^profile/(?P<pk>[\w-]+)/create/$', ProfileCreate.as_view(), name='profile_update'),
+
+     # url(r'^profile/(?P<pk>[\w-]+)/create/$', ProfileCreate.as_view(), name='profile_update'),
+
      url(r'^login/$', 'latech.views.authentication_view'),
      url(r'^logout/$', 'latech.views.logout_page'),
 
@@ -72,8 +99,8 @@ urlpatterns = patterns('',
 #     url(r'^$', "latech.search.advance_contact_search"),
 #     url(r'^search/companies$', "latech.search.advance_company_search"),
 
-     #This is the url for Ajax requests for taggit
-     #url(r'^tags', "latech.views.tagitt"),
+     #This is the url for Ajax requests for taggit url(r'^tags',
+     #"latech.views.tagitt"),
      url(r'^admin/', include(admin.site.urls)),
  
 )

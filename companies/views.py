@@ -30,34 +30,22 @@ class CompaniesUpdate(UpdateView):
     def dispatch(self, *args, **kwargs):
         return super(CompaniesUpdate, self).dispatch(*args, **kwargs)
 
+
 def CompanyCreate(request):
     if request.method == "POST":
-        
-
-        reference = "...."
+      
         #process the form.
         company_form = CompanyForm(request.POST, prefix="company")
-        funding_form = FundingForm(request.POST, prefix="funding")
-        competitors_form = CompetitorsForm(request.POST, prefix = "competitors")
-        company_rating_form = CompanyRatingForm(request.POST, prefix="company_ratings")
 
-        office_form = OfficeForm(request.POST, prefix="office")
-        
         #the forms can be empty
         forms_array = []
 
         #last_id = company.objects.latest('id').id+1
 
-
-
         if company_form.is_valid():
             company = company_form.save()
 
             #create a company completion element for this company
-            company_rating = CompanyRating()
-            company_rating.company = company
-            company_rating.save()
-
             #Create company percentage object in that table.
             c = Company.objects.get(id=company.id)
             count = 0 
@@ -86,34 +74,7 @@ def CompanyCreate(request):
             access.company.add(company)
             access.save()
 
-
-            if funding_form.is_valid():
-
-                sff = funding_form.save(commit=False)
-                sff.company = company
-                sff.save()
-
-    
-            if competitors_form.is_valid():
-                scf = competitors_form.save(commit=False)
-                scf.company = company
-                scf.save()
-            
-
-            if company_rating_form.is_valid():
-                srf = company_rating_form.save(commit=False)
-                srf.company = company
-                srf.save()
-                
-                #forms_array.append(competitors_form)#
-
-
-            if office_form.is_valid():
-                sof = office_form.save(commit=False)
-                sof.company = company
-                sof.save()
-                
-            #Else used to detect errrors in the process
+            #Else used to detect errors in the process
             #else: 
 
                # return render_to_response('erros.html', {'form':funding_form})
@@ -138,27 +99,20 @@ def CompanyCreate(request):
         #    competitors_form.company = company_form
         #    competitors_form = competitors_form.save()
         #    office_form.company = company_form
-        #    office_form = office_form.save()        
+        #    office_form = office_form.save()
+
         else: 
             
             pass
 
         return HttpResponseRedirect("company Duplicated")
+
     else:
         #generate the instances of the forms in the template
         company_form = CompanyForm(prefix = "company")
-        funding_form = FundingForm(prefix = "funding")
-        competitors_form = CompetitorsForm(prefix = "competitors")
-        office_form = OfficeForm(prefix = "office")
-        company_rating_form = CompanyRatingForm(prefix="company_ratings")
-
         #pass the instance to the view
         return render(request, "company_form.html",{
             'company_form': company_form,
-            'funding_form': funding_form,
-            'competitors_form': competitors_form,
-            'office_form': office_form,
-            'company_rating_form':company_rating_form
             })
 
 
@@ -207,6 +161,9 @@ def company_view(request, slug):
     
     management = Management.objects.filter(company= company)
     competitors = Competitors.objects.filter(company=company)
+    certifications = Certification.objects.filter(company=company)
+    customers = Customer.objects.filter(company=company)
+    awards = Award.objects.filter(company=company)
     offices = Office.objects.filter(company=company)
     office_list = []
     count = 0
@@ -222,7 +179,8 @@ def company_view(request, slug):
     return render_to_response(
         "company_page.html",
         {'company':company, 'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
-        'management': management,'offices':office_list, 'competitors': competitors},
+        'management': management,'offices':office_list, 'competitors': competitors,"certifications":certifications,
+        "customers":customers, "awards":awards},
         context_instance=RequestContext(request))
 
 @login_required
@@ -588,6 +546,370 @@ def office_view(request, slug, id):
 
     return render_to_response('office_form.html', 
                 {'details': office_reference,'info':office_reference},
+                context_instance=RequestContext(request))
+
+
+##################################################################################################################
+################################################ Certification Views #############################################
+##################################################################################################################
+
+def certification_create(request, slug):
+    """The purpose of this function is to create  new certification item associated with a created company"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    #if the request is GET presents empty form
+    if request.method == 'GET':
+
+        certification_form = CertificationForm()
+        return render_to_response('certification_form.html', {'form': certification_form, 'company':company},
+            context_instance=RequestContext(request))
+     
+    else:
+        certification_form = CertificationForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page
+        if certification_form.is_valid():
+            of = certification_form.save(commit=False)
+            of.company = company
+            of.save()
+            return HttpResponseRedirect('/company/'+str(slug))
+
+        #if not well filled redirect to the original create and display error
+        else:
+            return render_to_response('certification_form.html', 
+                {'form': certification_form, 'form_errors': certification_form.errors, 'company':company},
+                context_instance=RequestContext(request))
+
+
+def certification_update(request, slug, id):
+    """The purpose of this view is to update the info of the certification page"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    certification_reference = get_object_or_404(Certification, id=id,company=company)
+    certification_form = CertificationForm(instance=certification_reference)
+
+    #verifies the person has access to the company or is an incubator employee
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    #if the request is GET presents info, 
+    if request.method == 'GET':
+        return render_to_response('certification_form.html',{'form':certification_form, 'info': certification_reference},context_instance=RequestContext(request))
+    else:
+        certification_form = CertificationForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page 
+        if certification_form.is_valid():
+            of = certification_form.save(commit = False)
+            of.company = company
+            of.save()
+
+            return HttpResponseRedirect('/company/'+str(slug))
+        #if not well filled redirect to the original update page and display error
+        else:
+            return render_to_response('certification_form.html', 
+                {'form': certification_form, 'form_errors': certification_form.errors, 'info': certification_reference},
+                context_instance=RequestContext(request))
+
+@login_required
+def certification_delete(request, slug,id):
+    """This view deletes the certification info and redirects to the company page"""
+    
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    if request.method == 'POST':
+        return HttpResponseRedirect('/company/'+str(slug))
+    else: 
+        #verifies if the company exists if not returns a 404 page
+        certification_reference = get_object_or_404(Certification, id=id,company=company)
+
+        #deletes the view and redirects to the page.
+        certification_reference.delete()
+        return HttpResponseRedirect('/company/'+str(slug))
+
+
+
+@login_required
+def certification_view(request, slug, id):
+    """This view makes possible to display a certification item alone"""
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    certification_reference = get_object_or_404(Certification, id=id,company=company)
+
+    return render_to_response('certification_form.html', 
+                {'details': certification_reference,'info':certification_reference},
+                context_instance=RequestContext(request))
+
+
+##################################################################################################################
+################################################ Award Views #############################################
+##################################################################################################################
+
+def award_create(request, slug):
+    """The purpose of this function is to create  new awards item associated with a created company"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    #if the request is GET presents empty form
+    if request.method == 'GET':
+
+        award_form = AwardForm()
+        return render_to_response('award_form.html', {'form': award_form, 'company':company},
+            context_instance=RequestContext(request))
+     
+    else:
+        award_form = AwardForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page
+        if award_form.is_valid():
+            af = award_form.save(commit=False)
+            af.company = company
+            af.save()
+            return HttpResponseRedirect('/company/'+str(slug))
+
+        #if not well filled redirect to the original create and display error
+        else:
+            return render_to_response('award_form.html', 
+                {'form': award_form, 'form_errors': award_form.errors, 'company':company},
+                context_instance=RequestContext(request))
+
+
+def award_update(request, slug, id):
+    """The purpose of this view is to update the info of the award page"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    award_reference = get_object_or_404(Award, id=id,company=company)
+    award_form = AwardForm(instance=award_reference)
+
+    #verifies the person has access to the company or is an incubator employee
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    #if the request is GET presents info, 
+    if request.method == 'GET':
+        return render_to_response('award_form.html',{'form':award_form, 'info': award_reference},context_instance=RequestContext(request))
+    else:
+        award_form = AwardForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page 
+        if award_form.is_valid():
+            of = award_form.save(commit = False)
+            of.company = company
+            of.save()
+
+            return HttpResponseRedirect('/company/'+str(slug))
+        #if not well filled redirect to the original update page and display error
+        else:
+            return render_to_response('award_form.html', 
+                {'form': award_form, 'form_errors': award_form.errors, 'info': award_reference},
+                context_instance=RequestContext(request))
+
+@login_required
+def award_delete(request, slug,id):
+    """This view deletes the award info and redirects to the company page"""
+    
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    if request.method == 'POST':
+        return HttpResponseRedirect('/company/'+str(slug))
+    else: 
+        #verifies if the company exists if not returns a 404 page
+        award_reference = get_object_or_404(Award, id=id,company=company)
+
+        #deletes the view and redirects to the page.
+        award_reference.delete()
+        return HttpResponseRedirect('/company/'+str(slug))
+
+
+
+@login_required
+def award_view(request, slug, id):
+    """This view makes possible to display a award item alone"""
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    award_reference = get_object_or_404(Award, id=id,company=company)
+
+    return render_to_response('award_form.html', 
+                {'details': award_reference,'info':award_reference},
+                context_instance=RequestContext(request))
+
+
+##################################################################################################################
+################################################ Customer Views #############################################
+##################################################################################################################
+
+def customer_create(request, slug):
+    """The purpose of this function is to create  new customers item associated with a created company"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    #if the request is GET presents empty form
+    if request.method == 'GET':
+
+        customer_form = CustomerForm()
+        return render_to_response('customer_form.html', {'form': customer_form, 'company':company},
+            context_instance=RequestContext(request))
+     
+    else:
+        customer_form = CustomerForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page
+        if customer_form.is_valid():
+            of = customer_form.save(commit=False)
+            of.company = company
+            of.save()
+            return HttpResponseRedirect('/company/'+str(slug))
+
+        #if not well filled redirect to the original create and display error
+        else:
+            return render_to_response('customer_form.html', 
+                {'form': customer_form, 'form_errors': customer_form.errors, 'company':company},
+                context_instance=RequestContext(request))
+
+
+def customer_update(request, slug, id):
+    """The purpose of this view is to update the info of the customer page"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    customer_reference = get_object_or_404(Customer, id=id,company=company)
+    customer_form = CustomerForm(instance=customer_reference)
+
+    #verifies the person has access to the company or is an incubator employee
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    #if the request is GET presents info, 
+    if request.method == 'GET':
+        return render_to_response('customer_form.html',{'form':customer_form, 'info': customer_reference},context_instance=RequestContext(request))
+    else:
+        customer_form = CustomerForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page 
+        if customer_form.is_valid():
+            of = customer_form.save(commit = False)
+            of.company = company
+            of.save()
+
+            return HttpResponseRedirect('/company/'+str(slug))
+        #if not well filled redirect to the original update page and display error
+        else:
+            return render_to_response('customer_form.html', 
+                {'form': customer_form, 'form_errors': customer_form.errors, 'info': customer_reference},
+                context_instance=RequestContext(request))
+
+@login_required
+def customer_delete(request, slug,id):
+    """This view deletes the award info and redirects to the company page"""
+    
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    if request.method == 'POST':
+        return HttpResponseRedirect('/company/'+str(slug))
+    else: 
+        #verifies if the company exists if not returns a 404 page
+        customer_reference = get_object_or_404(Customer, id=id,company=company)
+
+        #deletes the view and redirects to the page.
+        customer_reference.delete()
+        return HttpResponseRedirect('/company/'+str(slug))
+
+
+
+@login_required
+def customer_view(request, slug, id):
+    """This view makes possible to display a award item alone"""
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    customer_reference = get_object_or_404(Customer, id=id,company=company)
+
+    return render_to_response('customer_form.html', 
+                {'details': customer_reference,'info':customer_reference},
+                context_instance=RequestContext(request))
+
+
+##################################################################################################################
+################################################ Acquisitions Views #############################################
+##################################################################################################################
+
+def acquisition_create(request, slug):
+    """The purpose of this function is to create  new acquisition item associated with a created company"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    #if the request is GET presents empty form
+    if request.method == 'GET':
+
+        acquisition_form = AcquisitionForm()
+        return render_to_response('acquisition_form.html', {'form': acquisition_form, 'company':company},
+            context_instance=RequestContext(request))
+     
+    else:
+        acquisition_form = AcquisitionForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page
+        if acquisition_form.is_valid():
+            aqf = acquisition_form.save(commit=False)
+            aqf.company = company
+            aqf.save()
+            return HttpResponseRedirect('/company/'+str(slug))
+
+        #if not well filled redirect to the original create and display error
+        else:
+            return render_to_response('acquisition_form.html', 
+                {'form': acquisition_form, 'form_errors': acquisition_form.errors, 'company':company},
+                context_instance=RequestContext(request))
+
+
+def acquisition_update(request, slug, id):
+    """The purpose of this view is to update the info of the acquisition page"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    acquisition_reference = get_object_or_404(Acquisition, id=id,company=company)
+    acquisition_form = AcquisitionForm(instance=acquisition_reference)
+
+    #verifies the person has access to the company or is an incubator employee
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    #if the request is GET presents info, 
+    if request.method == 'GET':
+        return render_to_response('acquisition_form.html',{'form':acquisition_form, 'info': acquisition_reference},context_instance=RequestContext(request))
+    else:
+        acquisition_form = AcquisitionForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page 
+        if acquisition_form.is_valid():
+            of = acquisition_form.save(commit = False)
+            of.company = company
+            of.save()
+
+            return HttpResponseRedirect('/company/'+str(slug))
+        #if not well filled redirect to the original update page and display error
+        else:
+            return render_to_response('acquisition_form.html', 
+                {'form': acquisition_form, 'form_errors': acquisition_form.errors, 'info': acquisition_reference},
+                context_instance=RequestContext(request))
+
+@login_required
+def acquisition_delete(request, slug,id):
+    """This view deletes the acquisition info and redirects to the company page"""
+    
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    if request.method == 'POST':
+        return HttpResponseRedirect('/company/'+str(slug))
+    else: 
+        #verifies if the company exists if not returns a 404 page
+        acquisition_reference = get_object_or_404(Acquisition, id=id,company=company)
+
+        #deletes the view and redirects to the page.
+        acquisition_reference.delete()
+        return HttpResponseRedirect('/company/'+str(slug))
+
+
+
+@login_required
+def acquisition_view(request, slug, id):
+    """This view makes possible to display a acquisition item alone"""
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    acquisition_reference = get_object_or_404(Acquisition, id=id,company=company)
+
+    return render_to_response('acquisition_form.html', 
+                {'details': acquisition_reference,'info':acquisition_reference},
                 context_instance=RequestContext(request))
 
 
