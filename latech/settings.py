@@ -8,6 +8,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
 
+AUTH_PROFILE_MODULE ='contacts.Contact'
 
 SUIT_CONFIG = {
     # header
@@ -175,6 +176,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'suit',
     'django.contrib.admin',
+    'django.contrib.comments',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'companies',

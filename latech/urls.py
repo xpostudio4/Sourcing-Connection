@@ -89,10 +89,14 @@ urlpatterns = patterns('',
      url(r'ticket/$','latech.views.ticket_create'),
      url(r'create/$','latech.views.asana_create'),
 
-     #ckeditor configuration Url
+     #django comment frameworks
+     url(r'^comments/', include('django.contrib.comments.urls')),
 
      #news related functions
-     url(r'^news/new$', 'news.views.news_create'),
+     url(r'^news/new/$', 'news.views.news_create'),
+     url(r'^news/(?P<id>[\d]+)/$', 'news.views.news_view'),
+     url(r'^news/(?P<id>[\d]+)/update/$', 'news.views.news_update'),
+     url(r'^news/(?P<id>[\d]+)/delete$', 'news.views.news_delete'),
 
 #     url(r'^advance_search/', 'latech.views.advance_search'),
 #     url(r'^$', "latech.search.advance_contact_search"),
