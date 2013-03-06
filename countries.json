@@ -1,0 +1,602 @@
+[
+    {
+        "pk": 1, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Anguilla", 
+            "name": "Anguilla", 
+            "government_type": " british overseas territory ", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Anguilla&lk=1&a=ClashPrefs_*Country.Anguilla-", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Antigua_and_barbuda", 
+            "name": "Antigua and Barbuda", 
+            "government_type": "federal, parliamentary, representative democratic monarchy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Antigua+and+barbuda&x=-1229&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Argentina", 
+            "name": "Argentina", 
+            "government_type": "Federal representative presidential republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Argentina&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Aruba", 
+            "name": "Aruba", 
+            "government_type": "Constitutional monarchy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Aruba&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Bahamas", 
+            "name": "Bahamas", 
+            "government_type": "Unitary parliamentary\ndemocracy under\nconstitutional monarchy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Bahamas&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Barbados", 
+            "name": "Barbados", 
+            "government_type": "Parliamentary democracy\nunder constitutional monarchy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Barbados&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Belize", 
+            "name": "Belize", 
+            "government_type": "Unitary parliamentary constitutional monarchy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Belize&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Bermuda", 
+            "name": "Bermuda", 
+            "government_type": "Parliamentary democracy\n(British Overseas Territory)", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Bermuda&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Bolivia", 
+            "name": "Bolivia", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Bolivia&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Brazil", 
+            "name": "Brazil", 
+            "government_type": "Federal presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Brazil&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Canada", 
+            "name": "Canada", 
+            "government_type": "Federal parliamentary\ndemocracy under\nconstitutional monarchy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Canada&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Cayman_Islands", 
+            "name": "Cayman Islands", 
+            "government_type": "British Overseas Territory", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Cayman+Islands&x=-1330&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Chile", 
+            "name": "Chile", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Chile&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Colombia", 
+            "name": "Colombia", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Colombia&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Costa_Rica", 
+            "name": "Costa Rica", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Costa+Rica&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Cuba", 
+            "name": "Cuba", 
+            "government_type": "Unitary Marxist-Leninist\nsocialist semi-presidential\nrepublic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Cuba&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Dominica", 
+            "name": "Dominica", 
+            "government_type": "Unitary parliamentary republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Dominica&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Dominican_Republic", 
+            "name": "Dominican Republic", 
+            "government_type": "Unitary representative democratic republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Dominican+Republic&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Ecuador", 
+            "name": "Ecuador", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Ecuador&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/El_Salvador", 
+            "name": "El Salvador", 
+            "government_type": "Presidential constitutional\nrepublic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=El+Salvador&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Falkland_Islands", 
+            "name": "Falkland Islands", 
+            "government_type": "British Overseas Territory", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Falkland+Islands&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/French_Guiana", 
+            "name": "French Guiana", 
+            "government_type": "overseas region of Franc", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=French+Guiana&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Grenada", 
+            "name": "Grenada", 
+            "government_type": "Parliamentary democracy under constitutional monarchy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Grenada&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Guadeloupe", 
+            "name": "Guadeloupe (French)", 
+            "government_type": "overseas region of France", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Guadeloupe+%28French%29&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Guatemala", 
+            "name": "Guatemala", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Guatemala&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Guyana", 
+            "name": "Guyana", 
+            "government_type": "Unitary semi-presidential republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Guyana&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Haiti", 
+            "name": "Haiti", 
+            "government_type": "Unitary semi-presidential republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Haiti&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Honduras", 
+            "name": "Honduras", 
+            "government_type": "Constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://www4a.wolframalpha.com/input/?i=Honduras&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Jamaica", 
+            "name": "Jamaica", 
+            "government_type": "Parliamentary democracy under constitutional monarchy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Jamaica&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Martinique", 
+            "name": "Martinique (French)", 
+            "government_type": "overseas region of France", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Martinique+%28French%29&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Mexico", 
+            "name": "Mexico", 
+            "government_type": "Federal presidential\nconstitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Mexico&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Montserrat", 
+            "name": "Montserrat", 
+            "government_type": "British Overseas Territory", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Montserrat&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Netherlands_Antilles", 
+            "name": "Netherlands Antilles", 
+            "government_type": "Constitutional monarchy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Netherlands+Antilles&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Nicaragua", 
+            "name": "Nicaragua", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Nicaragua&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Panama", 
+            "name": "Panama", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://www4a.wolframalpha.com/input/?i=Panama", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Paraguay", 
+            "name": "Paraguay", 
+            "government_type": "Unitary constitutional representative participatory pluralist democracy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Panama&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Peru", 
+            "name": "Peru", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Peru&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Puerto_Rico", 
+            "name": "Puerto Rico", 
+            "government_type": "Commonwealth / Organized Unincorporated Territory", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Puerto+Rico&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Saint_Kitts_and_Nevis", 
+            "name": "Saint Kitts and Nevis", 
+            "government_type": "Parliamentary democracy\nunder federal constitutional\nmonarchy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Saint+Kitts+and+Nevis&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Saint_Lucia", 
+            "name": "Saint Lucia", 
+            "government_type": "Parliamentary democracy under constitutional monarchy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Saint+Lucia&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Saint_Pierre_and_Miquelon", 
+            "name": "Saint Pierre and Miquelon", 
+            "government_type": "Overseas collectivity", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Saint+Pierre+and+Miquelon&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Saint_Vincent_and_Grenadines", 
+            "name": "Saint Vincent and Grenadines", 
+            "government_type": "Parliamentary democracy under constitutional monarchy", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Saint+Vincent+and+Grenadines&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/South_Georgia_and_South_Sandwich_Islands", 
+            "name": "South Georgia and South Sandwich Islands", 
+            "government_type": "British overseas territory", 
+            "stability_rating": "", 
+            "url_wolfram": "", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Suriname", 
+            "name": "Suriname", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Suriname&x=-1330&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Trinidad_and_Tobago", 
+            "name": "Trinidad and Tobago", 
+            "government_type": "Unitary parliamentary constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Trinidad+and+Tobago&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Turks_and_Caicos_Islands", 
+            "name": "Turks and Caicos Islands", 
+            "government_type": "British overseas territory", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Turks+and+Caicos+Islands&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/United_States", 
+            "name": "United States", 
+            "government_type": "Federal two-party presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=United+States&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Uruguay", 
+            "name": "Uruguay", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Uruguay&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Venezuela", 
+            "name": "Venezuela", 
+            "government_type": "Federal presidential constitutional republic", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Venezuela&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Virgin_Islands", 
+            "name": "Virgin Islands", 
+            "government_type": "overseas territory of the United Kingdom", 
+            "stability_rating": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Virgin+Islands&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }
+]

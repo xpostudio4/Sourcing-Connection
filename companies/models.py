@@ -218,7 +218,7 @@ class Award(models.Model):
     name = models.CharField(max_length=255, verbose_name='Customer Name')
 
     def __unicode__(self):
-        return str(self.company) +":" + str(self.name)
+        return str(self.name)
 
     class Meta:
          verbose_name_plural = "Awards"

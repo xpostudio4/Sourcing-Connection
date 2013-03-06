@@ -165,6 +165,7 @@ def company_view(request, slug):
     customers = Customer.objects.filter(company=company)
     awards = Award.objects.filter(company=company)
     offices = Office.objects.filter(company=company)
+    acquisitions = Acquisition.objects.filter(company=company)
     office_list = []
     count = 0
     
