@@ -25,7 +25,7 @@ urlpatterns = patterns('',
 #     url(r'^companies/load/$','latech.views.load_company'),
 
      #Loading Countries information from the CSV file
-     url(r'^country/load/$','latech.views.load_countries_info'),
+     #url(r'^country/load/$','latech.views.load_countries_info'),
 
      #Management for the item
      url(r'^company/(?P<slug>[\w-]+)/management/new/$','companies.views.management_create'),
