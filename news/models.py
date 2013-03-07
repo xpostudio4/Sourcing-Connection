@@ -17,6 +17,9 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
     	''' On save, update timestamps '''
+        if not self.user: 
+            usr = User.objects.filter(username="xpostudio4")
+            self.user = usr
         self.slug = defaultfilters.slugify(self.name)
         super(Post, self).save(*args, **kwargs)
 

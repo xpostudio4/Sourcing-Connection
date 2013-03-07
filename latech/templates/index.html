@@ -82,24 +82,42 @@ onload = function() {
 
 
 		{% else %}
-		
-		<table class="table table-bordered table-hover">
-			<tbody>
-				<tr>
-					<th>#</th>
-					<th>Post Info</th>
-					<th>User</th>
-				</tr>
-				{% for news in hacked_news %}
-				<tr>
-					<td>{{ news.id }}</td>
-					<td><a href="{{ news.url }}">{{ news.text }}</a></td>
-					<td>published by: {{news.user }}</td>
-				</tr>
-				{% endfor %}
-		</tbody>
-		</table>
-	{% endif %}
+		{% if blog_news %}
+			<table class="table  table-hover">
+				<tbody>
+					<tr>
+						<th>#</th>
+						<th>Post Info</th>
+						<th>Published</th>
+						<th>User</th>
+					</tr>
+					
+					{% for news in blog_news %}
+					<tr>
+						<td>{{ news.id }}</td>
+						<td>
+						{% if news.object.url %}
+							<a href="{{ news.object.url }}">{{ news.object.name }}</a>
+						{% else %}
+							<a href="/news/{{ news.object.id }}">{{ news.object.name }}</a>
+						{% endif %}<small class="pull-right">(<a href="/news/{{ news.object.id }}">discuss</a>)</small></td>
+						<td>{{ news.object.created|date:" d/m/y"  }}</td>
+						<td>{{ news.object.user.get_full_name }}</td>
+					</tr>
+					{% endfor %}
+			</tbody>
+			</table>
+			{% else %}
+			<div class="media">
+				<h3 class="media-header">Hi, no Posts yet,</h3>
+				<p>please add one, <a href="/news/new">here</a></p>
+			</div>
+
+		{% endif %}
+
+
+		{% endif %}
+
 	</div>
 </div>
 </div>

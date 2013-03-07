@@ -71,9 +71,9 @@ def news_delete(request, id):
     #Verify the person has access to the archive or redirect
     post = get_object_or_404(Post,id=id)
     if request.user.is_staff or request.user.is_superuser or request.user == post.user:
-    #delete
-    post.delete()
-    return HttpResponseRedirect("/news/all")
+        #delete
+        post.delete()
+        return HttpResponseRedirect("/news/all")
     else:
         return HttpResponseRedirect("news/" + str(post.id)+"/")
 

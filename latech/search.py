@@ -8,6 +8,7 @@ from contacts.models import *
 from django.db.models import Q, F
 from django.contrib.auth.forms import AuthenticationForm
 from latech.views import hacked_news
+from news.functions import news
 
 
 def search_page(request):
@@ -210,6 +211,7 @@ def advanced_search(request):
         'errors':errors,
         'user_form': user_form,
         'hacked_news': hacked_news(),
+        'blog_news': news(page=1, qty=20),
         'latech': latech,
 #        'search_page':search_page()
     })

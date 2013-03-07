@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}News Creation{% endblock title %}
+
+{% block external %}
+
+
+<script type="text/javascript">
+    $("ul.errorlist").addClass("alert");
+
+    $("form").submit(function(){
+        //Select all the variables
+        var postName = $("#id_name").value();
+        var postURL = $("#id_url").value();
+        var post = $("#id_post").value();
+
+        if (postName !="" and (postURL !="" or post!="")){
+            alert("The name of the article is empty");
+            return false;
+        }else{
+        return false;
+        }
+    })
+
+
+   
+</script>
+{% endblock external %}
+
+{% block content %}
+    {% if details %}
+    {% if  user.is_staff or user.is_superuser or permission %}
+            <div class="pull-right" style="margin-right:80px;">
+                <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/news/{{ details.id }}/update'">  Edit  </button>
+            </div>  
+    {% endif %}
+    {% endif %}
+
+    {% if details %}
+    <ul class="breadcrumb">
+          <li><a href="/">Home</a> <span class="divider">/</span></li>
+          <li class="active">{{ details.name }}</li>
+        </ul>
+
+    {% elif update %}
+        <ul class="breadcrumb">
+          <li><a href="/">Home</a> <span class="divider">/</span></li>
+          <li><a href="/news/{{ form.id.value}}">{{ form.name.value }}</a> <span class="divider">/</span></li>
+          <li class="active">Update</li>
+        </ul>
+    {% else %}
+        <ul class="breadcrumb">
+          <li><a href="/">Home</a> <span class="divider">/</span></li>
+          <li class="active">Create New Post</li>
+        </ul>
+    {% endif %}
+
+    {% if form %}
+        <form method="Post" action="." onSubmit="return checkform()" >
+            {% csrf_token %} 
+                {% if form_errors %}
+                    <div class="alert" > <strong>Warning!</strong>The Following fields need to be completed correctly:
+                        {% for error in form_errors %}
+                            <div class="text-error">*{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% for field in form %}
+                        {{ field.label_tag }} {{ field }}
+                        {{ field_errors }}
+                {% endfor %}
+                <br/>
+            <button type="submit" class="btn">Submit Form</button>
+        </form>
+    {% endif %}
+    {% if details %}
+        <div class="media">
+            <h4 class="media-heading"> Title:</h4>
+            <p>{{ details.name }}</p>
+
+            {% if details.url %}
+
+            {% endif %}
+
+            {% if details.post %}
+
+            {% endif %}
+        </div>
+        <br>
+    
+
+
+    
+       {% load comments %}
+        <div id="comments-section">
+        {% get_comment_count for details as comment_count %}
+        <p>Please share Your thoughs with us!</p>
+        {% get_comment_count for details as comment_count %} 
+        {% if comment_count %}
+         <p>{{ comment_count}} comments already!</p>
+        {% else %}
+         <p>Please comment!!</p>
+
+        {% endif %}
+        {% get_comment_form for details as comment_form %}
+            <form action="{% comment_form_target %}" method="POST">
+                {% csrf_token %}
+                {{ comment_form.comment }}<br>
+                {{ comment_form.honeypot }}
+                {{ comment_form.content_type }}
+                {{ comment_form.object_pk }}
+                {{ comment_form.timestamp }}
+                {{ comment_form.security_hash }}
+                <input type="hidden" name="id_email" value="{{ request.user.email }}" />
+                <input type="hidden" name="id_name" value="{{ request.user.first_name }} {{ request.user.last_name }}" />
+                <input type="hidden" name="id_url" value="/profile/{{ request.user.id }}"/ />
+                <input type="hidden" name="next" value="{{ request.path }}" />
+                <button type="submit" value="Add comment" id="id_submit" class="btn">Submit </button>
+            </form>
+       
+
+            {% get_comment_list for details as detail_comments %}
+          
+                
+                {% for comment in detail_comments %}
+                  <hr>
+                  <div class="media">
+                  {% if  comment.user.get_profile.photo_profile %}
+
+                    <img class="pull-left" src="{{ comment.user.get_profile.photo_profile }}" height="64" width="64"/>
+
+                   {% else %}
+                        <img class="pull-left" class="media-object" data-src="holder.js/64x64" src="https://lh5.googleusercontent.com/-1aRlNGIw-Ds/AAAAAAAAAAI/AAAAAAAAAAA/wSDKpraSvbs/s250-c-k/photo.jpg" height="64" width="64">
+                   {% endif %}
+                    <div class="media-body">
+                        <strong class="media-heading">{{ comment.user_name }} </strong> 
+                        <small>{{ comment.submit_date }}</small> <br>
+
+                        {{ comment.comment }}
+                    </div>
+                </div>
+                    <br>
+
+                {% endfor %}
+            </div>
+
+        </div>
+    {% endif %}
+{% endblock content %}
