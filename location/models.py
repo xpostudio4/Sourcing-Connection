@@ -5,9 +5,9 @@ from django.db import models
 #Country_Table
 
 class Country(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=100)
     #flag = models.Imagefield()
-    government_type = models.CharField(max_length=30, blank=True)
+    government_type = models.CharField(max_length=80, blank=True)
     stability_rating = models.CharField(max_length=30, blank=True)
     policy_favorability_Rating= models.CharField(max_length=30, blank=True)
     url_wolfram= models.URLField(blank=True)

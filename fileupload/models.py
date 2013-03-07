@@ -2,6 +2,7 @@ import os
 from django.db import models
 from companies.models import Company
 from django.core.files.storage import FileSystemStorage
+from django.template import defaultfilters
 from storagess.backends.gs import GSBotoStorage
 
 
@@ -20,18 +21,18 @@ class Picture(models.Model):
 
     #file = models.FileField(upload_to="pictures")
     file = models.ImageField(storage=gs, upload_to="images/companies_imgs/")
-    slug = models.SlugField(max_length=50, blank=True)
+    slug = models.SlugField(max_length=255, blank=True)
     company = models.ForeignKey(Company, related_name="Company Images")
 
     def __unicode__(self):
         return self.slug
 
-    @models.permalink
-    def get_absolute_url(self):
-        return ('upload-new', )
+#    @models.permalink
+#    def get_absolute_url(self):
+#        return ('upload-new', )
 
     def save(self, *args, **kwargs):
-        self.slug = self.file.name
+        self.slug = defaultfilters.slugify(self.file.name)
         super(Picture, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):

@@ -24,6 +24,9 @@ urlpatterns = patterns('',
      #Loading Companies from the CSV file
 #     url(r'^companies/load/$','latech.views.load_company'),
 
+     #Loading Countries information from the CSV file
+     #url(r'^country/load/$','latech.views.load_countries_info'),
+
      #Management for the item
      url(r'^company/(?P<slug>[\w-]+)/management/new/$','companies.views.management_create'),
      url(r'^company/(?P<slug>[\w-]+)/management/(?P<id>[\d]+)/update/$','companies.views.management_update'),
@@ -47,6 +50,12 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/awards/(?P<id>[\d]+)/update/$','companies.views.award_update'),
      url(r'^company/(?P<slug>[\w-]+)/awards/(?P<id>[\d]+)/delete/$','companies.views.award_delete'),
      url(r'^company/(?P<slug>[\w-]+)/awards/(?P<id>[\d]+)/$','companies.views.award_view'),
+
+     # Picture urls
+     url(r'^company/(?P<slug>[\w-]+)/pictures/new/$','fileupload.views.picture_create'),
+     url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/update/$','fileupload.views.picture_update'),
+     url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/delete/$','fileupload.views.picture_delete'),
+     url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/$','fileupload.views.picture_view'),
 
 
     # Acquisitions urls
