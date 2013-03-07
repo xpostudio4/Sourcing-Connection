@@ -2,6 +2,11 @@
 
 {% block title %}{{ company.name  }}{% endblock %}
 {% block external %}
+<style type="text/css">
+#coimg {
+  width: 20px;
+  height: 20px;}
+</style>
 <script>
        $(document).ready(function(){
 
@@ -383,6 +388,40 @@
 		</ul>
 	</div>
 
+		{############################################## Pictures ####################################}
+    	<div class="media">
+                
+
+                <h4 class="media-heading"><strong class="muted">pictures:</strong></h4></br>
+                <ul class="nav nav-list pull-right">
+                    <li><a href="/company/{{ company.slug }}/pictures/new"><i class="icon-plus"></i> Add pictures</a></li>
+                </ul>
+
+                <br/>
+                <ul class="thumbnails pull-left inline">
+      	          <div class="row-fluid">
+
+                {% for picture in pictures  %}
+		
+	
+                        <li class="span3"> <a id="{{ company.slug }}-pictures-{{ picture.id }}" onclick="{{ company.slug }}_pictures_{{ picture.id }}(); return false;" href="/company/{{ company.slug }}/pictures/{{ picture.id }}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/pictures/{{picture.id}}/update"> <img data-src="holder.js/260x180" src="{{ MEDIA_URL }}{{ picture.file}}" alt=""> </a></li>{% if not forloop.last %}, {% endif %}
+                
+                <script>
+                function {{ company.slug }}_pictures_{{ picture.id }}(){
+                    var r = confirm("Are You sure You want to delete picture {{ picture.name }}");
+                    if( r == true){
+                        return document.location.href = "/company/{{ company.slug }}/pictures/{{picture.id}}/delete";
+                    }else{
+                        return false;
+                    }
+                }
+                </script>
+                    
+                	{% endfor %}    
+					</div>                	
+                </ul>
+        </div>
+
 	{% else %}
 		{% for manager in management %}
 			<h5 class="media-heading text-info"> {{ manager.full_name }}</h5>
@@ -475,6 +514,13 @@
 	   		{% endfor %}
 		</ul><br>
 
+			{% if pictures %}
+				<ul class="thumbnails">
+					{% for picture in pictures %}
+					<li class="span4"><a><img data-src="holder.js/300x200" src="{{ MEDIA_URL }}{{ picture.file}}"></a></li>
+					{% endfor %}
+				</ul>
+			{% endif %}
 		
 	{% endif %}
 
@@ -489,12 +535,6 @@
 	<p id="company-contact">{{ company.contact }}</p>
 
 </div>
-{% if pictures %}
-	{% for picture in pictures %}
-		<a><img src="{{ MEDIA_URL }}/{{ picture.file}}"></a>
-
-	{% endfor %}
-{% endif %}
 <p> </p>
 
 {% endblock %}

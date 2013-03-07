@@ -2,6 +2,7 @@ from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, get_object_or_404, render 
 from companies.models import *
 from companies.forms import *
+from fileupload.forms import *
 from companies.functions import percentage_completion, update_completion, validate_user_company_access_or_redirect
 from contacts.models import Contact
 from fileupload.models import Picture
@@ -126,7 +127,7 @@ def company_view(request, slug):
     percentage_profile = percentage_completion(company.id)
     
     #obtain photos made against company models.
-    pictures = Picture.objects.filter(company_id=company.id)
+#    pictures = Picture.objects.filter(company_id=company.id)
 
     #If the user is a globaltech employee does not have to  check for the company
     #All globaltech employees have access to modify all the Companies.
@@ -166,6 +167,7 @@ def company_view(request, slug):
     awards = Award.objects.filter(company=company)
     offices = Office.objects.filter(company=company)
     acquisitions = Acquisition.objects.filter(company=company)
+    pictures = Picture.objects.filter(company=company)
     office_list = []
     count = 0
     
@@ -181,7 +183,7 @@ def company_view(request, slug):
         "company_page.html",
         {'company':company, 'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
         'management': management,'offices':office_list, 'competitors': competitors,"certifications":certifications,
-        "customers":customers, "awards":awards},
+        "customers":customers, "awards":awards, "pictures":pictures},
         context_instance=RequestContext(request))
 
 @login_required
