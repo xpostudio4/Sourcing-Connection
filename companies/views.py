@@ -106,7 +106,10 @@ def CompanyCreate(request):
             
             pass
 
-        return HttpResponseRedirect("company Duplicated")
+#        return HttpResponseRedirect("company Duplicated")
+        return render_to_response('company_form.html', 
+            {'form': company_form, 'form_errors': company_form.errors},
+            context_instance=RequestContext(request))
 
     else:
         #generate the instances of the forms in the template
