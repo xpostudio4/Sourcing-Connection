@@ -126,9 +126,9 @@
                 {% for comment in detail_comments %}
                   <hr>
                   <div class="media">
-                  {% if  comment.user.get_profile.photo_profile %}
+                  {% if  comment.user.contact.photo_profile %}
 
-                    <img class="pull-left" src="{{ comment.user.get_profile.photo_profile }}" height="64" width="64"/>
+                    <img class="pull-left" src="{{ MEDIA_URL }}{{ comment.user.contact.photo_profile }}" height="64" width="64"/>
 
                    {% else %}
                         <img class="pull-left" class="media-object" data-src="holder.js/64x64" src="https://lh5.googleusercontent.com/-1aRlNGIw-Ds/AAAAAAAAAAI/AAAAAAAAAAA/wSDKpraSvbs/s250-c-k/photo.jpg" height="64" width="64">

@@ -283,12 +283,10 @@ def management_update(request, slug, id):
     if request.method == 'GET':
         return render_to_response('management_form.html',{'form':management_form, 'info': management_reference},context_instance=RequestContext(request))
     else:
-        management_form = ManagementForm(request.POST)
+        management_form = ManagementForm(request.POST, instance=management_reference)
         #if is POST Validates the form is well filled and save it redirecting to the company page 
         if management_form.is_valid():
-            mf= management_form.save(commit = False)
-            mf.company = company
-            mf.save()
+            management_form.save()
 
             return HttpResponseRedirect('/company/'+str(slug))
         #if not well filled redirect to the original update page and display error
@@ -507,12 +505,10 @@ def office_update(request, slug, id):
     if request.method == 'GET':
         return render_to_response('office_form.html',{'form':office_form, 'info': office_reference},context_instance=RequestContext(request))
     else:
-        office_form = OfficeForm(request.POST)
+        office_form = OfficeForm(request.POST, instance=office_reference)
         #if is POST Validates the form is well filled and save it redirecting to the company page 
         if office_form.is_valid():
-            of = office_form.save(commit = False)
-            of.company = company
-            of.save()
+            office_form.save(commit = False)
 
             return HttpResponseRedirect('/company/'+str(slug))
         #if not well filled redirect to the original update page and display error
@@ -598,12 +594,10 @@ def certification_update(request, slug, id):
     if request.method == 'GET':
         return render_to_response('certification_form.html',{'form':certification_form, 'info': certification_reference},context_instance=RequestContext(request))
     else:
-        certification_form = CertificationForm(request.POST)
+        certification_form = CertificationForm(request.POST, instance=certification_reference)
         #if is POST Validates the form is well filled and save it redirecting to the company page 
         if certification_form.is_valid():
-            of = certification_form.save(commit = False)
-            of.company = company
-            of.save()
+            certification_form.save()
 
             return HttpResponseRedirect('/company/'+str(slug))
         #if not well filled redirect to the original update page and display error
@@ -674,9 +668,9 @@ def award_create(request, slug):
                 {'form': award_form, 'form_errors': award_form.errors, 'company':company},
                 context_instance=RequestContext(request))
 
-
-def award_update(request, slug, id):
-    """The purpose of this view is to update the info of the award page"""
+@login_required
+def award_update(request, slug,id):
+    """The purpose of this view is to update the info of the awards page"""
     #verifies if the company exists if not returns a 404 page
     company =get_object_or_404(Company,slug=slug)
     award_reference = get_object_or_404(Award, id=id,company=company)
@@ -689,19 +683,17 @@ def award_update(request, slug, id):
     if request.method == 'GET':
         return render_to_response('award_form.html',{'form':award_form, 'info': award_reference},context_instance=RequestContext(request))
     else:
-        award_form = AwardForm(request.POST)
-        #if is POST Validates the form is well filled and save it redirecting to the company page 
+        award_form = AwardForm(request.POST, instance=award_reference)
         if award_form.is_valid():
-            of = award_form.save(commit = False)
-            of.company = company
-            of.save()
-
+            award_form.save()
+ 
             return HttpResponseRedirect('/company/'+str(slug))
         #if not well filled redirect to the original update page and display error
         else:
             return render_to_response('award_form.html', 
                 {'form': award_form, 'form_errors': award_form.errors, 'info': award_reference},
                 context_instance=RequestContext(request))
+
 
 @login_required
 def award_delete(request, slug,id):
@@ -780,12 +772,10 @@ def customer_update(request, slug, id):
     if request.method == 'GET':
         return render_to_response('customer_form.html',{'form':customer_form, 'info': customer_reference},context_instance=RequestContext(request))
     else:
-        customer_form = CustomerForm(request.POST)
+        customer_form = CustomerForm(request.POST, instance=customer_reference)
         #if is POST Validates the form is well filled and save it redirecting to the company page 
         if customer_form.is_valid():
-            of = customer_form.save(commit = False)
-            of.company = company
-            of.save()
+            customer_form.save()
 
             return HttpResponseRedirect('/company/'+str(slug))
         #if not well filled redirect to the original update page and display error
@@ -871,12 +861,10 @@ def acquisition_update(request, slug, id):
     if request.method == 'GET':
         return render_to_response('acquisition_form.html',{'form':acquisition_form, 'info': acquisition_reference},context_instance=RequestContext(request))
     else:
-        acquisition_form = AcquisitionForm(request.POST)
+        acquisition_form = AcquisitionForm(request.POST, instance=acqusition_reference)
         #if is POST Validates the form is well filled and save it redirecting to the company page 
         if acquisition_form.is_valid():
-            of = acquisition_form.save(commit = False)
-            of.company = company
-            of.save()
+            acquisition_form.save()
 
             return HttpResponseRedirect('/company/'+str(slug))
         #if not well filled redirect to the original update page and display error

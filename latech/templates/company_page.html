@@ -159,81 +159,7 @@
 	<h4 class="media-heading"><strong class="muted">Related Industries:</strong></h4>
 	<p id="company-industries">{{ company.industries }}</p>
 
-</div>
-
-<div class="media">
-	<h4 class="media-heading"><strong class="muted">Technologies:</strong></h4>
-	<p id="company-technologies">{{ company.technologies }}</p>
-</div>
-
-
-
-<div class="media">
-	<h4 class="media-heading"><strong class="muted">Funding:</strong></h4>
-	<p id="#company-funding">{{ company.funding }}</p>
-
-</div>
 	{% if  user.is_staff or user.is_superuser or permission %}
-
-		{############################################## Awards ##############################}
-
-		<div class="media">
-        
-
-	        <h4 class="media-heading"><strong class="muted">Awards:</strong></h4></br>
-	        <ul class="nav nav-list pull-right">
-	            <li><a href="/company/{{ company.slug }}/awards/new"><i class="icon-plus"></i> Add award</a></li>
-	        </ul>
-
-	        <br/>
-	        <ul class="pull-left inline">
-	        {% for award in awards  %}
-	        
-	                <li><a id="{{ company.slug }}-awards-{{ award.id }}" onclick="{{ company.slug }}_awards_{{ award.id }}(); return false;" href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/awards/{{award.id}}/update">{{ award.name }}</a></li>{% if not forloop.last %}, {% endif %}
-	        
-	        <script>
-	        function {{ company.slug }}_awards_{{ award.id }}(){
-	            var r = confirm("Are You sure You want to delete Award {{ award.name }}");
-	            if( r == true){
-	                return document.location.href = "/company/{{ company.slug }}/awards/{{award.id}}/delete";
-	            }else{
-	                return false;
-	            }
-	        }
-	        </script>
-	            
-	        {% endfor %}    
-	        </ul>
-		</div>
-	
-    
-        {############################################## Certifications ##############################}
-	    <div class="media">
-	        <h4 class="media-heading"><strong class="muted">Certifications:</strong></h4></br>
-	        <ul class="nav nav-list pull-right">
-	            <li><a href="/company/{{ company.slug }}/certifications/new"><i class="icon-plus"></i> Add Certification</a></li>
-	        </ul>
-
-	        <br/>
-	        <ul class="pull-left inline">
-	        {% for certification in certifications  %}
-	        
-	                <li><a id="{{ company.slug }}-certifications-{{ certification.id }}" onclick="{{ company.slug }}_certifications_{{ certification.id }}(); return false;" href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/certifications/{{certification.id}}/update">{{ certification.name }}</a></li>{% if not forloop.last %}, {% endif %}
-	        
-	        <script>
-	        function {{ company.slug }}_certifications_{{ certification.id }}(){
-	            var r = confirm("Are You sure You want to delete Certification {{ certification.name }}");
-	            if( r == true){
-	                return document.location.href = "/company/{{ company.slug }}/certifications/{{certification.id}}/delete";
-	            }else{
-	                return false;
-	            }
-	        }
-	        </script>
-	            
-	        {% endfor %}    
-	        </ul>
-	    </div>  
 
 		{############################################## Customers ###################################}
         <div class="media">
@@ -264,6 +190,127 @@
                 {% endfor %}    
                 </ul>
         </div>
+
+        		{############################################## Awards ##############################}
+
+		<div class="media">
+        
+
+	        <h4 class="media-heading"><strong class="muted">Awards:</strong></h4></br>
+	        <ul class="nav nav-list pull-right">
+	            <li><a href="/company/{{ company.slug }}/awards/new"><i class="icon-plus"></i> Add award</a></li>
+	        </ul>
+
+	        <br/>
+	        <ul class="pull-left inline">
+	        {% for award in awards  %}
+	        
+	                <li><a id="{{ company.slug }}-awards-{{ award.id }}" onclick="{{ company.slug }}_awards_{{ award.id }}(); return false;" href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/awards/{{award.id}}/update">{{ award.name }}</a></li>{% if not forloop.last %}, {% endif %}
+	        
+	        <script>
+	        function {{ company.slug }}_awards_{{ award.id }}(){
+	            var r = confirm("Are You sure You want to delete Award {{ award.name }}");
+	            if( r == true){
+	                return document.location.href = "/company/{{ company.slug }}/awards/{{award.id}}/delete";
+	            }else{
+	                return false;
+	            }
+	        }
+	        </script>
+	            
+	        {% endfor %}    
+	        </ul>
+		</div>
+
+        {############################################## Certifications ##############################}
+	    <div class="media">
+	        <h4 class="media-heading"><strong class="muted">Certifications:</strong></h4></br>
+	        <ul class="nav nav-list pull-right">
+	            <li><a href="/company/{{ company.slug }}/certifications/new"><i class="icon-plus"></i> Add Certification</a></li>
+	        </ul>
+
+	        <br/>
+	        <ul class="pull-left inline">
+	        {% for certification in certifications  %}
+	        
+	                <li><a id="{{ company.slug }}-certifications-{{ certification.id }}" onclick="{{ company.slug }}_certifications_{{ certification.id }}(); return false;" href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/certifications/{{certification.id}}/update">{{ certification.name }}</a></li>{% if not forloop.last %}, {% endif %}
+	        
+	        <script>
+	        function {{ company.slug }}_certifications_{{ certification.id }}(){
+	            var r = confirm("Are You sure You want to delete Certification {{ certification.name }}");
+	            if( r == true){
+	                return document.location.href = "/company/{{ company.slug }}/certifications/{{certification.id}}/delete";
+	            }else{
+	                return false;
+	            }
+	        }
+	        </script>
+	            
+	        {% endfor %}    
+	        </ul>
+	    </div>  
+
+    {% else %}    
+
+    		{############################################## Customers #####################################}
+    	<div class="media">
+	        <h4 class="media-heading"><strong class="muted">Customers:</strong></h4>
+
+	        <ul class="pull-left inline">
+	        {% for customer in customers  %}
+	        
+	                <li>{{ customer.name }}</li>{% if not forloop.last %}, {% endif %}
+	        
+	            
+	        {% endfor %}
+		</div>
+
+		{############################################## Awards #####################################}
+		<div class="media">
+			<h4 class="media-heading"><strong class="muted">Awards:</strong></h4>
+			<ul class="pull-left inline">
+			{% for award in awards  %}
+					<li>{{ award.name }}{% if not forloop.last %}, {% endif %}</li>
+
+			{% endfor %}
+			</ul>
+		</div>
+
+		{############################################## Certifications #####################################}
+    	<div class="media">
+	        <h4 class="media-heading"><strong class="muted">Certifications:</strong></h4>
+
+	        <ul class="pull-left inline">
+	        {% for certification in certifications  %}
+	        
+	                <li>{{ certification.name }}</li>{% if not forloop.last %}, {% endif %}
+	        
+	            
+	        {% endfor %}
+		</div>
+
+
+	{% endif %}
+
+
+</div>
+
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Technologies:</strong></h4>
+	<p id="company-technologies">{{ company.technologies }}</p>
+</div>
+
+
+
+<div class="media">
+	<h4 class="media-heading"><strong class="muted">Funding:</strong></h4>
+	<p id="#company-funding">{{ company.funding }}</p>
+
+</div>
+	{% if  user.is_staff or user.is_superuser or permission %}
+
+	
+    
 
 		{############################################## Acquisition ####################################}
         <div class="media">
@@ -429,42 +476,7 @@
 
 		{% endfor %}
 
-		{############################################## Competitors #####################################}
-		<div class="media">
-			<h4 class="media-heading"><strong class="muted">Awards:</strong></h4>
-			<ul class="pull-left inline">
-			{% for award in awards  %}
-					<li>{{ award.name }}{% if not forloop.last %}, {% endif %}</li>
-
-			{% endfor %}
-			</ul>
-		</div>
-
-		{############################################## Certifications #####################################}
-    	<div class="media">
-	        <h4 class="media-heading"><strong class="muted">Certifications:</strong></h4>
-
-	        <ul class="pull-left inline">
-	        {% for certification in certifications  %}
-	        
-	                <li>{{ certification.name }}</li>{% if not forloop.last %}, {% endif %}
-	        
-	            
-	        {% endfor %}
-		</div>
-
-		{############################################## Customers #####################################}
-    	<div class="media">
-	        <h4 class="media-heading"><strong class="muted">Customers:</strong></h4>
-
-	        <ul class="pull-left inline">
-	        {% for customer in customers  %}
-	        
-	                <li>{{ customer.name }}</li>{% if not forloop.last %}, {% endif %}
-	        
-	            
-	        {% endfor %}
-		</div>
+		
 
 		{############################################## Competitors #####################################}
 		<div class="media">
@@ -475,6 +487,32 @@
 
 			{% endfor %}
 			</ul>
+		</div>
+		{############################################## Offices #####################################}
+
+		<div class="media">
+			<h4 class="media-heading"><strong class="muted">Offices:</strong></h4>
+			<ul class="nav nav-list pull-right">
+				<p id="company-offices">{{ offices.description }}</p>
+			</ul>
+			<ul class="pull-left inline">
+				{% for office in offices %}
+				 <li>
+				 	<address>
+				 		<strong>{{ office.object.country }}</strong><br>
+				 		{{ office.object.description }}<br>			
+				  		{{ office.object.address_1 }}<br>
+					    {{ office.object.address_2 }}<br>
+				   <address>
+				</li>
+
+		        	{% if office.ul  %}
+				        </ul><br>
+				        
+				        <ul class="pull-left inline">
+			        {% endif %}    
+		   		{% endfor %}
+			</ul><br>
 		</div>
 
 		{############################################## Competitors #####################################}
@@ -487,32 +525,11 @@
 			{% endfor %}
 			</ul>
 		</div>
-
-		{############################################## Offices #####################################}
+		{############################################## Pictures #####################################}
 
 		<div class="media">
-			<h4 class="media-heading"><strong class="muted">Offices:</strong></h4>
-		<ul class="nav nav-list pull-right">
-			<p id="company-offices">{{ offices.description }}</p>
-		</ul>
-		<ul class="pull-left inline">
-			{% for office in offices %}
-			 <li>
-			 	<address>
-			 		<strong>{{ office.object.country }}</strong><br>
-			 		{{ office.object.description }}<br>			
-			  		{{ office.object.address_1 }}<br>
-				    {{ office.object.address_2 }}<br>
-			   <address>
-			</li>
-
-	        	{% if office.ul  %}
-			        </ul><br>
-			        
-			        <ul class="pull-left inline">
-		        {% endif %}    
-	   		{% endfor %}
-		</ul><br>
+			<h4 class="media-heading"><strong class="muted">Pictures: </strong></h4>
+			<ul class="pull-left inline"><br>
 
 			{% if pictures %}
 				<ul class="thumbnails">
@@ -521,7 +538,7 @@
 					{% endfor %}
 				</ul>
 			{% endif %}
-		
+		</div>
 	{% endif %}
 
 </div>

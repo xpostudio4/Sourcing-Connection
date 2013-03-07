@@ -102,12 +102,10 @@ def picture_update(request, slug, id):
     if request.method == 'GET':
         return render_to_response('picture_form.html',{'form':picture_form, 'info': picture_reference},context_instance=RequestContext(request))
     else:
-        picture_form = PictureForm(request.POST)
+        picture_form = PictureForm(request.POST, instance=picture_reference)
         #if is POST Validates the form is well filled and save it redirecting to the company page 
         if picture_form.is_valid():
-            pf = picture_form.save(commit = False)
-            pf.company = company
-            pf.save()
+            picture_form.save(commit = False)
 
             return HttpResponseRedirect('/company/'+str(slug))
         #if not well filled redirect to the original update page and display error
