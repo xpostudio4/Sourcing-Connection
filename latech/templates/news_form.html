@@ -76,14 +76,31 @@
     {% endif %}
     {% if details %}
         <div class="media">
-            <h4 class="media-heading"> Title:</h4>
-            <p>{{ details.name }}</p>
-
+            <h4 class="media-heading">
             {% if details.url %}
+            <a href="{{ details.url }}">{{ details.name }}</a>
+            {% else %}
+            {{ details.name }}
+            {% endif %}</h4>
+            <br/>
+             <a class="pull-left thumbnail" href="/profile/{{ details.user.id }}">
+            {% if  details.user.contact.photo_profile %}
+                   
+                    <img class="img-polaroid" src="{{ MEDIA_URL }}{{ details.user.contact.photo_profile }}" height="64" width="64"/>
 
-            {% endif %}
+                   {% else %}
+                        <img class="pull-left" class="media-object" data-src="holder.js/64x64" src="https://lh5.googleusercontent.com/-1aRlNGIw-Ds/AAAAAAAAAAI/AAAAAAAAAAA/wSDKpraSvbs/s250-c-k/photo.jpg" height="64" width="64">
+                   {% endif %}</a>
+                    by <strong class="media-heading">{{ details.user.get_full_name }} </strong> 
+                        <small>{{ details.created }}</small> <br>
+                    
+
+            
+
+            
 
             {% if details.post %}
+                {{ details.post }}
 
             {% endif %}
         </div>
@@ -126,13 +143,14 @@
                 {% for comment in detail_comments %}
                   <hr>
                   <div class="media">
+                    <a class="pull-left thumbnail" href="/profile/{{ comment.user.id }}">
                   {% if  comment.user.contact.photo_profile %}
 
-                    <img class="pull-left" src="{{ MEDIA_URL }}{{ comment.user.contact.photo_profile }}" height="64" width="64"/>
+                    <img class="img-polaroid" src="{{ MEDIA_URL }}{{ comment.user.contact.photo_profile }}" height="64" width="64"/>
 
                    {% else %}
-                        <img class="pull-left" class="media-object" data-src="holder.js/64x64" src="https://lh5.googleusercontent.com/-1aRlNGIw-Ds/AAAAAAAAAAI/AAAAAAAAAAA/wSDKpraSvbs/s250-c-k/photo.jpg" height="64" width="64">
-                   {% endif %}
+                        <img class="img-polaroid" class="media-object" data-src="holder.js/64x64" src="https://lh5.googleusercontent.com/-1aRlNGIw-Ds/AAAAAAAAAAI/AAAAAAAAAAA/wSDKpraSvbs/s250-c-k/photo.jpg" height="64" width="64">
+                   {% endif %}</a>
                     <div class="media-body">
                         <strong class="media-heading">{{ comment.user_name }} </strong> 
                         <small>{{ comment.submit_date }}</small> <br>
