@@ -4,7 +4,7 @@ from django.forms import ModelForm
 class CompanyForm(ModelForm):
     class Meta:
        model = Company
-       exclude = ("slug")
+       exclude = ("slug", "tags", "contact", "company_status")
 
 class CompetitorsForm(ModelForm):
 	class Meta:

@@ -40,9 +40,9 @@ class Company(models.Model):
     slug = models.SlugField(max_length=80, unique= True)
 #    logo = models.ImageField(blank=True, null=True, upload_to="images/company_imgs/")
     logo = models.ImageField(blank=True, null=True, storage=gs, upload_to="images/companies_imgs/")
-    description = models.TextField(blank=True)
-    value_proposition = models.TextField(blank=True)
     overview = models.TextField(blank=True)
+    value_proposition = models.TextField(blank=True)
+    description = models.TextField(blank=True)
     company_status = models.IntegerField(choices=COMPANY_STATUS_CHOICES, blank=True, null=True)
     employee_quantity = models.IntegerField(choices=EMPLOYEE_QUANTITY_CHOICES, blank=True, null=True)
 #    created_by = models.ForeignKey(User, related_name="LATech user")
@@ -218,7 +218,7 @@ class Award(models.Model):
     name = models.CharField(max_length=255, verbose_name='Customer Name')
 
     def __unicode__(self):
-        return str(self.name)
+        return self.name
 
     class Meta:
          verbose_name_plural = "Awards"
