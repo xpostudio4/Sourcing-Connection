@@ -56,7 +56,7 @@ if os.getenv('HEROKU_ENV') == 'True':
     DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',}}
     DATABASES['default'] =  dj_database_url.config()
     GS_BUCKET_NAME=os.environ.get('GS_BUCKET_NAME')
-    MEDIA_URL = ('http://commondatastorage.googleapis.com/%s' % os.environ['GS_BUCKET_NAME'])
+    MEDIA_URL = ('http://commondatastorage.googleapis.com/%s/' % os.environ['GS_BUCKET_NAME'])
     MEDIA_ROOT = ''
     STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
     GS_ACCESS_KEY_ID=os.environ.get('GS_SECRET_KEY_ID')
