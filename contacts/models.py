@@ -36,21 +36,9 @@ class Contact(models.Model):
     city = models.ForeignKey(City, related_name="City", null=True, blank=True)
     #Comma separated list of Degrees
     degrees = models.CharField(max_length=255, blank=True)
-
-    #Ptr to LinkedIn profile
-    ld_url = models.URLField(blank=True)
-
-    #Ptr to Twitter profile
-    t_url = models.URLField(blank=True)
-
-    #Ptr to person's blog
-    blog_url = models.URLField(blank=True)
-
-    #Ptr to other relevant links
-    ext_url = models.URLField(blank=True)
-    
     #LATech contact responsible for the entry
-    lt_contact = models.CharField(max_length=255, blank=True)
+
+    lt_contact = models.CharField(max_length=255, blank=True, verbose_name="Latech Contact" )
 
     #List of Tags associated w/ contact
     tags = models.CharField(max_length=255, blank=True)
@@ -84,5 +72,23 @@ class Contact(models.Model):
     @models.permalink
     def get_absolute_url(self):
           return ("/profile/%s/" % self.user)
+    
+class Contact_Urls(models.Model):
+    latech_contact = models.ForeignKey(Contact)
+   #Ptr to LinkedIn profile
+    ld_url = models.URLField(blank=True, verbose_name="LinkedIn Url")
+
+    #Ptr to Twitter profile
+    t_url = models.URLField(blank=True, verbose_name="Twitter Url")
+
+    #Ptr to person's blog
+    blog_url = models.URLField(blank=True, verbose_name="Blog Url")
+
+    #Ptr to other relevant links
+    ext_url = models.URLField(blank=True, verbose_name="External Urls")
+    
+   def __unicode__(self):
+        return str(self.latech_contact.fr_name +" "+ self.latech_contact.ls_name + "Urls")
+
     
 
