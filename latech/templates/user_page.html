@@ -36,12 +36,14 @@
 {% block content %}
 <br/>
 {% if user.is_authenticated %}
+{% for contact in contacts%}
 	<div class="pull-right">
 		<button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/profile/{{ contact.id }}/edit'">  Edit  </button>
 	</div>
+{% endfor %}
 {% endif %}
 
-
+{% for contact in contacts%}
 <div class="span10"> 
 <div class="media">
 	{% if contact.photo_profile %}
@@ -78,18 +80,23 @@
 			<td>{{ contact.phone  }}</td>
 		</tr>
 		<tr>
+{% endfor %}			
+{% for urls in contacts_urls%}
 			<td>Twitter:</td>
-			<td><a  id = "twitter-contact-url" href="{{ contact.t_url  }}">{{contact.t_url }} </a></td>
+			<td><a  id = "twitter-contact-url" href="{{ urls.t_url  }}">{{ urls.t_url }} </a></td>
 			
 			<td>LinkedIn:</td>
-			<td><a href="{{ contact.ld_url  }}">{{ contact.ld_url  }}</a></td>
+			<td><a href="{{ urls.ld_url  }}">{{ urls.ld_url  }}</a></td>
 		</tr>
 		<tr>
 			<td>Blog: </td>
-			<td> <a href="{{ contact.blog_url}}">{{ contact.blog_url}}</a></td>
+			<td> <a href="{{ urls.blog_url}}">{{ urls.blog_url}}</a></td>
 			<td>External URL</td>
-			<td><a href="{{ contact.ext_url  }}">{{ contact.ext_url  }}</a></td>
+			<td><a href="{{ urls.ext_url  }}">{{ urls.ext_url  }}</a></td>
 		</tr>
+{% endfor %}
+{% for contact in contacts%}
+
 		<tr>
 			<td>Degrees:</td>
 			<td  id="degreescontact">{{ contact.degrees  }}</td>
@@ -142,6 +149,7 @@
 
 	</div>
 
+{% endfor %}
 
 {% endblock %}
 </div>

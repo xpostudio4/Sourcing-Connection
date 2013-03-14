@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 #from companies.views import CompanyCreate, CompanyList, CompaniesCreate, CompaniesUpdate
 from django.views.generic import DetailView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
-from contacts.views import ProfileView, ProfileUpdate, ProfileCreate
+from contacts.views import ProfileView, ProfileUpdate, ProfileCreate, ContactUrlUpdate
 import settings
 #from companies.models import *
 
@@ -77,7 +77,9 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/competitors/(?P<id>[\d]+)/$','companies.views.competitors_view'),
 
      # Profile
-     url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),
+     # url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),
+     url(r'^profile/(?P<id>[\d]+)/$', 'contacts.views.profile_view'),
+     url(r'^profile/(?P<pk>[\w-]+)/urls/edit$', ContactUrlUpdate.as_view()),
      url(r'^profile/(?P<pk>[\w-]+)/edit/$', ProfileUpdate.as_view(), name='profile_update'),
 
       # This is the Form to create a new Contact/Profile

@@ -7,3 +7,7 @@ class ContactForm(ModelForm):
        model = Contact
        exclude = ('user', 'slug', )
 
+class ContactUrlForm(ModelForm):
+    class Meta:
+       model = Contact_Urls
+       exclude = ('latech_contact' )

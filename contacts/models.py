@@ -69,6 +69,11 @@ class Contact(models.Model):
     def __unicode__(self):
         return str(self.fr_name +" "+ self.ls_name)
 
+    def save(self,*args, **kwargs):
+        super(Contact, self).save(*args, **kwargs)
+        contact_url = Contact_Urls(id=self.id, latech_contact_id=self.user.id)
+        contact_url.save()
+
     @models.permalink
     def get_absolute_url(self):
           return ("/profile/%s/" % self.user)
@@ -76,7 +81,7 @@ class Contact(models.Model):
 class Contact_Urls(models.Model):
     latech_contact = models.ForeignKey(Contact)
    #Ptr to LinkedIn profile
-    ld_url = models.URLField(blank=True, verbose_name="LinkedIn Url")
+    ld_url = models.URLField(blank=True, null=True, verbose_name="LinkedIn Url")
 
     #Ptr to Twitter profile
     t_url = models.URLField(blank=True, verbose_name="Twitter Url")
@@ -87,8 +92,10 @@ class Contact_Urls(models.Model):
     #Ptr to other relevant links
     ext_url = models.URLField(blank=True, verbose_name="External Urls")
     
-   def __unicode__(self):
-        return str(self.latech_contact.fr_name +" "+ self.latech_contact.ls_name + "Urls")
-
+    def __unicode__(self):
+        return str(self.latech_contact.fr_name +" "+ self.latech_contact.ls_name + " Urls")
+    
+    class Meta:
+        verbose_name_plural="Contact Urls"
     
 
