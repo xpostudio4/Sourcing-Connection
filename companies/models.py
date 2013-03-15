@@ -93,7 +93,7 @@ class Company(models.Model):
     def save(self, *args, **kwargs):
         self.slug = defaultfilters.slugify(self.name)
         super(Company, self).save(*args, **kwargs)
-        companylinks = CompanyLink(company_id=self.company)
+        companylinks = CompanyLink(id=self.id, company=self)
         companylinks.save()
 
 
@@ -245,7 +245,7 @@ class AccessCompanyProfile(models.Model):
     company = models.ManyToManyField(Company, related_name = "Companies ")
 
     def __unicode__(self):
-        return str(self.contact) + ":" + str(self.company.all())
+        return str(self.contact) + ":" + str(self.company.all()[0])
         
 class ContactCompany(models.Model):
     company = models.ForeignKey(Company, related_name = "Contact Company")
