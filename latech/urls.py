@@ -76,6 +76,8 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/competitors/(?P<id>[\d]+)/delete/$','companies.views.competitors_delete'),
      url(r'^company/(?P<slug>[\w-]+)/competitors/(?P<id>[\d]+)/$','companies.views.competitors_view'),
 
+     url(r'^company/(?P<slug>[\w-]+)/links/update/$','companies.views.companylink_update'),
+
      # Profile
      # url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),
      url(r'^profile/(?P<id>[\d]+)/$', 'contacts.views.profile_view'),

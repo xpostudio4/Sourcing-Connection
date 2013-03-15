@@ -93,6 +93,9 @@ class Company(models.Model):
     def save(self, *args, **kwargs):
         self.slug = defaultfilters.slugify(self.name)
         super(Company, self).save(*args, **kwargs)
+        companylinks = CompanyLink(company_id=self.company)
+        companylinks.save()
+
 
     @models.permalink
     def get_absolute_url(self):
@@ -242,7 +245,7 @@ class AccessCompanyProfile(models.Model):
     company = models.ManyToManyField(Company, related_name = "Companies ")
 
     def __unicode__(self):
-        return str(self.contact) + ":" + str(self.company.all()[0])
+        return str(self.contact) + ":" + str(self.company.all())
         
 class ContactCompany(models.Model):
     company = models.ForeignKey(Company, related_name = "Contact Company")

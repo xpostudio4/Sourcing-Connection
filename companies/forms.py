@@ -6,6 +6,11 @@ class CompanyForm(ModelForm):
        model = Company
        exclude = ("slug", "tags", "contact", "company_status")
 
+class CompanyLinkForm(ModelForm):
+	class Meta:
+		model = CompanyLink
+		exclude = ('company')
+
 class CompetitorsForm(ModelForm):
 	class Meta:
 		model = Competitors

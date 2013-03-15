@@ -114,20 +114,27 @@
     <div class="media">
 <table class="table">
     <tbody>
-        <tr>
-            <td>Company Link:</td>
-            <td><a href="{{ company.web_url }}">{{ company.web_url }}</a></td>
-            <td>Company Blog:</td>
-            <td><a href="{{ company.blog_url  }}">{{ company.blog_url  }}</a></td>
-        </tr>
-        <tr>
-            <td>Twitter:</td>
-            <td >{% if  company.twitter_url  %}<a href="{{ company.twitter_url  }}" id = "company-twitter-url" >{{ company.twitter_url  }}</a>{% endif %}</td>
-            
-            <td>Facebook:</td>
-            <td ><a href="{{ company.facebook_link  }}" id="company-facebook-url">{{ company.facebook_link  }}</a></td>
-        </tr>
+        {% for link in companylinks %}
+            <tr>
+                <td>Company Link:</td>
+                <td><a href="{{ link.web_url }}">{{ link.web_url }}</a></td>
+                <td>Company Blog:</td>
+                <td><a href="{{ link.blog_url  }}">{{ link.blog_url  }}</a></td>
+            </tr>
+            <tr>
+                <td>Twitter:</td>
+                <td >{% if  link.twitter_url  %}<a href="{{ link.twitter_url  }}" id = "company-twitter-url" >{{ link.twitter_url  }}</a>{% endif %}</td>
+                
+                <td>Facebook:</td>
+                <td ><a href="{{ link.facebook_link  }}" id="company-facebook-url">{{ link.facebook_link  }}</a></td>
+            </tr>
+        {% endfor%}
+    
         {% if  user.is_staff or user.is_superuser or permission %}
+        <ul class="nav nav-list pull-right">
+            <li><a href="/company/{{ company.slug }}/links/update"><i class="icon-plus"></i> Updatind links</a></li>
+        </ul>
+
         <tr>
             <td>Email: </td>
             <td><a href="mailto:{{ company.email  }}">{{ company.email  }} </a></td>

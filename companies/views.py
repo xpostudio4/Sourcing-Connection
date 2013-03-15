@@ -171,6 +171,7 @@ def company_view(request, slug):
     offices = Office.objects.filter(company=company)
     acquisitions = Acquisition.objects.filter(company=company)
     pictures = Picture.objects.filter(company=company)
+    companylinks = CompanyLink.objects.filter(company=company)
     office_list = []
     count = 0
     
@@ -184,7 +185,7 @@ def company_view(request, slug):
 
     return render_to_response(
         "company_page.html",
-        {'company':company, 'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
+        {'company':company, 'companylinks':companylinks,'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
         'management': management,'offices':office_list, 'competitors': competitors,"certifications":certifications,
         "customers":customers, "awards":awards, "pictures":pictures},
         context_instance=RequestContext(request))
@@ -235,6 +236,38 @@ class CompanyList(ListView):
 def company_page(request, slug):
     company = get_object_or_404(Company,slug=slug)
     return render_to_response('company_page.html',{'comp':company},context_instance=RequestContext(request)) 
+
+##################################################################################################################
+################################################ Company Link Views ################################################
+##################################################################################################################
+
+@login_required
+def companylink_update(request, slug):
+    """The purpose of this view is to update the links for companies"""
+
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    companylink_reference = get_object_or_404(CompanyLink, company=company)
+    companylink_form = CompanyLinkForm(instance=companylink_reference)
+
+    #verifies the person has access to the company or is an incubator employee
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    #if the request is GET presents info, 
+    if request.method == 'GET':
+        return render_to_response('companylink_form.html',{'form':companylink_form, 'info': companylink_reference},context_instance=RequestContext(request))
+    else:
+        companylink_form = CompanyLinkForm(request.POST, instance=companylink_reference)
+        #if is POST Validates the form is well filled and save it redirecting to the company page 
+        if companylink_form.is_valid():
+            companylink_form.save()
+
+            return HttpResponseRedirect('/company/'+str(slug))
+        #if not well filled redirect to the original update page and display error
+        else:
+            return render_to_response('companylink_form.html', 
+                {'form': companylink_form, 'form_errors': companylink_form.errors, 'info': companylink_reference},
+                context_instance=RequestContext(request))
 
 ##################################################################################################################
 ################################################ Management Views ################################################
