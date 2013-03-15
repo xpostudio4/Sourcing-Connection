@@ -68,6 +68,7 @@
             
                 <div class="pull-right" style="margin-right:80px;">
                     <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}/update'">  Edit  </button>
+                    <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}/links/update'">  Edit Links </button>
                 </div>
          
         {% endif %}
@@ -131,10 +132,6 @@
         {% endfor%}
     
         {% if  user.is_staff or user.is_superuser or permission %}
-        <ul class="nav nav-list pull-right">
-            <li><a href="/company/{{ company.slug }}/links/update"><i class="icon-plus"></i> Updatind links</a></li>
-        </ul>
-
         <tr>
             <td>Email: </td>
             <td><a href="mailto:{{ company.email  }}">{{ company.email  }} </a></td>
