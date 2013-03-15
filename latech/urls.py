@@ -81,7 +81,7 @@ urlpatterns = patterns('',
      # Profile
      # url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),
      url(r'^profile/(?P<id>[\d]+)/$', 'contacts.views.profile_view'),
-     url(r'^profile/(?P<pk>[\w-]+)/urls/edit$', ContactUrlUpdate.as_view()),
+     url(r'^profile/(?P<pk>[\w-]+)/urls$', ContactUrlUpdate.as_view()),
      url(r'^profile/(?P<pk>[\w-]+)/edit/$', ProfileUpdate.as_view(), name='profile_update'),
 
       # This is the Form to create a new Contact/Profile

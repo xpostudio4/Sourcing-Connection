@@ -64,8 +64,9 @@ class ContactUrlUpdate(UpdateView):
     model = Contact_Urls
     form_class = ContactUrlForm
     template_name = 'contact_url_form.html'
-    success_url = ('/') 
 
+#    def get_absolute_url(self):
+#        return u'/profile/%d' % self.id 
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
