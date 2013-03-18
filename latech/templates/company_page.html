@@ -180,19 +180,7 @@
                 <ul class="pull-left inline">
                 {% for customer in customers  %}
                 
-                        <li><a id="{{ company.slug }}-customers-{{ customer.id }}" onclick="{{ company.slug }}_customers_{{ customer.id }}(); return false;" href="/company/{{ company.slug }}/customers/{{customer.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/customers/{{customer.id}}/update">{{ customer.name }}</a></li>{% if not forloop.last %}, {% endif %}
-                
-                <script>
-                function {{ company.slug }}_customers_{{ customer.id }}(){
-                    var r = confirm("Are You sure You want to delete customer {{ customer.name }}");
-                    if( r == true){
-                        return document.location.href = "/company/{{ company.slug }}/customers/{{customer.id}}/delete";
-                    }else{
-                        return false;
-                    }
-                }
-                </script>
-                    
+                        <li id="customers-{{ customer.id }}"><a class="link-delete" data-type="customers" data-id="{{ customer.id }}"  id="{{ company.slug }}-customers-{{ customer.id }}" href="/" ><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/customers/{{customer.id}}/update">{{ customer.name }}</a>{% if not forloop.last %}, {% endif %}</li>
                 {% endfor %}    
                 </ul>
         </div>
@@ -211,19 +199,9 @@
             <ul class="pull-left inline">
             {% for award in awards  %}
             
-                    <li><a id="{{ company.slug }}-awards-{{ award.id }}" onclick="{{ company.slug }}_awards_{{ award.id }}(); return false;" href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/awards/{{award.id}}/update">{{ award.name }}</a></li>{% if not forloop.last %}, {% endif %}
+                    <li id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/awards/{{award.id}}/update">{{ award.name }}</a> {% if not forloop.last %}, {% endif %}</li>
             
-            <script>
-            function {{ company.slug }}_awards_{{ award.id }}(){
-                var r = confirm("Are You sure You want to delete Award {{ award.name }}");
-                if( r == true){
-                    return document.location.href = "/company/{{ company.slug }}/awards/{{award.id}}/delete";
-                }else{
-                    return false;
-                }
-            }
-            </script>
-                
+           
             {% endfor %}    
             </ul>
         </div>
@@ -239,18 +217,7 @@
             <ul class="pull-left inline">
             {% for certification in certifications  %}
             
-                    <li><a id="{{ company.slug }}-certifications-{{ certification.id }}" onclick="{{ company.slug }}_certifications_{{ certification.id }}(); return false;" href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/certifications/{{certification.id}}/update">{{ certification.name }}</a></li>{% if not forloop.last %}, {% endif %}
-            
-            <script>
-            function {{ company.slug }}_certifications_{{ certification.id }}(){
-                var r = confirm("Are You sure You want to delete Certification {{ certification.name }}");
-                if( r == true){
-                    return document.location.href = "/company/{{ company.slug }}/certifications/{{certification.id}}/delete";
-                }else{
-                    return false;
-                }
-            }
-            </script>
+                    <li id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/certifications/{{certification.id}}/update">{{ certification.name }}</a> {% if not forloop.last %}, {% endif %}</li>
                 
             {% endfor %}    
             </ul>
@@ -331,19 +298,7 @@
                 <ul class="pull-left inline">
                 {% for acquisition in acquisitions  %}
                 
-                        <li><a id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" onclick="{{ company.slug }}_acquisitions_{{ acquisition.id }}(); return false;" href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/update">{{ acquisition.name }}</a></li>{% if not forloop.last %}, {% endif %}
-                
-                <script>
-                function {{ company.slug }}_acquisitions_{{ acquisition.id }}(){
-                    var r = confirm("Are You sure You want to delete acquisition {{ acquisition.name }}");
-                    if( r == true){
-                        return document.location.href = "/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/delete";
-                    }else{
-                        return false;
-                    }
-                }
-                </script>
-                    
+                    <li id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/update">{{ acquisition.name }}</a>{% if not forloop.last %}, {% endif %}</li>
                 {% endfor %}    
                 </ul>
         </div>
@@ -360,20 +315,11 @@
 
         {% for manager in management %}
             <ul class="nav nav-list pull-left">
-                <li><a id="{{ company.slug }}-management-{{ manager.id }}" onclick="{{ company.slug }}_management_{{ manager.id }}(); return false;" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-remove"></i></a></li>
-        </ul>
-        <script>
-        function {{ company.slug }}_management_{{ manager.id }}(){
-            var r = confirm("Are You sure You want to delete Manager {{ manager.full_name }}");
-            if( r == true){
-                return document.location.href = "/company/{{ company.slug }}/management/{{manager.id}}/delete";
-            }else{
-                return false;
-            }
-        }
-        </script>
+                <li><a id="{{ company.slug }}-management-{{ manager.id }}" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-remove"></i></a></li>
+        
             <h5 class="media-heading text-info"> <a href="/company/{{company.slug }}/management/{{ manager.id }}/update">{{ manager.full_name }}</a></h5>
                 <p> {{ manager.title }}</p>
+            </ul>
 
         {% endfor %}
     </br>
@@ -424,18 +370,7 @@
         <ul class="pull-left inline">
         {% for competitor in competitors  %}
         
-                <li><a id="{{ company.slug }}-competitors-{{ competitor.id }}" onclick="{{ company.slug }}_competitors_{{ competitor.id }}(); return false;" href="/company/{{ company.slug }}/competitors/{{competitor.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/competitors/{{competitor.id}}/update">{{ competitor.name }}</a></li>{% if not forloop.last %}, {% endif %}
-        
-        <script>
-        function {{ company.slug }}_competitors_{{ competitor.id }}(){
-            var r = confirm("Are You sure You want to delete Competitor {{ manager.name }}");
-            if( r == true){
-                return document.location.href = "/company/{{ company.slug }}/competitors/{{competitor.id}}/delete";
-            }else{
-                return false;
-            }
-        }
-        </script>
+                <li id="competitors-{{ competitor.id }}"><a class="link-delete" data-type="competitors" data-id="{{ competitor.id }}" id="{{ company.slug }}-competitors-{{ competitor.id }}" href="/company/{{ company.slug }}/competitors/{{competitor.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/competitors/{{competitor.id}}/update">{{ competitor.name }}</a> {% if not forloop.last %}, {% endif %}</li>
             
         {% endfor %}    
         </ul>
@@ -569,6 +504,39 @@
     <p id="company-contact">{{ company.contact }}</p>
 
 </div>
+<script type="text/javascript">
+//select all the links with the function or class delete
+var link = $(".link-delete");
+
+link.click(
+    function(event){
+        //eliminate the default function
+        event.preventDefault();
+        //get the data from the link when clicked; data = ["type_deletion","id","company_name"]*company comes by default
+        
+        
+        var r = confirm("Are You sure You want to delete this item?");
+        if( r == true){
+            //pass the data to the ajax function to call the server
+            var data_type = $(this).data("type");
+            var id = $(this).data("id");
+            var company_name = "{{ company.slug }}";
+            $.ajax({
+                url: "/company/"+company_name+"/"+data_type+"/"+id+"/delete",
+                success: 
+                    function(result){
+                        $("#"+data_type+"-"+id).remove();  
+                    },
+                error: 
+                    function(){
+                        alert("We are experiencing problems wit error, please try again later");
+                    }
+            });
+
+    }else{
+        return false;
+    }});
+</script>
 
 {% endblock %}
 </div>
