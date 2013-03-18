@@ -170,6 +170,7 @@ def company_view(request, slug):
     awards = Award.objects.filter(company=company)
     offices = Office.objects.filter(company=company)
     acquisitions = Acquisition.objects.filter(company=company)
+    fundings = Funding.objects.filter(company=company)
     pictures = Picture.objects.filter(company=company)
     companylinks = CompanyLink.objects.filter(company=company)
     office_list = []
@@ -187,7 +188,7 @@ def company_view(request, slug):
         "company_page.html",
         {'company':company, 'companylinks':companylinks,'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
         'management': management,'offices':office_list, 'competitors': competitors,"certifications":certifications,
-        "customers":customers, "awards":awards, "pictures":pictures},
+        "customers":customers, "awards":awards,"acquisitions":acquisitions, "fundings":fundings,  "pictures":pictures},
         context_instance=RequestContext(request))
 
 @login_required
@@ -940,3 +941,90 @@ def acquisition_view(request, slug, id):
                 context_instance=RequestContext(request))
 
 
+##################################################################################################################
+################################################ Funding Views ####################################################
+##################################################################################################################
+
+def funding_create(request, slug):
+    """The purpose of this function is to create  new Funding item associated with a created company"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    #if the request is GET presents empty form
+    if request.method == 'GET':
+
+        funding_form = FundingForm()
+        return render_to_response('funding_form.html', {'form': funding_form, 'company':company},
+            context_instance=RequestContext(request))
+     
+    else:
+        funding_form = FundingForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page
+        if funding_form.is_valid():
+            of = funding_form.save(commit=False)
+            of.company = company
+            of.save()
+            return HttpResponseRedirect('/company/'+str(slug))
+
+        #if not well filled redirect to the original create and display error
+        else:
+            return render_to_response('funding_form.html', 
+                {'form': funding_form, 'form_errors': funding_form.errors, 'company':company},
+                context_instance=RequestContext(request))
+
+
+def funding_update(request, slug, id):
+    """The purpose of this view is to update the info of the Funding page"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    funding_reference = get_object_or_404(Funding, id=id,company=company)
+    funding_form = FundingForm(instance=funding_reference)
+
+    #verifies the person has access to the company or is an incubator employee
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    #if the request is GET presents info, 
+    if request.method == 'GET':
+        return render_to_response('funding_form.html',{'form':funding_form, 'info': funding_reference},context_instance=RequestContext(request))
+    else:
+        funding_form = FundingForm(request.POST, instance=funding_reference)
+        #if is POST Validates the form is well filled and save it redirecting to the company page 
+        if funding_form.is_valid():
+            funding_form.save(commit = False)
+
+            return HttpResponseRedirect('/company/'+str(slug))
+        #if not well filled redirect to the original update page and display error
+        else:
+            return render_to_response('funding_form.html', 
+                {'form': funding_form, 'form_errors': funding_form.errors, 'info': funding_reference},
+                context_instance=RequestContext(request))
+
+@login_required
+def funding_delete(request, slug,id):
+    """This view deletes the Funding info and redirects to the company page"""
+    
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    if request.method == 'POST':
+        return HttpResponseRedirect('/company/'+str(slug))
+    else: 
+        #verifies if the company exists if not returns a 404 page
+        funding_reference = get_object_or_404(Funding, id=id,company=company)
+
+        #deletes the view and redirects to the page.
+        funding_reference.delete()
+        return HttpResponseRedirect('/company/'+str(slug))
+
+
+
+@login_required
+def funding_view(request, slug, id):
+    """This view makes possible to display a Funding item alone"""
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    funding_reference = get_object_or_404(Funding, id=id,company=company)
+
+    return render_to_response('funding_form.html', 
+                {'details': funding_reference,'info':funding_reference},
+                context_instance=RequestContext(request))

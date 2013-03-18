@@ -186,6 +186,7 @@ INSTALLED_APPS = (
     'location',
 #    'taggit',
     'south',
+    'django.contrib.humanize',
     'fileupload',
     'storagess',
     'news',

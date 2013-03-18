@@ -51,6 +51,12 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/awards/(?P<id>[\d]+)/delete/$','companies.views.award_delete'),
      url(r'^company/(?P<slug>[\w-]+)/awards/(?P<id>[\d]+)/$','companies.views.award_view'),
 
+    # Fundings urls
+     url(r'^company/(?P<slug>[\w-]+)/fundings/new/$','companies.views.funding_create'),
+     url(r'^company/(?P<slug>[\w-]+)/fundings/(?P<id>[\d]+)/update/$','companies.views.funding_update'),
+     url(r'^company/(?P<slug>[\w-]+)/fundings/(?P<id>[\d]+)/delete/$','companies.views.funding_delete'),
+     url(r'^company/(?P<slug>[\w-]+)/fundings/(?P<id>[\d]+)/$','companies.views.funding_view'),
+
      # Picture urls
      url(r'^company/(?P<slug>[\w-]+)/pictures/new/$','fileupload.views.picture_create'),
      url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/update/$','fileupload.views.picture_update'),
