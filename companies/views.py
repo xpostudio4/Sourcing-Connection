@@ -188,11 +188,7 @@ def company_view(request, slug):
         "company_page.html",
         {'company':company, 'companylinks':companylinks,'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
         'management': management,'offices':office_list, 'competitors': competitors,"certifications":certifications,
-<<<<<<< HEAD
         "customers":customers, "awards":awards,"acquisitions":acquisitions, "fundings":fundings,  "pictures":pictures},
-=======
-        "customers":customers,"acquisitions":acquisitions, "awards":awards, "pictures":pictures},
->>>>>>> 650417bb07cef21594661cd3b85dd38a86e1ed98
         context_instance=RequestContext(request))
 
 @login_required
