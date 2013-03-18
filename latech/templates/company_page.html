@@ -290,9 +290,10 @@
 
 
             {% for funding in fundings %}
-                <li id="fundings-{{ funding.id }}"><a class="link-delete" data-type="fundings" data-id="{{ funding.id }}" id="{{ company.slug }}-fundings-{{ funding.id }}"  href="/company/{{ company.slug }}/fundings/{{funding.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/fundings/{{funding.id}}/update">{{ funding.round }}</a> {% if not forloop.last %}{% endif %}</li>
-         
+                <li id="fundings-{{ funding.id }}"><a class="link-delete" data-type="fundings" data-id="{{ funding.id }}" id="{{ company.slug }}-fundings-{{ funding.id }}"  href="/company/{{ company.slug }}/fundings/{{funding.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/fundings/{{funding.id}}/update">{{ funding.round }}</a> {% if not forloop.last %}{% endif %}
                  <p> US$ {{ funding.raised|intcomma}}</p>
+                 </li>
+         
 
             {% endfor %}
         </br>
@@ -329,14 +330,14 @@
 
 
         {% for manager in management %}
-            <ul class="nav nav-list pull-left">
-                <li><a id="{{ company.slug }}-management-{{ manager.id }}" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-remove"></i></a></li>
+            <ul id="management-{{ manager.id }}" class="nav nav-list pull-left">
+                <li><a class="link-delete" data-type="management" data-id="{{ manager.id }}" id="{{ company.slug }}-management-{{ manager.id }}" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-remove"></i></a></li>
         
             <h5 class="media-heading text-info"> <a href="/company/{{company.slug }}/management/{{ manager.id }}/update">{{ manager.full_name }}</a></h5>
                 <p> {{ manager.title }}</p>
             </ul>
 
-        {% endfor %}
+        {% endfor %}    
     </br>
     </div>
 
@@ -352,7 +353,8 @@
         </ul>
         <ul class="pull-left inline">
             {% for office in offices %}
-             <li>
+             <li  id="office-{{ office.object.id }}" >
+                <a class="link-delete pull-left" data-type="office" data-id="{{ office.object.id }}" id="{{ company.slug }}-office-{{ office.object.id }}" href="/company/{{ company.slug }}/office/{{ office.object.id }}/delete"><i class="icon-remove"></i></a>
                 <address>
                     <strong><a href="/company/{{company.slug }}/office/{{ office.object.id }}/update">{{ office.object.country }}</a></strong><br>
                     {{ office.object.description }}<br>         
@@ -361,8 +363,6 @@
                     {% if office.object.phone %}
                       <abbr title="Phone">P:</abbr> {{ office.object.phone }}<br>
                     {% endif %}
-               </address>
-            </li>
 
                 {% if office.ul  %}
                     </ul><br>
@@ -407,7 +407,7 @@
                 {% for picture in pictures  %}
         
     
-                        <li class="span2" > <a id="{{ company.slug }}-pictures-{{ picture.id }}" onclick="{{ company.slug }}_pictures_{{ picture.id }}(); return false;" href="/company/{{ company.slug }}/pictures/{{ picture.id }}/delete"><i class="icon-remove"></i></a>  <a class="gallery" href="{{ MEDIA_URL }}{{ picture.file}}" > <img  data-src="holder.js/160x120" src="{{ MEDIA_URL }}{{ picture.file}}" width="160" height="160"> </a></li>{% if not forloop.last %}, {% endif %}
+                        <li id="pictures-{{ picture.id }}" class="span2" > <a class="link-delete" data-type="pictures" data-id="{{ picture.id }}" id="{{ company.slug }}-pictures-{{ picture.id }}" onclick="{{ company.slug }}_pictures_{{ picture.id }}(); return false;" href="/company/{{ company.slug }}/pictures/{{ picture.id }}/delete"><i class="icon-remove"></i></a>  <a class="gallery" href="{{ MEDIA_URL }}{{ picture.file}}" > <img  data-src="holder.js/160x120" src="{{ MEDIA_URL }}{{ picture.file}}" width="160" height="160"> </a></li>
                 
                     <script>
                     function {{ company.slug }}_pictures_{{ picture.id }}(){
