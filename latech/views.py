@@ -1,23 +1,48 @@
-import csv
-import operator
+#Django core utils
 from django.utils import simplejson
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, get_object_or_404
-from taxonomy.models import *
-from companies.models import *
-from contacts.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm
 from django.contrib.auth.forms import AuthenticationForm
-from django.db.models import Q 
+from django.db.models import Q
+from django.views.decorators.http import require_POST, require_http_methods
+
+#Aplication models
+from taxonomy.models import *
+from companies.models import *
+from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingForm, AcquisitionForm, ManagementForm, CompetitorsForm, OfficeForm
+from contacts.models import *
+from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm
 from latech.forms import TicketForm
 from latech.asana import AsanaAPI, AsanaException
+from fileupload.forms import PictureForm
+
+#third party libraries
 import requests
+import csv
+import operator
 from bs4 import BeautifulSoup
+
+
+def form_create(request, model):
+  models ={
+  "Customer": CustomerForm(),
+  "Award": AwardForm(),
+  "Certification": CertificationForm(),
+  "Funding": FundingForm(),
+  "Acquisition": AcquisitionForm(),
+  "Management":ManagementForm(),
+  "Competitor": CompetitorsForm(),
+  "Picture": PictureForm(),
+  "Office": OfficeForm(),
+  }
+  return HttpResponse(models[model].as_p())
+
+
 
 def tagit(request):
    tags = Tag.objects.all()
