@@ -1,8 +1,11 @@
+{% block external %} 
+{% endblock %}
 {% if company_list %}
     <h2 class="lead">Companies</h2>
     <ul class="companies">
     	<table class="table table-hover">
             <tbody>
+        <button type="button" id="excel" class="btn btn-primary"  data-toggle="button" ONCLICK="window.location.href='excel/export{{ request.get_full_path }}'"> Download as Excel </button>
         {% for company in company_list %}
         <tr>
     			<td>
@@ -42,7 +45,7 @@
       	</tr>
              
         {% endfor %}
-          
+ 
     	   </tbody>
         </table>
          <hr/>

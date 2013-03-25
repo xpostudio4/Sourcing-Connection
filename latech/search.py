@@ -1,3 +1,4 @@
+import tablib
 from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm, UserForm, CompanyStatusForm
 from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, HttpResponse
@@ -11,98 +12,20 @@ from latech.views import hacked_news
 from news.functions import news
 
 
-def search_page(request):
-    search_form = SearchForm()
-    company_list = []
-    contact_list = []    
-    errors =[]
-    show_results = False
-
-    if request.user :
-        user_id = request.user.id 
-
-        try:
-            contact = Contact.objects.get(id = user_id)
-            if contact.latech_contact == True:
-                latech= {'contact':True}
-            else:
-                latech = {}
-        except Contact.DoesNotExist:
-            latech ={}
-    else:
-        latech = {}
-
-    if 'query' in request.GET:
-       show_results = True
-       query = request.GET['query'].strip()
-    
-
-       if query:
-           keywords = query.split()
-           # Splitting Keywords for companies searchs
-    
-
-           for keyword in keywords:
-               company_list = Company.objects.filter(
-                   Q(name__icontains=keyword)|
-                   Q(description__icontains=keyword)|
-                   Q(technologies__icontains=keyword)|
-                   Q(industries__icontains=keyword))[:10]
-    
-
-           # Splitting Keywords for contacts searchs
-           for keyword2 in keywords:
-               contact_list = Contact.objects.filter(
-                   Q(fr_name__icontains=keyword2)|
-                   Q(ls_name__icontains=keyword2)|
-                   Q(m_name__icontains=keyword2)|
-                   Q(overview__icontains=keyword2))[:10]
-           search_form = SearchForm({'query': query})
- 
-    variables = RequestContext(request, {
-        'search_form':search_form,    
-        'errors':errors,
-        'company_list': company_list,
-        'contact_list': contact_list,        
-        'show_results': show_results,
-        'latech': latech,
-    })
-    
-#    return render_to_response('company_list.html', variables)
-#    else:
-    return render_to_response('search.html', variables)
-
 def empty_search_form():
     contact_form = ContactSearchForm()
     company_form = CompanySearchForm()
     return contact_form, company_form
 
-def advanced_search(request):
-    contact_form, company_form, = empty_search_form()
+def search_function(request):
+    contact_form, company_form = empty_search_form()
     company_status_form = CompanyStatusForm()
-    user_form  = AuthenticationForm()
     contact_list = []
-    company_list = []
-#    company_list = Company.objects.all()
-    errors = []
-    count = 0
+    company_list = Company.objects.all()
+    q = Q()
+
     show_results = False
 
-    if request.user :
-        user_id = request.user.id 
-
-        try:
-            contact = Contact.objects.get(id = user_id)
-            if contact.latech_contact == True:
-                latech= {'contact':True}
-            else:
-                latech = {}
-               
-        except Contact.DoesNotExist:
-            latech ={}
-    else:
-        latech = {}
-    
     if 'keywords' in request.GET:
         keywords = request.GET['keywords'].strip()
         category_company = request.GET['category_company']
@@ -113,7 +36,7 @@ def advanced_search(request):
         if (keywords or category_company or country_company or industry_company or technology_company):
 
             show_results = True
-            q = Q()
+        
             # Country Search
             if country_company:
                 q = q & Q(country__id__icontains=country_company)
@@ -152,26 +75,26 @@ def advanced_search(request):
                 'country_company':country_company,
 
             })
-            company_list = Company.objects.filter(q)
-        else:
-            show_results = True
-            company_list = Company.objects.all()
-
+    
+#            company_list = Company.objects.filter(q)
+        
    # Company Status Search
 
     if 'company_status' in request.GET:
         company_status = request.GET['company_status']
         if company_status:
+
             show_results = True
-            company_list = Company.objects.filter(company_status__exact=company_status)
+
+            q = q &Q(company_status__exact=company_status)
           
             company_status_form = CompanyStatusForm({
                 'company_status':company_status
             })
 
-        elif company_status == 0 or None:
-            show_results = True
-            company_list = Company.objects.all()
+#        elif company_status == 0 or None:
+#            show_results = True
+#            company_list = Company.objects.all()
 
     if 'maximum' in request.GET:
         maximum = request.GET['maximum']
@@ -180,8 +103,9 @@ def advanced_search(request):
             minimum = float(minimum)/100.0
             maximum = float(maximum)/100.0
             show_results = True
-            company_list = Company.objects.filter(pk__in=ProfileCompletion.objects.filter(completion__range=(minimum, maximum)))
-
+            q = q & Q(pk__in=ProfileCompletion.objects.filter(completion__range=(minimum, maximum)))
+    
+    company_list = Company.objects.filter(q)
            
     if 'terms' in request.GET:
         terms = request.GET['terms'].strip()
@@ -199,7 +123,39 @@ def advanced_search(request):
                 ).filter(Q(overview__icontains=overview)
                 ).filter(Q(industry__contains=industry))
             query2 = "%s %s %s %s %s" % (terms, tags, overview, technology, industry)
-            contact_form = CompanySearchForm({'query2': query2})
+            contact_form = ContactSearchForm({'query2': query2})
+        else:
+            show_results = True
+            contact_list = Contact.objects.all()
+
+
+    return contact_form, company_form, company_status_form, show_results, company_list,contact_list
+
+def advanced_search(request):
+    user_form  = AuthenticationForm()
+    
+#    company_list = Company.objects.all()
+    errors = []
+    count = 0
+    
+
+    if request.user :
+        user_id = request.user.id 
+
+        try:
+            contact = Contact.objects.get(id = user_id)
+            if contact.latech_contact == True:
+                latech= {'contact':True}
+            else:
+                latech = {}
+               
+        except Contact.DoesNotExist:
+            latech ={}
+    else:
+        latech = {}
+    
+    contact_form, company_form, company_status_form, show_results, company_list,contact_list = search_function(request)
+    
 
     variables = RequestContext(request, {
         'company_form': company_form,
@@ -210,7 +166,7 @@ def advanced_search(request):
         'show_results': show_results,
         'errors':errors,
         'user_form': user_form,
-        'hacked_news': hacked_news(),
+        #'hacked_news': hacked_news(),
         'blog_news': news(page=1, qty=20),
         'latech': latech,
 #        'search_page':search_page()
@@ -221,3 +177,18 @@ def advanced_search(request):
         context_instance = RequestContext(request)
         )
     
+def export(request, filename='export', format="xlsx"):
+    contact_form, company_form, company_status_form, show_results, company_list,contact_list = search_function(request)
+
+    dataset = tablib.Dataset()
+
+    for co in company_list:
+        dataset.append([co.name, co.industries, co.categories])
+    dataset.headers = ['Company Name', 'Company industries', 'Company Category']
+    filename = '%s.%s' % (filename, format)
+    response = HttpResponse(
+        getattr(dataset, format),
+        mimetype=(format, 'application/octet-stream')
+        )
+    response['Content-Disposition'] = 'attachment; filename=%s' % filename
+    return response

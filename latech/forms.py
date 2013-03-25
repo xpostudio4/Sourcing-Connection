@@ -23,7 +23,8 @@ class CompanyStatusForm(forms.Form):
     company_status = forms.TypedChoiceField(
         label=u'GTB Status',
         empty_value='Nada', 
-        choices=Company.COMPANY_STATUS_CHOICES
+        choices=Company.COMPANY_STATUS_CHOICES,
+        required = False
     )
 
 class CompanySearchForm(forms.Form):
