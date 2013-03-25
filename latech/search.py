@@ -180,11 +180,38 @@ def advanced_search(request):
 def export(request, filename='export', format="xlsx"):
     contact_form, company_form, company_status_form, show_results, company_list,contact_list = search_function(request)
 
-    dataset = tablib.Dataset()
+    dataset = tablib.Dataset(title="Company Data")
 
     for co in company_list:
-        dataset.append([co.name, co.industries, co.categories])
-    dataset.headers = ['Company Name', 'Company industries', 'Company Category']
+        dataset.append([
+            co.name,
+            co.email,
+            co.main_phone,
+            co.industries, 
+            co.categories,
+            co.value_proposition,
+            co.description,
+            co.company_status,
+            co.employee_quantity,
+            co.industries,
+            co.technologies,
+        ])
+
+    dataset.headers = [
+            "Company Name",
+            "Email",
+            "Phone",
+            "Industries", 
+            "Category",
+            "Value Proposition",
+            "Description",
+            "GB Status",
+            "Employee Quantity Range",
+            "Industries",
+            "Technologies",
+    ]
+
+
     filename = '%s.%s' % (filename, format)
     response = HttpResponse(
         getattr(dataset, format),
