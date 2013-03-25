@@ -108,6 +108,7 @@ class Company(models.Model):
 class CompanyLink(models.Model):
     company = models.ForeignKey(Company, related_name="Links for Companies")
     web_url = models.URLField(blank=True)
+    linkedin_url = models.URLField(blank=True)    
     blog_url = models.URLField(blank=True)
     twitter_url = models.URLField(blank=True)
     facebook_link = models.URLField(blank=True)
@@ -219,6 +220,7 @@ class Customer(models.Model):
 class Award(models.Model):
     company = models.ForeignKey(Company, related_name="Company Awards", blank=True)
     name = models.CharField(max_length=255, verbose_name='Customer Name')
+    date = models.DateField(blank=True, null=True)
 
     def __unicode__(self):
         return self.name

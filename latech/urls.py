@@ -87,6 +87,8 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/competitors/(?P<id>[\d]+)/$','companies.views.competitors_view'),
 
      url(r'^company/(?P<slug>[\w-]+)/links/update/$','companies.views.companylink_update'),
+     
+     url(r'^excel/export/$','latech.search.export'),
 
      # Profile
      # url(r'^profile/(?P<pk>[\w-]+)/$', ProfileView.as_view(), name='profile_view'),
