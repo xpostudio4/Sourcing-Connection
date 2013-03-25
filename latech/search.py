@@ -11,6 +11,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from latech.views import hacked_news
 from news.functions import news
 
+def search_page():
+    pass
+
 
 def empty_search_form():
     contact_form = ContactSearchForm()

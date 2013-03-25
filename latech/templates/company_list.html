@@ -3,9 +3,17 @@
 {% if company_list %}
     <h2 class="lead">Companies</h2>
     <ul class="companies">
+              
+        <a class="pull-right" id="excel_button" href="excel/export{{ request.get_full_path }}" data-toggle="tooltip" data-placement="top" data-original-title="Download the search results as an Excel File" ><img class="media-object" src="{{ STATIC_URL }}img/excel.png" height="40" width="40"></a><br>
+        
+        <script type="text/javascript">
+            $('#excel_button').tooltip("show");
+        </script>
+
     	<table class="table table-hover">
+
             <tbody>
-        <button type="button" id="excel" class="btn btn-primary"  data-toggle="button" ONCLICK="window.location.href='excel/export{{ request.get_full_path }}'"> Download as Excel </button>
+
         {% for company in company_list %}
         <tr>
     			<td>
