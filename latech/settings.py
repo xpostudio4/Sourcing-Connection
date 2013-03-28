@@ -62,7 +62,7 @@ if os.getenv('HEROKU_ENV') == 'True':
     GS_ACCESS_KEY_ID=os.environ.get('GS_SECRET_KEY_ID')
     GS_SECRET_ACCESS_KEY=os.environ.get('GS_SECRET_ACCESS_KEY')
     DEFAULT_FILE_STORAGE = 'storages.backends.gs.GSBotoStorage'
-    DEBUG = False
+    DEBUG = True
     
 else:
 
