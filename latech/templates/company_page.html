@@ -1,3 +1,5 @@
+
+
 {% extends "base.html" %}
 
 {% block title %}{{ company.name  }}{% endblock %}
@@ -101,17 +103,17 @@
      <div class="media">
         <h2 class="media-heading">{{ company.name  }} </h2>
         <p class="muted">{{ company.value_proposition  }}</p>
-         
+
     </div>
     <div class="span10">
-        
-        
-        
+
+
+
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
             <p> {{ company.description  }}</p>
         </div>
-    
+
     <div class="media">
 <table class="table">
     <tbody>
@@ -125,12 +127,12 @@
             <tr>
                 <td>Twitter:</td>
                 <td >{% if  link.twitter_url  %}<a href="{{ link.twitter_url  }}" id = "company-twitter-url" >{{ link.twitter_url  }}</a>{% endif %}</td>
-                
+
                 <td>Facebook:</td>
                 <td ><a href="{{ link.facebook_link  }}" id="company-facebook-url">{{ link.facebook_link  }}</a></td>
             </tr>
         {% endfor%}
-    
+
         {% if  user.is_staff or user.is_superuser or permission %}
         <tr>
             <td>Email: </td>
@@ -148,13 +150,13 @@
         <tr>
             <td>Related Categories:</td>
             <td colspan="3" id="company-tags">{{ company.tags }}</td>
-            
+
         </tr>
 
     </tbody>
 
 </table>
-            
+
 </div>
 
 <div>
@@ -172,7 +174,7 @@
 
         {############################################## Customers ###################################}
         <div class="media">
-                
+
 
                 <h4 class="media-heading"><strong class="muted">Customers:</strong></h4></br>
                 <ul class="nav nav-list pull-right">
@@ -180,18 +182,18 @@
                 </ul>
 
                 <br/>
-                <ul class="pull-left inline">
+                <ul class="pull-left inline" id="Customer">
                 {% for customer in customers  %}
-                
-                        <li id="customers-{{ customer.id }}"><a class="link-delete" data-type="customers" data-id="{{ customer.id }}"  id="{{ company.slug }}-customers-{{ customer.id }}" href="/" ><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/customers/{{customer.id}}/update">{{ customer.name }}</a>{% if not forloop.last %}, {% endif %}</li>
-                {% endfor %}    
+
+                        <li id="customers-{{ customer.id }}"><a class="link-delete" data-type="customers" data-id="{{ customer.id }}"  id="{{ company.slug }}-customers-{{ customer.id }}" href="/company/{{ company.slug }}/customers/{{customer.id}}/delete" ><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/customers/{{customer.id}}/update">{{ customer.name }}</a>{% if not forloop.last %}, {% endif %}</li>
+                {% endfor %}
                 </ul>
         </div>
 
                 {############################################## Awards ##############################}
 
         <div class="media">
-        
+
 
             <h4 class="media-heading"><strong class="muted">Awards:</strong></h4></br>
             <ul class="nav nav-list pull-right">
@@ -201,10 +203,10 @@
             <br/>
             <ul class="pull-left inline">
             {% for award in awards  %}
-            
+
                     <li id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/awards/{{award.id}}/update">{{ award.name }}</a> {% if not forloop.last %}, {% endif %}</li>
 
-            {% endfor %}    
+            {% endfor %}
             </ul>
         </div>
 
@@ -218,14 +220,14 @@
             <br/>
             <ul class="pull-left inline">
             {% for certification in certifications  %}
-            
-                    <li id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/certifications/{{certification.id}}/update">{{ certification.name }}</a> {% if not forloop.last %}, {% endif %}</li>
-                
-            {% endfor %}    
-            </ul>
-        </div>  
 
-    {% else %}    
+                    <li id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/certifications/{{certification.id}}/update">{{ certification.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+
+            {% endfor %}
+            </ul>
+        </div>
+
+    {% else %}
 
             {############################################## Customers #####################################}
         <div class="media">
@@ -233,10 +235,10 @@
 
             <ul class="pull-left inline">
             {% for customer in customers  %}
-            
+
                     <li>{{ customer.name }}</li>{% if not forloop.last %}, {% endif %}
-            
-                
+
+
             {% endfor %}
         </div>
 
@@ -257,10 +259,10 @@
 
             <ul class="pull-left inline">
             {% for certification in certifications  %}
-            
+
                     <li>{{ certification.name }}</li>{% if not forloop.last %}, {% endif %}
-            
-                
+
+
             {% endfor %}
         </div>
 
@@ -293,17 +295,17 @@
                 <li id="fundings-{{ funding.id }}"><a class="link-delete" data-type="fundings" data-id="{{ funding.id }}" id="{{ company.slug }}-fundings-{{ funding.id }}"  href="/company/{{ company.slug }}/fundings/{{funding.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/fundings/{{funding.id}}/update">{{ funding.round }}</a> {% if not forloop.last %}{% endif %}
                  <p> US$ {{ funding.raised|intcomma}}</p>
                  </li>
-         
+
 
             {% endfor %}
         </br>
     </div>
-    
-    
+
+
 
         {############################################## Acquisition ####################################}
         <div class="media">
-                
+
 
                 <h4 class="media-heading"><strong class="muted">Acquisitions:</strong></h4></br>
                 <ul class="nav nav-list pull-right">
@@ -313,9 +315,9 @@
                 <br/>
                 <ul class="pull-left inline">
                 {% for acquisition in acquisitions  %}
-                
+
                     <li id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/update">{{ acquisition.name }}</a>{% if not forloop.last %}, {% endif %}</li>
-                {% endfor %}    
+                {% endfor %}
                 </ul>
         </div>
 
@@ -332,18 +334,18 @@
         {% for manager in management %}
             <ul id="management-{{ manager.id }}" class="nav nav-list pull-left">
                 <li><a class="link-delete" data-type="management" data-id="{{ manager.id }}" id="{{ company.slug }}-management-{{ manager.id }}" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-remove"></i></a></li>
-        
+
             <h5 class="media-heading text-info"> <a href="/company/{{company.slug }}/management/{{ manager.id }}/update">{{ manager.full_name }}</a></h5>
                 <p> {{ manager.title }}</p>
             </ul>
 
-        {% endfor %}    
+        {% endfor %}
     </br>
     </div>
 
 
         {############################################## Offices ##############################}
-    
+
     <div class="media">
 
     <h4 class="media-heading"><strong class="muted">Offices:</strong></h4>
@@ -357,7 +359,7 @@
                 <a class="link-delete pull-left" data-type="office" data-id="{{ office.object.id }}" id="{{ company.slug }}-office-{{ office.object.id }}" href="/company/{{ company.slug }}/office/{{ office.object.id }}/delete"><i class="icon-remove"></i></a>
                 <address>
                     <strong><a href="/company/{{company.slug }}/office/{{ office.object.id }}/update">{{ office.object.country }}</a></strong><br>
-                    {{ office.object.description }}<br>         
+                    {{ office.object.description }}<br>
                     {{ office.object.address_1 }}<br>
                     {{ office.object.address_2 }}<br>
                     {% if office.object.phone %}
@@ -366,16 +368,16 @@
 
                 {% if office.ul  %}
                     </ul><br>
-                    
+
                     <ul class="pull-left inline">
-                {% endif %}    
+                {% endif %}
             {% endfor %}
         </ul><br>
     </div>
 
         {############################################## Competitors ##############################}
 
-    <div class="media"> 
+    <div class="media">
         <h4 class="media-heading"><strong class="muted">Competitors:</strong></h4>
         <ul class="nav nav-list pull-right">
             <li><a class="add-element" data-model="Competitor" href="/company/{{ company.slug }}/competitors/new"><i class="icon-plus"></i> Add Competitor</a></li>
@@ -384,16 +386,16 @@
         <br/>
         <ul class="pull-left inline">
         {% for competitor in competitors  %}
-        
+
                 <li id="competitors-{{ competitor.id }}"><a class="link-delete" data-type="competitors" data-id="{{ competitor.id }}" id="{{ company.slug }}-competitors-{{ competitor.id }}" href="/company/{{ company.slug }}/competitors/{{competitor.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/competitors/{{competitor.id}}/update">{{ competitor.name }}</a> {% if not forloop.last %}, {% endif %}</li>
-            
-        {% endfor %}    
+
+        {% endfor %}
         </ul>
     </div>
 
         {############################################## Pictures ####################################}
         <div class="media">
-                
+
 
                 <h4 class="media-heading"><strong class="muted">pictures:</strong></h4></br>
                 <ul class="nav nav-list pull-right">
@@ -402,12 +404,12 @@
                 <br/>
                 <ul class="thumbnails pull-left inline">
                   <div class="row-fluid">
-                   
+
                 {% for picture in pictures  %}
-        
-    
+
+
                         <li id="pictures-{{ picture.id }}" class="span2" > <a class="link-delete" data-type="pictures" data-id="{{ picture.id }}" id="{{ company.slug }}-pictures-{{ picture.id }}" onclick="{{ company.slug }}_pictures_{{ picture.id }}(); return false;" href="/company/{{ company.slug }}/pictures/{{ picture.id }}/delete"><i class="icon-remove"></i></a>  <a class="gallery" href="{{ MEDIA_URL }}{{ picture.file}}" > <img  data-src="holder.js/160x120" src="{{ MEDIA_URL }}{{ picture.file}}" width="160" height="160"> </a></li>
-                
+
                     <script>
                     function {{ company.slug }}_pictures_{{ picture.id }}(){
                         var r = confirm("Are You sure You want to delete picture {{ picture.name }}");
@@ -418,12 +420,12 @@
                         }
                     }
                     </script>
-                    
+
                 {% endfor %}
                     <br><br>
 
-                    </div>                  
-        
+                    </div>
+
                 </ul>
         </div>
 
@@ -451,7 +453,7 @@
 
         {% endfor %}
 
-        
+
 
         {############################################## Competitors #####################################}
         <div class="media">
@@ -475,7 +477,7 @@
                  <li>
                     <address>
                         <strong>{{ office.object.country }}</strong><br>
-                        {{ office.object.description }}<br>         
+                        {{ office.object.description }}<br>
                         {{ office.object.address_1 }}<br>
                         {{ office.object.address_2 }}<br>
                    <address>
@@ -483,9 +485,9 @@
 
                     {% if office.ul  %}
                         </ul><br>
-                        
+
                         <ul class="pull-left inline">
-                    {% endif %}    
+                    {% endif %}
                 {% endfor %}
             </ul><br>
         </div>
@@ -510,11 +512,11 @@
             <br>
 
             {% if pictures %}
-                
+
                     {% for picture in pictures %}
                     <li class="span2"> <a class="gallery" href="{{ MEDIA_URL }}{{ picture.file}}"><img src="{{ MEDIA_URL }}{{ picture.file}}"></a></li>
                     {% endfor %}
-             
+
             {% endif %}
                 </div>
             </ul>
@@ -533,23 +535,40 @@
 #    links = models.ForeignKey("URLs") -->
 
 <div id="companyModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">        
+    <div class="modal-header">
         <h3 id="myModalLabel">Login</h3>
     </div>
     <div class="modal-body">
-            <form method="POST" action="/login/" >
+            <div class="alert alert-success hide" id="success-notification">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              Congratulations! The new <strong id="succes-model"></strong> has been created on the database
+            </div>
+            <div class="alert alert-block alert-error hide" id="error-notification">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              Warning! The <strong id="error-model"></strong> element was not created in the database due to the following fields:
+
+              <ul id="error-list">
+              </ul>
+              Please verify the fields and fill them corretly.
+            </div>
+            <form id="new-form" method="POST" action="/login/" >
+                {% csrf_token %}
                 <div class="modal-form" data-model="0" >
                 </div>
-                <input type="submit" id="modal-btn" type="button" class="btn btn-primary" value="Create">
-              
+                <a href="#"  id="create-item"  class="btn btn-primary"  >Create</a>
+                <a href="#"  id="add-another"  class="btn btn-info" >Create and Add another</a>
+                <a href="#" id="cancel-modal" class="btn btn-inverse">Cancel</a>
+
             </form>
     </div>
     <div class="modal-footer">
     </div>
     </div>
-<script type="text/javascript">
-//select all the links with the function or class delete
-var link = $(".link-delete");
+        <script type="text/javascript">
+
+            
+            //select all the links with the function or class delete
+           var link = $(".link-delete");
 
 link.click(
     function(event){
@@ -583,7 +602,7 @@ link.click(
 
     var add = $(".add-element");
 
-    add.click(
+add.click(
         function(event){
             var model = $(this).data("model");  
             var id = $(this).data("id"); //can be form_id
@@ -598,6 +617,7 @@ link.click(
                 success: 
                     function(result){
                         $("#myModalLabel").html("Create a new "+ model +".");
+                        $("#success-notification").addClass("hide");
                         $(".modal-form").html(result);
                         $(".modal-form").data("model", model);
                         $("#companyModal").modal("show");  
@@ -610,8 +630,54 @@ link.click(
                     }
             });
             
-        }
-    )
+        });
+
+    var add_another = $('#add-another');
+add_another.click( 
+        function(event){
+
+            var model_name = $(".modal-form").data("model");
+            event.preventDefault();
+            $.ajax({
+                url: "/forms/{{ company.slug }}/"+model_name+"/",
+                type: "POST",
+                cache: false,
+                data:  $('#new-form').serialize(), 
+                success: 
+                    function(result){
+                        alert(result);
+                        $.ajax({
+                            url: "/forms/"+model_name+"/",
+                            data: { 'csrfmiddlewaretoken': '{{csrf_token}}' }, 
+                            type: "POST",
+                            dataType: 'json',
+                            cache: false,
+                            success:
+                                function(json){
+                                    if(json.errors !== undefined){
+                                        alert("Errors in the forms");
+
+                                    }else{
+                                       $("#succes-model").html(model_name); 
+                                       $("#success-notification").removeClass("hide"); 
+                                       $(".modal-form").trigger('reset');
+                                    }},
+                            error: 
+                                function(xhr){
+                                    alert("Error: " + xhr.statusText);
+                                    //alert("We are experiencing problems with the server , please try again later");
+                                    return false;
+                                },
+                            });
+                    },
+                error: 
+                    function(xhr){
+                        alert("Error 2: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+        });
 
     var modal_btn = $('#modal-btn');
     modal_btn.click( 
@@ -635,7 +701,40 @@ link.click(
                     }
             });
         })
-</script>
 
+    var cancel_modal = $("#cancel-modal");
+
+    cancel_modal.click(
+        function(event){
+            event.preventDefault();
+            $("#companyModal").modal("hide");
+        });
+
+    var create_item = $('#create-item');
+create_item.click( 
+        function(event){
+
+            var model_name = $(".modal-form").data("model");
+            event.preventDefault();
+            $.ajax({
+                url: "/forms/{{ company.slug }}/"+model_name+"/",
+                type: "POST",
+                cache: false,
+                data:  $('#new-form').serialize(), 
+                success: 
+                    $("#companyModal").modal("hide")
+                    ,
+                error: 
+                    function(xhr){
+                        alert("Error: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+        })
+
+
+
+        </script>
 {% endblock %}
 </div>

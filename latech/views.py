@@ -1,59 +1,104 @@
 #Django core utils
-from django.utils import simplejson
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.template import RequestContext, Context
-from django.shortcuts import render_to_response, get_object_or_404
-from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import AuthenticationForm
+from django.core import serializers
 from django.db.models import Q
+from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.shortcuts import render_to_response, get_object_or_404
+from django.template import RequestContext, Context
+from django.utils import simplejson
+from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST, require_http_methods
 
 #Aplication models
-from taxonomy.models import *
+
 from companies.models import *
 from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingForm, AcquisitionForm, ManagementForm, CompetitorsForm, OfficeForm
 from contacts.models import *
-from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm
-from latech.forms import TicketForm
-from latech.asana import AsanaAPI, AsanaException
 from fileupload.forms import PictureForm
+from latech.asana import AsanaAPI, AsanaException
+from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm, TicketForm
+from taxonomy.models import *
 
 #third party libraries
-import requests
+from bs4 import BeautifulSoup
 import csv
 import operator
-from bs4 import BeautifulSoup
+import requests
 
+
+
+def json_response(x):
+    import json
+    return HttpResponse(json.dumps(x, sort_keys=True, indent=2),
+                        content_type='application/json; charset=UTF-8')
 
 def form_create(request, model):
-  models ={
-  "Customer": CustomerForm(),
-  "Award": AwardForm(),
-  "Certification": CertificationForm(),
-  "Funding": FundingForm(),
-  "Acquisition": AcquisitionForm(),
-  "Management":ManagementForm(),
-  "Competitor": CompetitorsForm(),
-  "Picture": PictureForm(),
-  "Office": OfficeForm(),
-  }
-  return HttpResponse(models[model].as_p())
+    models ={
+        "Customer": CustomerForm(),
+        "Award": AwardForm(),
+        "Certification": CertificationForm(),
+        "Funding": FundingForm(),
+        "Acquisition": AcquisitionForm(),
+        "Management":ManagementForm(),
+        "Competitor": CompetitorsForm(),
+        "Picture": PictureForm(),
+        "Office": OfficeForm(),
+    }
+    return HttpResponse(models[model].as_p())
+
+@require_POST
+def form_validation(request, slug, model):
+    models_form = {
+        "Customer": CustomerForm(request.POST),
+        "Award": AwardForm(request.POST),
+        "Certification": CertificationForm(request.POST),
+        "Funding": FundingForm(request.POST),
+        "Acquisition": AcquisitionForm(request.POST),
+        "Management":ManagementForm(request.POST),
+        "Competitor": CompetitorsForm(request.POST),
+        "Picture": PictureForm(request.POST),
+        "Office": OfficeForm(request.POST),
+
+    }
 
 
+
+    company = get_object_or_404(Company, slug=slug)
+    form = models_form[model]
+
+    if form.is_valid():
+        f = form.save(commit=False)
+        f.company = company
+        f.save()
+
+        instance_models = {
+            "Customer": Customer.objects.filter(id=f.id),
+        }
+        
+        d = { 
+            'id': f.id, 
+            'model': model,
+            'company': company.name
+            }
+        if f.name:
+            d['name'] = f.name
+        return json_response(d)
+
+    return json_response({ "errors":dict(form.errors.items()) })
 
 def tagit(request):
-   tags = Tag.objects.all()
-   result = []
-   result = [x.name for x in tags]
-   f = simplejson.dumps(result)
-   return render_to_response("tagit.html", {'f':f},context_instance=RequestContext(request))
+    tags = Tag.objects.all()
+    result = []
+    result = [x.name for x in tags]
+    f = simplejson.dumps(result)
+    return render_to_response("tagit.html", {'f':f},context_instance=RequestContext(request))
 
 def base(request):
-   return render_to_response("index.html",{'user': request.user}, 
-context_instance=RequestContext(request))
+    return render_to_response("index.html",{'user': request.user}, 
+    context_instance=RequestContext(request))
 
 #Used to obtain the list of tags as a Ajax request returns a Json Array
 #def tagsplete(request):
@@ -65,10 +110,10 @@ context_instance=RequestContext(request))
 #   return HttpResponse(simplejson.dumps(results),mimetype='application/json')
 
 def tagitt(request):
-   tags = Tag.objects.all()
-   result = []
-   result = [x.name for x in tags]
-   return HttpResponse(simplejson.dumps(result),mimetype='application/json')
+    tags = Tag.objects.all()
+    result = []
+    result = [x.name for x in tags]
+    return HttpResponse(simplejson.dumps(result),mimetype='application/json')
 
 def file_not_found_404(request):
     """Creates a file error with the info to display the user"""
@@ -81,53 +126,53 @@ def logout_page(request):
     return HttpResponseRedirect('/')
 
 def authentication_view(request):
-  if request.method =='POST':
-    try: 
-          username = request.POST['username']
-          password = request.POST['password']
-          user = authenticate(username = username, password = password)
-          if user is not None:
-            if user.is_active:
-              login(request,user)
-          else:
-            return HttpResponseRedirect('/')
-    except: 
-      return HttpResponseRedirect('/')
-  else:
-    return HttpResponseRedirect('/')
+    if request.method =='POST':
+        try: 
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username = username, password = password)
+            if user is not None:
+                if user.is_active:
+                    login(request,user)
+            else:
+                return HttpResponseRedirect('/')
+        except: 
+          return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/')
 
   
-  return HttpResponseRedirect('/')
+    return HttpResponseRedirect('/')
 
 
 
 def hacked_news():
-  """Steals the info from Hacker News to use in our demo Homepage """
-  r = requests.get("http://news.ycombinator.com/")
-  webpage = BeautifulSoup(r.text)
+    """Steals the info from Hacker News to use in our demo Homepage """
+    r = requests.get("http://news.ycombinator.com/")
+    webpage = BeautifulSoup(r.text)
 
-  pub_table = webpage.find_all('table')[2]
-  link_collection = pub_table.select('.title')
+    pub_table = webpage.find_all('table')[2]
+    link_collection = pub_table.select('.title')
 
-  users = pub_table.select('a[href^="user?id="]')
-  for  i in range(0, len(users)):
-    users[i] = users[i].contents[0]
+    users = pub_table.select('a[href^="user?id="]')
+    for  i in range(0, len(users)):
+        users[i] = users[i].contents[0]
 
-  array_links = []
+    array_links = []
 
-  for i in link_collection:
-    if str(i.a) != 'None' :
-      array_links.append({'url': str(i.a['href']), 'text': i.a.text})
+    for i in link_collection:
+        if str(i.a) != 'None' :
+           array_links.append({'url': str(i.a['href']), 'text': i.a.text})
 
 
-  for i in range(0, len(users)):
-     array_links[i]["user"] = users[i]
+    for i in range(0, len(users)):
+        array_links[i]["user"] = users[i]
 
-  for i in range(0, len(array_links)):
-     array_links[i]["id"] = 1+i
+    for i in range(0, len(array_links)):
+        array_links[i]["id"] = 1+i
 
-  array_links.pop()
-  return array_links
+    array_links.pop()
+    return array_links
   
 def load_company(request):
     reader = csv.reader(open("gltclients2.csv"), dialect='excel')
@@ -137,10 +182,10 @@ def load_company(request):
     return HttpResponseRedirect('/')    
 
 def ticket_create(request):
-  """This view generates the view of the ticket form"""
-  #create empty ticket
-  ticket_form = TicketForm()
-  return render_to_response('ticket_form.html', {'ticket_form': ticket_form},context_instance=RequestContext(request) )
+    """This view generates the view of the ticket form"""
+    #create empty ticket
+    ticket_form = TicketForm()
+    return render_to_response('ticket_form.html', {'ticket_form': ticket_form},context_instance=RequestContext(request) )
 
 
 def asana_create(request): 
