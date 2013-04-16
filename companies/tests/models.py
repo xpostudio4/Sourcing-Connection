@@ -121,3 +121,6 @@ class AwardModelTest(TestCase):
         award.name = "Company of the Year"
         award.date = datetime.date.today()
 
+# ViewsTest
+
+#class CompanyViewTest(TestCase):
