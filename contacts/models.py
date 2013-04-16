@@ -71,7 +71,7 @@ class Contact(models.Model):
 
     def save(self,*args, **kwargs):
         super(Contact, self).save(*args, **kwargs)
-        contact_url = Contact_Urls(id=self.id, latech_contact_id=self.user.id)
+        contact_url = Contact_Urls(latech_contact=self)
         contact_url.save()
 
     @models.permalink
