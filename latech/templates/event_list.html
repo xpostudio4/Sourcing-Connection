@@ -1,0 +1,17 @@
+{% block external %} 
+{% endblock %}
+{% if event_list %}
+    <h2 class="lead">Companies</h2>
+    <ul class="events">
+    
+    {% for event in event_list %}
+        
+       <p><a href="{{ event.slug }}">{{ event.title }}</a></p>
+       <p>{{ event.description }} </p>
+
+
+    {% endfor %}
+
+{% endif %}
+
+

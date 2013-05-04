@@ -94,7 +94,7 @@
             </button>
             <ul class="dropdown-menu">
                 <li><a tabindex="-1" href="#">Contact Company</a></li>
-                <li><a tabindex="-1" href="#">Follow Blog</a></li>
+                <li><a tabindex="-1" href="#">Foll ow Blog</a></li>
                 <li class="divider"></li>
                 <li><a tabindex="-1" href="#">Something else here</a></li>
             </ul>
@@ -102,7 +102,7 @@
         </div>
      <div class="media">
         <h2 class="media-heading">{{ company.name  }} </h2>
-        <p class="muted">{{ company.value_proposition  }}</p>
+        <a href="#"  data-model="Company" data-id="{{ company.id }}" data-url="/formfields/Company/1/value-proposition/" > <p class="muted editables" data-type="textarea" id="company-value-proposition">{{ company.value_proposition  }}</p> </a>
 
     </div>
     <div class="span10">
@@ -111,7 +111,7 @@
 
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
-            <p> {{ company.description  }}</p>
+            <a href="#" id="company-description" data-model="Company" data-type="wysihtml5"><p> {{ company.description  }}</p></a>
         </div>
 
     <div class="media">
@@ -120,25 +120,57 @@
         {% for link in companylinks %}
             <tr>
                 <td>Company Link:</td>
-                <td><a href="{{ link.web_url }}">{{ link.web_url }}</a></td>
+                {% if link.web_url %}
+                    <td><a data-model="CompanyLink" id="company-url" data-id="{{ link.id }}" data-url="/formfields/CompanyLink/'+id+'/'+field+'/'+value" href="{{ link.web_url }}">{{ link.web_url }}</a></td>
+                {% else %}
+                    <td><a href="#" data-model="CompanyLink" id="company-url" data-type="text"></a></td>
+                {% endif %}
                 <td>Company Blog:</td>
-                <td><a href="{{ link.blog_url  }}">{{ link.blog_url  }}</a></td>
+                    <td><a data-model="CompanyLink" id="company-blog" data-type="text" class="editables" href="{{ link.blog_url  }}">{{ link.blog_url  }}</a></td>
             </tr>
             <tr>
                 <td>Twitter:</td>
-                <td >{% if  link.twitter_url  %}<a href="{{ link.twitter_url  }}" id = "company-twitter-url" >{{ link.twitter_url  }}</a>{% endif %}</td>
+                {% if  link.twitter_url  %}
+                <td ><a data-model="CompanyLink" href="{{ link.twitter_url  }}" id = "company-twitter-url" >{{ link.twitter_url  }}</a></td>
+                {% else %}
+                <td><a href="#" data-model="CompanyLink" id="company-twitter-url" class="editables" data-type="text"></a></td>
+                {% endif %}
 
                 <td>Facebook:</td>
-                <td ><a href="{{ link.facebook_link  }}" id="company-facebook-url">{{ link.facebook_link  }}</a></td>
+
+                {% if  link.facebook_link  %}
+                <td ><a href="{{ link.facebook_link  }}" data-model="CompanyLink" id="company-facebook-url">{{ link.facebook_link  }}</a></td>
+
+                {% else %}
+                <td><a href="#" class="editables" data-model="CompanyLink" id="company-facebook-url" data-type="text"></a></td>
+                {% endif %}
+
+
+
             </tr>
         {% endfor%}
 
         {% if  user.is_staff or user.is_superuser or permission %}
         <tr>
             <td>Email: </td>
-            <td><a href="mailto:{{ company.email  }}">{{ company.email  }} </a></td>
+            
+                {% if  company.email  %}
+                <td><a class="editables" data-model="Company" id="company-email" data-type="email" href="mailto:{{ company.email  }}">{{ company.email  }} </a></td>
+
+                {% else %}
+                <td><a href="#" class="editables" data-model="Company" id="company-email" data-type="text"></a></td>
+                {% endif %}
+
+
             <td>Phone Contact:</td>
-            <td>{{ company.main_phone }}</td>
+            {% if  company.email  %}
+                <td><a class="editables" data-type="text" data-model="Company" id="company-phone" href="{{ company.main_phone }}">{{ company.main_phone }} </a></td>
+
+            {% else %}
+                <td><a href="#" class="editables" data-model="Company" id="company-phone" data-type="text"></a></td>
+            {% endif %}
+
+
         </tr>
         {% endif %}
         <tr>
@@ -149,7 +181,7 @@
         </tr>
         <tr>
             <td>Related Categories:</td>
-            <td colspan="3" id="company-tags">{{ company.tags }}</td>
+            <td colspan="3" id="company-tags" data-model="Company" id="company-tags"> <a data-type="viewseparator" href="#"> {{ company.tags }}</a></td>
 
         </tr>
 
@@ -565,7 +597,6 @@
     </div>
     </div>
         <script type="text/javascript">
-
             
             //select all the links with the function or class delete
            var link = $(".link-delete");
@@ -620,7 +651,9 @@ add.click(
                         $("#success-notification").addClass("hide");
                         $(".modal-form").html(result);
                         $(".modal-form").data("model", model);
-                        $("#companyModal").modal("show");  
+                        $("#companyModal").modal("show");
+                        $('#id_date').datepicker();
+                        $('#id_acquired_date').datepicker();
                     },
                 error: 
                     function(xhr){
@@ -734,7 +767,33 @@ create_item.click(
         })
 
 
-
         </script>
+    <link href="{{ STATIC_URL }}bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <script src="{{ STATIC_URL }}bootstrap-editable/js/bootstrap-editable.js"></script>
+    <script src="{{ STATIC_URL }}js/moment.min.js"></script>
+    
+    <script type="text/javascript">
+    $.fn.editable.defaults.mode = 'inline';
+        $('#company-description').editable();
+        $('.editables').editable();
+
+        $('#company-url').editable({
+//                url: '/formfields/CompanyLink/'+id+'/'+field+'/'+value,
+            });
+        $('#company-value-proposition').editable({
+        });
+/*        
+        function(){
+            var model = $(this).data("model");
+            var id = $(this).data("id");
+            var value = $(this).value();
+
+            
+
+
+        }
+*/
+</script>
+
 {% endblock %}
 </div>

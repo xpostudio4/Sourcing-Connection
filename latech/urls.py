@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.views.generic import DetailView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required
 from contacts.views import ProfileView, ProfileUpdate, ProfileCreate, ContactUrlUpdate
+from events.views import EventListView, EventNewView
 import settings
 #from companies.models import *
 
@@ -29,7 +30,12 @@ urlpatterns = patterns('',
 
      #forms generators
       url(r'^forms/(?P<model>[\w-]+)/$','latech.views.form_create'),
-      #url(r'^forms/(?P<slug>[\w-]+)/(?P<model>[\w-]+)/$','latech.views.form_validation'),
+      url(r'^forms/(?P<slug>[\w-]+)/(?P<model>[\w-]+)/$','latech.views.form_validation'),
+     
+     # For testing: bootstrap-editable
+      url(r'^formfields/(?P<model>[\w-]+)/(?P<id>[\d]+)/(?P<field>[\w-]+)/$','latech.views_editable.form_fields'),
+#      url(r'^formfields/(?P<slug>[\w-]+)/(?P<model>[\w-]+)/$','latech.views.form_validation2'),
+      
 
      #Management for the item
      url(r'^company/(?P<slug>[\w-]+)/management/new/$','companies.views.management_create'),
@@ -106,6 +112,7 @@ urlpatterns = patterns('',
      # Search Urls
      url(r'^search/$', 'latech.search.search_page'),
      url(r'^$', "latech.search.advanced_search"),
+     url(r'^2/$', "latech.search.advanced_search2"),
 
      #Tickets for site reports
      url(r'ticket/$','latech.views.ticket_create'),
@@ -120,6 +127,12 @@ urlpatterns = patterns('',
      url(r'^news/(?P<id>[\d]+)/update/$', 'news.views.news_update'),
      url(r'^news/(?P<id>[\d]+)/delete$', 'news.views.news_delete'),
 
+     # Events related URLs
+     url(r'events/$', EventListView.as_view()),
+     url(r'events/new$', EventNewView.as_view()),
+
+
+
 #     url(r'^advance_search/', 'latech.views.advance_search'),
 #     url(r'^$', "latech.search.advance_contact_search"),
 #     url(r'^search/companies$', "latech.search.advance_company_search"),
@@ -128,5 +141,10 @@ urlpatterns = patterns('',
      #"latech.views.tagitt"),
      url(r'^admin/', include(admin.site.urls)),
  
+     # Autocomplete test
+     url(r'auto/$', "latech.auto.autocomplete"),     
+     url(r'auto2/$', "latech.auto.auto"),          
+     url(r'auto/companies$', "latech.auto.autocomplete2"),     
+
 )
 
