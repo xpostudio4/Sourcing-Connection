@@ -34,14 +34,14 @@
 
         //}
         //Obtain twitter name and prettify it for the profile
-        var twitter_name  = $(this).find('#company-twitter-url').text().split("/").pop();
-            $('#company-twitter-url').text("@"+twitter_name);
+//        var twitter_name  = $(this).find('#company-twitter-url').text().split("/").pop();
+//            $('#company-twitter-url').text("@"+twitter_name);
             
             
        
         //Obtain the facebook profile name.
-        var facebook_name  = $(this).find('#company-facebook-url').text().split("/").pop();
-        $('#company-facebook-url').text(facebook_name)
+//        var facebook_name  = $(this).find('#company-facebook-url').text().split("/").pop();
+//        $('#company-facebook-url').text(facebook_name)
 
 
        })
@@ -102,16 +102,17 @@
         </div>
      <div class="media">
         <h2 class="media-heading">{{ company.name  }} </h2>
-        <a href="#"  data-model="Company" data-id="{{ company.id }}" data-url="/formfields/Company/1/value-proposition/" > <p class="muted editables" data-type="textarea" id="company-value-proposition">{{ company.value_proposition  }}</p> </a>
+        <p class="muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="textarea" > {{ company.value_proposition  }}</p>
 
     </div>
+
     <div class="span10">
 
 
 
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
-            <a href="#" id="company-description" data-model="Company" data-type="wysihtml5"><p> {{ company.description  }}</p></a>
+            <p id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="textarea"> {{ company.description  }}</p>
         </div>
 
     <div class="media">
@@ -120,68 +121,39 @@
         {% for link in companylinks %}
             <tr>
                 <td>Company Link:</td>
-                {% if link.web_url %}
-                    <td><a data-model="CompanyLink" id="company-url" data-id="{{ link.id }}" data-url="/formfields/CompanyLink/'+id+'/'+field+'/'+value" href="{{ link.web_url }}">{{ link.web_url }}</a></td>
-                {% else %}
-                    <td><a href="#" data-model="CompanyLink" id="company-url" data-type="text"></a></td>
-                {% endif %}
+                <td><a id="company-url" data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/web_url/" data-pk="{{ link.id }}" data-title="Company Link" data-type="url" href="{{ link.web_url }}">{{ link.web_url }}</a></td>
                 <td>Company Blog:</td>
-                    <td><a data-model="CompanyLink" id="company-blog" data-type="text" class="editables" href="{{ link.blog_url  }}">{{ link.blog_url  }}</a></td>
+                <td><a data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/blog_url/" data-pk="{{ link.id }}" data-title="Company Blog URL" data-type="url" id="company-blog-url" href="{{ link.blog_url  }}">{{ link.blog_url  }}</a></td>
             </tr>
             <tr>
                 <td>Twitter:</td>
-                {% if  link.twitter_url  %}
-                <td ><a data-model="CompanyLink" href="{{ link.twitter_url  }}" id = "company-twitter-url" >{{ link.twitter_url  }}</a></td>
-                {% else %}
-                <td><a href="#" data-model="CompanyLink" id="company-twitter-url" class="editables" data-type="text"></a></td>
-                {% endif %}
+                <td ><a data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/twitter_url/" data-pk="{{ link.id }}" data-title="Company Twitter" data-type="url" id = "company-twitter-url" href="{{ link.twitter_url  }} ">{{ link.twitter_url  }}</a></td>
 
                 <td>Facebook:</td>
-
-                {% if  link.facebook_link  %}
-                <td ><a href="{{ link.facebook_link  }}" data-model="CompanyLink" id="company-facebook-url">{{ link.facebook_link  }}</a></td>
-
-                {% else %}
-                <td><a href="#" class="editables" data-model="CompanyLink" id="company-facebook-url" data-type="text"></a></td>
-                {% endif %}
-
-
-
+                <td ><a data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/facebook_link/" href="{{ link.facebook_url  }}" data-title="Company facebook" id="company-facebook-url" data-type="url" href="{{ link.facebook_link  }}" >{{ link.facebook_link  }}</a></td>
             </tr>
         {% endfor%}
 
         {% if  user.is_staff or user.is_superuser or permission %}
         <tr>
             <td>Email: </td>
-            
-                {% if  company.email  %}
-                <td><a class="editables" data-model="Company" id="company-email" data-type="email" href="mailto:{{ company.email  }}">{{ company.email  }} </a></td>
-
-                {% else %}
-                <td><a href="#" class="editables" data-model="Company" id="company-email" data-type="text"></a></td>
-                {% endif %}
-
+                <td><a data-model="Company" data-url="/formfields/Company/{{ company.id }}/email/" data-pk="{{ company.id }}" data-title="Company Description"  id="company-email" data-type="email" href="mailto:{{ company.email  }}">{{ company.email  }} </a></td>
 
             <td>Phone Contact:</td>
-            {% if  company.email  %}
-                <td><a class="editables" data-type="text" data-model="Company" id="company-phone" href="{{ company.main_phone }}">{{ company.main_phone }} </a></td>
-
-            {% else %}
-                <td><a href="#" class="editables" data-model="Company" id="company-phone" data-type="text"></a></td>
-            {% endif %}
-
+                <td><a data-type="tel" data-model="Company" data-url="/formfields/Company/{{ company.id }}/main_phone/" data-pk="{{ company.id }}"  data-title="Company Main Phone"  id="company-phone" href="{{ company.main_phone }}">{{ company.main_phone }} </a></td>
 
         </tr>
         {% endif %}
+
         <tr>
             <td>Products:</td>
             <td  id="company-product">{{ company.product }}</td >
             <td>Applications:</td>
-            <td id="company-applications">{{ company.applications }}</td>
+            <td data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/applications/" data-pk="{{ company.id }}"  data-title="Company Applications" id="company-applications">{{ company.applications }}</td>
         </tr>
         <tr>
             <td>Related Categories:</td>
-            <td colspan="3" id="company-tags" data-model="Company" id="company-tags"> <a data-type="viewseparator" href="#"> {{ company.tags }}</a></td>
+            <td colspan="3" data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/applications/" data-pk="{{ company.id }}"  data-title="Company Applications" id="company-tags"> {{ company.tags }}</td>
 
         </tr>
 
@@ -194,11 +166,11 @@
 <div>
 <div class="media">
     <h4 class="media-heading"><strong class="muted">Overview:</strong></h4>
-    <p id="company-overview">{{ company.overview  }}</p>
+    <p data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/overview/" data-pk="{{ company.id }}"  data-title="Company Overview" id="company-overview">{{ company.overview  }}</p>
 </div>
 <div class="media">
     <h4 class="media-heading"><strong class="muted">Related Industries:</strong></h4>
-    <p id="company-industries">{{ company.industries }}</p>
+    <p class="editables" data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/industries/" data-pk="{{ company.id }}"  data-title="Company Industries" id="company-industries">{{ company.industries }}</p>
 
     {% load humanize %}
 
@@ -210,7 +182,7 @@
 
                 <h4 class="media-heading"><strong class="muted">Customers:</strong></h4></br>
                 <ul class="nav nav-list pull-right">
-                    <li><a class="add-element" data-model="Customer" href="/company/{{ company.slug }}/customers/new"><i class="icon-plus"></i> Add Customers</a></li>
+                    <li><a class="add-element editables" data-model="Customer" href="/company/{{ company.slug }}/customers/new"><i class="icon-plus"></i> Add Customers</a></li>
                 </ul>
 
                 <br/>
@@ -774,25 +746,103 @@ create_item.click(
     
     <script type="text/javascript">
     $.fn.editable.defaults.mode = 'inline';
-        $('#company-description').editable();
         $('.editables').editable();
 
-        $('#company-url').editable({
-//                url: '/formfields/CompanyLink/'+id+'/'+field+'/'+value,
-            });
         $('#company-value-proposition').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
         });
-/*        
-        function(){
-            var model = $(this).data("model");
-            var id = $(this).data("id");
-            var value = $(this).value();
 
-            
+        $('#company-description').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+
+        $('#company-url').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+
+        $('#company-blog-url').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
 
 
-        }
-*/
+        $('#company-twitter-url').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+
+        $('#company-phone').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+
+
+        $('#company-facebook-url').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+        $('#company-email').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+        $('#company-tags').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+        $('#company-applications').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+
+        $('#company-overview').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+        $('.editables').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+
+
 </script>
 
 {% endblock %}
