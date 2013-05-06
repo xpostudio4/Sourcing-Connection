@@ -102,7 +102,7 @@
         </div>
      <div class="media">
         <h2 class="media-heading">{{ company.name  }} </h2>
-        <p class="muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="textarea" > {{ company.value_proposition  }}</p>
+        <p><text class="muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="textarea" >{{ company.value_proposition  }}</text> </p>
 
     </div>
 
@@ -112,7 +112,7 @@
 
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
-            <p id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="textarea"> {{ company.description  }}</p>
+            <p><text id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="textarea"> {{ company.description }} </text></p>
         </div>
 
     <div class="media">
@@ -130,7 +130,7 @@
                 <td ><a data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/twitter_url/" data-pk="{{ link.id }}" data-title="Company Twitter" data-type="url" id = "company-twitter-url" href="{{ link.twitter_url  }} ">{{ link.twitter_url  }}</a></td>
 
                 <td>Facebook:</td>
-                <td ><a data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/facebook_link/" href="{{ link.facebook_url  }}" data-title="Company facebook" id="company-facebook-url" data-type="url" href="{{ link.facebook_link  }}" >{{ link.facebook_link  }}</a></td>
+                <td ><a data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/facebook_link/" data-pk="{{ link.id }}" data-title="Company Facebook" data-type="url" id = "company-facebook-url" href="{{ link.facebook_link  }} ">{{ link.facebook_link  }}</a></td>
             </tr>
         {% endfor%}
 
@@ -143,6 +143,7 @@
                 <td><a data-type="tel" data-model="Company" data-url="/formfields/Company/{{ company.id }}/main_phone/" data-pk="{{ company.id }}"  data-title="Company Main Phone"  id="company-phone" href="{{ company.main_phone }}">{{ company.main_phone }} </a></td>
 
         </tr>
+
         {% endif %}
 
         <tr>
@@ -153,8 +154,7 @@
         </tr>
         <tr>
             <td>Related Categories:</td>
-            <td colspan="3" data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/applications/" data-pk="{{ company.id }}"  data-title="Company Applications" id="company-tags"> {{ company.tags }}</td>
-
+            <td colspan="3"><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/tags/" data-pk="{{ company.id }}" data-title="Company Tags" id="company-tags">{{ company.tags }}</text></td>
         </tr>
 
     </tbody>
@@ -166,11 +166,11 @@
 <div>
 <div class="media">
     <h4 class="media-heading"><strong class="muted">Overview:</strong></h4>
-    <p data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/overview/" data-pk="{{ company.id }}"  data-title="Company Overview" id="company-overview">{{ company.overview  }}</p>
+    <p> <text data-type="textarea" data-model="Company" data-url="/formfields/Company/{{ company.id }}/overview/" data-pk="{{ company.id }}"  data-title="Company Overview" id="company-overview">{{ company.overview  }}</text></p>
 </div>
 <div class="media">
     <h4 class="media-heading"><strong class="muted">Related Industries:</strong></h4>
-    <p class="editables" data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/industries/" data-pk="{{ company.id }}"  data-title="Company Industries" id="company-industries">{{ company.industries }}</p>
+    <p><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/industries/" data-pk="{{ company.id }}"  data-title="Company Industries" id="company-industries" class="editable-value">{{ company.industries }}</text></p>
 
     {% load humanize %}
 
@@ -189,7 +189,7 @@
                 <ul class="pull-left inline" id="Customer">
                 {% for customer in customers  %}
 
-                        <li id="customers-{{ customer.id }}"><a class="link-delete" data-type="customers" data-id="{{ customer.id }}"  id="{{ company.slug }}-customers-{{ customer.id }}" href="/company/{{ company.slug }}/customers/{{customer.id}}/delete" ><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/customers/{{customer.id}}/update">{{ customer.name }}</a>{% if not forloop.last %}, {% endif %}</li>
+                        <li id="customers-{{ customer.id }}"><a class="link-delete" data-type="customers" data-id="{{ customer.id }}"  id="{{ company.slug }}-customers-{{ customer.id }}" href="/company/{{ company.slug }}/customers/{{customer.id}}/delete" ><i class="icon-remove"></i></a>  <a data-type="text" data-model="Customer" data-url="/formfields/Customer/{{ customer.id }}/name/" data-pk="{{ customer.id }}" class="customer-name" data-title="Customer Name" href="/company/{{ company.slug }}/customers/{{customer.id}}/update">{{ customer.name }}</a>{% if not forloop.last %}, {% endif %}</li>
                 {% endfor %}
                 </ul>
         </div>
@@ -208,7 +208,7 @@
             <ul class="pull-left inline">
             {% for award in awards  %}
 
-                    <li id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/awards/{{award.id}}/update">{{ award.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+                    <li id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/awards/{{award.id}}/update" data-type="text" data-model="Award" data-url="/formfields/Award/{{ award.id }}/name/" data-pk="{{ award.id }}" class="editable-value" data-title="Award Name">{{ award.name }}</a> {% if not forloop.last %}, {% endif %}</li>
 
             {% endfor %}
             </ul>
@@ -225,7 +225,7 @@
             <ul class="pull-left inline">
             {% for certification in certifications  %}
 
-                    <li id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/certifications/{{certification.id}}/update">{{ certification.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+                    <li id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/certifications/{{certification.id}}/update" data-type="text" data-model="Certification" data-url="/formfields/Certification/{{ certification.id }}/name/" data-pk="{{ certification.id }}"  data-title="Certification" class="editable-value" >{{ certification.name }}</a> {% if not forloop.last %}, {% endif %}</li>
 
             {% endfor %}
             </ul>
@@ -278,7 +278,7 @@
 
 <div class="media">
     <h4 class="media-heading"><strong class="muted">Technologies:</strong></h4>
-    <p id="company-technologies">{{ company.technologies }}</p>
+    <p><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/technologies/" data-pk="{{ company.id }}"  data-title="Company Techs" id="company-technologies">{{ company.technologies }}</text></p>
 </div>
 
 
@@ -296,8 +296,9 @@
 
 
             {% for funding in fundings %}
-                <li id="fundings-{{ funding.id }}"><a class="link-delete" data-type="fundings" data-id="{{ funding.id }}" id="{{ company.slug }}-fundings-{{ funding.id }}"  href="/company/{{ company.slug }}/fundings/{{funding.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/fundings/{{funding.id}}/update">{{ funding.round }}</a> {% if not forloop.last %}{% endif %}
-                 <p> US$ {{ funding.raised|intcomma}}</p>
+                <li id="fundings-{{ funding.id }}"><a class="link-delete" data-type="fundings" data-id="{{ funding.id }}" id="{{ company.slug }}-fundings-{{ funding.id }}"  href="/company/{{ company.slug }}/fundings/{{funding.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/fundings/{{funding.id}}/update" data-type="select" data-model="Funding" data-url="/formfields/Funding/{{ funding.id }}/round/" data-pk="{{ funding.id }}"  data-title="Funding Round"  id="funding-round" >{{ funding.round }}</a> {% if not forloop.last %}{% endif %}
+
+                 <p>US$ <strong data-type="text" data-model="Funding" data-url="/formfields/Funding/{{ funding.id }}/raised/" data-pk="{{ funding.id }}"  data-title="Funding Raised" class="editable-value"> {{ funding.raised|intcomma}}</strong> </p>
                  </li>
 
 
@@ -320,7 +321,7 @@
                 <ul class="pull-left inline">
                 {% for acquisition in acquisitions  %}
 
-                    <li id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/update">{{ acquisition.name }}</a>{% if not forloop.last %}, {% endif %}</li>
+                    <li id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/update" data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name">{{ acquisition.name }}</a> {% if not forloop.last %}, {% endif %}</li>
                 {% endfor %}
                 </ul>
         </div>
@@ -339,8 +340,9 @@
             <ul id="management-{{ manager.id }}" class="nav nav-list pull-left">
                 <li><a class="link-delete" data-type="management" data-id="{{ manager.id }}" id="{{ company.slug }}-management-{{ manager.id }}" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-remove"></i></a></li>
 
-            <h5 class="media-heading text-info"> <a href="/company/{{company.slug }}/management/{{ manager.id }}/update">{{ manager.full_name }}</a></h5>
-                <p> {{ manager.title }}</p>
+            <h5 class="media-heading text-info"> <a data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/full_name/" data-pk="{{ manager.id }}"  data-title="Manager full name" id="manager-name" href="/company/{{ company.slug }}/management/{{ manager.id }}/update">{{ manager.full_name }}</a></h5>
+
+                <p data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/title/"  data-pk="{{ manager.id }}" data-title="Manager Title" id="manager-title"> {{ manager.title }}</p>
             </ul>
 
         {% endfor %}
@@ -391,7 +393,7 @@
         <ul class="pull-left inline">
         {% for competitor in competitors  %}
 
-                <li id="competitors-{{ competitor.id }}"><a class="link-delete" data-type="competitors" data-id="{{ competitor.id }}" id="{{ company.slug }}-competitors-{{ competitor.id }}" href="/company/{{ company.slug }}/competitors/{{competitor.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/competitors/{{competitor.id}}/update">{{ competitor.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+                <li id="competitors-{{ competitor.id }}"><a class="link-delete" data-type="competitors" data-id="{{ competitor.id }}" id="{{ company.slug }}-competitors-{{ competitor.id }}" href="/company/{{ company.slug }}/competitors/{{competitor.id}}/delete"><i class="icon-remove"></i></a>  <a data-type="text" data-model="Competitor" data-url="/formfields/Competitors/{{ competitor.id }}/name/" data-pk="{{ competitor.id }}"  data-title="Competitor Name" class="editable-value" href="/company/{{ company.slug }}/competitors/{{competitor.id}}/update">{{ competitor.name }}</a> {% if not forloop.last %}, {% endif %}</li>
 
         {% endfor %}
         </ul>
@@ -528,7 +530,7 @@
     {% endif %}
     <div class="media">
     <h4 class="media-heading"><strong class="muted">Latech Contact:</strong></h4>
-    <p id="company-contact">{{ company.contact }}</p>
+    <p> <text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/contact/" data-pk="{{ company.id }}"  class="editable-value" data-title="Company Contact" id="company-contact">{{ company.contact }}</text></p>
 
 </div>
 
@@ -788,6 +790,13 @@ create_item.click(
                 return params;
             },
         });
+        $('#company-facebook-url').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
 
         $('#company-phone').editable({
             params: function(params) {
@@ -797,22 +806,7 @@ create_item.click(
             },
         });
 
-
-        $('#company-facebook-url').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
         $('#company-email').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-        $('#company-tags').editable({
             params: function(params) {
                 //originally params contain pk, name and value
                 params.csrfmiddlewaretoken = '{{csrf_token}}';
@@ -834,13 +828,87 @@ create_item.click(
                 return params;
             },
         });
-        $('.editables').editable({
+
+        $('#company-tags').editable({
             params: function(params) {
                 //originally params contain pk, name and value
                 params.csrfmiddlewaretoken = '{{csrf_token}}';
                 return params;
             },
         });
+        
+        $('#company-technologies').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+
+        $('#manager-name').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+        $('#manager-title').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+        $('.competitor').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+        $('.customer-name').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        });
+
+        $('#funding-round').editable({
+            value: 1,    
+            source: [
+                  {value: 'Seed', text: 'Seed'},
+                  {value: 'Angel', text: 'Angel'},
+                  {value: 'Series A', text: 'Series A'},
+                  {value: 'Series B', text: 'Series B'},
+                  {value: 'Series C', text: 'Series C'},
+                  {value: 'Series D', text: 'Series D'},
+                  {value: 'Series E', text: 'Series E'},
+                  {value: 'Series F', text: 'Series F'},
+                  {value: 'Series G', text: 'Series G'},
+                  {value: 'Private Equity', text: 'Private Equity'},
+                  {value: 'Grant', text: 'Grant'},
+                  {value: 'Debt', text: 'Debt'},
+                  {value: 'Venture Round', text: 'Venture Round'},
+                  {value: 'Post IPO Equity', text: 'Post IPO Equity'},
+                  {value: 'Post IPO Debt', text: 'Post IPO Debt'},
+                ],
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+
+        });
+
+        $('.editable-value').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        }); 
+
 
 
 </script>

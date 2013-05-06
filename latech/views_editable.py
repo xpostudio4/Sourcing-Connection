@@ -14,13 +14,15 @@ from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingF
 # testing Bootstrap editable
 
 
-@require_POST
-def form_fields2(request, id, model, field):
-    model = get_object_or_404(Company, id=id)
-    model.value_proposition = request.POST['value']
-#    model.description = request.POST['value']
-    model.save()
-    return HttpResponse("aja")
+def form_update(request, model, slug, id):
+    company =get_object_or_404(Company,slug=slug)
+    office_reference = get_object_or_404(Office, id=id,company=company)
+#    office_form = OfficeForm(instance=office_reference)
+
+    models ={
+        "Office": OfficeForm(instance=office_reference),
+    }
+    return HttpResponse(models[model].as_p())
 
 @require_POST
 def form_fields(request, id, model, field):
@@ -129,30 +131,3 @@ def form_fields(request, id, model, field):
 
     return HttpResponse("")
 
-@require_POST
-def form_validation2(request, slug, model):
-    models_form = {
-        "CompanyLink": CompanyLinkForm(request.POST),
-    }
-
-
-
-    company = get_object_or_404(Company, slug=slug)
-    form = models_form[model]
-
-    if form.is_valid():
-        f = form.save(commit=False)
-        f.company = company
-        f.save()
-     
-        d = { 
-            'id': f.id, 
-            'model': model,
-            'company': company.name
-            }
-
-        if f.name:
-            d['name'] = f.name
-        return json_response(d)
-
-    return json_response({ "errors":dict(form.errors.items()) })
