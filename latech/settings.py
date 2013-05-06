@@ -192,7 +192,6 @@ INSTALLED_APPS = (
     'news',
     'events',
 #    'subscriptions',
-    'fts',
 #    'django_boto',    
 #    'projects',
 #    'urls',
