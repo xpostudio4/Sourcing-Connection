@@ -61,15 +61,17 @@
 
     {% endif %}
 	 <div class="media-body">
-         <h4 class="media-heading">{{ contact.fr_name  }} {{ contact.m_name  }} {{ contact.ls_name  }} </h4>
-         <p> <strong class="muted">Company:</strong> {{ contact.company.name }}</p>
-         <p><strong class="muted"></strong></p>
+         
+ 	<h4 class="media-heading"><a href="#" data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/fr_name/" data-pk="{{ contact.id }}"  data-title="Contact First Name" id="contact-first-name" class="editable-value">{{ contact.fr_name  }}</a> <a href="#" class="editable-value" <text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/ls_name/" data-pk="{{ contact.id }}"  data-title="Contact Last name" id="contact-last-name">{{ contact.ls_name  }}</a> </h4>
+
+         <p> <strong class="muted">Company: </strong><a href="#" data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/company/" data-pk="{{ contact.id }}"  data-title="Contact Company" id="contact-company" class="editable-value">{{ contact.company.name }}</a>
+
          
      </div>
 </div>
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Summary:</strong></h4>
-	<p> {{ contact.overview  }}</p>
+	<p><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/overview/" data-pk="{{ contact.id }}"  data-title="Contact Overview" id="contact-overview" class="editable-value"> {{ contact.overview  }}</text> </p>
 </div>
 
 <div class="media">
@@ -77,33 +79,42 @@
 	<tbody>
 		<tr>
 			<td>Email:</td>
-			<td>{{ contact.email  }}</td>
+			<td><a href="#" id="id_email" data-type="email" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/email/" data-pk="{{ contact.id }}"  data-title="Contact email"  class="editable-value">{{ contact.email  }}</a></td>
+
 			<td>Phone:</td>
-			<td>{{ contact.phone  }}</td>
+			<td><a href="#" data-type="tel" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/phone/" data-pk="{{ contact.id }}"  data-title="Contact phone" id="contact-phone" class="editable-value">{{ contact.phone  }}</a></td>
+
 		</tr>
 		<tr>
 {% endfor %}			
 {% for urls in contacts_urls%}
 			<td>Twitter:</td>
-			<td><a  id = "twitter-contact-url" href="{{ urls.t_url  }}">{{ urls.t_url }} </a></td>
+			
+			<td><a id = "twitter-contact-url" data-type="url" data-model="Contact_Urls" data-url="/userfields/Contact_Urls/{{contact_urls.id }}/t_url/" data-pk="{{ contact_urls.id }}"  data-title="Contact Twitter" class="editable-value" href="{{ urls.t_url  }}">{{ urls.t_url }} </a></td>
 			
 			<td>LinkedIn:</td>
-			<td><a href="{{ urls.ld_url  }}">{{ urls.ld_url  }}</a></td>
+			
+			<td><a id = "contact-linkedin" data-type="url" data-model="Contact_Urls" data-url="/userfields/Contact_Urls/{{contact_urls.id }}/ld_url/" data-pk="{{ contact_urls.id }}"  data-title="Contact LinkedIn" class="editable-value" href="{{ urls.ld_url  }}">{{ urls.ld_url }} </a></td>
+
 		</tr>
 		<tr>
 			<td>Blog: </td>
-			<td> <a href="{{ urls.blog_url}}">{{ urls.blog_url}}</a></td>
+			
+			<td> <a href="{{ urls.blog_url }}" data-type="url" data-model="Contact_Urls" data-url="/userfields/Contact_Urls/{{contact_urls.id }}/blog_url/" data-pk="{{ contact_urls.id }}"  data-title="Contact Twitter" id="contact-blog" class="editable-value">{{ urls.blog_url}}</a></td>
+
 			<td>External URL</td>
-			<td><a href="{{ urls.ext_url  }}">{{ urls.ext_url  }}</a></td>
+
+			<td><a href="{{ urls.ext_url  }}" data-type="url" data-model="Contact_Urls" data-url="/userfields/Contact_Urls/{{contact_urls.id }}/ext_url/" data-pk="{{ contact_urls.id }}"  data-title="Contact Twitter" id="contact-twitter" class="editable-value">{{ urls.ext_url  }}</a></td>
+
 		</tr>
 {% endfor %}
 {% for contact in contacts%}
 
 		<tr>
 			<td>Degrees:</td>
-			<td  id="degreescontact">{{ contact.degrees  }}</td>
+			<td  id="degreescontact" data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/degrees/" data-pk="{{ contact.id }}"  data-title="Contact Degrees" class="editable-value">{{ contact.degrees  }}</td>
 			<td>Titles:</td>
-			<td id="titlecontact"> {{ contact.title  }}</td>
+			<td id="titlecontact" data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/title/" data-pk="{{ contact.id }}"  data-title="Contact Titles" class="editable-value"> {{ contact.title  }}</td>
 		</tr>
 
 	</tbody>
@@ -115,30 +126,30 @@
 
 
 <div class="media">
-	<h4 class="media-heading"><strong class="muted">Skills and Expertise: :</strong></h4>
-<p> {{ contact.tag.all  }}</p><br>
+	<h4 class="media-heading"><strong class="muted">Skills and Expertise: </strong></h4>
+<p> <text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/tags/" data-pk="{{ contact.id }}"  data-title="Contact Degrees" class="editable-value">{{ contact.tags  }}</text></p><br>
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Related Financial Organization:</strong></h4>
-	<p id="financial-organization"> {{ contact.financial_organization  }}</p><br>
+	<p id="financial-organization"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/financial_organization/" data-pk="{{ contact.id }}"  data-title="Contact FO" class="editable-value">{{ contact.financial_organization  }}</text></p><br>
 </div>
 
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Related Government Organization:</strong></h4>
-	<p id="goverment-contact"> {{ contact.government_organization  }}</p><br>
+	<p id="goverment-contact"> <text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/government_organization/" data-pk="{{ contact.id }}"  data-title="Contact Degrees" class="editable-value">{{ contact.government_organization  }}</text></p><br>
 </div>
 
 
 
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Industries:</strong></h4>
-	<p id="industry-contact">{{ contact.industry }}</p><br>
+	<p id="industry-contact"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/industry/" data-pk="{{ contact.id }}"  data-title="Contact Degrees" class="editable-value">{{ contact.industry }}</text> </p><br>
 </div>
  
 
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Used Technologies:</strong></h4>
 
-	<p id="technology-contact">{{ contact.technology }}</p>
+	<p id="technology-contact"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/technology/" data-pk="{{ contact.id }}"  data-title="Contact Degrees" class="editable-value">{{ contact.technology }}</text></p>
 
 </div>
 
@@ -146,11 +157,22 @@
 
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Related Applications:</strong></h4>
-	<p id="application-contact">{{ contact.application }}</p>
+	<p id="application-contact"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/application/" data-pk="{{ contact.id }}"  data-title="Contact Degrees" class="editable-value">{{ contact.application }}</text></p>
 	<br>
 
 	</div>
-
+<link href="{{ STATIC_URL }}bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+<script src="{{ STATIC_URL }}bootstrap-editable/js/bootstrap-editable.js"></script>
+<script type="text/javascript">
+	$.fn.editable.defaults.mode = 'inline';
+        $('.editable-value').editable({
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+        }); 
+</script>
 {% endfor %}
 
 {% endblock %}

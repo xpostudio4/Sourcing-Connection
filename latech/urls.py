@@ -34,6 +34,7 @@ urlpatterns = patterns('',
      
      # For testing: bootstrap-editable
       url(r'^formfields/(?P<model>[\w-]+)/(?P<id>[\d]+)/(?P<field>[\w-]+)/$','latech.views_editable.form_fields'),
+      url(r'^userfields/(?P<model>[\w-]+)/(?P<id>[\d]+)/(?P<field>[\w-]+)/$','latech.views_editable.user_form_fields'),
 #      url(r'^formfields/(?P<slug>[\w-]+)/(?P<model>[\w-]+)/$','latech.views.form_validation2'),
       
 

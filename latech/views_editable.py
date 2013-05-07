@@ -10,7 +10,7 @@ from django.core.urlresolvers import resolve
 
 from companies.models import *
 from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingForm, AcquisitionForm, ManagementForm, CompetitorsForm, OfficeForm
-
+from contacts.models import *
 # testing Bootstrap editable
 
 
@@ -131,3 +131,64 @@ def form_fields(request, id, model, field):
 
     return HttpResponse("")
 
+
+
+@require_POST
+def user_form_fields(request, id, model, field):
+
+    value = request.POST['value']
+
+    if model == "Contact":
+
+        o_model = get_object_or_404(Contact, id=id)
+
+        if field == "fr_name":
+            o_model.fr_name = value
+
+        elif field == "ls_name":
+            o_model.ls_name  = value
+        elif field == "email":
+            o_model.email  = value
+        elif field == "overview":
+            o_model.overview  = value
+        elif field == "phone":
+            o_model.phone  = value
+        elif field == "country":
+            o_model.country  = value
+        elif field == "city":
+            o_model.city  = value
+        elif field == "degrees":
+            o_model.degrees  = value
+        elif field == "tags":
+            o_model.tags  = value
+        elif field == "company":
+            o_model.company  = value
+        elif field == "financial_organization":
+            o_model.financial_organization  = value
+        elif field == "government_organization":
+            o_model.government_organization  = value
+        elif field == "title":
+            o_model.title  = value
+        elif field == "industry":
+            o_model.industry  = value
+        elif field == "technology":
+            o_model.technology  = value
+        elif field == "application":
+            o_model.application  = value
+
+    if model == "Contact_Urls":
+        o_model = get_object_or_404(Contact_Urls, id=id)
+
+        if field == "ld_url":
+            o_model.ld_url = value
+
+        elif field == "t_url":
+            o_model.t_url  = value
+        elif field == "blog_url":
+            o_model.blog_url  = value
+        elif field == "ext_url":
+            o_model.ext_url  = value
+
+    o_model.save()
+
+    return HttpResponse("")
