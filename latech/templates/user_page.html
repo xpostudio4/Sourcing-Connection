@@ -100,11 +100,11 @@
 		<tr>
 			<td>Blog: </td>
 			
-			<td> <a href="{{ urls.blog_url }}" data-type="url" data-model="Contact_Urls" data-url="/userfields/Contact_Urls/{{contact_urls.id }}/blog_url/" data-pk="{{ contact_urls.id }}"  data-title="Contact Twitter" id="contact-blog" class="editable-value">{{ urls.blog_url}}</a></td>
+			<td> <a href="{{ urls.blog_url }}" data-type="url" data-model="Contact_Urls" data-url="/userfields/Contact_Urls/{{contact_urls.id }}/blog_url/" data-pk="{{ contact_urls.id }}"  data-title="Contact Blog" id="contact-blog" class="editable-value">{{ urls.blog_url}}</a></td>
 
 			<td>External URL</td>
 
-			<td><a href="{{ urls.ext_url  }}" data-type="url" data-model="Contact_Urls" data-url="/userfields/Contact_Urls/{{contact_urls.id }}/ext_url/" data-pk="{{ contact_urls.id }}"  data-title="Contact Twitter" id="contact-twitter" class="editable-value">{{ urls.ext_url  }}</a></td>
+			<td><a href="{{ urls.ext_url  }}" data-type="url" data-model="Contact_Urls" data-url="/userfields/Contact_Urls/{{contact_urls.id }}/ext_url/" data-pk="{{ contact_urls.id }}"  data-title="Contact External URLs" id="contact-twitter" class="editable-value">{{ urls.ext_url  }}</a></td>
 
 		</tr>
 {% endfor %}
@@ -127,29 +127,29 @@
 
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Skills and Expertise: </strong></h4>
-<p> <text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/tags/" data-pk="{{ contact.id }}"  data-title="Contact Degrees" class="editable-value">{{ contact.tags  }}</text></p><br>
+<p> <text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/tags/" data-pk="{{ contact.id }}"  data-title="Contact Tags" class="editable-value">{{ contact.tags  }}</text></p><br>
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Related Financial Organization:</strong></h4>
-	<p id="financial-organization"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/financial_organization/" data-pk="{{ contact.id }}"  data-title="Contact FO" class="editable-value">{{ contact.financial_organization  }}</text></p><br>
+	<p id="financial-organization"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/financial_organization/" data-pk="{{ contact.id }}"  data-title="Contact Financial Organization" class="editable-value">{{ contact.financial_organization  }}</text></p><br>
 </div>
 
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Related Government Organization:</strong></h4>
-	<p id="goverment-contact"> <text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/government_organization/" data-pk="{{ contact.id }}"  data-title="Contact Degrees" class="editable-value">{{ contact.government_organization  }}</text></p><br>
+	<p id="goverment-contact"> <text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/government_organization/" data-pk="{{ contact.id }}"  data-title="Contact GO" class="editable-value">{{ contact.government_organization  }}</text></p><br>
 </div>
 
 
 
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Industries:</strong></h4>
-	<p id="industry-contact"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/industry/" data-pk="{{ contact.id }}"  data-title="Contact Degrees" class="editable-value">{{ contact.industry }}</text> </p><br>
+	<p id="industry-contact"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/industry/" data-pk="{{ contact.id }}"  data-title="Contact Industries" class="editable-value">{{ contact.industry }}</text> </p><br>
 </div>
  
 
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Used Technologies:</strong></h4>
 
-	<p id="technology-contact"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/technology/" data-pk="{{ contact.id }}"  data-title="Contact Degrees" class="editable-value">{{ contact.technology }}</text></p>
+	<p id="technology-contact"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/technology/" data-pk="{{ contact.id }}"  data-title="Contact Technologies" class="editable-value">{{ contact.technology }}</text></p>
 
 </div>
 
@@ -157,7 +157,7 @@
 
 <div class="media">
 	<h4 class="media-heading"><strong class="muted">Related Applications:</strong></h4>
-	<p id="application-contact"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/application/" data-pk="{{ contact.id }}"  data-title="Contact Degrees" class="editable-value">{{ contact.application }}</text></p>
+	<p id="application-contact"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/application/" data-pk="{{ contact.id }}"  data-title="Contact Applications" class="editable-value">{{ contact.application }}</text></p>
 	<br>
 
 	</div>
