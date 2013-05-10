@@ -31,7 +31,9 @@ urlpatterns = patterns('',
      #forms generators
       url(r'^forms/(?P<model>[\w-]+)/$','latech.views.form_create'),
       url(r'^forms/(?P<slug>[\w-]+)/(?P<model>[\w-]+)/$','latech.views.form_validation'),
-     
+      url(r'^sss/$','latech.views_editable.sss'),
+      url(r'^ssss/$','latech.views_editable.ssss'),
+      url(r'^company_name/$','latech.views_editable.company_create_modal'),
      # For testing: bootstrap-editable
       url(r'^formfields/(?P<model>[\w-]+)/(?P<id>[\d]+)/(?P<field>[\w-]+)/$','latech.views_editable.form_fields'),
       url(r'^userfields/(?P<model>[\w-]+)/(?P<id>[\d]+)/(?P<field>[\w-]+)/$','latech.views_editable.user_form_fields'),
@@ -113,7 +115,6 @@ urlpatterns = patterns('',
      # Search Urls
      url(r'^search/$', 'latech.search.search_page'),
      url(r'^$', "latech.search.advanced_search"),
-     url(r'^2/$', "latech.search.advanced_search2"),
 
      #Tickets for site reports
      url(r'ticket/$','latech.views.ticket_create'),
@@ -142,10 +143,6 @@ urlpatterns = patterns('',
      #"latech.views.tagitt"),
      url(r'^admin/', include(admin.site.urls)),
  
-     # Autocomplete test
-     url(r'auto/$', "latech.auto.autocomplete"),     
-     url(r'auto2/$', "latech.auto.auto"),          
-     url(r'auto/companies$', "latech.auto.autocomplete2"),     
 
 )
 

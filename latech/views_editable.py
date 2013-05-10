@@ -1,10 +1,13 @@
 #Django core utils
+import json
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.views.decorators.http import require_POST, require_http_methods
 from django.core.urlresolvers import resolve
+from django.template import RequestContext, Context
+
 
 #Aplication models
 
@@ -12,7 +15,6 @@ from companies.models import *
 from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingForm, AcquisitionForm, ManagementForm, CompetitorsForm, OfficeForm
 from contacts.models import *
 # testing Bootstrap editable
-
 
 def form_update(request, model, slug, id):
     company =get_object_or_404(Company,slug=slug)
@@ -23,6 +25,47 @@ def form_update(request, model, slug, id):
         "Office": OfficeForm(instance=office_reference),
     }
     return HttpResponse(models[model].as_p())
+
+def sss(request):
+
+    return render_to_response('test.html', context_instance=RequestContext(request) )
+
+@require_POST
+def ssss(request):
+    if request.method == 'POST':
+        if request.POST.get('name') != "" or " ": 
+            value = request.POST.get('name')
+            val = Company.objects.filter(name__iexact=value)
+            if val:
+                message = u'%s <div class="alert alert-error" >Exists in DB </div>\
+                    <div class="btn btn-danger"></div>' % value
+            else:
+                message = u'%s <div class="alert alert-success" >Not Exists in DB </div>\
+                    <div class="btn btn-success">' % value
+        else:
+            message = 'Waiting for an Input'
+    else:
+        message =""
+    return HttpResponse(json.dumps(message), mimetype="application/json")
+
+@require_POST
+def company_create_modal(request):
+    if request.method == 'POST':
+        if request.POST.get('name') != "" or " ": 
+            value = request.POST.get('name')
+            val = Company.objects.filter(name__iexact=value)
+            if val:
+                message = u'%s <div class="alert alert-error" >Exists in DB </div>\
+                    <div class="btn btn-danger"></div>' % value
+            else:
+                message = u'%s <div class="alert alert-success" >Not Exists in DB </div>\
+                    <button class="btn btn-primary" type="button">Create Company</button>' % value
+        else:
+            message = 'Waiting for an Input'
+    else:
+        message =""
+    return HttpResponse(json.dumps(message), mimetype="application/json")
+
 
 @require_POST
 def form_fields(request, id, model, field):
