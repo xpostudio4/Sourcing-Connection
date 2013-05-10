@@ -33,52 +33,244 @@
         {% block external %}{% endblock %}
     </head>
     <body>
-        
-            <div class="navbar-wrapper">
-          <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
-          <div class="container">
+        <div class="container">
+    <ul class="nav nav-pills pull-right" style="margin-right: 15%;">
+        <li class="dropdown all-camera-dropdown">
+            <a class="dropdown-toggle dropdown-signin" data-toggle="dropdown" href="#">
+                Sign in<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" data-html="true">
+                <div>
+                <form style="width: 250px; margin: 5%;">
+                    <label for "username" >Username</label>
+                    <input class="input-large" type="text" name="username" autocomplete="on">
+                    <label for "password" >Password</label>
+                    <input class="input-large" type="password" value="" name="password">
+                    <fieldset class="subchck">
+                        <label class="remember">
+                            <input type="checkbox" value="1" name="remember_me" checked="checked">
+                            <span>Remember me</span>
+                        </label>
+                        <button type="submit" class="btn submit">Sign in</button>
+                    </fieldset>
+                </form>
+                </div>
+            </ul>
+        </li>
 
-            <div class="navbar navbar-inverse">
-              <div class="navbar-inner">
-                <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </a>
+    </ul>
+    <br style="height: 5px;"/>
 
-                <a class="brand" href="/">Globaltech Bridge</a>
-                <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-                <div class="nav-collapse collapse">
-                  <ul class="nav">
-                    <li class="divider-vertical"></li>
-                    <li class="active"><a href="/">HOME</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a href="/company/new">CREATE COMPANY</a> </li>
-                    <li class="divider-vertical"></li>
-                    <li><a href="/news/new">CREATE POST</a> </li>
+    <a href="#" class="pull-right btn btn-success" id="signup" style="clear: both;margin-right: 15%;"><small>no account? </small>Sign Up!</a>
+    <br/>
+    <div class="masthead">
+        <h3 class="muted">Logo Here</h3>
+
+
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Profile</a>
+                        </li>
+                        <li>
+                            <a href="#">Messages</a>
+                        </li>
+                        <li><a href="/company/new">Create Company</a> </li>
+                        <li><a href="/news/new">Create Post</a> </li>
+                        <li>
+                            <a id="csearch" class="dropdown-toggle dropdown-signin" data-html="true" data-toggle="popover" data-placement="bottom" data-content='<form>
+                <label for="company_name">
+                    Company Name
+                </label>
+                <input type="text" class="input-medium" placeholder="Company Name">
+
+                <div class="accordion" id="accordion2" style="width: 165px;">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                Industry
+                            </a>
+                        </div>
+                        <div id="collapseOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Biotech
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Life Sciences
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Big Data
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Financial Services
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                                Category
+                            </a>
+                        </div>
+                        <div id="collapseTwo" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Category 1
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Category 2
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Category 3
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Category 4
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree">
+                                Country
+                            </a>
+                        </div>
+                        <div id="collapseThree" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    United States
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Mexico
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Colombia
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Nicaragua
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Venezuela
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Peru
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Bolivia
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Chile
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Costa Rica
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseFour">
+                                Technologies
+                            </a>
+                        </div>
+                        <div id="collapseFour" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Django
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Flask
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Ruby on Rails
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    Sinatra
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseFour">
+                                Status
+                            </a>
+                        </div>
+                        <div id="collapseFour" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    GTB-1
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    GTB-2
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    GTB-3
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"></input>
+                                    GTB-4
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="btn btn-success">Search</a>
+            </form>' href="#">Company Search</a>
+
+                        </li>
 
                     <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                     {% if user.is_authenticated %}
         
-                    <li class="divider-vertical pull-right"></li>
-                    <li><a href="/profile/{{ user.id }}">HI, {{ user.username }}</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a href="/logout">LOGOUT</a></li>
+                    
+                    <li><a href="/profile/{{ user.id }}">Hi, {{ user.username }}</a></li>
+                    <li><a href="/logout">Logout</a></li>
                     {% endif %} 
-                <li><form class="navbar-form pull-right">
-                    <input type="text" class="span2">
-                    <button type="submit" class="btn">Search</button>
-                </form></li>
-            </ul>
+                    <li>
+                      <form class="navbar-form pull-right">
+                        <input type="text" class="span2">
+                        <button type="submit" class="btn">Search</button>
+                     </form>
+                    </li>
+                  
+
+                    </ul>
                   </ul>
                 </div><!--/.nav-collapse -->
               </div><!-- /.navbar-inner -->
-            </div><!-- /.navbar -->
             
-          </div> <!-- /.container -->
-        </div><!-- /.navbar-wrapper -->
-
         <!--- Modal Form -->
        <!--- Modal Form -->
        {% if user.is_authenticated %}
@@ -102,25 +294,14 @@
         </div>
 
         {% endif %}
+                        
+                    </div>
+                </div>
+            </div>
+            
 
 
 
-        <!-- Carousel
-        ================================================== -->
-       
-          <div id="myCarousel" class="carousel slide">
-            <div class="carousel-inner">
-              <div class="item active">
-                <img src="{{ STATIC_URL }}images/main_lock1.jpg" alt="">
-                <div class="container">
-                  </div>
-              </div>
-        
-
-              </div>
-
-          </div>
-        
        
         
         {% block header %}{% endblock %}
@@ -136,4 +317,9 @@
     </div>
     </body>
 </html>
+<script type="text/javascript">
+        $('.dropdown-toggle').dropdown();
+        $('.tooltipa').tooltip();
+        $('#csearch').popover();
 
+    </script>
