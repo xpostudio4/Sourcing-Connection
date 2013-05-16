@@ -15,7 +15,8 @@ from django.views.decorators.http import require_POST, require_http_methods
 #Aplication models
 
 from companies.models import *
-from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingForm, AcquisitionForm, ManagementForm, CompetitorsForm, OfficeForm
+from companies.forms import CustomerForm, AwardForm, CertificationForm, \
+    FundingForm, AcquisitionForm, ManagementForm, CompetitorsForm, OfficeForm, ManagementPictureForm
 from contacts.models import *
 from fileupload.forms import PictureForm
 from latech.asana import AsanaAPI, AsanaException
@@ -43,6 +44,7 @@ def form_create(request, model):
         "Funding": FundingForm(),
         "Acquisition": AcquisitionForm(),
         "Management":ManagementForm(),
+        "ManagementPicture":ManagementPictureForm(),
         "Competitor": CompetitorsForm(),
         "Picture": PictureForm(),
         "Office": OfficeForm(),
@@ -58,9 +60,10 @@ def form_validation(request, slug, model):
         "Funding": FundingForm(request.POST),
         "Acquisition": AcquisitionForm(request.POST),
         "Management":ManagementForm(request.POST),
+        "ManagementPicture":ManagementPictureForm(request.POST, request.FILES),
         "Competitor": CompetitorsForm(request.POST),
         "Picture": PictureForm(request.POST),
-        "Office": OfficeForm(request.POST),
+        "Office": OfficeForm(request.POST, request.FILES),
 
     }
 
@@ -219,11 +222,26 @@ def form_validation(request, slug, model):
 
         elif model == "Picture":
 
-            context = Picture.objects.filter(id= f.id)
+            context = Picture.objects.filter(id = f.id)
 
             template = """
                 <li id="pictures-{{ picture.id }}" class="span2"> 
                 <a class="link-delete" data-type="pictures" data-id="{{ picture.id }}" id="{{ company.slug }}-pictures-{{ picture.id }}" onclick="{{ company.slug }}_pictures_{{ picture.id }}(); return false;" href="/company/{{ company.slug }}/pictures/{{ picture.id }}/delete"><i class="icon-remove"></i></a>  
+                <a class="gallery" href="{{ MEDIA_URL }}{{ picture.file }}" > <img data-src="holder.js/160x120" src="{{ MEDIA_URL }}{{ picture.file }}" width="160" height="160"> </a>
+                </li>
+            """
+            
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ picture.id }}", str(context.id))
+            template = template.replace("{{ picture.file }}", context.file )
+
+        elif model == "ManagementPicture":
+
+            manager = get_object_or_404(Management, pk=pk)
+            context = ManagementPicture.objects.filter(id=f.id)
+
+            template = """
+                <li id="managerpictures-{{ managementpicture.id }}" class="span2"> 
+                <a class="link-delete" data-type="managementpictures" data-id="{{ managementpicture.id }}" id="{{ company.slug }}-managementpictures-{{ managementpicture.id }}" onclick="{{ company.slug }}_managementpictures_{{ managementpicture.id }}(); return false;" href="/company/{{ company.slug }}/management/{{ manager.pk }}/pictures/{{ managementpicture.id }}/delete"><i class="icon-remove"></i></a>  
                 <a class="gallery" href="{{ MEDIA_URL }}{{ picture.file }}" > <img  data-src="holder.js/160x120" src="{{ MEDIA_URL }}{{ picture.file }}" width="160" height="160"> </a>
                 </li>
             """

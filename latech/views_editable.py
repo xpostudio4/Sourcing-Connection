@@ -3,16 +3,18 @@ import json
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, render
 from django.views.decorators.http import require_POST, require_http_methods
 from django.core.urlresolvers import resolve
-from django.template import RequestContext, Context
+from django.template import RequestContext, Context 
+from django.template.defaultfilters import slugify
 
 
 #Aplication models
 
 from companies.models import *
-from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingForm, AcquisitionForm, ManagementForm, CompetitorsForm, OfficeForm
+from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingForm, AcquisitionForm, ManagementForm,\
+ CompetitorsForm, OfficeForm, ContactForm
 from contacts.models import *
 # testing Bootstrap editable
 
@@ -31,16 +33,16 @@ def sss(request):
     return render_to_response('test.html', context_instance=RequestContext(request) )
 
 @require_POST
-def ssss(request):
+def company_create_modal(request):
     if request.method == 'POST':
         if request.POST.get('name') != "" or " ": 
             value = request.POST.get('name')
             val = Company.objects.filter(name__iexact=value)
             if val:
-                message = u'%s <div class="alert alert-error" >Exists in DB </div>\
+                message = u'%s <div id="alerts" class="alert alert-error" >Exists in DB </div>\
                     <div class="btn btn-danger"></div>' % value
             else:
-                message = u'%s <div class="alert alert-success" >Not Exists in DB </div>\
+                message = u'%s <div id="alerts" class="alert alert-success" >Not Exists in DB </div>\
                     <div class="btn btn-success">' % value
         else:
             message = 'Waiting for an Input'
@@ -48,23 +50,59 @@ def ssss(request):
         message =""
     return HttpResponse(json.dumps(message), mimetype="application/json")
 
+def contact(request):
+    if request.method == 'POST': # If the form has been submitted...
+        wm_form = ContactForm(request.POST) # A form bound to the POST data
+        if wm_form.is_valid(): # All validation rules pass
+            # Process the data in form.cleaned_data
+            # ...
+            subject = wm_form.cleaned_data['subject']
+            message = wm_form.cleaned_data['message']
+            sender = wm_form.cleaned_data['sender']
+            cc_myself = wm_form.cleaned_data['cc_myself']
+
+            recipients = ['jeasoft@gmail.com']
+            if cc_myself:
+                recipients.append(sender)
+
+            from django.core.mail import send_mail
+            send_mail(subject, message, sender, recipients)
+
+            return HttpResponseRedirect('/thanks/') # Redirect after POST
+    else:
+        form = ContactForm() # An unbound form
+
+
+    return render(request, 'webmaster_form.html', {
+        'form': form,
+    })
+
 @require_POST
-def company_create_modal(request):
+def company_name(request):
     if request.method == 'POST':
         if request.POST.get('name') != "" or " ": 
             value = request.POST.get('name')
+            company = Company.objects.create(name=value, slug=slugify(value))
+            return HttpResponseRedirect('/company/%s' % company.slug)
+
+
+@require_POST
+def ssss(request):
+    if request.method == 'POST':
+        if request.POST.get('name') != "" or " ": 
+            value = request.POST.get('name').strip()
             val = Company.objects.filter(name__iexact=value)
             if val:
-                message = u'%s <div class="alert alert-error" >Exists in DB </div>\
-                    <div class="btn btn-danger"></div>' % value
+                message = u'<div class="alert alert-error"> <strong>%s</strong> Exists in DB </div>' % value
             else:
-                message = u'%s <div class="alert alert-success" >Not Exists in DB </div>\
-                    <button class="btn btn-primary" type="button">Create Company</button>' % value
+
+                message = u'<div class="alert alert-success" > <strong>%s</strong> Not Exists in DB </div>' % value
         else:
             message = 'Waiting for an Input'
     else:
         message =""
     return HttpResponse(json.dumps(message), mimetype="application/json")
+
 
 
 @require_POST

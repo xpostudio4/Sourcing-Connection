@@ -144,13 +144,39 @@ ROUND_CHOICES = (
 
 class Management(models.Model):
     company = models.ForeignKey(Company, related_name="Management of the company")
+    contact = models.ForeignKey('contacts.Contact', related_name="Manager Contact", blank=True, null=True)
     full_name = models.CharField(max_length=56)
     title = models.CharField(max_length=56)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        if self.contact:
+                self.full_name = (("%s %s") % (self.contact.fr_name, self.contact.ls_name))
+        super(Management, self).save(*args, **kwargs)
+ 
     def __unicode__(self):
+        if self.contact:
+            return ("%s: %s %s") % (str(self.company), self.contact.fr_name, self.contact.ls_name)
         return str(self.company) + " : " + self.full_name
+
+class ManagementPicture(models.Model):
+    file = models.ImageField(storage=gs, upload_to="images/companies_imgs/")
+    slug = models.SlugField(max_length=255, blank=True)
+    manager = models.ForeignKey(Management, related_name="Management Images")
+
+    def __unicode__(self):
+        return ("%s: %s") % (self.manager, self.slug)
+
+    def save(self, *args, **kwargs):
+        self.slug = defaultfilters.slugify(self.file.name)
+        super(ManagementPicture, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.file.delete(False)
+        super(ManagementPicture, self).delete(*args, **kwargs)
+
+
 
 class Funding(models.Model):
     company = models.ForeignKey(Company, related_name="Funds Delivered to", blank=True)

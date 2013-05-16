@@ -160,7 +160,26 @@
 	<p id="application-contact"><text data-type="text" data-model="Contact" data-url="/userfields/Contact/{{contact.id }}/application/" data-pk="{{ contact.id }}"  data-title="Contact Applications" class="editable-value">{{ contact.application }}</text></p>
 	<br>
 
-	</div>
+</div>
+        <div class="media">
+            <h4 class="media-heading"><strong class="muted">Pictures: </strong></h4>
+            <ul class="thumbnails pull-left inline">
+                <div class="row-fluid">
+
+            <br>
+
+            {% if contacts_pictures %}
+
+                    {% for picture in contacts_pictures %}
+                    <li class="span2"> <a class="gallery" href="{{ MEDIA_URL }}{{ picture.file}}"><img src="{{ MEDIA_URL }}{{ picture.file}}"></a></li>
+                    {% endfor %}
+
+            {% endif %}
+                </div>
+            </ul>
+        </div>
+
+
 <link href="{{ STATIC_URL }}bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
 <script src="{{ STATIC_URL }}bootstrap-editable/js/bootstrap-editable.js"></script>
 <script type="text/javascript">

@@ -340,9 +340,17 @@
             <ul id="management-{{ manager.id }}" class="nav nav-list pull-left">
                 <li><a class="link-delete" data-type="management" data-id="{{ manager.id }}" id="{{ company.slug }}-management-{{ manager.id }}" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-remove"></i></a></li>
 
-            <h5 class="media-heading text-info"> <a data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/full_name/" data-pk="{{ manager.id }}"  data-title="Manager full name" id="manager-name" href="/company/{{ company.slug }}/management/{{ manager.id }}/update">{{ manager.full_name }}</a></h5>
+            {% if manager.user %}
+            <h5 class="media-heading text-info"> <a data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/full_name/" data-pk="{{ manager.id }}"  data-title="Manager full name" id="manager-name" class="editable-value" href="/profile/{{ manager.user.contact.id }}/">{{ manager.full_name }}</a></h5>
+            
+            {%else%}
+            <h5 class="media-heading text-info"> <a data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/full_name/" data-pk="{{ manager.id }}"  data-title="Manager full name" id="manager-name" class="editable-value" href="/company/{{ company.slug }}/management/{{ manager.id }}/update">{{ manager.full_name }}</a></h5>
 
-                <p data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/title/"  data-pk="{{ manager.id }}" data-title="Manager Title" id="manager-title"> {{ manager.title }}</p>
+            {% endif %}
+
+
+                <p data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/title/"  data-pk="{{ manager.id }}" data-title="Manager Title" id="manager-title" class="editable-value"> {{ manager.title }}</p>
+             <li><a class="add-element" data-model="ManagementPicture" href="/company/{{ company.slug }}/management/{{ manager.pk }}/pictures/new"><i class="icon-plus"></i> Add pictures</a></li>
             </ul>
 
         {% endfor %}
@@ -405,7 +413,7 @@
 
                 <h4 class="media-heading"><strong class="muted">pictures:</strong></h4></br>
                 <ul class="nav nav-list pull-right">
-                    <li><a class="add-element" data-model="Picture" href="/company/{{ company.slug }}/pictures/new"><i class="icon-plus"></i> Add pictures</a></liic                </ul>
+                    <li><a class="add-element" data-model="Picture" href="/company/{{ company.slug }}/pictures/new"><i class="icon-plus"></i> Add pictures</a></li></ul>
 
                 <br/>
                 <ul class="thumbnails pull-left inline">
@@ -557,11 +565,11 @@
               </ul>
               Please verify the fields and fill them corretly.
             </div>
-            <form id="new-form" method="POST" action="/login/" >
+            <form enctype="multipart/form-data" id="new-form" method="POST" action="/login/" >
                 {% csrf_token %}
                 <div class="modal-form" data-model="0" >
                 </div>
-                <a href="#"  id="create-item"  class="btn btn-primary"  >Create</a>
+                <a href="#"  id="create-item"  class="btn btn-primary">Create</a>
                 <a href="#"  id="add-another"  class="btn btn-info" >Create and Add another</a>
                 <a href="#" id="cancel-modal" class="btn btn-inverse">Cancel</a>
 

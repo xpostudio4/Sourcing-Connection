@@ -1,7 +1,8 @@
 from fileupload.models import Picture
 from fileupload.forms import PictureForm
+from companies.forms import ManagementPictureForm
 from companies.functions import *
-from companies.models import Company
+from companies.models import Company, ManagementPicture, Management
 from django.views.generic import CreateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, get_object_or_404, render 
@@ -142,4 +143,93 @@ def picture_view(request, slug, id):
 
     return render_to_response('picture_form.html', 
                 {'details': picture_reference,'info':picture_reference},
+                context_instance=RequestContext(request))
+
+####################################ManagerPictures###################################
+
+def managerpicture_create(request, pk, slug):
+    """The purpose of this function is to create  new customers item associated with a created company"""
+    #verifies if the company exists if not returns a 404 page
+    manager =get_object_or_404(Management,pk=pk)
+    company = get_object_or_404(Company, slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    #if the request is GET presents empty form
+    if request.method == 'GET':
+
+        managerpicture_form = ManagementPictureForm()
+        return render_to_response('picture_form.html', {'form': managerpicture_form, 'company':company, 'manager':manager},
+            context_instance=RequestContext(request))
+     
+    else:
+        managerpicture_form = ManagementPictureForm(request.POST, request.FILES)
+        #if is POST Validates the form is well filled and save it redirecting to the company page
+        if managerpicture_form.is_valid():
+            mpf = managerpicture_form.save(commit=False)
+            mpf.manager = manager
+            mpf.save()
+            return HttpResponseRedirect('/company/'+str(slug))
+
+        #if not well filled redirect to the original create and display error
+        else:
+            return render_to_response('picture_form.html', 
+                {'form': managerpicture_form, 'form_errors': managerpicture_form.errors, 'company':company},
+                context_instance=RequestContext(request))
+
+
+def mpicture_update(request, slug, id):
+    """The purpose of this view is to update the info of the customer page"""
+    #verifies if the company exists if not returns a 404 page
+    manager =get_object_or_404(Management,id=id)
+    company = get_object_or_404(Company, slug=slug)
+    mp_reference = get_object_or_404(Picture, id=id,company=company)
+    picture_form = PictureForm(instance=mp_reference)
+
+    #verifies the person has access to the company or is an incubator employee
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    #if the request is GET presents info, 
+    if request.method == 'GET':
+        return render_to_response('picture_form.html',{'form':picture_form, 'info': mp_reference},context_instance=RequestContext(request))
+    else:
+        picture_form = PictureForm(request.POST, instance=mp_reference)
+        #if is POST Validates the form is well filled and save it redirecting to the company page 
+        if picture_form.is_valid():
+            picture_form.save(commit = False)
+
+            return HttpResponseRedirect('/company/'+str(slug))
+        #if not well filled redirect to the original update page and display error
+        else:
+            return render_to_response('picture_form.html', 
+                {'form': picture_form, 'form_errors': picture_form.errors, 'info': mp_reference},
+                context_instance=RequestContext(request))
+
+@login_required
+def mpicture_delete(request, slug,id):
+    """This view deletes the award info and redirects to the company page"""
+    
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    if request.method == 'POST':
+        return HttpResponseRedirect('/company/'+str(slug))
+    else: 
+        #verifies if the company exists if not returns a 404 page
+        mp_reference = get_object_or_404(Picture, id=id,company=company)
+
+        #deletes the view and redirects to the page.
+        mp_reference.delete()
+        return HttpResponseRedirect('/company/'+str(slug))
+
+
+
+@login_required
+def mpicture_view(request, id, pk):
+    """This view makes possible to display a award item alone"""
+    #company =get_object_or_404(Company,slug=slug)
+    manager =get_object_or_404(Management, pk=pk)
+    #edit = validate_user_company_access_or_redirect(request,company)
+    mp_reference = get_object_or_404(ManagementPicture, id=id, manager=manager)
+
+    return render_to_response('picture_form.html', 
+                {'details': mp_reference,'info':mp_reference},
                 context_instance=RequestContext(request))

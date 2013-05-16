@@ -2,6 +2,7 @@ from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, get_object_or_404
 from contacts.models import *
 from contacts.forms import *
+from companies.models import ManagementPicture
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -30,11 +31,12 @@ def profile_view(request, id):
     
     contacts = Contact.objects.filter(id=id)
     contacts_urls = Contact_Urls.objects.filter(latech_contact=contact)
+    contacts_pictures = ManagementPicture.objects.filter(manager_id=contact)
    
 
     return render_to_response(
         "user_page.html",
-        {'contacts':contacts, 'contacts_urls':contacts_urls},
+        {'contacts':contacts, 'contacts_urls':contacts_urls, 'contacts_pictures':contacts_pictures},
         context_instance=RequestContext(request))
 
 

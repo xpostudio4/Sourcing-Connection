@@ -33,7 +33,8 @@ urlpatterns = patterns('',
       url(r'^forms/(?P<slug>[\w-]+)/(?P<model>[\w-]+)/$','latech.views.form_validation'),
       url(r'^sss/$','latech.views_editable.sss'),
       url(r'^ssss/$','latech.views_editable.ssss'),
-      url(r'^company_name/$','latech.views_editable.company_create_modal'),
+      url(r'^contact/$','latech.views_editable.contact'),
+      url(r'^companies/name/$','latech.views_editable.company_name'),
      # For testing: bootstrap-editable
       url(r'^formfields/(?P<model>[\w-]+)/(?P<id>[\d]+)/(?P<field>[\w-]+)/$','latech.views_editable.form_fields'),
       url(r'^userfields/(?P<model>[\w-]+)/(?P<id>[\d]+)/(?P<field>[\w-]+)/$','latech.views_editable.user_form_fields'),
@@ -75,6 +76,12 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/update/$','fileupload.views.picture_update'),
      url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/delete/$','fileupload.views.picture_delete'),
      url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/$','fileupload.views.picture_view'),
+
+     # ManagerPicture urls
+     url(r'^company/(?P<slug>[\w-]+)/management/(?P<pk>[\w-]+)/pictures/new/$','fileupload.views.managerpicture_create'),
+#     url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/update/$','fileupload.views.picture_update'),
+#     url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/delete/$','fileupload.views.picture_delete'),
+     url(r'^profile/(?P<pk>[\d]+)/pictures/(?P<id>[\d]+)$','fileupload.views.mpicture_view'),
 
 
     # Acquisitions urls
