@@ -49,8 +49,10 @@
 
 {% endif %}
 <script type="text/javascript">
-    $("ul.errorlist").addClass("text-error");</script>
-
+    $("ul.errorlist").addClass("text-error");
+    $(".textarea").wysihtml5();
+    </script>
+    
     
 {% if funding_form %}
 <h2>Funding</h2>
@@ -87,5 +89,12 @@ Please list office addresses, if any.
 <button type="submit" class="btn">Submit Form</button>
 
 </form>
-</div>
+    <link href="{{ STATIC_URL }}bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <script src="{{ STATIC_URL }}bootstrap-editable/js/bootstrap-editable.js"></script>
+    <link href="{{ STATIC_URL }}inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet"> 
+    <script src="{{ STATIC_URL }}inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.min.js"></script>  
+    <script src="{{ STATIC_URL }}inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.min.js"></script>
+    <script src="{{ STATIC_URL }}inputs-ext/wysihtml5/wysihtml5.js"></script>
+    <script src="{{ STATIC_URL }}js/moment.min.js"></script>
+
 {% endblock %}

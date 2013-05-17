@@ -3,10 +3,16 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.template import defaultfilters
-from taxonomy.models import *
-from location.models import *
 from django.core.files.storage import FileSystemStorage
+
+#Models
+from location.models import *
+from taxonomy.models import *
+
+#Third Party apps
+from markdown import markdown
 from storagess.backends.gs import GSBotoStorage
+from wysihtml5.fields import Wysihtml5TextField
 
 
 # Detecting Heroku Deployment
@@ -40,9 +46,10 @@ class Company(models.Model):
     slug = models.SlugField(max_length=80, unique= True)
 #    logo = models.ImageField(blank=True, null=True, upload_to="images/company_imgs/")
     logo = models.ImageField(blank=True, null=True, storage=gs, upload_to="images/companies_imgs/")
-    overview = models.TextField(blank=True)
-    value_proposition = models.TextField(blank=True)
-    description = models.TextField(blank=True)
+    overview = Wysihtml5TextField(blank=True)
+    value_proposition = Wysihtml5TextField(blank=True)
+    description = Wysihtml5TextField(blank=True)
+   # description_html = models.TextField(editable=False, blank=True)
     company_status = models.IntegerField(choices=COMPANY_STATUS_CHOICES, blank=True, null=True)
     employee_quantity = models.IntegerField(choices=EMPLOYEE_QUANTITY_CHOICES, blank=True, null=True)
 #    created_by = models.ForeignKey(User, related_name="LATech user")
@@ -92,6 +99,7 @@ class Company(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = defaultfilters.slugify(self.name)
+        #self.description_html = markdown(self.description)
         super(Company, self).save(*args, **kwargs)
         companylinks = CompanyLink(id=self.id, company=self)
         companylinks.save()

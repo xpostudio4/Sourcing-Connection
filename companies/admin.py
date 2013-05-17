@@ -4,13 +4,14 @@ from companies.models import Company, Office, Management, Funding, \
 	Award, CompanyLink, ManagementPicture
 from fileupload.models import Picture
 from django.contrib import admin
+from wysihtml5.admin import AdminWysihtml5TextFieldMixin
 
 class PictureInline(admin.StackedInline):
     model = Picture
     extra = 3
     exclude = ["slug"]
 
-class CompanyAdmin(admin.ModelAdmin):
+class CompanyAdmin(AdminWysihtml5TextFieldMixin, admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
     inlines = [PictureInline]
 

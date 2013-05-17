@@ -102,7 +102,7 @@
         </div>
      <div class="media">
         <h2 class="media-heading">{{ company.name  }} </h2>
-        <p><text class="muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="textarea" >{{ company.value_proposition  }}</text> </p>
+        <p><text class="muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="wysihtml5" >{{ company.value_proposition|safe  }}</text> </p>
 
     </div>
 
@@ -112,7 +112,7 @@
 
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
-            <p><text id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="textarea"> {{ company.description }} </text></p>
+            <p id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="wysihtml5">{{ company.description|safe}}</p>
         </div>
 
     <div class="media">
@@ -166,7 +166,7 @@
 <div>
 <div class="media">
     <h4 class="media-heading"><strong class="muted">Overview:</strong></h4>
-    <p> <text data-type="textarea" data-model="Company" data-url="/formfields/Company/{{ company.id }}/overview/" data-pk="{{ company.id }}"  data-title="Company Overview" id="company-overview">{{ company.overview  }}</text></p>
+    <p> <text data-type="wysihtml5" data-model="Company" data-url="/formfields/Company/{{ company.id }}/overview/" data-pk="{{ company.id }}"  data-title="Company Overview" id="company-overview">{{ company.overview|safe  }}</text></p>
 </div>
 <div class="media">
     <h4 class="media-heading"><strong class="muted">Related Industries:</strong></h4>
@@ -565,7 +565,7 @@
               </ul>
               Please verify the fields and fill them corretly.
             </div>
-            <form enctype="multipart/form-data" id="new-form" method="POST" action="/login/" >
+            <form enctype="multipart/form-data" id="new-form" method="POST" action="." >
                 {% csrf_token %}
                 <div class="modal-form" data-model="0" >
                 </div>
@@ -752,6 +752,10 @@ create_item.click(
         </script>
     <link href="{{ STATIC_URL }}bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
     <script src="{{ STATIC_URL }}bootstrap-editable/js/bootstrap-editable.js"></script>
+    <link href="{{ STATIC_URL }}inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet"> 
+    <script src="{{ STATIC_URL }}inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.min.js"></script>  
+    <script src="{{ STATIC_URL }}inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.min.js"></script>
+    <script src="{{ STATIC_URL }}inputs-ext/wysihtml5/wysihtml5.js"></script>
     <script src="{{ STATIC_URL }}js/moment.min.js"></script>
     
     <script type="text/javascript">
