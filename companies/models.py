@@ -10,7 +10,7 @@ from location.models import *
 from taxonomy.models import *
 
 #Third Party apps
-from markdown import markdown
+#from markdown import markdown
 from storagess.backends.gs import GSBotoStorage
 from wysihtml5.fields import Wysihtml5TextField
 
