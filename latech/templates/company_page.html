@@ -1,5 +1,3 @@
-
-
 {% extends "base.html" %}
 
 {% block title %}{{ company.name  }}{% endblock %}
@@ -69,8 +67,7 @@
         {% if  user.is_staff or user.is_superuser or permission %}
             
                 <div class="pull-right" style="margin-right:80px;">
-                    <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}/update'">  Edit  </button>
-                    <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}/links/update'">  Edit Links </button>
+                    <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}/edit'">  Edit  </button>
                 </div>
          
         {% endif %}
@@ -80,9 +77,9 @@
             <a class="pull-left" href="#">
                 {% if company.logo %}
     
-                <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ company.logo }}" height="130", width="178">
+                <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ company.logo }}" height="130" width="178">
                 {% else %}
-                <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height=96, width=140  >
+                <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="96" width="140"  >
                 
                 {% endif %}
             </a>
@@ -102,136 +99,72 @@
         </div>
      <div class="media">
         <h2 class="media-heading">{{ company.name  }} </h2>
-        <p><text class="muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="wysihtml5" >{{ company.value_proposition|safe  }}</text> </p>
 
     </div>
 
+    <div class="icons">
+        {% if company.email %}
+            <a href="mailto:{{ company.email  }}"><span class="add-on"><img src="{{ STATIC_URL }}img/Mail-icon.png" height="16" width="16"></span></a>
+        {% else %}
+            <span class="add-on"><img src="{{ STATIC_URL }}img/Mail-icon2.png" height="16" width="16"></span>
+        {% endif %}
+
+        {% for link in companylinks %}
+
+        {% if link.linkedin_url %}
+            <a href="{{ link.linkedin_url }}"><span class="add-on"></span><img src="{{ STATIC_URL }}img/linkedin_icon.jpg" height="16" width="16"></span></a>
+        {% else %}
+            <span class="add-on"><img src="{{ STATIC_URL }}img/linkedin_icon2.jpg" height="16" width="16"></span>
+        {% endif %}
+
+        {% if link.facebook_link %}
+            <a href="{{ link.facebook_link }}"><span class="add-on"><img src="{{ STATIC_URL }}img/fb1.jpg" height="16" width="16"></span></a>
+        {% else %}
+            <span class="add-on"><img src="{{ STATIC_URL }}img/fb2.jpg" height="16" width="16"></span>
+
+        {% endif %}
+
+        {% if link.twitter_url %}
+            <a href="{{ link.twitter_url }}"><span class="add-on"><img src="{{ STATIC_URL }}img/twitter_icon1.jpg" height="16" width="16"></span></a>
+        {% else %}
+            <span class="add-on"><img src="{{ STATIC_URL }}img/twitter_icon2.jpg" height="16" width="16"></span>
+        {% endif %}
+
+        {% if link.web_url %}
+            <a href="{{ link.web_url }}"><i class="icon-home"></i></a>
+        {% else %}
+            <a href="{{ link.web_url }}"><i class="icon-home"></i></a>
+        {% endif %}
+
+        {% if link.blog_url %}
+            <a href="{{ link.blog_url }}"><i class="icon-user"></i></a>
+        {% else %}
+            <i class="icon-user"></i>
+        {% endif %}
+
+        {% endfor%}
+    </div>
+    
     <div class="span10">
 
+        <div class="media">
+            <h4 class="media-heading"><strong class="muted">Value Proposition:</strong></h4>
+            <p class="muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="textarea" >{{ company.value_proposition|safe }} </p>
+        </div>
 
 
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
-            <p id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="wysihtml5">{{ company.description|safe}}</p>
+            <p id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="textarea"  >{{ company.description|safe}}</p>
         </div>
 
-    <div class="media">
-<table class="table">
-    <tbody>
-        {% for link in companylinks %}
-            <tr>
-                <td>Company Link:</td>
-                <td><a id="company-url" data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/web_url/" data-pk="{{ link.id }}" data-title="Company Link" data-type="url" href="{{ link.web_url }}">{{ link.web_url }}</a></td>
-                <td>Company Blog:</td>
-                <td><a data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/blog_url/" data-pk="{{ link.id }}" data-title="Company Blog URL" data-type="url" id="company-blog-url" href="{{ link.blog_url  }}">{{ link.blog_url  }}</a></td>
-            </tr>
-            <tr>
-                <td>Twitter:</td>
-                <td ><a data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/twitter_url/" data-pk="{{ link.id }}" data-title="Company Twitter" data-type="url" id = "company-twitter-url" href="{{ link.twitter_url  }} ">{{ link.twitter_url  }}</a></td>
 
-                <td>Facebook:</td>
-                <td ><a data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/facebook_link/" data-pk="{{ link.id }}" data-title="Company Facebook" data-type="url" id = "company-facebook-url" href="{{ link.facebook_link  }} ">{{ link.facebook_link  }}</a></td>
-            </tr>
-        {% endfor%}
-
-        {% if  user.is_staff or user.is_superuser or permission %}
-        <tr>
-            <td>Email: </td>
-                <td><a data-model="Company" data-url="/formfields/Company/{{ company.id }}/email/" data-pk="{{ company.id }}" data-title="Company Description"  id="company-email" data-type="email" href="mailto:{{ company.email  }}">{{ company.email  }} </a></td>
-
-            <td>Phone Contact:</td>
-                <td><a data-type="tel" data-model="Company" data-url="/formfields/Company/{{ company.id }}/main_phone/" data-pk="{{ company.id }}"  data-title="Company Main Phone"  id="company-phone" href="{{ company.main_phone }}">{{ company.main_phone }} </a></td>
-
-        </tr>
-
-        {% endif %}
-
-        <tr>
-            <td>Products:</td>
-            <td  id="company-product">{{ company.product }}</td >
-            <td>Applications:</td>
-            <td data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/applications/" data-pk="{{ company.id }}"  data-title="Company Applications" id="company-applications">{{ company.applications }}</td>
-        </tr>
-        <tr>
-            <td>Related Categories:</td>
-            <td colspan="3"><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/tags/" data-pk="{{ company.id }}" data-title="Company Tags" id="company-tags">{{ company.tags }}</text></td>
-        </tr>
-
-    </tbody>
-
-</table>
-
-</div>
-
-<div>
-<div class="media">
-    <h4 class="media-heading"><strong class="muted">Overview:</strong></h4>
-    <p> <text data-type="wysihtml5" data-model="Company" data-url="/formfields/Company/{{ company.id }}/overview/" data-pk="{{ company.id }}"  data-title="Company Overview" id="company-overview">{{ company.overview|safe  }}</text></p>
-</div>
 <div class="media">
     <h4 class="media-heading"><strong class="muted">Related Industries:</strong></h4>
-    <p><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/industries/" data-pk="{{ company.id }}"  data-title="Company Industries" id="company-industries" class="editable-value">{{ company.industries }}</text></p>
+    <p><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/industries/" data-pk="{{ company.id }}"  data-title="Company Industries" id="company-industries" >{{ company.industries }}</text></p>
 
     {% load humanize %}
 
-    {% if  user.is_staff or user.is_superuser or permission %}
-
-        {############################################## Customers ###################################}
-        <div class="media">
-
-
-                <h4 class="media-heading"><strong class="muted">Customers:</strong></h4></br>
-                <ul class="nav nav-list pull-right">
-                    <li><a class="add-element" data-model="Customer" href="/company/{{ company.slug }}/customers/new"><i class="icon-plus"></i> Add Customers</a></li>
-                </ul>
-
-                <br/>
-                <ul class="pull-left inline" id="Customer">
-                {% for customer in customers  %}
-
-                        <li id="customers-{{ customer.id }}"><a class="link-delete" data-type="customers" data-id="{{ customer.id }}"  id="{{ company.slug }}-customers-{{ customer.id }}" href="/company/{{ company.slug }}/customers/{{customer.id}}/delete" ><i class="icon-remove"></i></a>  <a data-type="text" data-model="Customer" data-url="/formfields/Customer/{{ customer.id }}/name/" data-pk="{{ customer.id }}" class="customer-name" data-title="Customer Name" href="/company/{{ company.slug }}/customers/{{customer.id}}/update">{{ customer.name }}</a>{% if not forloop.last %}, {% endif %}</li>
-                {% endfor %}
-                </ul>
-        </div>
-
-                {############################################## Awards ##############################}
-
-        <div class="media">
-
-
-            <h4 class="media-heading"><strong class="muted">Awards:</strong></h4></br>
-            <ul class="nav nav-list pull-right">
-                <li><a class="add-element" data-model="Award" href="/company/{{ company.slug }}/awards/new"><i class="icon-plus"></i> Add award</a></li>
-            </ul>
-
-            <br/>
-            <ul class="pull-left inline">
-            {% for award in awards  %}
-
-                    <li id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/awards/{{award.id}}/update" data-type="text" data-model="Award" data-url="/formfields/Award/{{ award.id }}/name/" data-pk="{{ award.id }}" class="editable-value" data-title="Award Name">{{ award.name }}</a> {% if not forloop.last %}, {% endif %}</li>
-
-            {% endfor %}
-            </ul>
-        </div>
-
-        {############################################## Certifications ##############################}
-        <div class="media">
-            <h4 class="media-heading"><strong class="muted">Certifications:</strong></h4></br>
-            <ul class="nav nav-list pull-right">
-                <li><a class="add-element" data-model="Certification" href="/company/{{ company.slug }}/certifications/new"><i class="icon-plus"></i> Add Certification</a></li>
-            </ul>
-
-            <br/>
-            <ul class="pull-left inline">
-            {% for certification in certifications  %}
-
-                    <li id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/certifications/{{certification.id}}/update" data-type="text" data-model="Certification" data-url="/formfields/Certification/{{ certification.id }}/name/" data-pk="{{ certification.id }}"  data-title="Certification" class="editable-value" >{{ certification.name }}</a> {% if not forloop.last %}, {% endif %}</li>
-
-            {% endfor %}
-            </ul>
-        </div>
-
-    {% else %}
 
             {############################################## Customers #####################################}
         <div class="media">
@@ -271,179 +204,14 @@
         </div>
 
 
-    {% endif %}
-
-
 </div>
 
 <div class="media">
     <h4 class="media-heading"><strong class="muted">Technologies:</strong></h4>
-    <p><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/technologies/" data-pk="{{ company.id }}"  data-title="Company Techs" id="company-technologies">{{ company.technologies }}</text></p>
+    <p><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/technologies/" data-pk="{{ company.id }}"  data-title="Company Techs" id="company-technologies" >{{ company.technologies }}</text></p>
 </div>
 
 
-    {% if  user.is_staff or user.is_superuser or permission %}
-
-
-        {####################################### Funding #####################################}
-    <div class="media">
-        <h4 class="media-heading"><strong class="muted">Funding:</strong></h4>
-        <br/>
-
-            <ul class="nav nav-list pull-right">
-                <li><a class="add-element" data-model="Funding" href="/company/{{ company.slug }}/fundings/new"><i class="icon-plus"></i> Add Funding</a></li>
-            </ul>
-
-
-            {% for funding in fundings %}
-                <li id="fundings-{{ funding.id }}"><a class="link-delete" data-type="fundings" data-id="{{ funding.id }}" id="{{ company.slug }}-fundings-{{ funding.id }}"  href="/company/{{ company.slug }}/fundings/{{funding.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/fundings/{{funding.id}}/update" data-type="select" data-model="Funding" data-url="/formfields/Funding/{{ funding.id }}/round/" data-pk="{{ funding.id }}"  data-title="Funding Round"  id="funding-round" >{{ funding.round }}</a> {% if not forloop.last %}{% endif %}
-
-                 <p>US$ <strong data-type="text" data-model="Funding" data-url="/formfields/Funding/{{ funding.id }}/raised/" data-pk="{{ funding.id }}"  data-title="Funding Raised" class="editable-value"> {{ funding.raised|intcomma}}</strong> </p>
-                 </li>
-
-
-            {% endfor %}
-        </br>
-    </div>
-
-
-
-        {############################################## Acquisition ####################################}
-        <div class="media">
-
-
-                <h4 class="media-heading"><strong class="muted">Acquisitions:</strong></h4></br>
-                <ul class="nav nav-list pull-right">
-                    <li><a class="add-element" data-model="Acquisition" href="/company/{{ company.slug }}/acquisitions/new"><i class="icon-plus"></i> Add Acquisitions</a></li>
-                </ul>
-
-                <br/>
-                <ul class="pull-left inline">
-                {% for acquisition in acquisitions  %}
-
-                    <li id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/update" data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name">{{ acquisition.name }}</a> {% if not forloop.last %}, {% endif %}</li>
-                {% endfor %}
-                </ul>
-        </div>
-
-        {####################################### Management #####################################}
-    <div class="media">
-    <h4 class="media-heading"><strong class="muted">Management:</strong></h4>
-    <br/>
-
-        <ul class="nav nav-list pull-right">
-            <li><a class="add-element" data-model="Management" href="/company/{{ company.slug }}/management/new"><i class="icon-plus"></i> Add Manager</a></li>
-        </ul>
-
-
-        {% for manager in management %}
-            <ul id="management-{{ manager.id }}" class="nav nav-list pull-left">
-                <li><a class="link-delete" data-type="management" data-id="{{ manager.id }}" id="{{ company.slug }}-management-{{ manager.id }}" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-remove"></i></a></li>
-
-            {% if manager.user %}
-            <h5 class="media-heading text-info"> <a data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/full_name/" data-pk="{{ manager.id }}"  data-title="Manager full name" id="manager-name" class="editable-value" href="/profile/{{ manager.user.contact.id }}/">{{ manager.full_name }}</a></h5>
-            
-            {%else%}
-            <h5 class="media-heading text-info"> <a data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/full_name/" data-pk="{{ manager.id }}"  data-title="Manager full name" id="manager-name" class="editable-value" href="/company/{{ company.slug }}/management/{{ manager.id }}/update">{{ manager.full_name }}</a></h5>
-
-            {% endif %}
-
-
-                <p data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/title/"  data-pk="{{ manager.id }}" data-title="Manager Title" id="manager-title" class="editable-value"> {{ manager.title }}</p>
-             <li><a class="add-element" data-model="ManagementPicture" href="/company/{{ company.slug }}/management/{{ manager.pk }}/pictures/new"><i class="icon-plus"></i> Add pictures</a></li>
-            </ul>
-
-        {% endfor %}
-    </br>
-    </div>
-
-
-        {############################################## Offices ##############################}
-
-    <div class="media">
-
-    <h4 class="media-heading"><strong class="muted">Offices:</strong></h4>
-        <ul class="nav nav-list pull-right">
-            <p id="company-offices">{{ offices.description }}</p>
-            <li><a class="add-element" data-model="Office" href="/company/{{ company.slug }}/office/new"><i class="icon-plus"></i> Add Office</a></li>
-        </ul>
-        <ul class="pull-left inline">
-            {% for office in offices %}
-             <li  id="office-{{ office.object.id }}" >
-                <a class="link-delete pull-left" data-type="office" data-id="{{ office.object.id }}" id="{{ company.slug }}-office-{{ office.object.id }}" href="/company/{{ company.slug }}/office/{{ office.object.id }}/delete"><i class="icon-remove"></i></a>
-                <address>
-                    <strong><a href="/company/{{company.slug }}/office/{{ office.object.id }}/update">{{ office.object.country }}</a></strong><br>
-                    {{ office.object.description }}<br>
-                    {{ office.object.address_1 }}<br>
-                    {{ office.object.address_2 }}<br>
-                    {% if office.object.phone %}
-                      <abbr title="Phone">P:</abbr> {{ office.object.phone }}<br>
-                    {% endif %}
-
-                {% if office.ul  %}
-                    </ul><br>
-
-                    <ul class="pull-left inline">
-                {% endif %}
-            {% endfor %}
-        </ul><br>
-    </div>
-
-        {############################################## Competitors ##############################}
-
-    <div class="media">
-        <h4 class="media-heading"><strong class="muted">Competitors:</strong></h4>
-        <ul class="nav nav-list pull-right">
-            <li><a class="add-element" data-model="Competitor" href="/company/{{ company.slug }}/competitors/new"><i class="icon-plus"></i> Add Competitor</a></li>
-        </ul>
-
-        <br/>
-        <ul class="pull-left inline">
-        {% for competitor in competitors  %}
-
-                <li id="competitors-{{ competitor.id }}"><a class="link-delete" data-type="competitors" data-id="{{ competitor.id }}" id="{{ company.slug }}-competitors-{{ competitor.id }}" href="/company/{{ company.slug }}/competitors/{{competitor.id}}/delete"><i class="icon-remove"></i></a>  <a data-type="text" data-model="Competitor" data-url="/formfields/Competitors/{{ competitor.id }}/name/" data-pk="{{ competitor.id }}"  data-title="Competitor Name" class="editable-value" href="/company/{{ company.slug }}/competitors/{{competitor.id}}/update">{{ competitor.name }}</a> {% if not forloop.last %}, {% endif %}</li>
-
-        {% endfor %}
-        </ul>
-    </div>
-
-        {############################################## Pictures ####################################}
-        <div class="media">
-
-
-                <h4 class="media-heading"><strong class="muted">pictures:</strong></h4></br>
-                <ul class="nav nav-list pull-right">
-                    <li><a class="add-element" data-model="Picture" href="/company/{{ company.slug }}/pictures/new"><i class="icon-plus"></i> Add pictures</a></li></ul>
-
-                <br/>
-                <ul class="thumbnails pull-left inline">
-                  <div class="row-fluid">
-
-                {% for picture in pictures  %}
-
-
-                        <li id="pictures-{{ picture.id }}" class="span2" > <a class="link-delete" data-type="pictures" data-id="{{ picture.id }}" id="{{ company.slug }}-pictures-{{ picture.id }}" onclick="{{ company.slug }}_pictures_{{ picture.id }}(); return false;" href="/company/{{ company.slug }}/pictures/{{ picture.id }}/delete"><i class="icon-remove"></i></a>  <a class="gallery" href="{{ MEDIA_URL }}{{ picture.file}}" > <img  data-src="holder.js/160x120" src="{{ MEDIA_URL }}{{ picture.file}}" width="160" height="160"> </a></li>
-
-                    <script>
-                    function {{ company.slug }}_pictures_{{ picture.id }}(){
-                        var r = confirm("Are You sure You want to delete picture {{ picture.name }}");
-                        if( r == true){
-                            return document.location.href = "/company/{{ company.slug }}/pictures/{{picture.id}}/delete";
-                        }else{
-                            return false;
-                        }
-                    }
-                    </script>
-
-                {% endfor %}
-                    <br><br>
-
-                    </div>
-
-                </ul>
-        </div>
-
-    {% else %}
 
     {####################################### Funding #####################################}
     <div class="media">
@@ -468,17 +236,21 @@
         {% endfor %}
 
 
-
+        {% if  user.is_staff or user.is_superuser or permission %}
         {############################################## Competitors #####################################}
         <div class="media">
-            <h4 class="media-heading"><strong class="muted">Acquisitions:</strong></h4>
+            <h4 class="media-heading"><strong class="muted">Competitors:</strong></h4>
             <ul class="pull-left inline">
-            {% for acquisition in acquisitions  %}
-                    <li>{{ acquisition.name }}{% if not forloop.last %}, {% endif %}</li>
+            {% for competitor in competitors  %}
+                    <li>{{ competitor.name }}{% if not forloop.last %}, {% endif %}</li>
 
             {% endfor %}
             </ul>
         </div>
+            
+         
+        {% endif %}
+
         {############################################## Offices #####################################}
 
         <div class="media">
@@ -506,16 +278,6 @@
             </ul><br>
         </div>
 
-        {############################################## Competitors #####################################}
-        <div class="media">
-            <h4 class="media-heading"><strong class="muted">Competitors:</strong></h4>
-            <ul class="pull-left inline">
-            {% for competitor in competitors  %}
-                    <li>{{ competitor.name }}{% if not forloop.last %}, {% endif %}</li>
-
-            {% endfor %}
-            </ul>
-        </div>
         {############################################## Pictures #####################################}
 
         <div class="media">
@@ -535,10 +297,9 @@
                 </div>
             </ul>
         </div>
-    {% endif %}
     <div class="media">
     <h4 class="media-heading"><strong class="muted">Latech Contact:</strong></h4>
-    <p> <text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/contact/" data-pk="{{ company.id }}"  class="editable-value" data-title="Company Contact" id="company-contact">{{ company.contact }}</text></p>
+    <p> <text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/contact/" data-pk="{{ company.id }}"   data-title="Company Contact" id="company-contact">{{ company.contact }}</text></p>
 
 </div>
 
@@ -750,180 +511,6 @@ create_item.click(
 
 
         </script>
-    <link href="{{ STATIC_URL }}bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
-    <script src="{{ STATIC_URL }}bootstrap-editable/js/bootstrap-editable.js"></script>
-    <link href="{{ STATIC_URL }}inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet"> 
-    <script src="{{ STATIC_URL }}inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.min.js"></script>  
-    <script src="{{ STATIC_URL }}inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.min.js"></script>
-    <script src="{{ STATIC_URL }}inputs-ext/wysihtml5/wysihtml5.js"></script>
-    <script src="{{ STATIC_URL }}js/moment.min.js"></script>
-    
-    <script type="text/javascript">
-    $.fn.editable.defaults.mode = 'inline';
-        $('.editables').editable();
-
-        $('#company-value-proposition').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-
-        $('#company-description').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-
-        $('#company-url').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-
-        $('#company-blog-url').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-
-
-        $('#company-twitter-url').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-        $('#company-facebook-url').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-
-        $('#company-phone').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-
-        $('#company-email').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-        $('#company-applications').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-
-        $('#company-overview').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-
-        $('#company-tags').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-        
-        $('#company-technologies').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-
-        $('#manager-name').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-        $('#manager-title').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-        $('.competitor').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-        $('.customer-name').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        });
-
-        $('#funding-round').editable({
-            value: 1,    
-            source: [
-                  {value: 'Seed', text: 'Seed'},
-                  {value: 'Angel', text: 'Angel'},
-                  {value: 'Series A', text: 'Series A'},
-                  {value: 'Series B', text: 'Series B'},
-                  {value: 'Series C', text: 'Series C'},
-                  {value: 'Series D', text: 'Series D'},
-                  {value: 'Series E', text: 'Series E'},
-                  {value: 'Series F', text: 'Series F'},
-                  {value: 'Series G', text: 'Series G'},
-                  {value: 'Private Equity', text: 'Private Equity'},
-                  {value: 'Grant', text: 'Grant'},
-                  {value: 'Debt', text: 'Debt'},
-                  {value: 'Venture Round', text: 'Venture Round'},
-                  {value: 'Post IPO Equity', text: 'Post IPO Equity'},
-                  {value: 'Post IPO Debt', text: 'Post IPO Debt'},
-                ],
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-
-        });
-
-        $('.editable-value').editable({
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-        }); 
-
-
-
-</script>
 
 {% endblock %}
 </div>

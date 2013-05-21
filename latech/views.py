@@ -16,7 +16,7 @@ from django.views.decorators.http import require_POST, require_http_methods
 
 from companies.models import *
 from companies.forms import CustomerForm, AwardForm, CertificationForm, \
-    FundingForm, AcquisitionForm, ManagementForm, CompetitorsForm, OfficeForm, ManagementPictureForm
+    FundingForm, AcquisitionForm, ManagementForm, CompetitorsForm, OfficeForm, ManagementPictureForm, CompanyLinkForm
 from contacts.models import *
 from fileupload.forms import PictureForm
 from latech.asana import AsanaAPI, AsanaException
@@ -48,6 +48,8 @@ def form_create(request, model):
         "Competitor": CompetitorsForm(),
         "Picture": PictureForm(),
         "Office": OfficeForm(),
+        "CompanyLink": CompanyLinkForm(),
+
     }
     return HttpResponse(models[model].as_p())
 

@@ -15,7 +15,10 @@ from django.template.defaultfilters import slugify
 from companies.models import *
 from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingForm, AcquisitionForm, ManagementForm,\
  CompetitorsForm, OfficeForm, ContactForm
+from companies.functions import *
 from contacts.models import *
+from fileupload.models import *
+
 # testing Bootstrap editable
 
 def form_update(request, model, slug, id):
@@ -76,6 +79,78 @@ def contact(request):
     return render(request, 'webmaster_form.html', {
         'form': form,
     })
+
+def company_edit(request, slug):
+    
+    company = get_object_or_404(Company,slug=slug)
+
+    
+
+    #This variable keeps the percentage of completion of the profile. 
+    percentage_profile = percentage_completion(company.id)
+    
+    #obtain photos made against company models.
+#    pictures = Picture.objects.filter(company_id=company.id)
+
+    #If the user is a globaltech employee does not have to  check for the company
+    #All globaltech employees have access to modify all the Companies.
+
+    if request.user :
+        user_id = request.user.id 
+
+
+        try:
+            contact = Contact.objects.get(user=user_id)
+            if contact.latech_contact or request.user.is_staff or request.user.is_superuser  == True:
+                edit= True
+
+            else:
+                
+                #verify the person does not have access
+                try:
+                    #Does the user has permission to modify this claim?
+                    permissions = AccessCompanyProfile.objects.get(contact=request.user)
+                    
+                    if permissions.company.all().filter(name__icontains=company.name) :
+                              edit = True
+                    else: 
+                            edit = False
+                except AccessCompanyProfile.DoesNotExist:
+
+                    edit = False
+        except Contact.DoesNotExist:
+            edit =False
+    else:
+        edit = False
+    
+    management = Management.objects.filter(company= company)
+    competitors = Competitors.objects.filter(company=company)
+    certifications = Certification.objects.filter(company=company)
+    customers = Customer.objects.filter(company=company)
+    awards = Award.objects.filter(company=company)
+    offices = Office.objects.filter(company=company)
+    acquisitions = Acquisition.objects.filter(company=company)
+    fundings = Funding.objects.filter(company=company)
+    pictures = Picture.objects.filter(company=company)
+    companylinks = CompanyLink.objects.filter(company=company)
+    office_list = []
+    count = 0
+    
+    for i in offices:
+        count += 1
+        if (count)%3==0:
+            office_list.append({"object":i, "ul":True})
+        else:
+            office_list.append({"object":i})
+
+
+    return render_to_response(
+        "company_edit.html",
+        {'company':company, 'companylinks':companylinks,'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
+        'management': management,'offices':office_list, 'competitors': competitors,"certifications":certifications,
+        "customers":customers, "awards":awards,"acquisitions":acquisitions, "fundings":fundings,  "pictures":pictures},
+        context_instance=RequestContext(request))
+
 
 @require_POST
 def company_name(request):
