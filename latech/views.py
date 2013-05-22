@@ -17,6 +17,8 @@ from django.views.decorators.http import require_POST, require_http_methods
 from companies.models import *
 from companies.forms import CustomerForm, AwardForm, CertificationForm, \
     FundingForm, AcquisitionForm, ManagementForm, CompetitorsForm, OfficeForm, ManagementPictureForm, CompanyLinkForm
+from company_profile_extended.models import *
+from company_profile_extended.forms import *
 from contacts.models import *
 from fileupload.forms import PictureForm
 from latech.asana import AsanaAPI, AsanaException
@@ -49,6 +51,13 @@ def form_create(request, model):
         "Picture": PictureForm(),
         "Office": OfficeForm(),
         "CompanyLink": CompanyLinkForm(),
+        "Ecosystem":EcosystemForm(), 
+        "Milestone":MilestoneForm(),
+        "Project":ProjectForm(),
+        "SuccessStories":SuccessStoriesForm(),
+        "Expertise":ExpertiseForm(),
+        "Vertical":VerticalForm(),
+        "AnnualRevenue":AnnualRevenueForm(),
 
     }
     return HttpResponse(models[model].as_p())
@@ -64,11 +73,17 @@ def form_validation(request, slug, model):
         "Management":ManagementForm(request.POST),
         "ManagementPicture":ManagementPictureForm(request.POST, request.FILES),
         "Competitor": CompetitorsForm(request.POST),
-        "Picture": PictureForm(request.POST),
-        "Office": OfficeForm(request.POST, request.FILES),
+        "Picture": PictureForm(request.POST, request.FILES),
+        "Office": OfficeForm(request.POST),
+        "Ecosystem": EcosystemForm(request.POST),
+        "Milestone":MilestoneForm(request.POST),
+        "Project":ProjectForm(request.POST),
+        "SuccessStories":SuccessStoriesForm(request.POST),
+        "Expertise":ExpertiseForm(request.POST),
+        "Vertical":VerticalForm(request.POST),
+        "AnnualRevenue":AnnualRevenueForm(request.POST),
 
     }
-
 
 
     company = get_object_or_404(Company, slug=slug)

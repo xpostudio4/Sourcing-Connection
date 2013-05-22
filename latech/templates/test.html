@@ -3,11 +3,116 @@
 {% block title %}Test{% endblock title %}
 
 {% block external %}
+{% endblock external %}
+
+{% block content %}
+<a href="#company-name-modal" role="button" class="btn mbttn" >Launch demo modal</a>
+ 
+<!-- Modal -->
+<div id="company-name-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Creating a New Company</h3>
+  </div>
+  <div class="modal-body">
+      <form method="POST" action="/companies/name/">{% csrf_token %} 
+        <input type="text" id="name" name="name" placeholder="Company Name">
+      </form>
+      <div id="results"></div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <a href="#" id="save-company" class="hide"><button class="btn btn-primary">Save Company</button></a>
+        <a href="#" id="webmaster" class="hide"><button class="btn btn-danger">Contact Webmaster</button></a>
+      </div>
+      {% include "webmaster_form.html" %}
+      <!--<form method="POST" action="/contact/" id="wm_contact" class="hide">{% csrf_token %} 
+        <div><input type="text" id="contact_name" name="name" placeholder="Email"></div>
+        <div><input type="text" id="msg_title" name="msg_title" placeholder="Title"></div>
+        <div><textarea id="msg_content" name="msg_content" rows="5"> </textarea></div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <a href="#" id="webmaster" <button class="btn btn-danger">Contact Webmaster</button></a>
+        </div>
+      </form>-->
+</div>
+</div>
+
+<a href="#wm_contact2" role="button" class="btn wmbttn" >Contacting WebMaster</a>
+ 
+<!-- Modal -->
+<div id="wm_contact2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="WebmasterLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="WebmasterLabel">Contact to WebMasters</h3>
+  </div>
+  <div class="modal-body">
+      <form method="POST" action="/webmaster/">{% csrf_token %} 
+        <div><input type="text" id="contact_name" name="name" placeholder="Email"></div>
+        <div><input type="text" id="msg_title" name="msg_title" placeholder="Title"></div>
+        <div><textarea id="msg_content" name="msg_content" rows="5"> </textarea></div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <a href="#" id="webmaster2" <button class="btn btn-danger">Contact Webmaster</button></a>
+        </div>
+      </form>
+
+  </div>
+</div>
 <script type="text/javascript">
+var slug = function(str) {
+  str = str.replace(/^\s+|\s+$/g, ''); // trim
+  str = str.toLowerCase();
+
+  // remove accents, swap ñ for n, etc
+  var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+  var to   = "aaaaaeeeeeiiiiooooouuuunc------";
+  for (var i=0, l=from.length ; i<l ; i++) {
+    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+  }
+
+  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
+
+  return str;
+};
+
+    $('a.mbttn').click(function(e) {
+            e.preventDefault();
+            $('#company-name-modal').modal({
+                show: true, 
+                backdrop: 'static',
+                keyboard: true
+             })
+    });
+
+      var webmaster_contact = $('#webmaster');
+          webmaster_contact.click( 
+          function(event){
+            $('#wm_contact').removeClass('hide');
+            var co_name = $('#name');
+            event.preventDefault();
+/*            $.ajax({
+                url: "/companies/name/",
+                type: "POST",
+                cache: false,
+                data:  co_name, 
+
+                success: 
+                    $("#wm_contact").modal("hide")
+                    ,
+                error: 
+                    function(xhr){
+                        alert("Error: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+*/        })
+
     $(function () {
         var name = $('#name');
-        serializedData = name.val();
-
+        var alerts = $('#alerts')
         name.keyup(function() {
            $.ajax({
            type: "post",
@@ -23,8 +128,17 @@
            success: function(data){ 
 //             alert( "Se guardaron los datos: " + data);
 
-//            results = $(data).find('#results').html();               
+//            results = $(data).find('#results').html();
             $("#results").html("<span>" + data + "</data>");
+            if ($('div').hasClass('alert alert-success'))
+                {
+                    $("#save-company").removeClass("hide"); 
+                    $("#webmaster").addClass("hide");
+                }else if ($('div').hasClass('alert alert-error')){
+                    $("#save-company").addClass("hide"); 
+                    $("#webmaster").removeClass("hide"); 
+                }
+            
 
             },
            error:function(xhr) {
@@ -35,25 +149,38 @@
         })
     })  
 
-</script>
-{% endblock external %}
+        var save_company = $('#save-company');
+        save_company.click( 
+        function(event){
 
-{% block content %}
-<div class="dropdown">
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown trigger</a>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-    <li>
-      <form method="POST">{% csrf_token %} 
-        <input type="text" id="name" name="name" placeholder="Company Name">
-      </form>
-      <div id="results"></div>
-</li>
-  </ul>
-</div>
+            var company_name = $('#name');
+            url_name = "/company/"+slug(company_name.val());
+            event.preventDefault();
+            $.ajax({
+                url: "/companies/name/",
+                type: "POST",
+                cache: false,
+                dataType: 'json',
+                data: { 
+                  'name' : company_name.val(),
+                  'csrfmiddlewaretoken': '{{csrf_token}}', 
+                },
+                 success: 
+                    window.location.replace(url_name),
+                  
+                error: 
+                    function(xhr){
+                        alert("Error: " + xhr.statusText);
+                        return false;
+                    }
+            });
+        });
+
+</script>
 
 <script type="text/javascript">
-        $('#cname').popover();
 
-    </script>
+
+</script>
 
 {% endblock content %}

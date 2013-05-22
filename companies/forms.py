@@ -7,6 +7,11 @@ class CompanyForm(ModelForm):
        model = Company
        exclude = ("slug", "tags", "contact", "company_status")
 
+class CompanyCategoryForm(ModelForm):
+	class Meta:
+		model = Company
+		field = ("Categories")
+
 class ContactForm(forms.Form):
     subject = forms.CharField(max_length=100)
     message = forms.CharField()

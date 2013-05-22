@@ -79,7 +79,7 @@
 
             
                 <div class="pull-right" style="margin-right:80px;">
-                    <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}'">  Edited  </button>
+                    <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}'"> Done Editing </button>
                 </div>
          
         {% endif %}
@@ -126,7 +126,6 @@
         <h4 class="media-heading"><strong class="muted">Value Proposition:</strong></h4>
         <data-toggle="popover" data-placement="right" id="valuepop" data-content="Who is your customer:(Segments)<br/> What problem do you solve:<br/>How do you solve it:</br>How is it different from other available solutions: <br/> What is the benefit to your customer:" data-html="true" class="fade" title="Value Proposition"/><p><text class="editable-value muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="textarea" >{{ company.value_proposition|safe  }}</text></p>
       
-
     </div>
 
 
@@ -186,27 +185,130 @@
     <h4 class="media-heading"><strong class="muted">Related Industries:</strong></h4>
     <p><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/industries/" data-pk="{{ company.id }}"  data-title="Company Industries" id="company-industries" class="editable-value">{{ company.industries }}</text></p>
 
-        {############################################## Customers ###################################}
-        <div class="media">
+        {####################################### Company Information Section #####################################}
 
-
-                <h4 class="media-heading"><strong class="muted">Customers:</strong></h4></br>
+            {####################################### Industry #####################################}
+            <div class="media">
                 <ul class="nav nav-list pull-right">
-                    <li><a class="add-element" data-model="Customer" href="/company/{{ company.slug }}/customers/new"><i class="icon-plus"></i> Add Customers</a></li>
-                </ul>
+                <li><a class="add-element" data-model="Category" href="/company/{{ company.slug }}/certifications/new"><i class="icon-plus"></i> Add Certification</a></li>
+            </ul>
+            <h4 class="media-heading"><strong class="muted">Industry:</strong></h4>
+            <ul class="pull-left inline">
+                <li class="editable-value">{{company.categories}}</li>
+            </ul>
+            </div>
+            
+            {####################################### Size #####################################}
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Size of Company: </strong></h4>
+            <ul class="pull-left inline">
+                <li class="editable-value">{{company.get_employee_quantity_display }}</li>
+            </ul>
+            </div>
 
-                <br/>
-                <ul class="pull-left inline" id="Customer">
-                {% for customer in customers  %}
+            {############################################## Offices ##############################}
 
-                        <li id="customers-{{ customer.id }}"><a class="link-delete" data-type="customers" data-id="{{ customer.id }}"  id="{{ company.slug }}-customers-{{ customer.id }}" href="/company/{{ company.slug }}/customers/{{customer.id}}/delete" ><i class="icon-remove"></i></a>  <a data-type="text" data-model="Customer" data-url="/formfields/Customer/{{ customer.id }}/name/" data-pk="{{ customer.id }}" class="editable-value" data-title="Customer Name" href="/company/{{ company.slug }}/customers/{{customer.id}}/update">{{ customer.name }}</a>{% if not forloop.last %}, {% endif %}</li>
-                {% endfor %}
+            <div class="media">
+
+            <h4 class="media-heading"><strong class="muted">Offices:</strong></h4>
+                <ul class="nav nav-list pull-right">
+                    <p id="company-offices">{{ offices.description }}</p>
+                    <li><a class="add-element" data-model="Office" href="/company/{{ company.slug }}/office/new"><i class="icon-plus"></i> Add Office</a></li>
                 </ul>
-        </div>
+                <ul class="pull-left inline">
+                    {% for office in offices %}
+                     <li  id="office-{{ office.object.id }}" >
+                        <a class="link-delete pull-left" data-type="office" data-id="{{ office.object.id }}" id="{{ company.slug }}-office-{{ office.object.id }}" href="/company/{{ company.slug }}/office/{{ office.object.id }}/delete"><i class="icon-remove"></i></a>
+                        <address>
+                            <strong><a href="/company/{{company.slug }}/office/{{ office.object.id }}/update">{{ office.object.country }}</a></strong><br>
+                            {{ office.object.description }}<br>
+                            {{ office.object.address_1 }}<br>
+                            {{ office.object.address_2 }}<br>
+                            {% if office.object.phone %}
+                              <abbr title="Phone">P:</abbr> {{ office.object.phone }}<br>
+                            {% endif %}
+
+                        {% if office.ul  %}
+                            </ul><br>
+
+                            <ul class="pull-left inline">
+                        {% endif %}
+                    {% endfor %}
+                </ul><br>
+            </div>
+
+            {####################################### Annual Revenue #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Annual Revenue:</strong></h4>
+            <ul class="pull-left inline">
+            {% for revenue in revenues  %}
+                <li>{{ revenue.revenue|intcomma}} in {{ revenue.date|date:"Y" }} </li>
+
+            {% endfor %}
+            </ul>
+            </div>
+            {####################################### Milestones #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Milestones:</strong></h4>
+            <ul class="pull-left inline">
+            {% for milestone in milestones  %}
+                <li>{{ milestone.title }} {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            </ul>
+            </div>
+
+        {####################################### Company Experience Section #####################################}
+
+        <h3 class="media-heading"><strong class="muted">Experience: </strong></h3>
+            {####################################### Expertises #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Expertise:</strong></h4>
+            <ul class="pull-left inline">
+            {% for expertise in expertises  %}
+                <li><a href="/expertises/{{expertise.slug}}">{{expertise.expertise}}</a> {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            </ul>
+            </div>
+
+            {####################################### Verticals #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Verticals:</strong></h4>
+            <ul class="pull-left inline">
+            {% for vertical in verticals  %}
+                <li><a href="/verticals/{{vertical.slug}}">{{vertical.vertical}}</a> {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            </ul>
+            </div>
+
+            {####################################### Projects #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Projects:</strong></h4>
+            <ul class="pull-left inline">
+            {% for project in projects  %}
+                <li>{{ project.name }} for {{ project.client}} {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            </ul>
+            </div>
+
+            {####################################### Success Stories #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Success Stories:</strong></h4>
+            <ul class="pull-left inline">
+            {% for story in stories  %}
+                <li>{{ story.title }} {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            </ul>
+            </div>
 
                 {############################################## Awards ##############################}
 
-        <div class="media">
+            <div class="media">
 
 
             <h4 class="media-heading"><strong class="muted">Awards:</strong></h4></br>
@@ -222,7 +324,7 @@
 
             {% endfor %}
             </ul>
-        </div>
+            </div>
 
         {############################################## Certifications ##############################}
         <div class="media">
@@ -241,12 +343,73 @@
             </ul>
         </div>
 
+
+        {############################################## Customers ###################################}
+        <div class="media">
+
+
+                <h4 class="media-heading"><strong class="muted">Customers:</strong></h4></br>
+                <ul class="nav nav-list pull-right">
+                    <li><a class="add-element" data-model="Customer" href="/company/{{ company.slug }}/customers/new"><i class="icon-plus"></i> Add Customers</a></li>
+                </ul>
+
+                <br/>
+                <ul class="pull-left inline" id="Customer">
+                {% for customer in customers  %}
+
+                        <li id="customers-{{ customer.id }}"><a class="link-delete" data-type="customers" data-id="{{ customer.id }}"  id="{{ company.slug }}-customers-{{ customer.id }}" href="/company/{{ company.slug }}/customers/{{customer.id}}/delete" ><i class="icon-remove"></i></a>  <a data-type="text" data-model="Customer" data-url="/formfields/Customer/{{ customer.id }}/name/" data-pk="{{ customer.id }}" class="editable-value" data-title="Customer Name" href="/company/{{ company.slug }}/customers/{{customer.id}}/update">{{ customer.name }}</a>{% if not forloop.last %}, {% endif %}</li>
+                {% endfor %}
+                </ul>
+        </div>
+
+        {############################################## Ecosystems Section #####################################}
+        <div class="media">
+            <h4 class="media-heading"><strong class="muted">Ecosystems:</strong></h4>
+        </div>
+
+        {############################################## Partnerships #####################################}
+        <div class="media">
+            <h5 class="media-heading"><strong class="muted">Partnerships:</strong></h5>
+            <ul class="pull-left inline">
+
+            {% for partner in partnerships  %}
+                <li>{{partner.competence}} {% if not forloop.last %}, {% endif %}</li>
+
+            {% endfor %}
+
+            </ul>
+        </div>
+        
+        {############################################## Alliances #####################################}
+        <div class="media">
+
+            <h5 class="media-heading"><strong class="muted">Alliances:</strong></h5>
+
+            <ul class="pull-left inline">
+            {% for ally in alliances  %}
+                <li>{{ally.competence}} {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            </ul>
+        </div>
+
+        {############################################## Technical Associations #####################################}
+        <div class="media">
+
+            <h5 class="media-heading"><strong class="muted">Technical Associations:</strong></h5>
+            <ul class="pull-left inline">
+            {% for associate in associations  %}
+                <li>{{associate.competence}} {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            </ul>
+
         </div>
 
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Technologies:</strong></h4>
             <p><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/technologies/" data-pk="{{ company.id }}"  data-title="Company Techs" id="company-technologies" class="editable-value">{{ company.technologies }}</text></p>
         </div>
+
+
         {####################################### Funding #####################################}
     <div class="media">
         <h4 class="media-heading"><strong class="muted">Funding:</strong></h4>
@@ -320,36 +483,6 @@
     </div>
 
 
-        {############################################## Offices ##############################}
-
-    <div class="media">
-
-    <h4 class="media-heading"><strong class="muted">Offices:</strong></h4>
-        <ul class="nav nav-list pull-right">
-            <p id="company-offices">{{ offices.description }}</p>
-            <li><a class="add-element" data-model="Office" href="/company/{{ company.slug }}/office/new"><i class="icon-plus"></i> Add Office</a></li>
-        </ul>
-        <ul class="pull-left inline">
-            {% for office in offices %}
-             <li  id="office-{{ office.object.id }}" >
-                <a class="link-delete pull-left" data-type="office" data-id="{{ office.object.id }}" id="{{ company.slug }}-office-{{ office.object.id }}" href="/company/{{ company.slug }}/office/{{ office.object.id }}/delete"><i class="icon-remove"></i></a>
-                <address>
-                    <strong><a href="/company/{{company.slug }}/office/{{ office.object.id }}/update">{{ office.object.country }}</a></strong><br>
-                    {{ office.object.description }}<br>
-                    {{ office.object.address_1 }}<br>
-                    {{ office.object.address_2 }}<br>
-                    {% if office.object.phone %}
-                      <abbr title="Phone">P:</abbr> {{ office.object.phone }}<br>
-                    {% endif %}
-
-                {% if office.ul  %}
-                    </ul><br>
-
-                    <ul class="pull-left inline">
-                {% endif %}
-            {% endfor %}
-        </ul><br>
-    </div>
 
         {############################################## Competitors ##############################}
 

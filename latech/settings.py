@@ -186,6 +186,7 @@ INSTALLED_APPS = (
     'location',
 #    'taggit',
     'companies',
+    'company_profile_extended',
     'contacts',
     'news',
     'events',

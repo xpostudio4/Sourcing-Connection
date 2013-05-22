@@ -1,15 +1,18 @@
-from django.template import RequestContext, Context
-from django.shortcuts import render_to_response, get_object_or_404, render 
 from companies.models import *
 from companies.forms import *
-from fileupload.forms import *
 from companies.functions import percentage_completion, update_completion, validate_user_company_access_or_redirect
+from company_profile_extended.models import *
+from company_profile_extended.forms import *
 from contacts.models import Contact
 from fileupload.models import Picture
-from django.utils.decorators import method_decorator
+from fileupload.forms import *
+
 from django.contrib.auth.decorators import login_required
-from django.views.generic import DetailView, ListView, UpdateView, CreateView, ListView
 from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render_to_response, get_object_or_404, render 
+from django.template import RequestContext, Context
+from django.utils.decorators import method_decorator
+from django.views.generic import DetailView, ListView, UpdateView, CreateView, ListView
 
 class CompaniesCreate(CreateView):
     model = Company
@@ -173,6 +176,16 @@ def company_view(request, slug):
     fundings = Funding.objects.filter(company=company)
     pictures = Picture.objects.filter(company=company)
     companylinks = CompanyLink.objects.filter(company=company)
+    partnerships = Ecosystem.objects.filter(company=company, relationship=1) 
+    alliances = Ecosystem.objects.filter(company=company, relationship=2) 
+    associations = Ecosystem.objects.filter(company=company, relationship=3) 
+    expertises = Expertise.objects.filter(company=company)
+    verticals = Vertical.objects.filter(company=company)
+    stories = SuccessStories.objects.filter(company=company)
+    revenues = AnnualRevenue.objects.filter(company=company)
+    milestones = Milestone.objects.filter(company=company)
+    projects = Project.objects.filter(company=company)
+
     office_list = []
     count = 0
     
@@ -188,7 +201,10 @@ def company_view(request, slug):
         "company_page.html",
         {'company':company, 'companylinks':companylinks,'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
         'management': management,'offices':office_list, 'competitors': competitors,"certifications":certifications,
-        "customers":customers, "awards":awards,"acquisitions":acquisitions, "fundings":fundings,  "pictures":pictures},
+        "customers":customers, "awards":awards,"acquisitions":acquisitions, "fundings":fundings,  "pictures":pictures,
+        # From Company Extended Profile
+        "expertises":expertises, "verticals":verticals,"stories":stories,"revenues":revenues, "milestones":milestones,
+        "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations, },
         context_instance=RequestContext(request))
 
 @login_required

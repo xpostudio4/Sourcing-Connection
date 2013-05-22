@@ -16,6 +16,7 @@ from companies.models import *
 from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingForm, AcquisitionForm, ManagementForm,\
  CompetitorsForm, OfficeForm, ContactForm
 from companies.functions import *
+from company_profile_extended.models import *
 from contacts.models import *
 from fileupload.models import *
 
@@ -81,7 +82,7 @@ def contact(request):
     })
 
 def company_edit(request, slug):
-    
+
     company = get_object_or_404(Company,slug=slug)
 
     
@@ -133,6 +134,16 @@ def company_edit(request, slug):
     fundings = Funding.objects.filter(company=company)
     pictures = Picture.objects.filter(company=company)
     companylinks = CompanyLink.objects.filter(company=company)
+    partnerships = Ecosystem.objects.filter(company=company, relationship=1) 
+    alliances = Ecosystem.objects.filter(company=company, relationship=2) 
+    associations = Ecosystem.objects.filter(company=company, relationship=3) 
+    expertises = Expertise.objects.filter(company=company)
+    verticals = Vertical.objects.filter(company=company)
+    stories = SuccessStories.objects.filter(company=company)
+    revenues = AnnualRevenue.objects.filter(company=company)
+    milestones = Milestone.objects.filter(company=company)
+    projects = Project.objects.filter(company=company)
+
     office_list = []
     count = 0
     
@@ -148,7 +159,10 @@ def company_edit(request, slug):
         "company_edit.html",
         {'company':company, 'companylinks':companylinks,'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
         'management': management,'offices':office_list, 'competitors': competitors,"certifications":certifications,
-        "customers":customers, "awards":awards,"acquisitions":acquisitions, "fundings":fundings,  "pictures":pictures},
+        "customers":customers, "awards":awards,"acquisitions":acquisitions, "fundings":fundings,  "pictures":pictures,
+        # From Company Extended Profile
+        "expertises":expertises, "verticals":verticals,"stories":stories,"revenues":revenues, "milestones":milestones,
+        "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations, },
         context_instance=RequestContext(request))
 
 
