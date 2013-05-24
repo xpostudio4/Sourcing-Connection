@@ -190,6 +190,7 @@ INSTALLED_APPS = (
     'contacts',
     'news',
     'events',
+    'recommendations',
 # Third parties
     'fileupload',
     'south',
