@@ -55,6 +55,7 @@
 {% endblock %}
 
 {% block content %}
+
 {% load humanize %}
 
 
@@ -78,7 +79,7 @@
 
             
                 <div class="pull-right" style="margin-right:80px;">
-                    <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}'"> Done Editing </button>
+                    <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}'">  Edited  </button>
                 </div>
          
         {% endif %}
@@ -125,6 +126,7 @@
         <h4 class="media-heading"><strong class="muted">Value Proposition:</strong></h4>
         <data-toggle="popover" data-placement="right" id="valuepop" data-content="Who is your customer:(Segments)<br/> What problem do you solve:<br/>How do you solve it:</br>How is it different from other available solutions: <br/> What is the benefit to your customer:" data-html="true" class="fade" title="Value Proposition"/><p><text class="editable-value muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="textarea" >{{ company.value_proposition|safe  }}</text></p>
       
+
     </div>
 
 
@@ -373,7 +375,6 @@
             </ul>
         </div>
 
-
         {############################################## Customers ###################################}
         <div class="media">
 
@@ -391,7 +392,6 @@
                 {% endfor %}
                 </ul>
         </div>
-
         {############################################## Ecosystems Section #####################################}
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Ecosystems:</strong></h4>
@@ -439,14 +439,14 @@
 
         </div>
 
+        {####################################### Technologies (To remove) #####################################}
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Technologies:</strong></h4>
             <p><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/technologies/" data-pk="{{ company.id }}"  data-title="Company Techs" id="company-technologies" class="editable-value">{{ company.technologies }}</text></p>
         </div>
-
-
+        
         {####################################### Funding #####################################}
-    <div class="media">
+        <div class="media">
         <h4 class="media-heading"><strong class="muted">Funding:</strong></h4>
         <br/>
 
@@ -516,7 +516,6 @@
         {% endfor %}
     </br>
     </div>
-
 
 
         {############################################## Competitors ##############################}
@@ -847,37 +846,6 @@ create_item.click(
             },
 
         });
-        $('#size-company').editable({
-            value: {{ company.employee_quantity }},    
-            source: [
-
-/*
-                  {value: '1 - 10', text: '1 -10'},
-                  {value: '11 - 50', text: '11 - 50'},
-                  {value: '51 - 150', text: '51 - 150'},
-                  {value: '151 - 500', text: '151 - 500'},
-                  {value: '501 - 1000', text: '501 - 1000'},
-                  {value: '1000 - 5000', text: '1000 - 5001'},
-                  {value: '+ 5001', text: '+ 5001'},
-*/
-                  
-                  {value: 1, text: '1 -10'},
-                  {value: 2, text: '11 - 50'},
-                  {value: 3, text: '51 - 150'},
-                  {value: 4, text: '151 - 500'},
-                  {value: 5, text: '501 - 1000'},
-                  {value: 6, text: '1000 - 5001'},
-                  {value: 7, text: '+ 5001'},
-
-                ],
-            params: function(params) {
-                //originally params contain pk, name and value
-                params.csrfmiddlewaretoken = '{{csrf_token}}';
-                return params;
-            },
-
-        });
-
 
         $('.editable-value').editable({
             params: function(params) {
