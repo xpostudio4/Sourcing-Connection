@@ -62,6 +62,31 @@ def form_create(request, model):
     }
     return HttpResponse(models[model].as_p())
 
+def form_update(request, model):
+    models ={
+        "Customer": CustomerForm(),
+        "Award": AwardForm(),
+        "Certification": CertificationForm(),
+        "Funding": FundingForm(),
+        "Acquisition": AcquisitionForm(),
+        "Management":ManagementForm(),
+        "ManagementPicture":ManagementPictureForm(),
+        "Competitor": CompetitorsForm(),
+        "Picture": PictureForm(),
+        "Office": OfficeForm(),
+        "CompanyLink": CompanyLinkForm(),
+        "Ecosystem":EcosystemForm(), 
+        "Milestone":MilestoneForm(),
+        "Project":ProjectForm(),
+        "SuccessStories":SuccessStoriesForm(),
+        "Expertise":ExpertiseForm(),
+        "Vertical":VerticalForm(),
+        "AnnualRevenue":AnnualRevenueForm(),
+
+    }
+    return HttpResponse(models[model].as_p())
+
+
 @require_POST
 def form_validation(request, slug, model):
     models_form = {
@@ -265,6 +290,40 @@ def form_validation(request, slug, model):
             
             template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ picture.id }}", str(context.id))
             template = template.replace("{{ picture.file }}", context.file )
+
+        # For Company extended Profile
+
+        elif   model == "Vertical":
+            """Here is created the Vertical model template to be returned via http request"""
+
+            context = Vertical.objects.filter(id=f.id)
+
+            template = """
+                <li id="verticals-{{ vertical.id }}">
+                <a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}"  id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{ vertical.id }}/delete" ><i class="icon-remove"></i></a>  
+                <a href="/company/{{ company.slug }}/verticals/{{ vertical.id }}/update">{{ vertical.vertical }}</a>
+                </li>
+
+            """
+
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ vertical.id }}", str(context.id))
+            template = template.replace("{{ vertical.vertical }}", str(context.name))
+
+        elif   model == "Expertise":
+            """Here is created the expertise model template to be returned via http request"""
+
+            context = Expertise.objects.filter(id=f.id)
+
+            template = """
+                <li id="expertises-{{ expertise.id }}">
+                <a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}"  id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{ expertise.id }}/delete" ><i class="icon-remove"></i></a>  
+                <a href="/company/{{ company.slug }}/expertises/{{ expertise.id }}/update">{{ expertise.expertise }}</a>
+                </li>
+
+            """
+
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ expertise.id }}", str(context.id))
+            template = template.replace("{{ expertise.expertise }}", str(context.expertise))
 
         else:
             pass

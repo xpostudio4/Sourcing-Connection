@@ -213,6 +213,8 @@ def form_fields(request, id, model, field):
             o_model.company_status = value 
         elif field == "employee_quantity":
             o_model.employee_quantity = value
+        elif field == "founding_date":
+            o_model.founding_date = value
         elif field == "main_phone":
             o_model.main_phone = value
         elif field == "email":
@@ -279,6 +281,7 @@ def form_fields(request, id, model, field):
         o_model = get_object_or_404(Competitors, id=id)
         o_model.name = value
 
+
     if model == "Certification":
         o_model = get_object_or_404(Certification, id=id)
         o_model.name = value
@@ -288,14 +291,26 @@ def form_fields(request, id, model, field):
         o_model.name = value
 
     if model == "Award":
-        o_model = get_object_or_404(Customer, id=id)
+        o_model = get_object_or_404(Award, id=id)
         
         if field == "name":
             o_model.name = value
         else: 
             o_model.date = value
 
+     # From Company Extended Profile
+    if model == "Expertise":
+        o_model = get_object_or_404(Expertise, id=id)
+        o_model.expertise = value
 
+    if model == "Vertical":
+        o_model = get_object_or_404(Vertical, id=id)
+        o_model.vertical = value
+        o_model.slug = slugify(value)
+
+#    if model == "Vertical":
+#        o_model = get_object_or_404(Vertical, id=id)
+#        o_model.vertical = value
 
     o_model.save()
 
