@@ -200,7 +200,7 @@
             <div class="media">
             <h4 class="media-heading"><strong class="muted">Size of Company: </strong></h4>
             <ul class="pull-left inline">
-                <li class="editable-value" data-type="select" id="size-company" data-model="Company" data-url="/formfields/Company/{{ company.id }}/employee_quantity/" data-pk="{{ company.id }}" data-title="Company Size">{{company.get_employee_quantity_display }}</li>
+                <li data-type="select" id="size-company" data-model="Company" data-url="/formfields/Company/{{ company.id }}/employee_quantity/" data-pk="{{ company.id }}" data-title="Company Size">{{company.get_employee_quantity_display }}</li>
             </ul>
             </div>
 
@@ -846,6 +846,29 @@ create_item.click(
             },
 
         });
+
+
+        $('#size-company').editable({
+
+            source: [
+                  {value: 1, text: '1 -10'},
+                  {value: 2, text: '11 - 50'},
+                  {value: 3, text: '51 - 150'},
+                  {value: 4, text: '151 - 500'},
+                  {value: 5, text: '501 - 1000'},
+                  {value: 6, text: '1000 - 5001'},
+                  {value: 7, text: '+ 5001'},
+
+                ],
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+
+        });
+
+
 
         $('.editable-value').editable({
             params: function(params) {
