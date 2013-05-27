@@ -4,6 +4,7 @@ from companies.functions import percentage_completion, update_completion, valida
 from company_profile_extended.models import *
 from company_profile_extended.forms import *
 from contacts.models import Contact
+from recommendations.models import Recommendation
 from fileupload.models import Picture
 from fileupload.forms import *
 
@@ -167,7 +168,6 @@ def company_view(request, slug):
         edit = False
     
     management = Management.objects.filter(company= company)
-    competitors = Competitors.objects.filter(company=company)
     certifications = Certification.objects.filter(company=company)
     customers = Customer.objects.filter(company=company)
     awards = Award.objects.filter(company=company)
@@ -176,15 +176,21 @@ def company_view(request, slug):
     fundings = Funding.objects.filter(company=company)
     pictures = Picture.objects.filter(company=company)
     companylinks = CompanyLink.objects.filter(company=company)
-    partnerships = Ecosystem.objects.filter(company=company, relationship=1) 
-    alliances = Ecosystem.objects.filter(company=company, relationship=2) 
-    associations = Ecosystem.objects.filter(company=company, relationship=3) 
+
+    # From Company Extended Profile
+    partnerships = Partnership.objects.filter(company=company) 
+    alliances = Alliance.objects.filter(company=company) 
+    associations = TechnicalAssociation.objects.filter(company=company)
+    competitors = Competitors.objects.filter(company=company)
     expertises = Expertise.objects.filter(company=company)
     verticals = Vertical.objects.filter(company=company)
     stories = SuccessStories.objects.filter(company=company)
     revenues = AnnualRevenue.objects.filter(company=company)
     milestones = Milestone.objects.filter(company=company)
     projects = Project.objects.filter(company=company)
+
+    # From Recommendations app
+    recommendations = Recommendation.objects.filter(company=company)
 
     office_list = []
     count = 0
@@ -204,7 +210,9 @@ def company_view(request, slug):
         "customers":customers, "awards":awards,"acquisitions":acquisitions, "fundings":fundings,  "pictures":pictures,
         # From Company Extended Profile
         "expertises":expertises, "verticals":verticals,"stories":stories,"revenues":revenues, "milestones":milestones,
-        "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations, },
+        "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations, 
+        "recommendations":recommendations,
+        },
         context_instance=RequestContext(request))
 
 @login_required

@@ -325,6 +325,22 @@ def form_validation(request, slug, model):
             template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ expertise.id }}", str(context.id))
             template = template.replace("{{ expertise.expertise }}", str(context.expertise))
 
+        elif   model == "SuccessStories":
+            """Here is created the story model template to be returned via http request"""
+
+            context = SuccessStories.objects.filter(id=f.id)
+
+            template = """
+                <li id="stories-{{ story.id }}">
+                <a class="link-delete" data-type="SuccessStories" data-id="{{ story.id }}"  id="{{ company.slug }}-stories-{{ story.id }}" href="/company/{{ company.slug }}/stories/{{ story.id }}/delete" ><i class="icon-remove"></i></a>  
+                <a href="/company/{{ company.slug }}/SuccessStories/{{ story.id }}/update">{{ story.story }}</a>
+                </li>
+
+            """
+
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ story.id }}", str(context.id))
+            template = template.replace("{{ story.title }}", str(context.title))
+
         else:
             pass
 

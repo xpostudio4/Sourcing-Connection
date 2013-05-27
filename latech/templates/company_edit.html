@@ -328,12 +328,12 @@
             <div class="media">
             <h4 class="media-heading"><strong class="muted">Success Stories:</strong></h4>
             <ul class="nav nav-list pull-right">
-                <li><a class="add-element" data-model="Success Stories" href="#"><i class="icon-plus"></i> Add a Success Story</a> </li>
+                <li><a class="add-element" data-model="SuccessStories" href="#"><i class="icon-plus"></i> Add a Success Story</a> </li>
             </ul>
 
             <ul class="pull-left inline">
             {% for story in stories  %}
-                <li>{{ story.title }} {% if not forloop.last %}, {% endif %}</li>
+                <li>{{ story.title }}, <a href="{{ story.link.url }}">more</a> {% if not forloop.last %}, {% endif %}</li>
             {% endfor %}
             </ul>
             </div>

@@ -17,6 +17,7 @@ from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingF
  CompetitorsForm, OfficeForm, ContactForm
 from companies.functions import *
 from company_profile_extended.models import *
+from recommendations.models import Recommendation
 from contacts.models import *
 from fileupload.models import *
 
@@ -143,6 +144,8 @@ def company_edit(request, slug):
     revenues = AnnualRevenue.objects.filter(company=company)
     milestones = Milestone.objects.filter(company=company)
     projects = Project.objects.filter(company=company)
+    #Recommendations
+    recommendations = Recommendation.objects.filter(company=company)
 
     office_list = []
     count = 0
@@ -162,7 +165,10 @@ def company_edit(request, slug):
         "customers":customers, "awards":awards,"acquisitions":acquisitions, "fundings":fundings,  "pictures":pictures,
         # From Company Extended Profile
         "expertises":expertises, "verticals":verticals,"stories":stories,"revenues":revenues, "milestones":milestones,
-        "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations, },
+        "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations,
+        # Recommendations
+        "recommendations":recommendations,
+         },
         context_instance=RequestContext(request))
 
 

@@ -1,7 +1,9 @@
 #Python Libraries
+import os
 from datetime import datetime
 
 #Django internal modules
+from django.core.files.storage import FileSystemStorage
 from django.db import models
 from django.template import defaultfilters
 
@@ -9,6 +11,12 @@ from django.template import defaultfilters
 from companies.models import Company
 
 #Third Parties
+from storagess.backends.gs import GSBotoStorage
+
+if os.getenv('HEROKU_ENV') == 'True':
+    gs = GSBotoStorage()
+else:
+    gs = FileSystemStorage()
 
 
 # Company Information
@@ -33,10 +41,11 @@ class Milestone(models.Model):
 # Company Experience
 class Project(models.Model):
     company = models.ForeignKey(Company, related_name='Company Projects')
+    client = models.ForeignKey(Company, related_name='Company Clients')
     name = models.CharField(max_length=200)
     date = models.DateField()
     description = models.TextField()
-    client = models.ForeignKey(Company, related_name='Company Clients')
+
 
     def __unicode__(self):
         return ('%s: %s - client: %s') % (self.company, self.name, self.client)
@@ -46,7 +55,7 @@ class SuccessStories(models.Model):
     company = models.ForeignKey(Company, related_name='Company Stories')
     title = models.CharField(max_length=200)
     description = models.TextField()
-    link = models.URLField(blank=True)
+    link = models.FileField(storage=gs, upload_to="companies/docs/", blank=True)
 
     class Meta:
         verbose_name_plural = "Success Stories"
@@ -102,27 +111,38 @@ class Ecosystem(models.Model):
 
 # All Models separated:
 
-#class Partnership(models.Model):
-#    company = models.ForeignKey(Company, related_name='+')
-#    partner = models.ForeignKey(Company, related_name='Company Partner')
-#    description = models.TextField(blank=True)
+class Partnership(models.Model):
+    company = models.ForeignKey(Company, related_name='Company Partnerships')
+    name = models.ForeignKey(Company, related_name='Company Partner')
+    description = models.TextField(blank=True)
 
-#class Alliance(models.Model):
-#    company = models.ForeignKey(Company, related_name='+')
-#    ally = models.ForeignKey(Company, related_name='+')
-#    description = models.TextField(blank=True)
+    def __unicode__(self):
+        return ("%s") % (self.name)
 
-#class TechnicalAssociation(models.Model):
-#    company = models.ForeignKey(Company, related_name='+')
-#    ally = models.ForeignKey(Company, related_name='+')
-#    description = models.TextField(blank=True)
+class Alliance(models.Model):
+    company = models.ForeignKey(Company, related_name='Company Alliances')
+    name = models.ForeignKey(Company, related_name='Company Ally')
+    description = models.TextField(blank=True)
 
-#class Competitors(models.Model):
-#    company = models.ForeignKey(Company, related_name="Source Company", blank=True)
-#    name = models.CharField(max_length=255)
+    def __unicode__(self):
+        return ("%s") % (self.name)
 
-#    def __unicode__(self):
-#        return str(self.company) +":" + str(self.name)
 
-#    class Meta:
-#         verbose_name_plural = "Competitors"
+class TechnicalAssociation(models.Model):
+    company = models.ForeignKey(Company, related_name='Company Technical Association')
+    name = models.ForeignKey(Company, related_name='Company Associate')
+    description = models.TextField(blank=True)
+
+    def __unicode__(self):
+        return ("%s") % (self.name)
+
+class Competitor(models.Model):
+    company = models.ForeignKey(Company, related_name="Company Competitors", blank=True)
+    name = models.ForeignKey(Company, related_name='Company Competitor')
+    description = models.TextField(blank=True)
+
+    def __unicode__(self):
+        return str(self.company) +":" + str(self.name)
+
+    class Meta:
+         verbose_name_plural = "Competitors"
