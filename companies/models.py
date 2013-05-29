@@ -11,6 +11,7 @@ from taxonomy.models import *
 
 #Third Party apps
 #from markdown import markdown
+from datetime import datetime
 from storagess.backends.gs import GSBotoStorage
 from wysihtml5.fields import Wysihtml5TextField
 
@@ -22,6 +23,12 @@ else:
     gs = FileSystemStorage()
 
 class Company(models.Model):
+    def tuplify(x):
+        return (x,x)
+
+    current_year = datetime.now().year   
+    YEARS = map(tuplify, range(1930, current_year+1))
+
     EMPLOYEE_QUANTITY_CHOICES = (
         (1, "1 - 10"),
         (2, "11 - 50"),
@@ -41,20 +48,22 @@ class Company(models.Model):
         (5, "GTB-4"),
     )
 
-
     name = models.CharField(max_length=80, unique= True)
     slug = models.SlugField(max_length=80, unique= True)
 #    logo = models.ImageField(blank=True, null=True, upload_to="images/company_imgs/")
     logo = models.ImageField(blank=True, null=True, storage=gs, upload_to="images/companies_imgs/")
     overview = models.TextField(blank=True)
-    value_proposition = models.TextField(blank=True)
-    description = models.TextField(blank=True)
+    value_proposition = Wysihtml5TextField(blank=True)
+    description = Wysihtml5TextField(blank=True)
    # description_html = models.TextField(editable=False, blank=True)
     company_status = models.IntegerField(choices=COMPANY_STATUS_CHOICES, blank=True, null=True)
     employee_quantity = models.IntegerField(choices=EMPLOYEE_QUANTITY_CHOICES, blank=True, null=True)
 #    created_by = models.ForeignKey(User, related_name="LATech user")
     main_phone = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
+
+    #Founding Date
+    founding_date = models.PositiveIntegerField(choices=YEARS)
 
     #Comma separated list from Industry table
     industries = models.CharField(max_length=512, blank=True)

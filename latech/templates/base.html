@@ -81,7 +81,7 @@
                             <a href="#">Messages</a>
                         </li>
 <!--                    <li><a href="/company/new">CREATE COMPANY</a> </li> -->
-                        <li><a data-toggle="modal" id="company-name-form" href="#company-name-modal">Create new Company</a>
+                        <li><a class="mbttn" href="#company-name-modal">Create new Company</a>
                         <li><a href="/news/new">Create Post</a> </li>
                         <li>
                             <a id="csearch" class="dropdown-toggle dropdown-signin" data-html="true" data-toggle="popover" data-placement="bottom" data-content='<form>
@@ -306,11 +306,194 @@
         {% block content %}{% endblock %}
     </div>
     </div>
-    </body>
-</html>
+<div id="company-name-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="CompanyLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="CompanyLabel">Creating a New Company</h3>
+  </div>
+  <div class="modal-body">
+      <form method="POST" id="name-form" action="/companies/name/">{% csrf_token %} 
+        <input type="text" id="name" name="name" placeholder="Company Name">
+      </form>
+      <div id="results"></div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <a href="#" id="save-company" class="hide"><button class="btn btn-primary">Save Company</button></a>
+        <a href="#" id="webmaster" class="hide"><button class="btn btn-danger">Contact Webmaster</button></a>
+      </div>
+      <!--{% include "webmaster_form.html" %}-->
+      <form method="POST" action="/contact/" id="wm_contact" class="hide">{% csrf_token %} 
+        <div><input type="text" id="contact_name" name="name" placeholder="Email"></div>
+        <div><input type="text" id="msg_title" name="msg_title" placeholder="Title"></div>
+        <div><textarea id="msg_content" name="msg_content" rows="5"> </textarea></div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <a href="#" id="webmaster" <button class="btn btn-danger">Contact Webmaster</button></a>
+        </div>
+      </form>
+</div>
+</div>
+
+<!-- Modal -->
+<div id="wm_contact2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="WebmasterLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="WebmasterLabel">Contact to WebMasters</h3>
+  </div>
+  <div class="modal-body">
+      <form method="POST" action="/webmaster/">{% csrf_token %} 
+        <div><input type="text" id="contact_name" name="name" placeholder="Email"></div>
+        <div><input type="text" id="msg_title" name="msg_title" placeholder="Title"></div>
+        <div><textarea id="msg_content" name="msg_content" rows="5"> </textarea></div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" id="close-modal" aria-hidden="true">Close</button>
+          <a href="#" id="webmaster2" <button class="btn btn-danger">Contact Webmaster</button></a>
+        </div>
+      </form>
+
+  </div>
+</div>
+
 <script type="text/javascript">
         $('.dropdown-toggle').dropdown();
         $('.tooltipa').tooltip();
         $('#csearch').popover();
+var slug = function(str) {
+  str = str.replace(/^\s+|\s+$/g, ''); // trim
+  str = str.toLowerCase();
 
-    </script>
+  // remove accents, swap ñ for n, etc
+  var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+  var to   = "aaaaaeeeeeiiiiooooouuuunc------";
+  for (var i=0, l=from.length ; i<l ; i++) {
+    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+  }
+
+  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
+
+  return str;
+};
+
+    $('a.mbttn').click(function(e) {
+            e.preventDefault();
+            $('#name-form').trigger('reset');
+            $(".alert-success").addClass('hide');
+            $(".alert-error").addClass('hide');
+            $("#webmaster").addClass('hide');
+            $("#save-company").addClass('hide');
+            $('#company-name-modal').modal({
+                show: true, 
+                backdrop: 'static',
+                keyboard: true
+             })
+    });
+
+      var webmaster_contact = $('#webmaster');
+          webmaster_contact.click( 
+          function(event){
+            $('#wm_contact').removeClass('hide');
+            var co_name = $('#name');
+            event.preventDefault();
+/*            $.ajax({
+                url: "/companies/name/",
+                type: "POST",
+                cache: false,
+                data:  co_name, 
+
+                success: 
+                    $("#wm_contact").modal("hide")
+                    ,
+                error: 
+                    function(xhr){
+                        alert("Error: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+*/        })
+
+    $(function () {
+        var name = $('#name');
+        var alerts = $('#alerts')
+        name.keyup(function() {
+           $.ajax({
+           type: "post",
+           timeout: 5000,
+           url: "/ssss/",
+           data: { 
+            'name' : name.val(),
+            'csrfmiddlewaretoken': '{{csrf_token}}', },
+           dataType: "json",
+           async: 'true',
+           cache: false,
+           success: 
+                function(data){ 
+//             alert( "Se guardaron los datos: " + data);
+
+//            results = $(data).find('#results').html();
+            $("#results").html("<span>" + data + "</data>");
+            if ($('div').hasClass('alert alert-success'))
+                {
+                    $("#save-company").removeClass("hide"); 
+                    $("#webmaster").addClass("hide");
+                    $("#wm_contact").addClass("hide");
+                }else if ($('div').hasClass('alert alert-error')){
+                    $("#save-company").addClass("hide"); 
+                    $("#webmaster").removeClass("hide"); 
+                }
+            
+
+            },
+           error:function(xhr) {
+               alert("error in getting from server: " + xhr.responseText);
+           },
+        });
+
+        })
+    })  
+
+        var save_company = $('#save-company');
+        save_company.click( 
+        function(event){
+
+            var company_name = $('#name');
+            url_name = "/company/"+slug(company_name.val());
+            event.preventDefault();
+            $.ajax({
+                url: "/companies/name/",
+                type: "POST",
+                dataType: 'json',
+                data: { 
+                  'name' : company_name.val(),
+                  'csrfmiddlewaretoken': '{{csrf_token}}', 
+                },
+                cache: false,
+                success: 
+
+                    window.location.replace(url_name),
+                  
+                error: 
+                    function(xhr){
+                        alert("Error: " + xhr.statusText);
+                        return false;
+                    }
+            });
+        });
+    
+
+    var close_modal = $("#close-modal");
+
+    close_modal.click(
+        function(event){
+            event.preventDefault();
+            $("#company-name-modal").modal("hide");
+        });
+
+
+</script>
+
+
+    </body>
+</html>

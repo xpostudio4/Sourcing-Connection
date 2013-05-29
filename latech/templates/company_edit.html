@@ -79,7 +79,7 @@
 
             
                 <div class="pull-right" style="margin-right:80px;">
-                    <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}'"> Done Editing </button>
+                    <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}'">  Edited  </button>
                 </div>
          
         {% endif %}
@@ -126,6 +126,7 @@
         <h4 class="media-heading"><strong class="muted">Value Proposition:</strong></h4>
         <data-toggle="popover" data-placement="right" id="valuepop" data-content="Who is your customer:(Segments)<br/> What problem do you solve:<br/>How do you solve it:</br>How is it different from other available solutions: <br/> What is the benefit to your customer:" data-html="true" class="fade" title="Value Proposition"/><p><text class="editable-value muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="textarea" >{{ company.value_proposition|safe  }}</text></p>
       
+
     </div>
 
 
@@ -189,12 +190,9 @@
 
             {####################################### Industry #####################################}
             <div class="media">
-                <ul class="nav nav-list pull-right">
-                <li><a class="add-element" data-model="Category" href="/company/{{ company.slug }}/certifications/new"><i class="icon-plus"></i> Add Certification</a></li>
-            </ul>
             <h4 class="media-heading"><strong class="muted">Industry:</strong></h4>
             <ul class="pull-left inline">
-                <li class="editable-value">{{company.categories}}</li>
+                <li class="editable-value" data-type="text">{{company.categories}}</li>
             </ul>
             </div>
             
@@ -202,7 +200,15 @@
             <div class="media">
             <h4 class="media-heading"><strong class="muted">Size of Company: </strong></h4>
             <ul class="pull-left inline">
-                <li class="editable-value">{{company.get_employee_quantity_display }}</li>
+                <li data-type="select" id="size-company" data-model="Company" data-url="/formfields/Company/{{ company.id }}/employee_quantity/" data-pk="{{ company.id }}" data-title="Company Size">{{company.get_employee_quantity_display }}</li>
+            </ul>
+            </div>
+
+            {####################################### Founding #####################################}
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Date of Founding: </strong></h4>
+            <ul class="pull-left inline">
+                <li class="editable-value" data-type="number"  data-model="Company" data-url="/formfields/Company/{{ company.id }}/founding_date/" data-pk="{{ company.id }}" data-title="Company Since">{{company.founding_date }}</li>
             </ul>
             </div>
 
@@ -241,9 +247,13 @@
 
             <div class="media">
             <h4 class="media-heading"><strong class="muted">Annual Revenue:</strong></h4>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="AnnualRevenue" href="#"><i class="icon-plus"></i> Add A Revenue</a></li>
+            </ul>
+
             <ul class="pull-left inline">
             {% for revenue in revenues  %}
-                <li>{{ revenue.revenue|intcomma}} in {{ revenue.date|date:"Y" }} </li>
+                <li><i class="editable-value" >{{ revenue.revenue|intcomma}}</i> in <i class="editable-value" data-type="number">{{ revenue.date|date:"Y" }}</i> </li>
 
             {% endfor %}
             </ul>
@@ -252,9 +262,14 @@
 
             <div class="media">
             <h4 class="media-heading"><strong class="muted">Milestones:</strong></h4>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Milestone" href="#"><i class="icon-plus"></i> Add Milestones</a> </li>
+            </ul>
+
+
             <ul class="pull-left inline">
             {% for milestone in milestones  %}
-                <li>{{ milestone.title }} {% if not forloop.last %}, {% endif %}</li>
+                <li><i class="editable-value" > {{ milestone.title }} </i>  {% if not forloop.last %}, {% endif %}</li>
             {% endfor %}
             </ul>
             </div>
@@ -266,9 +281,13 @@
 
             <div class="media">
             <h4 class="media-heading"><strong class="muted">Expertise:</strong></h4>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Expertise" href="#"><i class="icon-plus"></i> Add Expertirse</a></li>
+            </ul>
+
             <ul class="pull-left inline">
             {% for expertise in expertises  %}
-                <li><a href="/expertises/{{expertise.slug}}">{{expertise.expertise}}</a> {% if not forloop.last %}, {% endif %}</li>
+                <li id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{expertise.id}}/delete"><i class="icon-remove"></i></a>  <a href="/expertises/{{expertise.slug}}" data-type="text" data-model="expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{expertise.expertise}}</a> {% if not forloop.last %}, {% endif %}</li>
             {% endfor %}
             </ul>
             </div>
@@ -277,9 +296,13 @@
 
             <div class="media">
             <h4 class="media-heading"><strong class="muted">Verticals:</strong></h4>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Vertical" href="#"><i class="icon-plus"></i> Add verticals</a></li>
+            </ul>
+
             <ul class="pull-left inline">
             {% for vertical in verticals  %}
-                <li><a href="/verticals/{{vertical.slug}}">{{vertical.vertical}}</a> {% if not forloop.last %}, {% endif %}</li>
+                <li id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{vertical.id}}/delete"><i class="icon-remove"></i></a><a href="/verticals/{{ vertical.slug }}"  data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{vertical.vertical}}</a> {% if not forloop.last %}, {% endif %}</li>
             {% endfor %}
             </ul>
             </div>
@@ -288,6 +311,11 @@
 
             <div class="media">
             <h4 class="media-heading"><strong class="muted">Projects:</strong></h4>
+
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Project" href="#"><i class="icon-plus"></i> Add Project</a> </li>
+            </ul>
+
             <ul class="pull-left inline">
             {% for project in projects  %}
                 <li>{{ project.name }} for {{ project.client}} {% if not forloop.last %}, {% endif %}</li>
@@ -299,9 +327,13 @@
 
             <div class="media">
             <h4 class="media-heading"><strong class="muted">Success Stories:</strong></h4>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="SuccessStories" href="#"><i class="icon-plus"></i> Add a Success Story</a> </li>
+            </ul>
+
             <ul class="pull-left inline">
             {% for story in stories  %}
-                <li>{{ story.title }} {% if not forloop.last %}, {% endif %}</li>
+                <li>{{ story.title }}, <a href="{{ story.link.url }}">more</a> {% if not forloop.last %}, {% endif %}</li>
             {% endfor %}
             </ul>
             </div>
@@ -343,7 +375,6 @@
             </ul>
         </div>
 
-
         {############################################## Customers ###################################}
         <div class="media">
 
@@ -361,11 +392,15 @@
                 {% endfor %}
                 </ul>
         </div>
-
         {############################################## Ecosystems Section #####################################}
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Ecosystems:</strong></h4>
         </div>
+        
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Ecosystem" href="#"><i class="icon-plus"></i> Add A New Entrepise in your ecosystem </a> </li>
+            </ul>
+
 
         {############################################## Partnerships #####################################}
         <div class="media">
@@ -404,14 +439,14 @@
 
         </div>
 
+        {####################################### Technologies (To remove) #####################################}
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Technologies:</strong></h4>
             <p><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/technologies/" data-pk="{{ company.id }}"  data-title="Company Techs" id="company-technologies" class="editable-value">{{ company.technologies }}</text></p>
         </div>
-
-
+        
         {####################################### Funding #####################################}
-    <div class="media">
+        <div class="media">
         <h4 class="media-heading"><strong class="muted">Funding:</strong></h4>
         <br/>
 
@@ -481,7 +516,6 @@
         {% endfor %}
     </br>
     </div>
-
 
 
         {############################################## Competitors ##############################}
@@ -812,6 +846,29 @@ create_item.click(
             },
 
         });
+
+
+        $('#size-company').editable({
+
+            source: [
+                  {value: 1, text: '1 -10'},
+                  {value: 2, text: '11 - 50'},
+                  {value: 3, text: '51 - 150'},
+                  {value: 4, text: '151 - 500'},
+                  {value: 5, text: '501 - 1000'},
+                  {value: 6, text: '1000 - 5001'},
+                  {value: 7, text: '+ 5001'},
+
+                ],
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+
+        });
+
+
 
         $('.editable-value').editable({
             params: function(params) {
