@@ -49,615 +49,230 @@
 {% block content %}
 {% load humanize %}
 
-  {% if percentage_profile %}
-    <h2 class="pagination-centered">Profile {{ percentage_profile.percentage }}% complete</h2>
-    <div class="percentage-box ">
-      <div class="progress span5">
-        <div class="bar" style="width: {{ percentage_profile.percentage }}%;"></div>
-      </div>
-    </div>
+<div class="row">
+    <div class="span1"></div>
+    <div class="span2">
 
-  {% endif %}
-  <br/>
+        {% if percentage_profile %}
+            <h5 class="pull-right">Profile {{ percentage_profile.percentage }}% complete</h5>
+            <div class="percentage-box ">
+                
+               <div class="progress" style="width: 80%;">
+                    <div class="bar" style="width: {{ percentage_profile.percentage }}%;"></div>
+               </div>
+            </div>
+        {% endif %}
+        <div>
 
+            <p> </p>
+        </div>
+        
+        <div class="media pull-right">
+            <a href="#">
+                {% if company.logo %}
+    
+                <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ company.logo }}" height="130" width="160">
+                {% else %}
+                <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="96" width="140">
+                
+                {% endif %}
+            </a>
+        </div>
+       
 
-  {% if  user.is_staff or user.is_superuser or permission %}
+        <div "media" style="margin-top: 5%;">
+
             
-    <div class="pull-right" style="margin-right:80px;">
-      <!--<button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}/edit'">  Edit  </button>-->
-      <a class="btn" href="/company/{{ company.slug }}/edit"><i class="icon-pencil"></i> Edit </a>
-    </div>
-         
-  {% endif %}
 
-  <br/>
-        
-  <div class="media">
-  
-    <div class="pull-right" style="margin-right:80px;"> 
-      <div class="btn-group">
-        <button class="btn">Follow</button>
-        <button class="btn dropdown-toggle" data-toggle="dropdown">
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">Contact Company</a></li>
-          <li><a tabindex="-1" href="#">Foll ow Blog</a></li>
-          <li class="divider"></li>
-          <li><a tabindex="-1" href="#">Something else here</a></li>
-        </ul>
-      </div>
-    </div>
+                 <table>
+                    <th><h5>General Information</h5> </th>
+                {% if  user.is_staff or user.is_superuser or permission %}
+                        <tr>
+                            <td colspan="2"><strong>Phone:</strong></td>
+                         </tr><tr>
+                            <td colspan="2">{{ company.main_phone }}</td>
+                        </tr>
+                {% endif %}
+                {% if company.founding_date %}
+                    <tr>
+                            <td><strong>Founding Date:</strong></td>
+                            <td>{{ company.founding_date }}</td>
+                    </tr>
 
-        <div id="logo_company">
+                {% endif %}
+                {% if company.product %}
+                    <tr>    
+                        <td colspan="2"><strong>Product:</strong></td>
+                     </tr><tr>
+                        <td colspan="2">{{ company.product }}</td >
+                    </tr>
+                {% endif %}
+                {% if company.categories %}
+                    <tr>    
+                        <td colspan="2"><strong>Industry:</strong></td>
+                     </tr><tr>
+                        <td colspan="2">{{ company.categories }}</td >
+                    </tr>
 
-        <a class="pull-left" href="#">
-          {% if company.logo %}
-            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ company.logo }}" height="130" width="178">
+                {% endif %}
+                {% if company.applications %}
+                    <tr>    
+                        <td colspan="2"><strong>Applications:</strong></td>
+                    </tr><tr>
+                        <td colspan="2">{{ company.applications }}</td>
+                    </tr>
+                {% endif %}
 
-          {% else %}
-      
-            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="96" width="140"  >
-                      
-          {% endif %}
-        </a>
-          
+                {% if company.employee_quantity %}
+                    <tr>
+                        <td colspan="2"><strong>No. Employees:</strong></td>
+                    </tr><tr>
+                        <td colspan="2">{{ company.get_employee_quantity_display }}</td>
+                    </tr>
+                {% endif %}
+                {% if company.technologies %}
+                    <tr>    
+                        <td colspan="2"><strong>Expertise:</strong></td>
+                     </tr><tr>
+                        <td colspan="2">{{ company.technologies }}</td >
+                    </tr>
+                {% endif %}
+
+                </table>
+
+                {% if partnerships %}
+                    <table>
+                        <th>
+                            <h4>Partnerships</h4>
+                        </th>
+                        <tr>    
+                            <td colspan="2"><strong>Expertise:</strong></td>
+                         {% for partner in partnerships %}
+                         </tr><tr>
+                            <td colspan="2"><strong>{{ partner.competence }}</strong></td >
+                        </tr>
+                        </tr><tr>
+                            <td colspan="2">{{ partner.description }}</td >
+                        </tr>
+                    <table>
+                    {% endfor %}
+                {% endif %}
+            
         </div>
+    </div>
+
+    <div class="span6">
         <br/>
-
         <div class="media">
-          <h2 class="media-heading">{{ company.name  }} </h2>
+            <h2 class="media-heading">{{ company.name  }} </h2>
+            <p><text class="muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="wysihtml5" >{{ company.value_proposition|safe  }}</text> </p>
+
         </div>
-  
+        <div class="icons">
+                {% if company.email %}
+                    <a href="mailto:{{ company.email  }}"><span class="add-on"><img src="{{ STATIC_URL }}img/Mail-icon.png" height="16" width="16"></span></a>
+                {% else %}
+                    <span class="add-on"><img src="{{ STATIC_URL }}img/Mail-icon2.png" height="16" width="16"></span>
+                {% endif %}
 
-        {% if company.email %}
-            <a href="mailto:{{ company.email  }}"><span class="add-on"><img src="{{ STATIC_URL }}img/Mail-icon.png" height="16" width="16"></span></a>
-        {% else %}
-            <span class="add-on"><img src="{{ STATIC_URL }}img/Mail-icon2.png" height="16" width="16"></span>
-        {% endif %}
+                {% for link in companylinks %}
 
-        {% for link in companylinks %}
+                {% if link.linkedin_url %}
+                    <a href="{{ link.linkedin_url }}"><span class="add-on"></span><img src="{{ STATIC_URL }}img/linkedin_icon.jpg" height="16" width="16"></span></a>
+                {% else %}
+                    <span class="add-on"><img src="{{ STATIC_URL }}img/linkedin_icon2.jpg" height="16" width="16"></span>
+                {% endif %}
 
-        {% if link.linkedin_url %}
-            <a href="{{ link.linkedin_url }}"><span class="add-on"></span><img src="{{ STATIC_URL }}img/linkedin_icon.jpg" height="16" width="16"></span></a>
-        {% else %}
-            <span class="add-on"><img src="{{ STATIC_URL }}img/linkedin_icon2.jpg" height="16" width="16"></span>
-        {% endif %}
+                {% if link.facebook_link %}
+                    <a href="{{ link.facebook_link }}"><span class="add-on"><img src="{{ STATIC_URL }}img/fb1.jpg" height="16" width="16"></span></a>
+                {% else %}
+                    <span class="add-on"><img src="{{ STATIC_URL }}img/fb2.jpg" height="16" width="16"></span>
 
-        {% if link.facebook_link %}
-            <a href="{{ link.facebook_link }}"><span class="add-on"><img src="{{ STATIC_URL }}img/fb1.jpg" height="16" width="16"></span></a>
-        {% else %}
-            <span class="add-on"><img src="{{ STATIC_URL }}img/fb2.jpg" height="16" width="16"></span>
+                {% endif %}
 
-        {% endif %}
+                {% if link.twitter_url %}
+                    <a href="{{ link.twitter_url }}"><span class="add-on"><img src="{{ STATIC_URL }}img/twitter_icon1.jpg" height="16" width="16"></span></a>
+                {% else %}
+                    <span class="add-on"><img src="{{ STATIC_URL }}img/twitter_icon2.jpg" height="16" width="16"></span>
+                {% endif %}
 
-        {% if link.twitter_url %}
-            <a href="{{ link.twitter_url }}"><span class="add-on"><img src="{{ STATIC_URL }}img/twitter_icon1.jpg" height="16" width="16"></span></a>
-        {% else %}
-            <span class="add-on"><img src="{{ STATIC_URL }}img/twitter_icon2.jpg" height="16" width="16"></span>
-        {% endif %}
+                {% if link.web_url %}
+                    <a href="{{ link.web_url }}"><i class="icon-home"></i></a>
+                {% else %}
+                    <a href="{{ link.web_url }}"><i class="icon-home"></i></a>
+                {% endif %}
 
-        {% if link.web_url %}
-            <a href="{{ link.web_url }}"><i class="icon-home"></i></a>
-        {% else %}
-            <a href="{{ link.web_url }}"><i class="icon-home"></i></a>
-        {% endif %}
+                {% if link.blog_url %}
+                    <a href="{{ link.blog_url }}"><i class="icon-user"></i></a>
+                {% else %}
+                    <i class="icon-user"></i>
+                {% endif %}
 
-        {% if link.blog_url %}
-            <a href="{{ link.blog_url }}"><i class="icon-user"></i></a>
-        {% else %}
-            <i class="icon-user"></i>
-        {% endif %}
-
-        {% endfor%}
-          
-
-      </div>
-        
-          <div class="media">
-            <h4 class="media-heading"><strong class="muted">Value Proposition:</strong></h4>
-            <p class="muted" id="company-value-proposition" data-type="textarea" >{{ company.value_proposition|safe }} </p>
-        </div>
-
+                {% endfor%}
+            </div>
 
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
-            <p id="company-description" >{{ company.description|safe}}</p>
+            <p id="company-description">{{ company.description|safe}}</p>
         </div>
-
-        </div>
-    </div>
-
-    
-    <div class="span10">
-
-
-
-<div class="media">
-    <h4 class="media-heading"><strong class="muted">Related Industries:</strong></h4>
-    <p><text   data-url="/formfields/Company/{{ company.id }}/industries/" data-pk="{{ company.id }}"  data-title="Company Industries" id="company-industries" >{{ company.industries }}</text></p>
-
-        
-        {####################################### Company Information Section #####################################}
-
-            {####################################### Industry #####################################}
-            <div class="media">
-            <h4 class="media-heading"><strong class="muted">Industry:</strong></h4>
-            <ul class="pull-left inline">
-                <li>{{company.categories}}</li>
-            </ul>
-            </div>
-            
-            {####################################### Size #####################################}
-            <div class="media">
-            <h4 class="media-heading"><strong class="muted">Size of Company: </strong></h4>
-            <ul class="pull-left inline">
-                <li>{{company.get_employee_quantity_display }}</li>
-            </ul>
-            </div>
-
-            {############################################## Offices #####################################}
-
-            <div class="media">
-                <h4 class="media-heading"><strong class="muted">Offices:</strong></h4>
-                <ul class="nav nav-list pull-right">
-                    <p id="company-offices">{{ offices.description }}</p>
-                </ul>
-                <ul class="pull-left inline">
-                    {% for office in offices %}
-                     <li>
-                        <address>
-                            <strong>{{ office.object.country }}</strong><br>
-                            {{ office.object.description }}<br>
-                            {{ office.object.address_1 }}<br>
-                            {{ office.object.address_2 }}<br>
-                       <address>
-                    </li>
-
-                        {% if office.ul  %}
-                            </ul><br>
-
-                            <ul class="pull-left inline">
-                        {% endif %}
-                    {% endfor %}
-                </ul><br>
-            </div>
-
-
-            {####################################### Annual Revenue #####################################}
-
-            <div class="media">
-            <h4 class="media-heading"><strong class="muted">Annual Revenue:</strong></h4>
-            <ul class="pull-left inline">
-            {% for revenue in revenues  %}
-                <li>{{ revenue.revenue|intcomma}} in {{ revenue.date|date:"Y" }} </li>
-
-            {% endfor %}
-            </ul>
-            </div>
-            {####################################### Milestones #####################################}
-
-            <div class="media">
-            <h4 class="media-heading"><strong class="muted">Milestones:</strong></h4>
-            <ul class="pull-left inline">
-            {% for milestone in milestones  %}
-                <li>{{ milestone.title }} {% if not forloop.last %}, {% endif %}</li>
-            {% endfor %}
-            </ul>
-            </div>
-
-        
-        {####################################### Company Experience Section #####################################}
-
-        <h3 class="media-heading"><strong class="muted">Experience: </strong></h3>
-            {####################################### Expertises #####################################}
-
-            <div class="media">
-            <h4 class="media-heading"><strong class="muted">Expertise:</strong></h4>
-            <ul class="pull-left inline">
-            {% for expertise in expertises  %}
-                <li><a href="/expertises/{{expertise.slug}}">{{expertise.expertise}}</a> {% if not forloop.last %}, {% endif %}</li>
-            {% endfor %}
-            </ul>
-            </div>
-
-            {####################################### Verticals #####################################}
-
-            <div class="media">
-            <h4 class="media-heading"><strong class="muted">Verticals:</strong></h4>
-            <ul class="pull-left inline">
-            {% for vertical in verticals  %}
-                <li><a href="/verticals/{{vertical.slug}}">{{vertical.vertical}}</a> {% if not forloop.last %}, {% endif %}</li>
-            {% endfor %}
-            </ul>
-            </div>
-
-            {####################################### Projects #####################################}
-
-            <div class="media">
-            <h4 class="media-heading"><strong class="muted">Projects:</strong></h4>
-            <ul class="pull-left inline">
-            {% for project in projects  %}
-                <li>{{ project.name }} for {{ project.client}} {% if not forloop.last %}, {% endif %}</li>
-            {% endfor %}
-            </ul>
-            </div>
-
-            {####################################### Success Stories #####################################}
-
-            <div class="media">
-            <h4 class="media-heading"><strong class="muted">Success Stories:</strong></h4>
-            <ul class="pull-left inline">
-            {% for story in stories  %}
-                <li>{{ story.title }} {% if not forloop.last %}, {% endif %}</li>
-            {% endfor %}
-            </ul>
-            </div>
-
-
-            {############################################## Awards #####################################}
-            <div class="media">
-                <h4 class="media-heading"><strong class="muted">Awards:</strong></h4>
-                <ul class="pull-left inline">
-                {% for award in awards  %}
-                        <li>{{ award.name }}{% if not forloop.last %}, {% endif %}</li>
-
-                {% endfor %}
-                </ul>
-            </div>
-
-            {############################################## Certifications #####################################}
-            <div class="media">
-                <h4 class="media-heading"><strong class="muted">Certifications:</strong></h4>
-
-                <ul class="pull-left inline">
-                {% for certification in certifications  %}
-
-                        <li>{{ certification.name }}</li>{% if not forloop.last %}, {% endif %}
-
-
-                {% endfor %}
-            </div>
-
-
-            {############################################## Customers #####################################}
-            <div class="media">
-            <h4 class="media-heading"><strong class="muted">Customers:</strong></h4>
-
-            <ul class="pull-left inline">
-            {% for customer in customers  %}
-
-                    <li>{{ customer.name }}</li>{% if not forloop.last %}, {% endif %}
-
-
-            {% endfor %}
-        </div>
-        {############################################## Ecosystems Section #####################################}
         <div class="media">
-            <h4 class="media-heading"><strong class="muted">Ecosystems:</strong></h4>
-        </div>
-
-        {############################################## Partnerships #####################################}
-        <div class="media">
-            <h5 class="media-heading"><strong class="muted">Partnerships:</strong></h5>
-            <ul class="pull-left inline">
-
-            {% for partner in partnerships  %}
-                <li>{{partner.competence}} {% if not forloop.last %}, {% endif %}</li>
-
-            {% endfor %}
-
-            </ul>
-        </div>
-        
-        {############################################## Alliances #####################################}
-        <div class="media">
-
-            <h5 class="media-heading"><strong class="muted">Alliances:</strong></h5>
-
-            <ul class="pull-left inline">
-            {% for ally in alliances  %}
-                <li>{{ally.competence}} {% if not forloop.last %}, {% endif %}</li>
-            {% endfor %}
-            </ul>
-        </div>
-
-        {############################################## Technical Associations #####################################}
-        <div class="media">
-
-            <h5 class="media-heading"><strong class="muted">Technical Associations:</strong></h5>
-            <ul class="pull-left inline">
-            {% for associate in associations  %}
-                <li>{{associate.competence}} {% if not forloop.last %}, {% endif %}</li>
-            {% endfor %}
-            </ul>
-
-        </div>
-
-
-        {% if  user.is_staff or user.is_superuser or permission %}
-        {############################################## Competitors #####################################}
-        <div class="media">
-            <h4 class="media-heading"><strong class="muted">Competitors:</strong></h4>
-            <ul class="pull-left inline">
-            {% for competitor in competitors  %}
-                    <li>{{ competitor.name }}{% if not forloop.last %}, {% endif %}</li>
-
-            {% endfor %}
-            </ul>
-        </div>
-            
-         
-        {% endif %}
-
-
-
-</div>
-
-<div class="media">
-    <h4 class="media-heading"><strong class="muted">Technologies:</strong></h4>
-    <p><text   data-url="/formfields/Company/{{ company.id }}/technologies/" data-pk="{{ company.id }}"  data-title="Company Techs" id="company-technologies" >{{ company.technologies }}</text></p>
-</div>
-
-
-
-    {####################################### Funding #####################################}
-    <div class="media">
-        <h4 class="media-heading"><strong class="muted">Funding:</strong></h4>
-
-            {% for funding in fundings %}
-                <h5 class="media-heading text-info "> {{ funding.round }}</a></h5>
-                    <p> US$ {{ funding.raised|intcomma}}</p>
-
-            {% endfor %}
-        </br>
-    </div>
-        {####################################### Management #####################################}
-
-            <div class="media">
-            <h4 class="media-heading"><strong class="muted">Management:</strong></h4>
-
-        {% for manager in management %}
-            <h5 class="media-heading text-info"> {{ manager.full_name }}</h5>
-                <p> {{ manager.title }}</p>
-
-        {% endfor %}
-
-
-
-        {############################################## Pictures #####################################}
-
-        <div class="media">
-            <h4 class="media-heading"><strong class="muted">Pictures: </strong></h4>
-            <ul class="thumbnails pull-left inline">
-                <div class="row-fluid">
-
-            <br>
-
-            {% if pictures %}
-
-                    {% for picture in pictures %}
-                    <li class="span2"> <a class="gallery" href="{{ MEDIA_URL }}{{ picture.file}}"><img src="{{ MEDIA_URL }}{{ picture.file}}"></a></li>
-                    {% endfor %}
-
+            {% if company.tags %}
+                <table> 
+                    <tr>
+                        <td>Related Categories:</td>
+                    <tr></tr>
+                        <td>{{ company.tags }}</td>
+                    </tr>
+                </table>
             {% endif %}
-                </div>
-            </ul>
+            <h4 class="media-heading muted">Related Categories:</h4>
+
+            <span class="label label-info">Social Media</span> <span class="label label-info">Publicity</span> <span class="label label-info">Marketing</span>
+        
+
+        {# success Stories goes here #} 
+                <h4 class="muted">Success Stories</h4>
+                <table>
+                    <tr>
+                        <td><a href="{{ story.link.url }}"><i class="icon-file"></i> Causes: Building Awareness in Asia  </a></td>
+                        <td><a href="{{ story.link.url }}"><i class="icon-file"></i> Zynga: Games as social interaction </a></td>
+                    </tr>           
+                    <tr>
+                        <td>
+                            <br/>
+                            <a href="">More >></a>
+                        </td>
+                    </tr>
+                 </table>
+            {% if stories %}
+                <h4 class="muted">Success Stories</h4>
+                <table>
+                    <tr>
+                        {% for story in stories %}
+                            <td><a href="{{ story.link.url }}"><i class="icon-file"></i> {{ story.title }} </a></td>
+
+                        {% endfor %}
+                    </tr>
+                     <tr>
+                        <td>
+                            <br/>
+                            <a href="">More >></a>
+                        </td>
+                    </tr>
+                </table>
+            {% endif %}
         </div>
-    <div class="media">
-    <h4 class="media-heading"><strong class="muted">Latech Contact:</strong></h4>
-    <p id="company-contact">{{ company.contact }}</p>
-
-</div>
-
-</div>
-</div>
-<!--#    project = models.ManyToManyField("Project")
-
-#    links = models.ForeignKey("URLs") -->
-
-<div id="companyModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <h3 id="myModalLabel">Login</h3>
-    </div>
-    <div class="modal-body">
-            <div class="alert alert-success hide" id="success-notification">
-              <button type="button" class="close" data-dismiss="alert">&times;</button>
-              Congratulations! The new <strong id="succes-model"></strong> has been created on the database
-            </div>
-            <div class="alert alert-block alert-error hide" id="error-notification">
-              <button type="button" class="close" data-dismiss="alert">&times;</button>
-              Warning! The <strong id="error-model"></strong> element was not created in the database due to the following fields:
-
-              <ul id="error-list">
-              </ul>
-              Please verify the fields and fill them corretly.
-            </div>
-            <form enctype="multipart/form-data" id="new-form" method="POST" action="." >
-                {% csrf_token %}
-                <div class="modal-form" data-model="0" >
-                </div>
-                <a href="#"  id="create-item"  class="btn btn-primary">Create</a>
-                <a href="#"  id="add-another"  class="btn btn-info" >Create and Add another</a>
-                <a href="#" id="cancel-modal" class="btn btn-inverse">Cancel</a>
-
-            </form>
-    </div>
-    <div class="modal-footer">
-    </div>
-    </div>
-        <script type="text/javascript">
-            
-            //select all the links with the function or class delete
-           var link = $(".link-delete");
-
-link.click(
-    function(event){
-        //eliminate the default function
-        event.preventDefault();
-        //get the data from the link when clicked; data = ["type_deletion","id","company_name"]*company comes by default
         
-        
-        var r = confirm("Are You sure You want to delete this item?");
-        if( r == true){
-            //pass the data to the ajax function to call the server
-            var data_type = $(this).data("type");
-            var id = $(this).data("id");
-            var company_name = "{{ company.slug }}";
-            $.ajax({
-                url: "/company/"+company_name+"/"+data_type+"/"+id+"/delete",
-                success: 
-                    function(result){
-                        $("#"+data_type+"-"+id).remove();  
-                    },
-                error: 
-                    function(){
-                        alert("We are experiencing problems wit error, please try again later");
-                    }
-            });
-
-    }else{
-        return false;
-    }});
 
 
-    var add = $(".add-element");
-
-add.click(
-        function(event){
-            var model = $(this).data("model");  
-            var id = $(this).data("id"); //can be form_id
-            event.preventDefault();
-
-            $.ajax({
-                url: "/forms/"+model+"/",
-                data: { 'csrfmiddlewaretoken': '{{csrf_token}}' }, 
-                type: "POST",
-                cache: false,
-
-                success: 
-                    function(result){
-                        $("#myModalLabel").html("Create a new "+ model +".");
-                        $("#success-notification").addClass("hide");
-                        $(".modal-form").html(result);
-                        $(".modal-form").data("model", model);
-                        $("#companyModal").modal("show");
-                        $('#id_date').datepicker();
-                        $('#id_acquired_date').datepicker();
-                    },
-                error: 
-                    function(xhr){
-                        alert("Error: " + xhr.statusText);
-                        //alert("We are experiencing problems with the server , please try again later");
-                        return false;
-                    }
-            });
-            
-        });
-
-    var add_another = $('#add-another');
-add_another.click( 
-        function(event){
-
-            var model_name = $(".modal-form").data("model");
-            event.preventDefault();
-            $.ajax({
-                url: "/forms/{{ company.slug }}/"+model_name+"/",
-                type: "POST",
-                cache: false,
-                data:  $('#new-form').serialize(), 
-                success: 
-                    function(result){
-                        alert(result);
-                        $.ajax({
-                            url: "/forms/"+model_name+"/",
-                            data: { 'csrfmiddlewaretoken': '{{csrf_token}}' }, 
-                            type: "POST",
-                            dataType: 'json',
-                            cache: false,
-                            success:
-                                function(json){
-                                    if(json.errors !== undefined){
-                                        alert("Errors in the forms");
-
-                                    }else{
-                                       $("#succes-model").html(model_name); 
-                                       $("#success-notification").removeClass("hide"); 
-                                       $(".modal-form").trigger('reset');
-                                    }},
-                            error: 
-                                function(xhr){
-                                    alert("Error: " + xhr.statusText);
-                                    //alert("We are experiencing problems with the server , please try again later");
-                                    return false;
-                                },
-                            });
-                    },
-                error: 
-                    function(xhr){
-                        alert("Error 2: " + xhr.statusText);
-                        //alert("We are experiencing problems with the server , please try again later");
-                        return false;
-                    }
-            });
-        });
-
-    var modal_btn = $('#modal-btn');
-    modal_btn.click( 
-        function(event){
-
-            event.preventDefault();
-            $.ajax({
-                url: "/forms/{{ company.slug }}/"+model+"/",
-                type: "POST",
-                cache: false,
-                data: { 'csrfmiddlewaretoken': '{{csrf_token}}' }, 
-                success: 
-                    function(result){
-                        alert("Success");
-                    },
-                error: 
-                    function(xhr){
-                        alert("Error: " + xhr.statusText);
-                        //alert("We are experiencing problems with the server , please try again later");
-                        return false;
-                    }
-            });
-        })
-
-    var cancel_modal = $("#cancel-modal");
-
-    cancel_modal.click(
-        function(event){
-            event.preventDefault();
-            $("#companyModal").modal("hide");
-        });
-
-    var create_item = $('#create-item');
-create_item.click( 
-        function(event){
-
-            var model_name = $(".modal-form").data("model");
-            event.preventDefault();
-            $.ajax({
-                url: "/forms/{{ company.slug }}/"+model_name+"/",
-                type: "POST",
-                cache: false,
-                data:  $('#new-form').serialize(), 
-                success: 
-                    $("#companyModal").modal("hide")
-                    ,
-                error: 
-                    function(xhr){
-                        alert("Error: " + xhr.statusText);
-                        //alert("We are experiencing problems with the server , please try again later");
-                        return false;
-                    }
-            });
-        })
 
 
-        </script>
+    </div>
+    <div class="span3"></div>
 
+
+
+</div>
+  
 {% endblock %}
 </div>
