@@ -100,13 +100,6 @@
                     </tr>
 
                 {% endif %}
-                {% if company.product %}
-                    <tr>    
-                        <td colspan="2"><strong>Product:</strong></td>
-                     </tr><tr>
-                        <td colspan="2">{{ company.product }}</td >
-                    </tr>
-                {% endif %}
                 {% if company.categories %}
                     <tr>    
                         <td colspan="2"><strong>Industry:</strong></td>
@@ -130,15 +123,6 @@
                         <td colspan="2">{{ company.get_employee_quantity_display }}</td>
                     </tr>
                 {% endif %}
-                {% if company.technologies %}
-                    <tr>    
-                        <td colspan="2"><strong>Expertise:</strong></td>
-                     </tr><tr>
-                        <td colspan="2">{{ company.technologies }}</td >
-                    </tr>
-                {% endif %}
-
-                </table>
 
                 {% if partnerships %}
                     <table>
@@ -146,16 +130,80 @@
                             <h4>Partnerships</h4>
                         </th>
                         <tr>    
-                            <td colspan="2"><strong>Expertise:</strong></td>
                          {% for partner in partnerships %}
                          </tr><tr>
-                            <td colspan="2"><strong>{{ partner.competence }}</strong></td >
+                            <td colspan="2"><strong>{{ partner.name }}</strong></td >
                         </tr>
                         </tr><tr>
                             <td colspan="2">{{ partner.description }}</td >
                         </tr>
-                    <table>
+                    
                     {% endfor %}
+                    </table>
+                {% endif %}
+
+                {% if expertises %}
+                        <div colspan="2"><strong>Expertise:</strong></div>
+                        {% for expertise in expertises%}
+                        <div colspan="2">{{ expertise.expertise }}</div>
+                        {% endfor %}
+                    {% if expertises2 %}
+                    <a href="#" id="morere">more</a>
+                    <a href="#" id="lesss" class="hide">less</a>
+
+                        {% for expertise in expertises2 %}
+                           <div colspan="2" class="">{{ expertise.expertise }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                {% endif %}
+
+
+                {% if verticals %}
+                    <h4>Verticals</h4>
+                    {% for vertical in verticals %}
+                        <div colspan="2">{{ vertical.vertical }}</div>
+                    {% endfor %}
+
+                    {% if verticals2 %}
+                    <a href="#" id="morere">more</a>
+                    <a href="#" id="lesss" class="hide">less</a>
+
+                        {% for vertical in verticals2 %}
+                           <div colspan="2" class="hide mas">{{ vertical.vertical }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+
+                {% if alliances %}
+                    <h4>alliances</h4>
+                    {% for alliance in alliances %}
+                        <div colspan="2">{{ alliance.name }}</div>
+                    {% endfor %}
+
+                    {% if alliances2 %}
+                    <a href="#" id="more-alliance">more</a>
+                    <a href="#" id="less-alliance" class="hide">less</a>
+
+                        {% for alliance in alliances2 %}
+                           <div colspan="2" class="hide plus-alliance">{{ alliance.name }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+                {% if associations %}
+                    <h4>associations</h4>
+                    {% for association in associations %}
+                        <div colspan="2">{{ association.name }}</div>
+                    {% endfor %}
+
+                    {% if associations2 %}
+                    <a href="#" id="more-association">more</a>
+                    <a href="#" id="less-association" class="hide">less</a>
+
+                        {% for association in associations2 %}
+                           <div colspan="2" class="hide plus-association">{{ association.name }}</div>
+                        {% endfor %}
+                    {% endif %}
                 {% endif %}
             
         </div>
@@ -273,6 +321,7 @@
 
 
 </div>
-  
+<script src="{{ STATIC_URL}}js/scripts.js"></script>  
 {% endblock %}
+</div>
 </div>
