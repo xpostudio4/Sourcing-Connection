@@ -122,89 +122,116 @@
                     </tr><tr>
                         <td colspan="2">{{ company.get_employee_quantity_display }}</td>
                     </tr>
+ 
+                {% endif %}
+               </table>
+
+                {% if certifications %}
+                        <h5>Certifications:</h5>
+                        {% for certification in certifications %}
+                        <div colspan="2">{{ certification.name }}</div>
+                        {% endfor %}
+                    {% if certifications2 %}
+                        {% for certification in certifications2 %}
+                           <div colspan="2" class="hide plus-certification">{{ certification.name }}</div>
+                        {% endfor %}
+                    <a href="#" id="more-certification">more >></a>
+                    <a href="#" id="less-certification" class="hide">less <<</a>
+                    {% endif %}
                 {% endif %}
 
                 {% if partnerships %}
-                    <table>
-                        <th>
-                            <h4>Partnerships</h4>
-                        </th>
-                        <tr>    
-                         {% for partner in partnerships %}
-                         </tr><tr>
-                            <td colspan="2"><strong>{{ partner.name }}</strong></td >
-                        </tr>
-                        </tr><tr>
-                            <td colspan="2">{{ partner.description }}</td >
-                        </tr>
-                    
-                    {% endfor %}
-                    </table>
+                        <h5>Partnership:</h5>
+                        {% for partnership in partnerships%}
+                        <div colspan="2">{{ partnership.name }}</div>
+                        {% endfor %}
+                    {% if partnerships2 %}
+                        {% for partnership in partnerships2 %}
+                           <div colspan="2" class="hide plus-partnership">{{ partnership.name }}</div>
+                        {% endfor %}
+                    <a href="#" id="more-partnership">more >></a>
+                    <a href="#" id="less-partnership" class="hide">less <<</a>
+                    {% endif %}
                 {% endif %}
 
+                <br/>
                 {% if expertises %}
-                        <div colspan="2"><strong>Expertise:</strong></div>
+                        <h5>Expertise:</h5>
                         {% for expertise in expertises%}
                         <div colspan="2">{{ expertise.expertise }}</div>
                         {% endfor %}
                     {% if expertises2 %}
-                    <a href="#" id="morere">more</a>
-                    <a href="#" id="lesss" class="hide">less</a>
-
                         {% for expertise in expertises2 %}
-                           <div colspan="2" class="">{{ expertise.expertise }}</div>
+                           <div colspan="2" class="hide plus-expertise">{{ expertise.expertise }}</div>
                         {% endfor %}
+                    <a href="#" id="more-expertise">more >></a>
+                    <a href="#" id="less-expertise" class="hide">less <<</a>
                     {% endif %}
-
                 {% endif %}
 
 
                 {% if verticals %}
-                    <h4>Verticals</h4>
+                    <h5>Verticals</h5>
                     {% for vertical in verticals %}
                         <div colspan="2">{{ vertical.vertical }}</div>
                     {% endfor %}
 
                     {% if verticals2 %}
-                    <a href="#" id="morere">more</a>
-                    <a href="#" id="lesss" class="hide">less</a>
-
                         {% for vertical in verticals2 %}
-                           <div colspan="2" class="hide mas">{{ vertical.vertical }}</div>
+                           <div colspan="2" class="hide plus-vertical">{{ vertical.vertical }}</div>
                         {% endfor %}
+                    <a href="#" id="more-vertical">more >></a>
+                    <a href="#" id="less-vertical" class="hide">less <<</a>
                     {% endif %}
                 {% endif %}
 
                 {% if alliances %}
-                    <h4>alliances</h4>
+                    <h5>Alliances</h5>
                     {% for alliance in alliances %}
                         <div colspan="2">{{ alliance.name }}</div>
                     {% endfor %}
 
                     {% if alliances2 %}
-                    <a href="#" id="more-alliance">more</a>
-                    <a href="#" id="less-alliance" class="hide">less</a>
-
                         {% for alliance in alliances2 %}
                            <div colspan="2" class="hide plus-alliance">{{ alliance.name }}</div>
                         {% endfor %}
+                    <a href="#" id="more-alliance">more >></a>
+                    <a href="#" id="less-alliance" class="hide">less <<</a>
                     {% endif %}
                 {% endif %}
+
                 {% if associations %}
-                    <h4>associations</h4>
+                    <h5>Technical Associations</h5>
                     {% for association in associations %}
                         <div colspan="2">{{ association.name }}</div>
                     {% endfor %}
 
                     {% if associations2 %}
-                    <a href="#" id="more-association">more</a>
-                    <a href="#" id="less-association" class="hide">less</a>
 
                         {% for association in associations2 %}
                            <div colspan="2" class="hide plus-association">{{ association.name }}</div>
                         {% endfor %}
+                    <a href="#" id="more-association">more >></a>
+                    <a href="#" id="less-association" class="hide">less <<</a>
                     {% endif %}
                 {% endif %}
+
+                {% if awards %}
+                    <h5>Awards</h5>
+                    {% for award in awards %}
+                        <div colspan="2">{{ award.name }}</div>
+                    {% endfor %}
+
+                    {% if awards2 %}
+
+                        {% for award in awards2 %}
+                           <div colspan="2" class="hide plus-award">{{ award.name }}</div>
+                        {% endfor %}
+                    <a href="#" id="more-award">more >></a>
+                    <a href="#" id="less-award" class="hide">less <<</a>
+                    {% endif %}
+                {% endif %}
+                
             
         </div>
     </div>
@@ -311,12 +338,100 @@
             {% endif %}
         </div>
         
-
+        {# Recommendations goes here #} 
+        
+        {% if recommendations %}
+            <h4 class="muted">Recommedations:</h4>
+            {% for recommendation in recommendations %}
+                <div colspan="2">{{ recommendation.title }}</div>
+                <div colspan="2">{{ recommendation.recommendation }}</div>
+            {% endfor %}
+            {% if recommendations2 %}
+                {% for recommendation in recommendations2 %}
+                   <div colspan="2" class="hide plus-recommendation">{{ recommendation.title }}</div>
+                   <div colspan="2" class="hide plus-recommendation">{{ recommendation.recommendation }}</div>
+                 {% endfor %}
+                <a href="#" id="more-recommendation">more >></a>
+                <a href="#" id="less-recommendation" class="hide">less <<</a>
+            {% endif %}
+       {% endif %}
 
 
 
     </div>
-    <div class="span3"></div>
+    <div class="span3">
+                {% if similars %}
+                    <h5>similars:</h5>
+                    {% for similar in similars %}
+                        <a href="/company/{{ similar.slug }}">
+                        <div colspan="2">{{ similar.name }}</div>
+                        <div>
+                        {% if similar.logo %}
+            
+                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ similar.logo }}" height="130", width="178">
+                        {% else %}
+                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height=96, width=140  >
+                        
+                        {% endif %}
+                            
+                        </div></a>
+                    {% endfor %}
+                    
+                    {% if similars2 %}
+                        {% for similar in similars2 %}
+                        <div class="hide plus-similar">
+                            <a href="/company/{{ similar.slug }}">
+                            <div colspan="2">{{ similar.name }}</div>
+                            {% if similar.logo %}
+            
+                                <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ similar.logo }}" height="130", width="178">
+                                {% else %}
+                                <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height=96, width=140  >
+
+                            {% endif %}
+
+                        </div></a>
+
+                        {% endfor %}
+                    <a href="#" id="more-similar">more >></a>
+                    <a href="#" id="less-similar" class="hide">less <<</a>
+                    {% endif %}
+                {% endif %}
+
+
+                {% if projects %}
+                        <h5>Projects:</h5>
+                        {% for project in projects %}
+                        <div colspan="2">{{ project.name }}</div>
+                        {% endfor %}
+                    {% if projects2 %}
+                        {% for project in projects2 %}
+                           <div colspan="2" class="hide plus-project">{{ project.name }}</div>
+                        {% endfor %}
+                    <a href="#" id="more-project">more >></a>
+                    <a href="#" id="less-project" class="hide">less <<</a>
+                    {% endif %}
+                {% endif %}
+
+                {% if acquisitions %}
+                        <h5>Acquisitions:</h5>
+                        {% for acquisition in acquisitions %}
+                        <div colspan="2">{{ acquisition.name }}</div>
+                        {% endfor %}
+                    {% if acquisitions2 %}
+                        {% for acquisition in acquisitions2 %}
+                           <div colspan="2" class="hide plus-acquisition">{{ acquisition.name }}</div>
+                        {% endfor %}
+                    <a href="#" id="more-acquisition">more >></a>
+                    <a href="#" id="less-acquisition" class="hide">less <<</a>
+                    {% endif %}
+                {% endif %}
+
+
+
+
+        
+    </div>
 
 
 

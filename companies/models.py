@@ -63,7 +63,7 @@ class Company(models.Model):
     email = models.EmailField(blank=True)
 
     #Founding Date
-    founding_date = models.PositiveIntegerField(choices=YEARS)
+    founding_date = models.PositiveIntegerField(choices=YEARS, null=True, blank=True)
 
     #Comma separated list from Industry table
     industries = models.CharField(max_length=512, blank=True)
