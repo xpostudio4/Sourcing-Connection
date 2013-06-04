@@ -124,9 +124,9 @@ def company_edit(request, slug):
             edit =False
     else:
         edit = False
-    
-    
+
     management = Management.objects.filter(company= company)
+    competitors = Competitors.objects.filter(company=company)
     certifications = Certification.objects.filter(company=company)
     customers = Customer.objects.filter(company=company)
     awards = Award.objects.filter(company=company)
@@ -135,25 +135,19 @@ def company_edit(request, slug):
     fundings = Funding.objects.filter(company=company)
     pictures = Picture.objects.filter(company=company)
     companylinks = CompanyLink.objects.filter(company=company)
-
     # From Company Extended Profile
     partnerships = Partnership.objects.filter(company=company) 
     alliances = Alliance.objects.filter(company=company) 
-    associations = TechnicalAssociation.objects.filter(company=company)
-    competitors = Competitors.objects.filter(company=company)
+    associations = TechnicalAssociation.objects.filter(company=company) 
     expertises = Expertise.objects.filter(company=company)
     verticals = Vertical.objects.filter(company=company)
     stories = SuccessStories.objects.filter(company=company)
     revenues = AnnualRevenue.objects.filter(company=company)
     milestones = Milestone.objects.filter(company=company)
     projects = Project.objects.filter(company=company)
-
-    # From Recommendations app
+    #Recommendations
     recommendations = Recommendation.objects.filter(company=company)
-    ca = Company.objects.all()
-    if len(ca) >= 3:
-        co_list = ca[:3]
-        co_list2 = ca[3:]
+
 
     office_list = []
     count = 0
@@ -177,7 +171,6 @@ def company_edit(request, slug):
         "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations,
         # Recommendations
         "recommendations":recommendations,
-        "co_list":co_list, "co_list2":co_list2,
 
          },
         context_instance=RequestContext(request))
@@ -247,111 +240,6 @@ def company_view(request, slug):
     revenues = AnnualRevenue.objects.filter(company=company)
     milestones = Milestone.objects.filter(company=company)
     projects = Project.objects.filter(company=company)
-
-    management = Management.objects.filter(company= company)
-    if len(management)>= 3:
-        management =management[:3]
-        management2 = management[3:]
-
-
-    competitors = Competitors.objects.filter(company=company)
-    if len(competitors)>= 3:
-        competitors = competitors[:3]
-        competitors2 = competitors[3:]
-
-
-    certifications = Certification.objects.filter(company=company)
-    if len(certifications)>= 3:
-        certifications =certifications[:3]
-        certifications2 = certifications[3:]
-
-
-    customers = Customer.objects.filter(company=company)
-
-    if len(customers)>= 3:
-        customers = customers[:3]
-        customers2 = customers[3:]
-
-    awards = Award.objects.filter(company=company)
-
-    if len(awards)>= 3:
-        awards = awards[:3]
-        awards2 = awards[3:]
-
-
-    offices = Office.objects.filter(company=company)
-#    if len(offices)>= 3:
-#        offices = offices[:3]
-#        co_list2 = ca[3:]
-
-
-    acquisitions = Acquisition.objects.filter(company=company)
-    if len(acquisitions)>= 3:
-        acquisitions = acquisitions[:3]
-        acquisitions2 = acquisitions[3:]
-
-
-    fundings = Funding.objects.filter(company=company)
-    if len(fundings)>= 3:
-        fundings =fundings[:3]
-        fundings2 = fundings[3:]
-
-
-    pictures = Picture.objects.filter(company=company)
-    companylinks = CompanyLink.objects.filter(company=company)
-    partnerships = Ecosystem.objects.filter(company=company, relationship=1) 
-
-    if len(partnerships)>= 3:
-        partnerships =partnerships[:3]
-        partnerships2 = partnerships[3:]
-
-    alliances = Ecosystem.objects.filter(company=company, relationship=2) 
-    if len(alliances)>= 3:
-        alliances =alliances[:3]
-        alliances2 = alliances[3:]
-
-    associations = Ecosystem.objects.filter(company=company, relationship=3) 
-
-    if len(associations)>= 3:
-        associations =associations[:3]
-        associations2 = associations[3:]
-
-
-    expertises = Expertise.objects.filter(company=company)
-    if len(expertises)>= 3:
-        expertises =expertises[:3]
-        expertises2 = expertises[3:]
-
-
-    verticals = Vertical.objects.filter(company=company)
-
-    if len(verticals)>= 3:
-        verticals =verticals[:3]
-        verticals2 = verticals[3:]
-
-    stories = SuccessStories.objects.filter(company=company)
-
-    if len(stories)>= 3:
-        stories = stories[:3]
-        stories2 = stories[3:]
-
-    revenues = AnnualRevenue.objects.filter(company=company)
-
-    if len(revenues)>= 3:
-        revenues = revenues[:3]
-        revenues2 = revenues[3:]
-
-    milestones = Milestone.objects.filter(company=company)
-
-    if len(milestones)>= 3:
-        milestones = milestones[:3]
-        milestones2 = milestones[3:]
-
-    projects = Project.objects.filter(company=company)
-
-    if len(projects)>= 3:
-        projects = projects[:3]
-        projects2 = projects[3:]
 
     #Recommendations
     recommendations = Recommendation.objects.filter(company=company)

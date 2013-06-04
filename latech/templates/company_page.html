@@ -126,8 +126,9 @@
                 {% endif %}
                </table>
 
+
+                <h5>Certifications:</h5>
                 {% if certifications %}
-                        <h5>Certifications:</h5>
                         {% for certification in certifications %}
                         <div colspan="2">{{ certification.name }}</div>
                         {% endfor %}
@@ -140,8 +141,9 @@
                     {% endif %}
                 {% endif %}
 
+                {####Partnerships####}
+                <h5>Partnership:</h5>
                 {% if partnerships %}
-                        <h5>Partnership:</h5>
                         {% for partnership in partnerships%}
                         <div colspan="2">{{ partnership.name }}</div>
                         {% endfor %}
@@ -154,9 +156,10 @@
                     {% endif %}
                 {% endif %}
 
-                <br/>
+
+                <h5>Expertise:</h5>
                 {% if expertises %}
-                        <h5>Expertise:</h5>
+
                         {% for expertise in expertises%}
                         <div colspan="2">{{ expertise.expertise }}</div>
                         {% endfor %}
@@ -170,8 +173,9 @@
                 {% endif %}
 
 
+                <h5>Verticals:</h5>
                 {% if verticals %}
-                    <h5>Verticals</h5>
+
                     {% for vertical in verticals %}
                         <div colspan="2">{{ vertical.vertical }}</div>
                     {% endfor %}
@@ -185,8 +189,10 @@
                     {% endif %}
                 {% endif %}
 
+
+                <h5>Alliances:</h5>
                 {% if alliances %}
-                    <h5>Alliances</h5>
+                    
                     {% for alliance in alliances %}
                         <div colspan="2">{{ alliance.name }}</div>
                     {% endfor %}
@@ -200,8 +206,10 @@
                     {% endif %}
                 {% endif %}
 
+
+
+                <h5>Technical Associations:</h5>
                 {% if associations %}
-                    <h5>Technical Associations</h5>
                     {% for association in associations %}
                         <div colspan="2">{{ association.name }}</div>
                     {% endfor %}
@@ -216,8 +224,8 @@
                     {% endif %}
                 {% endif %}
 
+                <h5>Awards:</h5>
                 {% if awards %}
-                    <h5>Awards</h5>
                     {% for award in awards %}
                         <div colspan="2">{{ award.name }}</div>
                     {% endfor %}
@@ -338,8 +346,8 @@
             {% endif %}
         {# Recommendations goes here #} 
         
+        <h4 class="muted">Recommedations:</h4>
         {% if recommendations %}
-            <h4 class="muted">Recommedations:</h4>
             {% for recommendation in recommendations %}
                 <div colspan="2">{{ recommendation.title }}</div>
                 <div colspan="2">{{ recommendation.recommendation }}</div>
@@ -352,6 +360,8 @@
                 <a href="#" id="more-recommendation">more >></a>
                 <a href="#" id="less-recommendation" class="hide">less <<</a>
             {% endif %}
+        {% else %}
+            <br/>
        {% endif %}
  
 
@@ -362,8 +372,8 @@
 
     </div>
     <div class="span3">
+                <h5>Similars:</h5>
                 {% if similars %}
-                    <h5>similars:</h5>
                     {% for similar in similars %}
                         <a href="/company/{{ similar.slug }}">
                         <div colspan="2">{{ similar.name }}</div>
@@ -401,8 +411,8 @@
                 {% endif %}
 
 
+                <h5>Projects:</h5>
                 {% if projects %}
-                        <h5>Projects:</h5>
                         {% for project in projects %}
                         <div colspan="2">{{ project.name }}</div>
                         {% endfor %}
@@ -415,8 +425,9 @@
                     {% endif %}
                 {% endif %}
 
+
+                <h5>Acquisitions:</h5>
                 {% if acquisitions %}
-                        <h5>Acquisitions:</h5>
                         {% for acquisition in acquisitions %}
                         <div colspan="2">{{ acquisition.name }}</div>
                         {% endfor %}

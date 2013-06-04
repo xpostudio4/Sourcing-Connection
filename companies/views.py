@@ -314,7 +314,7 @@ def company_view(request, slug):
     # Similar 
 
     similar = []
-    similar_companies = Company.objects.filter(categories=company)
+    similar_companies = Company.objects.filter(categories=company.categories)
     for c in similar_companies:
         if c != company:
             similar.append(c)

@@ -35,7 +35,18 @@ class VerticalForm(ModelForm):
        exclude = ("company","slug")
 
 
-class EcosystemForm(ModelForm):
+class PartnershipForm(ModelForm):
     class Meta:
-       model = Ecosystem
+       model = Partnership
        exclude = ("company",)
+
+class AllianceForm(ModelForm):
+    class Meta:
+       model = Alliance
+       exclude = ("company",)
+
+class TechnicalAssociationForm(ModelForm):
+    class Meta:
+       model = TechnicalAssociation
+       exclude = ("company",)
+

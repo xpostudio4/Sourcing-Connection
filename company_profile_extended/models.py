@@ -89,26 +89,6 @@ class Vertical(models.Model):
         return self.vertical
     
 
-#Ecosystem
-# All-in-one model with choices
-
-
-class Ecosystem(models.Model):
-    ECOSYSTEM_CHOICES = (
-        (1, "Partnership"),
-        (2, "Alliance"),
-        (3, "Technical Association"),
-        (4, "Competitor")
-    )
-    company = models.ForeignKey(Company, related_name='Internal Company')
-    competence = models.ForeignKey(Company, related_name='Company Ecosystem', verbose_name='Company')
-    relationship = models.PositiveIntegerField(choices=ECOSYSTEM_CHOICES)
-    description = models.TextField(blank=True)
-
-    def __unicode__(self):
-        return ("%s: %s with %s") % (self.company, self.get_relationship_display(), self.competence)
-
-
 # All Models separated:
 
 class Partnership(models.Model):
@@ -146,3 +126,12 @@ class Competitor(models.Model):
 
     class Meta:
          verbose_name_plural = "Competitors"
+
+class Product(models.Model):
+    company = models.ForeignKey(Company, related_name="Company Products", blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+ 
+    def __unicode__(self):
+        return (self.product)

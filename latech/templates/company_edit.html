@@ -287,7 +287,7 @@
 
             <ul class="pull-left inline">
             {% for expertise in expertises  %}
-                <li id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{expertise.id}}/delete"><i class="icon-remove"></i></a>  <a href="/expertises/{{expertise.slug}}" data-type="text" data-model="expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{expertise.expertise}}</a> {% if not forloop.last %}, {% endif %}</li>
+                <li id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{expertise.id}}/delete"><i class="icon-remove"></i></a>  <a href="/expertises/{{expertise.slug}}" data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{expertise.expertise}}</a> {% if not forloop.last %}, {% endif %}</li>
             {% endfor %}
             </ul>
             </div>
@@ -304,6 +304,13 @@
             {% for vertical in verticals  %}
                 <li id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{vertical.id}}/delete"><i class="icon-remove"></i></a><a href="/verticals/{{ vertical.slug }}"  data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{vertical.vertical}}</a> {% if not forloop.last %}, {% endif %}</li>
             {% endfor %}
+
+            {% if verticals2 %}
+            {% for vertical in verticals2 %}
+                <h5 class="media-heading text-info"> {{vertical.vertical}}</a> {% if not forloop.last %}, {% endif %}</h5>
+            {% endfor %}
+            {% endif %}
+
             </ul>
             </div>
 
@@ -392,51 +399,56 @@
                 {% endfor %}
                 </ul>
         </div>
-        {############################################## Ecosystems Section #####################################}
+        {############################################## Partnerships ##############################}
         <div class="media">
-            <h4 class="media-heading"><strong class="muted">Ecosystems:</strong></h4>
-        </div>
-        
+            <h4 class="media-heading"><strong class="muted">Partnerships:</strong></h4></br>
             <ul class="nav nav-list pull-right">
-                <li><a class="add-element" data-model="Ecosystem" href="#"><i class="icon-plus"></i> Add A New Entrepise in your ecosystem </a> </li>
+                <li><a class="add-element" data-model="Partnership" href="/company/{{ company.slug }}/partnerships/new"><i class="icon-plus"></i> Add Partnership</a></li>
             </ul>
 
-
-        {############################################## Partnerships #####################################}
-        <div class="media">
-            <h5 class="media-heading"><strong class="muted">Partnerships:</strong></h5>
+            <br/>
             <ul class="pull-left inline">
+            {% for partnership in partnerships  %}
 
-            {% for partner in partnerships  %}
-                <li>{{partner.competence}} {% if not forloop.last %}, {% endif %}</li>
+                    <li id="partnerships-{{ partnership.id }}"><a class="link-delete" data-type="partnerships" data-id="{{ partnership.id }}" id="{{ company.slug }}-partnerships-{{ partnership.id }}"  href="/company/{{ company.slug }}/partnerships/{{partnership.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/partnerships/{{partnership.id}}/update" data-type="text" data-model="Partnership" data-url="/formfields/Partnership/{{ partnership.id }}/name/" data-pk="{{ partnership.id }}"  data-title="partnership" class="editable-value" >{{ partnership.name }}</a> {% if not forloop.last %}, {% endif %}</li>
 
-            {% endfor %}
-
-            </ul>
-        </div>
-        
-        {############################################## Alliances #####################################}
-        <div class="media">
-
-            <h5 class="media-heading"><strong class="muted">Alliances:</strong></h5>
-
-            <ul class="pull-left inline">
-            {% for ally in alliances  %}
-                <li>{{ally.competence}} {% if not forloop.last %}, {% endif %}</li>
             {% endfor %}
             </ul>
         </div>
 
-        {############################################## Technical Associations #####################################}
+        {############################################## Alliances ##############################}
         <div class="media">
-
-            <h5 class="media-heading"><strong class="muted">Technical Associations:</strong></h5>
-            <ul class="pull-left inline">
-            {% for associate in associations  %}
-                <li>{{associate.competence}} {% if not forloop.last %}, {% endif %}</li>
-            {% endfor %}
+            <h4 class="media-heading"><strong class="muted">Alliances:</strong></h4></br>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Alliance" href="/company/{{ company.slug }}/alliances/new"><i class="icon-plus"></i> Add alliance</a></li>
             </ul>
 
+            <br/>
+            <ul class="pull-left inline">
+            {% for alliance in alliances  %}
+
+                    <li id="alliances-{{ alliance.id }}"><a class="link-delete" data-type="alliances" data-id="{{ alliance.id }}" id="{{ company.slug }}-alliances-{{ alliance.id }}"  href="/company/{{ company.slug }}/alliances/{{alliance.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/alliances/{{alliance.id}}/update" data-type="text" data-model="Alliance" data-url="/formfields/Alliance/{{ alliance.id }}/name/" data-pk="{{ alliance.id }}"  data-title="alliance" class="editable-value" >{{ alliance.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+
+            {% endfor %}
+            </ul>
+        </div>
+
+
+        {############################################## Technical Associations ##############################}
+        <div class="media">
+            <h4 class="media-heading"><strong class="muted">Technical Associations:</strong></h4></br>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="TechnicalAssociation" href="/company/{{ company.slug }}/associations/new"><i class="icon-plus"></i> Add association</a></li>
+            </ul>
+
+            <br/>
+            <ul class="pull-left inline">
+            {% for association in associations  %}
+
+                    <li id="associations-{{ association.id }}"><a class="link-delete" data-type="associations" data-id="{{ association.id }}" id="{{ company.slug }}-associations-{{ association.id }}"  href="/company/{{ company.slug }}/associations/{{association.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/associations/{{association.id}}/update" data-type="text" data-model="TechnicalAssociation" data-url="/formfields/TechnicalAssociation/{{ association.id }}/name/" data-pk="{{ association.id }}"  data-title="association" class="editable-value" >{{ association.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+
+            {% endfor %}
+            </ul>
         </div>
 
         {####################################### Technologies (To remove) #####################################}
@@ -845,6 +857,27 @@ create_item.click(
                 return params;
             },
 
+        });
+
+    var more = $("#morere");
+
+    more.click(
+        function(event){
+            event.preventDefault();
+            $(".mas").removeClass("hide");
+            $("#lesss").removeClass("hide");
+            $("#morere").addClass("hide");
+
+        });
+
+    var lesss = $("#lesss");
+
+    lesss.click(
+        function(event){
+            event.preventDefault();
+            $(".mas").addClass("hide");
+            $("#lesss").addClass("hide");            
+            $("#morere").removeClass("hide");
         });
 
 
