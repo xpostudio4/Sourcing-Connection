@@ -11,6 +11,7 @@ class VerticalAdmin(admin.ModelAdmin):
 admin.site.register(AnnualRevenue)
 admin.site.register(Milestone)
 admin.site.register(Project)
+admin.site.register(Product)
 admin.site.register(SuccessStories)
 admin.site.register(Expertise, ExpertiseAdmin)
 admin.site.register(Vertical, VerticalAdmin)

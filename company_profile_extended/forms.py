@@ -50,3 +50,7 @@ class TechnicalAssociationForm(ModelForm):
        model = TechnicalAssociation
        exclude = ("company",)
 
+class ProductForm(ModelForm):
+    class Meta:
+       model = Product
+       exclude = ("company",)

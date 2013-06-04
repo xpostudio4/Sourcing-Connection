@@ -56,17 +56,13 @@
         {% if percentage_profile %}
             <h5 class="pull-right">Profile {{ percentage_profile.percentage }}% complete</h5>
             <div class="percentage-box ">
-                
+                <br/>
                <div class="progress" style="width: 80%;">
                     <div class="bar" style="width: {{ percentage_profile.percentage }}%;"></div>
                </div>
             </div>
         {% endif %}
-        <div>
-
-            <p> </p>
-        </div>
-        
+<br/>        
         <div class="media pull-right">
             <a href="#">
                 {% if company.logo %}
@@ -78,7 +74,7 @@
                 {% endif %}
             </a>
         </div>
-       
+<br/>
 
         <div "media" style="margin-top: 5%;">
 
@@ -139,6 +135,9 @@
                     <a href="#" id="more-certification">more >></a>
                     <a href="#" id="less-certification" class="hide">less <<</a>
                     {% endif %}
+                {% else %}
+                    <br/>
+
                 {% endif %}
 
                 {####Partnerships####}
@@ -154,6 +153,9 @@
                     <a href="#" id="more-partnership">more >></a>
                     <a href="#" id="less-partnership" class="hide">less <<</a>
                     {% endif %}
+
+                {% else %}
+                    <br/>
                 {% endif %}
 
 
@@ -170,6 +172,8 @@
                     <a href="#" id="more-expertise">more >></a>
                     <a href="#" id="less-expertise" class="hide">less <<</a>
                     {% endif %}
+                {% else %}
+                    <br/>
                 {% endif %}
 
 
@@ -187,6 +191,8 @@
                     <a href="#" id="more-vertical">more >></a>
                     <a href="#" id="less-vertical" class="hide">less <<</a>
                     {% endif %}
+                {% else %}
+                    <br/>
                 {% endif %}
 
 
@@ -204,6 +210,8 @@
                     <a href="#" id="more-alliance">more >></a>
                     <a href="#" id="less-alliance" class="hide">less <<</a>
                     {% endif %}
+                {% else %}
+                    <br/>
                 {% endif %}
 
 
@@ -222,6 +230,8 @@
                     <a href="#" id="more-association">more >></a>
                     <a href="#" id="less-association" class="hide">less <<</a>
                     {% endif %}
+                {% else %}
+                    <br/>
                 {% endif %}
 
                 <h5>Awards:</h5>
@@ -238,6 +248,8 @@
                     <a href="#" id="more-award">more >></a>
                     <a href="#" id="less-award" class="hide">less <<</a>
                     {% endif %}
+                {% else %}
+                    <br/>
                 {% endif %}
                 
             
@@ -245,7 +257,14 @@
     </div>
 
     <div class="span6">
-        <br/>
+    
+        {% if  user.is_staff or user.is_superuser or permission %}
+            
+            <div class="pull-right" style="margin-right:80px;">
+                <a class="btn" href="/company/{{ company.slug }}/edit"><i class="icon-pencil"></i> Edit </a>
+            </div>
+        {% endif %}
+
         <div class="media">
             <h2 class="media-heading">{{ company.name  }} </h2>
             <p><text class="muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="wysihtml5" >{{ company.value_proposition|safe  }}</text> </p>
@@ -344,6 +363,27 @@
                     </tr>
                 </table>
             {% endif %}
+
+        {# Products goes here #} 
+        
+        <h4 class="muted">Products:</h4>
+        {% if products %}
+            {% for product in products %}
+                <div colspan="2">{{ product.name }}</div>
+                <div colspan="2">{{ product.price|intcomma}}</div>
+            {% endfor %}
+            {% if products2 %}
+                {% for product in products2 %}
+                   <div colspan="2" class="hide plus-product">{{ product.name }}</div>
+                   <div colspan="2" class="hide plus-product">{{ product.price|intcomma }}</div>
+                 {% endfor %}
+                <a href="#" id="more-product">More >></a>
+                <a href="#" id="less-product" class="hide">less <<</a>
+            {% endif %}
+        {% else %}
+            <br/>
+       {% endif %}
+
         {# Recommendations goes here #} 
         
         <h4 class="muted">Recommedations:</h4>
@@ -408,6 +448,9 @@
                     <a href="#" id="more-similar">more >></a>
                     <a href="#" id="less-similar" class="hide">less <<</a>
                     {% endif %}
+
+                {% else %}
+                    <br/>
                 {% endif %}
 
 
@@ -423,6 +466,8 @@
                     <a href="#" id="more-project">more >></a>
                     <a href="#" id="less-project" class="hide">less <<</a>
                     {% endif %}
+                {% else %}
+                    <br/>
                 {% endif %}
 
 
@@ -438,6 +483,8 @@
                     <a href="#" id="more-acquisition">more >></a>
                     <a href="#" id="less-acquisition" class="hide">less <<</a>
                     {% endif %}
+                {% else %}
+                    <br/>
                 {% endif %}
 
 

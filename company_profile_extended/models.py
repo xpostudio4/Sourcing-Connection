@@ -129,9 +129,9 @@ class Competitor(models.Model):
 
 class Product(models.Model):
     company = models.ForeignKey(Company, related_name="Company Products", blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
     name = models.CharField(max_length=200)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(blank=True)
  
     def __unicode__(self):
-        return (self.product)
+        return (self.name)

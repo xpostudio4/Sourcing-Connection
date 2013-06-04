@@ -159,6 +159,8 @@ def company_view(request, slug):
     verticals2 = []
     expertises = []
     expertises2 = []
+    products = []
+    products2 = []
 
 
     #This variable keeps the percentage of completion of the profile. 
@@ -304,6 +306,13 @@ def company_view(request, slug):
         projects = project[:3]
         projects2 = project[3:]
 
+    product = Product.objects.filter(company=company)
+
+    if len(product)>= 3:
+        products = product[:3]
+        products2 = product[3:]
+
+
     #Recommendations
     recommendation = Recommendation.objects.filter(company=company)
 
@@ -347,11 +356,11 @@ def company_view(request, slug):
         "expertises":expertises,"expertises2":expertises2, "verticals":verticals,"verticals2":verticals2,
         "stories":stories,"revenues":revenues, "milestones":milestones,
         "projects":projects,"projects2":projects2,  "partnerships":partnerships,"partnerships2":partnerships2, "alliances":alliances,
-        "alliances2":alliances2,"associations":associations,"associations2":associations2,
+        "alliances2":alliances2,"associations":associations,"associations2":associations2, "products":products, "products2":products2,
         # Recommendations
         "recommendations":recommendations,"recommendations2":recommendations2,
 
-         },
+        },
         context_instance=RequestContext(request))
 
 

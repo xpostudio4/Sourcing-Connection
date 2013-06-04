@@ -73,7 +73,6 @@
             </div>
 
 
-
         {% endif %}
         <br/>
 
@@ -297,7 +296,7 @@
             <div class="media">
             <h4 class="media-heading"><strong class="muted">Verticals:</strong></h4>
             <ul class="nav nav-list pull-right">
-                <li><a class="add-element" data-model="Vertical" href="#"><i class="icon-plus"></i> Add verticals</a></li>
+                <li><a class="add-element" data-model="Vertical" href="#"><i class="icon-plus"></i> Add a New Verticals</a></li>
             </ul>
 
             <ul class="pull-left inline">
@@ -420,7 +419,7 @@
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Alliances:</strong></h4></br>
             <ul class="nav nav-list pull-right">
-                <li><a class="add-element" data-model="Alliance" href="/company/{{ company.slug }}/alliances/new"><i class="icon-plus"></i> Add alliance</a></li>
+                <li><a class="add-element" data-model="Alliance" href="/company/{{ company.slug }}/alliances/new"><i class="icon-plus"></i> Add Alliance</a></li>
             </ul>
 
             <br/>
@@ -438,7 +437,7 @@
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Technical Associations:</strong></h4></br>
             <ul class="nav nav-list pull-right">
-                <li><a class="add-element" data-model="TechnicalAssociation" href="/company/{{ company.slug }}/associations/new"><i class="icon-plus"></i> Add association</a></li>
+                <li><a class="add-element" data-model="TechnicalAssociation" href="/company/{{ company.slug }}/associations/new"><i class="icon-plus"></i> Add a Technical Association:</a></li>
             </ul>
 
             <br/>
@@ -450,6 +449,27 @@
             {% endfor %}
             </ul>
         </div>
+            {####################################### Products #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Products:</strong></h4>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Product" href="#"><i class="icon-plus"></i> Add a New Product</a></li>
+            </ul>
+
+            <ul class="pull-left inline">
+            {% for product in products  %}
+                <li id="products-{{ product.id }}"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{product.id}}/delete"><i class="icon-remove"></i></a><a href="/products/{{ product.slug }}"  data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/product/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name">{{ product.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+             {% endfor %}
+
+            {% if products2 %}
+            {% for product in products2 %}
+                <li id="products-{{ product.id }}"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{product.id}}/delete"><i class="icon-remove"></i></a><a href="/products/{{ product.slug }}"  data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/product/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name">{{ product.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            {% endif %}
+
+            </ul>
+            </div>
 
         {####################################### Technologies (To remove) #####################################}
         <div class="media">

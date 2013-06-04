@@ -54,35 +54,10 @@ def form_create(request, model):
         # from company_profile_extended
         "Partnership":PartnershipForm(), 
         "Alliance":AllianceForm(),
-        "TecnicalAssociation":TecnicalAssociationForm(),
+        "TechnicalAssociation":TechnicalAssociationForm(),
         "Milestone":MilestoneForm(),
         "Project":ProjectForm(),
-        "SuccessStories":SuccessStoriesForm(),
-        "Expertise":ExpertiseForm(),
-        "Vertical":VerticalForm(),
-        "AnnualRevenue":AnnualRevenueForm(),
-
-    }
-    return HttpResponse(models[model].as_p())
-
-def form_update(request, model):
-    models ={
-        "Customer": CustomerForm(),
-        "Award": AwardForm(),
-        "Certification": CertificationForm(),
-        "Funding": FundingForm(),
-        "Acquisition": AcquisitionForm(),
-        "Management":ManagementForm(),
-        "ManagementPicture":ManagementPictureForm(),
-        "Competitor": CompetitorsForm(),
-        "Picture": PictureForm(),
-        "Office": OfficeForm(),
-        "CompanyLink": CompanyLinkForm(),
-        "Partnership":PartnershipForm(), 
-        "Alliance":AllianceForm(),
-        "TecnicalAssociation":TecnicalAssociationForm(),
-        "Milestone":MilestoneForm(),
-        "Project":ProjectForm(),
+        "Product":ProductForm(),
         "SuccessStories":SuccessStoriesForm(),
         "Expertise":ExpertiseForm(),
         "Vertical":VerticalForm(),
@@ -108,9 +83,10 @@ def form_validation(request, slug, model):
         # From Company Extended Profile
         "Partnership":PartnershipForm(request.POST), 
         "Alliance":AllianceForm(request.POST),
-        "TecnicalAssociation":TecnicalAssociationForm(request.POST),
+        "TechnicalAssociation":TechnicalAssociationForm(request.POST),
         "Milestone":MilestoneForm(request.POST),
         "Project":ProjectForm(request.POST),
+        "Product":ProductForm(request.POST),
         "SuccessStories":SuccessStoriesForm(request.POST),
         "Expertise":ExpertiseForm(request.POST),
         "Vertical":VerticalForm(request.POST),
