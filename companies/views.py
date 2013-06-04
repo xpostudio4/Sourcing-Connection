@@ -4,9 +4,10 @@ from companies.functions import percentage_completion, update_completion, valida
 from company_profile_extended.models import *
 from company_profile_extended.forms import *
 from contacts.models import Contact
-from recommendations.models import Recommendation
 from fileupload.models import Picture
 from fileupload.forms import *
+from recommendations.models import *
+from taxonomy.models import Category
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -127,15 +128,38 @@ def CompanyCreate(request):
 def company_view(request, slug):
     
     company = get_object_or_404(Company,slug=slug)
+    
     partnerships = []
     partnerships2 = []
     alliances2 = []
     alliances = []
     associations = []
     associations2 = []
+    competitors = []
+    competitors2 = []
+    managements = []
+    managements2 = []
+    certifications = []
+    certifications2 = []
+    customers = []
+    customers2 = []
+    awards = []
+    awards2 = []
+    projects = []
+    projects2 = []
+    acquisitions = []
+    acquisitions2 = []
+    offices = []
+    offices2 = []
+    similars = []
+    similars2 = []
+    recommendations = []
+    recommendations2 = []
+    verticals = []
+    verticals2 = []
+    expertises = []
+    expertises2 = []
 
-
-    
 
     #This variable keeps the percentage of completion of the profile. 
     percentage_profile = percentage_completion(company.id)
@@ -180,29 +204,29 @@ def company_view(request, slug):
         management2 = management[3:]
 
 
-    competitors = Competitors.objects.filter(company=company)
-    if len(competitors)>= 3:
-        competitors = competitors[:3]
-        competitors2 = competitors[3:]
+    competitor = Competitors.objects.filter(company=company)
+    if len(competitor)>= 3:
+        competitors = competitor[:3]
+        competitors2 = competitor[3:]
 
 
-    certifications = Certification.objects.filter(company=company)
-    if len(certifications)>= 3:
-        certifications =certifications[:3]
-        certifications2 = certifications[3:]
+    certification = Certification.objects.filter(company=company)
+    if len(certification)>= 3:
+        certifications =certification[:3]
+        certifications2 = certification[3:]
 
 
-    customers = Customer.objects.filter(company=company)
+    customer = Customer.objects.filter(company=company)
 
-    if len(customers)>= 3:
-        customers = customers[:3]
-        customers2 = customers[3:]
+    if len(customer)>= 3:
+        customers = customer[:3]
+        customers2 = customer[3:]
 
-    awards = Award.objects.filter(company=company)
+    award = Award.objects.filter(company=company)
 
-    if len(awards)>= 3:
-        awards = awards[:3]
-        awards2 = awards[3:]
+    if len(award)>= 3:
+        awards = award[:3]
+        awards2 = award[3:]
 
 
     offices = Office.objects.filter(company=company)
@@ -210,11 +234,11 @@ def company_view(request, slug):
 #        offices = offices[:3]
 #        co_list2 = ca[3:]
 
+    acquisition = Acquisition.objects.filter(company=company)
 
-    acquisitions = Acquisition.objects.filter(company=company)
-    if len(acquisitions)>= 3:
-        acquisitions = acquisitions[:3]
-        acquisitions2 = acquisitions[3:]
+    if len(acquisition)>= 3:
+        acquisitions = acquisition[:3]
+        acquisitions2 = acquisition[3:]
 
 
     fundings = Funding.objects.filter(company=company)
@@ -274,15 +298,31 @@ def company_view(request, slug):
         milestones = milestones[:3]
         milestones2 = milestones[3:]
 
-    projects = Project.objects.filter(company=company)
+    project = Project.objects.filter(company=company)
 
-    if len(projects)>= 3:
-        projects = projects[:3]
-        projects2 = projects[3:]
-
+    if len(project)>= 3:
+        projects = project[:3]
+        projects2 = project[3:]
 
     #Recommendations
-    recommendations = Recommendation.objects.filter(company=company)
+    recommendation = Recommendation.objects.filter(company=company)
+
+    if len(recommendation)>= 3:
+        recommendations = recommendation[:3]
+        recommendations2 = recommendation[3:]
+
+    # Similar 
+
+    similar = []
+    similar_companies = Company.objects.filter(categories=company)
+    for c in similar_companies:
+        if c != company:
+            similar.append(c)
+
+    if len(similar_companies)>= 3:
+        similars = similar[:3]
+        similars2 = similar[3:]
+
 
     office_list = []
     count = 0
@@ -299,15 +339,18 @@ def company_view(request, slug):
         "company_page.html",
         {'company':company, 'companylinks':companylinks,'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
         'management': management,'offices':office_list, 'competitors': competitors,"certifications":certifications,
-        "customers":customers, "awards":awards,"acquisitions":acquisitions, "fundings":fundings,  "pictures":pictures,
+        'competitors2': competitors2,"certifications2":certifications2,"acquisitions":acquisitions,"customers":customers,
+        "awards":awards, "awards2":awards2,"acquisitions2":acquisitions2, "fundings":fundings,  "pictures":pictures,
+        # Similars
+        "similars":similars, "similars2":similars2,
         # From Company Extended Profile
         "expertises":expertises,"expertises2":expertises2, "verticals":verticals,"verticals2":verticals2,
         "stories":stories,"revenues":revenues, "milestones":milestones,
-        "projects":projects, "partnerships":partnerships,"partnerships2":partnerships2, "alliances":alliances,"alliances2":alliances2,
-        "associations":associations,"associations2":associations2,
+        "projects":projects,"projects2":projects2,  "partnerships":partnerships,"partnerships2":partnerships2, "alliances":alliances,
+        "alliances2":alliances2,"associations":associations,"associations2":associations2,
         # Recommendations
-        "recommendations":recommendations,
-        #function
+        "recommendations":recommendations,"recommendations2":recommendations2,
+
          },
         context_instance=RequestContext(request))
 
