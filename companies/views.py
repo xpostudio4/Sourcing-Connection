@@ -161,6 +161,8 @@ def company_view(request, slug):
     expertises2 = []
     products = []
     products2 = []
+    fundings = []
+    fundings2 = []
 
 
     #This variable keeps the percentage of completion of the profile. 
