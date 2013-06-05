@@ -8,6 +8,8 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
 
+#INTERNAL_IPS = ('127.0.0.1',)
+
 AUTH_PROFILE_MODULE ='contacts.Contact'
 
 SUIT_CONFIG = {
@@ -54,7 +56,7 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 if os.getenv('HEROKU_ENV') == 'True':
     DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',}}
-    DATABASES['default'] =  dj_database_url.config()
+    DATABASES['default'] =  dj_database_url.config(default=os.environ.get('DATABASE_URL'))
     GS_BUCKET_NAME=os.environ.get('GS_BUCKET_NAME')
     MEDIA_URL = ('http://commondatastorage.googleapis.com/%s/' % os.environ['GS_BUCKET_NAME'])
     MEDIA_ROOT = ''
@@ -149,6 +151,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -196,6 +199,7 @@ INSTALLED_APPS = (
     'south',
     'storagess',
     'wysihtml5',
+#    'debug_toolbar',
 
 #    'subscriptions',
 #    'django_boto',    
