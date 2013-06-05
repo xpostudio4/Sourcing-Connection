@@ -55,8 +55,8 @@ MANAGERS = ADMINS
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 if os.getenv('HEROKU_ENV') == 'True':
-    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',}}
-    DATABASES['default'] =  dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+#    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',}}
+    DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
     GS_BUCKET_NAME=os.environ.get('GS_BUCKET_NAME')
     MEDIA_URL = ('http://commondatastorage.googleapis.com/%s/' % os.environ['GS_BUCKET_NAME'])
     MEDIA_ROOT = ''
