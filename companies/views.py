@@ -243,10 +243,10 @@ def company_view(request, slug):
         acquisitions2 = acquisition[3:]
 
 
-    fundings = Funding.objects.filter(company=company)
-    if len(fundings)>= 3:
-        fundings =fundings[:3]
-        fundings2 = fundings[3:]
+    funding = Funding.objects.filter(company=company)
+    if len(funding)>= 3:
+        fundings =funding[:3]
+        fundings2 = funding[3:]
 
 
     pictures = Picture.objects.filter(company=company)
@@ -330,7 +330,7 @@ def company_view(request, slug):
 
     if len(similar_companies)>= 3:
         similars = similar[:3]
-        similars2 = similar[3:]
+        similars2 = similar[3:7]
 
 
     office_list = []
