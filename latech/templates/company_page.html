@@ -15,8 +15,22 @@
         //A list of all the classes and Id's of the elements to be treated as read only tags.
         var tag_ids  = ['#company-product','#company-certification', '#company-industries', '#company-customers', '#company-offices', '#company-tags', '#company-applications', '#company-technologies']; 
 
+        var company_tags = '{{ company.tags}}'
+
+        for(i in company_tags){
+
+            //Create read only tags for the degrees field
+            var tags =  company_tags.split(",");
+            var string_tags = ""; 
 
 
+            for( j  in tags){
+                string_tags += '<div class="label label-info">' + tags[j] + "</div>  ";
+            }
+
+            $("#co-tags").html(string_tags);
+
+        }
         //for(i in tag_ids){
 
             //Create read only tags for the degrees field
@@ -53,6 +67,8 @@
     <div class="span1"></div>
     <div class="span2">
 
+    {% if  user.is_staff or user.is_superuser or permission %}
+
         {% if percentage_profile %}
             <h5 class="pull-right">Profile {{ percentage_profile.percentage }}% complete</h5>
             <div class="percentage-box ">
@@ -62,6 +78,7 @@
                </div>
             </div>
         {% endif %}
+    {% endif %}
 <br/>        
         <div class="media pull-right">
             <a href="#">
@@ -318,101 +335,92 @@
             <p id="company-description">{{ company.description|safe}}</p>
         </div>
         <div class="media">
+            {# To Change #}
             {% if company.tags %}
                 <table> 
                     <tr>
-                        <td>Related Categories:</td>
+                        <td><h4 class="media-heading muted">Related Categories:</h4></td>
                     <tr></tr>
-                        <td>{{ company.tags }}</td>
+                        <td id="co-tags"></td>
                     </tr>
                 </table>
             {% endif %}
-            <h4 class="media-heading muted">Related Categories:</h4>
+        <br/>
+        {# Success Stories goes here #} 
+        <h4 class="muted">Success Stories:</h4>
+        {% if stories %}
+            {% for story in stories %}
+                 {% if story.link %}
+                    <div colspan="2"><a href="{{ story.link.url }}"><i class="icon-file"></i>{{ story.title }}</a></div>
+                {% endif %}
+                <br/>
 
-            <span class="label label-info">Social Media</span> <span class="label label-info">Publicity</span> <span class="label label-info">Marketing</span>
-        
-
-        {# success Stories goes here #} 
-                <h4 class="muted">Success Stories</h4>
-                <table>
-                    <tr>
-                        <td><a href="{{ story.link.url }}"><i class="icon-file"></i> Causes: Building Awareness in Asia  </a></td>
-                        <td><a href="{{ story.link.url }}"><i class="icon-file"></i> Zynga: Games as social interaction </a></td>
-                    </tr>           
-                    <tr>
-                        <td>
-                            <br/>
-                            <a href="">More >></a>
-                        </td>
-                    </tr>
-                 </table>
-            {% if stories %}
-                <h4 class="muted">Success Stories</h4>
-                <table>
-                    <tr>
-                        {% for story in stories %}
-                            <td><a href="{{ story.link.url }}"><i class="icon-file"></i> {{ story.title }} </a></td>
-
-                        {% endfor %}
-                    </tr>
-                     <tr>
-                        <td>
-                            <br/>
-                            <a href="">More >></a>
-                        </td>
-                    </tr>
-                </table>
+            {% endfor %}
+            {% if stories2 %}
+                {% for story in stories2 %}
+                     {% if story.link %}
+                        <div colspan="2"><a href="{{ story.link.url }}">{{ story.title }}</a></div>
+                    {% endif %}
+                    <br/>
+                {% endfor %}
+                <a href="#" id="more-stories">More >></a>
+                <a href="#" id="less-stories" class="hide">less <<</a>
             {% endif %}
+        {% else %}
+            <br/>
+       {% endif %}
+
 
         {# Products goes here #} 
         
         <h4 class="muted">Products:</h4>
         {% if products %}
-            {% for product in products %}
-                <div colspan="2">{{ product.name }}</div>
-                <div colspan="2">{{ product.price|intcomma}}</div>
-            {% endfor %}
+
+            <table class="table table-borderless" >
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                    </tr>
+              </thead>
+                <tbody>
+                    <tr>
+                {% for product in products %}
+                       <td>{{ product.name }}</td>
+                       <td>US ${{ product.price|intcomma }}</td>
+                    </tr>
+                {% endfor %}
+                {% if products2 %}
+                    <tr>
+                    {% for product in products2 %}
+                           <td class="hide plus-product">{{ product.name }}</td>
+                           <td class="hide plus-product">US ${{ product.price|intcomma }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+
+            {# Trick to display more/less bottom the table #}
             {% if products2 %}
-                {% for product in products2 %}
-                   <div colspan="2" class="hide plus-product">{{ product.name }}</div>
-                   <div colspan="2" class="hide plus-product">{{ product.price|intcomma }}</div>
-                 {% endfor %}
-                <a href="#" id="more-product">More >></a>
+                <a href="#" id="more-product">more >></a>
                 <a href="#" id="less-product" class="hide">less <<</a>
             {% endif %}
+
         {% else %}
             <br/>
        {% endif %}
 
         {# Recommendations goes here #} 
         
-        <h4 class="muted">Recommedations:</h4>
-        {% if recommendations %}
-            {% for recommendation in recommendations %}
-                <div colspan="2">{{ recommendation.title }}</div>
-                <div colspan="2">{{ recommendation.recommendation }}</div>
-            {% endfor %}
-            {% if recommendations2 %}
-                {% for recommendation in recommendations2 %}
-                   <div colspan="2" class="hide plus-recommendation">{{ recommendation.title }}</div>
-                   <div colspan="2" class="hide plus-recommendation">{{ recommendation.recommendation }}</div>
-                 {% endfor %}
-                <a href="#" id="more-recommendation">more >></a>
-                <a href="#" id="less-recommendation" class="hide">less <<</a>
-            {% endif %}
-        {% else %}
-            <br/>
-       {% endif %}
- 
-
-        </div>
+       </div>
         
 
 
 
     </div>
     <div class="span3">
-                <h5>Similars:</h5>
+                <h5>Similar Companies:</h5>
                 {% if similars %}
                     {% for similar in similars %}
                         <a href="/company/{{ similar.slug }}">

@@ -49,7 +49,7 @@ urlpatterns = patterns('',
      #url(r'^(?P<slug>[\w-]+)/verticals/(?P<id>[\d]+)/$','company_profile_extended.views.vertical_view'),
 
 
-     #url(r'^(?P<slug>[\w-]+)/partnerships/new/$','company_profile_extended.views.partnership_create'),
+     url(r'^(?P<slug>[\w-]+)/partnerships/new/$','company_profile_extended.views.partnership_create'),
      #url(r'^(?P<slug>[\w-]+)/partnerships/(?P<id>[\d]+)/update/$','company_profile_extended.views.partnership_update'),
      url(r'^(?P<slug>[\w-]+)/partnerships/(?P<id>[\d]+)/delete/$','company_profile_extended.views.partnership_delete'),
      #url(r'^(?P<slug>[\w-]+)/partnerships/(?P<id>[\d]+)/$','company_profile_extended.views.partnership_view'),

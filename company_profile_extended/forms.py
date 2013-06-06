@@ -1,3 +1,4 @@
+from companies.models import Company
 from company_profile_extended.models import *
 from django import forms
 from django.forms import ModelForm
@@ -30,15 +31,21 @@ class ExpertiseForm(ModelForm):
 
     
 class VerticalForm(ModelForm):
+
     class Meta:
        model = Vertical
        exclude = ("company","slug")
 
-
 class PartnershipForm(ModelForm):
+#    def get_field(name, id):
+#        name = forms.ModelChoiceField(queryset=Company.objects.all().exclude(id=id))
     class Meta:
        model = Partnership
        exclude = ("company",)
+
+#    def __init__(self, company, *args, **kwargs):
+#        super(PartnershipForm, self).__init__(*args, **kwargs)
+#        self.fields['name'].queryset = Company.objects.all().exclude(id=company.id)
 
 class AllianceForm(ModelForm):
     class Meta:

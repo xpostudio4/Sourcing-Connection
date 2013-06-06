@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from companies.models import Company
 from companies.functions import *
 from company_profile_extended.models import *
+from company_profile_extended.forms import *
 
 @login_required
 def revenue_delete(request, slug,id):
@@ -76,6 +77,34 @@ def partnership_delete(request, slug,id):
         #deletes the view and redirects to the page.
         partnership_reference.delete()
         return HttpResponseRedirect('/company/'+str(slug))
+
+def partnership_create(request, slug):
+    """The purpose of this function is to create  new Partnership item associated with a created company"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    edit = validate_user_company_access_or_redirect(request,company)
+    #if the request is GET presents empty form
+    if request.method == 'GET':
+
+        partnership_form = PartnershipForm()
+        return render_to_response('award_form.html', {'form': partnership_form, 'company':company},
+            context_instance=RequestContext(request))
+     
+    else:
+        partnership_form = PartnershipForm(request.POST)
+        #if is POST Validates the form is well filled and save it redirecting to the company page
+        if partnership_form.is_valid():
+            of = partnership_form.save(commit=False)
+            of.company = company
+            of.save()
+            return HttpResponseRedirect('/company/'+str(slug))
+
+        #if not well filled redirect to the original create and display error
+        else:
+            return render_to_response('certification_form.html', 
+                {'form': partnership_form, 'form_errors': partnership_form.errors, 'company':company},
+                context_instance=RequestContext(request))
+
 
 @login_required
 def association_delete(request, slug,id):

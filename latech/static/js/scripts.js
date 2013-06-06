@@ -163,6 +163,28 @@
             $("#more-project").removeClass("hide");
         });
 
+    var more_product = $("#more-product");
+
+    more_product.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-product").removeClass("hide");
+            $("#less-product").removeClass("hide");
+            $("#more-product").addClass("hide");
+
+        });
+
+    var less_product = $("#less-product");
+
+    less_product.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-product").addClass("hide");
+            $("#less-product").addClass("hide");            
+            $("#more-product").removeClass("hide");
+        });
+
+
     var more_acquisition = $("#more-acquisition");
 
     more_acquisition.click(

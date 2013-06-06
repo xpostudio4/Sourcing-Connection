@@ -428,3 +428,8 @@ hide{
 .percentage-box{
   margin-left: 28%;
 }
+
+.table-borderless td,
+.table-borderless th{ 
+   border: 0 !important
+}
