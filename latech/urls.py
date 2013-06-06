@@ -149,6 +149,11 @@ urlpatterns = patterns('',
 
      #This is the url for Ajax requests for taggit url(r'^tags',
      #"latech.views.tagitt"),
+
+    # URLs from Company Profile Extended
+     url(r'^company/', include('company_profile_extended.urls')),
+     #url(r'^company/(?P<slug>[\w-]+)/verticals/(?P<id>[\d]+)/delete/$','companies.views.vertical_delete'),
+
      url(r'^admin/', include(admin.site.urls)),
  
 
