@@ -433,3 +433,6 @@ hide{
 .table-borderless th{ 
    border: 0 !important
 }
+.editable-value { 
+   border: 0 !important
+}

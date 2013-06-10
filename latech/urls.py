@@ -22,6 +22,8 @@ urlpatterns = patterns('',
 #     url(r'^company/(?P<slug>[\w-]+)/update/$',CompaniesUpdate.as_view(), name='company_update'),
      url(r'^company/(?P<slug>[\w-]+)/$','companies.views.company_view'),
      url(r'^company/(?P<slug>[\w-]+)/edit/$','latech.views_editable.company_edit'),
+     url(r'^company/(?P<slug>[\w-]+)/edit2/$','latech.views_editable.company_edit2'),
+
 #     url(r'^companies/$', CompanyList.as_view(), name='company_list'),
      #Loading Companies from the CSV file
 #     url(r'^companies/load/$','latech.views.load_company'),
@@ -152,7 +154,6 @@ urlpatterns = patterns('',
 
     # URLs from Company Profile Extended
      url(r'^company/', include('company_profile_extended.urls')),
-     #url(r'^company/(?P<slug>[\w-]+)/verticals/(?P<id>[\d]+)/delete/$','companies.views.vertical_delete'),
 
      url(r'^admin/', include(admin.site.urls)),
  
