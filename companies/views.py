@@ -231,7 +231,8 @@ def company_view(request, slug):
     #Recommendations
     recommendation = Recommendation.objects.filter(company=company)
     # Similar 
-
+    similars = []
+    similars2 = []
     similar = []
     similar_companies = Company.objects.filter(categories=company).order_by('id')[:3]
     for c in similar_companies:
