@@ -93,7 +93,7 @@ class Vertical(models.Model):
 
 class Partnership(models.Model):
     company = models.ForeignKey(Company, related_name='Company Partnerships')
-    name = models.ForeignKey(Company, related_name='Company Partner')
+    name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
     def __unicode__(self):
@@ -101,7 +101,7 @@ class Partnership(models.Model):
 
 class Alliance(models.Model):
     company = models.ForeignKey(Company, related_name='Company Alliances')
-    name = models.ForeignKey(Company, related_name='Company Ally')
+    name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
     def __unicode__(self):
@@ -110,7 +110,7 @@ class Alliance(models.Model):
 
 class TechnicalAssociation(models.Model):
     company = models.ForeignKey(Company, related_name='Company Technical Association')
-    name = models.ForeignKey(Company, related_name='Company Associate')
+    name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
     def __unicode__(self):
@@ -118,7 +118,7 @@ class TechnicalAssociation(models.Model):
 
 class Competitor(models.Model):
     company = models.ForeignKey(Company, related_name="Company Competitors", blank=True)
-    name = models.ForeignKey(Company, related_name='Company Competitor')
+    name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
     def __unicode__(self):
