@@ -129,42 +129,6 @@ def company_view(request, slug):
     
     company = get_object_or_404(Company,slug=slug)
     
-    partnerships = []
-    partnerships2 = []
-    alliances2 = []
-    alliances = []
-    associations = []
-    associations2 = []
-    competitors = []
-    competitors2 = []
-    managements = []
-    managements2 = []
-    certifications = []
-    certifications2 = []
-    customers = []
-    customers2 = []
-    awards = []
-    awards2 = []
-    projects = []
-    projects2 = []
-    acquisitions = []
-    acquisitions2 = []
-    offices = []
-    offices2 = []
-    similars = []
-    similars2 = []
-    recommendations = []
-    recommendations2 = []
-    verticals = []
-    verticals2 = []
-    expertises = []
-    expertises2 = []
-    products = []
-    products2 = []
-    fundings = []
-    fundings2 = []
-
-
     #This variable keeps the percentage of completion of the profile. 
     percentage_profile = percentage_completion(company.id)
     
@@ -202,130 +166,74 @@ def company_view(request, slug):
     else:
         edit = False
 
-    management = Management.objects.filter(company= company)
-    if len(management)>= 3:
-        management =management[:3]
-        management2 = management[3:]
+    managements = Management.objects.filter(company= company).order_by('id')[:3]
+    managements2 = Management.objects.filter(company= company).order_by('id')[:3]
+
+    competitors = Competitors.objects.filter(company=company).order_by('id')[:3]
+    competitors2 = Competitors.objects.filter(company=company).order_by('id')[:3]
+
+    certifications = Certification.objects.filter(company=company).order_by('id')[:3]
+    certifications2 = Certification.objects.filter(company=company).order_by('id')[:3]
+
+    customers = Customer.objects.filter(company=company).order_by('id')[:3]
+    customers2 = Customer.objects.filter(company=company).order_by('id')[:3]
+
+    awards = Award.objects.filter(company=company).order_by('id')[:3]
+    awards2 = Award.objects.filter(company=company).order_by('id')[:3]
 
 
-    competitor = Competitors.objects.filter(company=company)
-    if len(competitor)>= 3:
-        competitors = competitor[:3]
-        competitors2 = competitor[3:]
-
-
-    certification = Certification.objects.filter(company=company)
-    if len(certification)>= 3:
-        certifications =certification[:3]
-        certifications2 = certification[3:]
-
-
-    customer = Customer.objects.filter(company=company)
-
-    if len(customer)>= 3:
-        customers = customer[:3]
-        customers2 = customer[3:]
-
-    award = Award.objects.filter(company=company)
-
-    if len(award)>= 3:
-        awards = award[:3]
-        awards2 = award[3:]
-
-
-    offices = Office.objects.filter(company=company)
+    offices = Office.objects.filter(company=company).order_by('id')[:3]
 #    if len(offices)>= 3:
 #        offices = offices[:3]
 #        co_list2 = ca[3:]
 
-    acquisition = Acquisition.objects.filter(company=company)
+    acquisitions = Acquisition.objects.filter(company=company).order_by('id')[:3]
+    acquisitions2 = Acquisition.objects.filter(company=company).order_by('id')[:3]
 
-    if len(acquisition)>= 3:
-        acquisitions = acquisition[:3]
-        acquisitions2 = acquisition[3:]
+    fundings = Funding.objects.filter(company=company).order_by('id')[:3]
+    fundings2 = Funding.objects.filter(company=company).order_by('id')[:3]
 
+    pictures = Picture.objects.filter(company=company).order_by('id')
 
-    funding = Funding.objects.filter(company=company)
-    if len(funding)>= 3:
-        fundings =funding[:3]
-        fundings2 = funding[3:]
-
-
-    pictures = Picture.objects.filter(company=company)
     companylinks = CompanyLink.objects.filter(company=company)
 
 
-    partnership = Partnership.objects.filter(company=company) 
 
-    if len(partnership)>= 3:
-        partnerships = partnership[:3]
-        partnerships2 = partnership[3:]
+    partnerships = Partnership.objects.filter(company=company).order_by('id')[:3]
+    partnerships2 = Partnership.objects.filter(company=company).order_by('id')[:3]
 
-    alliance = Alliance.objects.filter(company=company) 
-    if len(alliance)>= 3:
-        alliances =alliance[:3]
-        alliances2 = alliance[3:]
+    alliances = Alliance.objects.filter(company=company).order_by('id')[:3]
+    alliances2 = Alliance.objects.filter(company=company).order_by('id')[3:]
 
-    association = TechnicalAssociation.objects.filter(company=company) 
+    associations = TechnicalAssociation.objects.filter(company=company).order_by('id')[:3]
+    associations2 = TechnicalAssociation.objects.filter(company=company).order_by('id')[3:]
 
-    if len(association)>= 3:
-        associations =association[:3]
-        associations2 = association[3:]
+    expertises = Expertise.objects.filter(company=company).order_by('id')[:3]
+    expertises2 = Expertise.objects.filter(company=company).order_by('id')[:3]
 
+    verticals = Vertical.objects.filter(company=company).order_by('id')[:3]
+    verticals2 = Vertical.objects.filter(company=company).order_by('id')[3:]
 
-    expertise = Expertise.objects.filter(company=company)
-    if len(expertise)>= 3:
-        expertises =expertise[:3]
-        expertises2 = expertise[3:]
+    stories = SuccessStories.objects.filter(company=company).order_by('id')[:3]
+    stories2 = SuccessStories.objects.filter(company=company).order_by('id')[:3]
 
+    revenues = AnnualRevenue.objects.filter(company=company).order_by('id')[:3]
+    revenues2 = AnnualRevenue.objects.filter(company=company).order_by('id')[:3]
 
-    vertical = Vertical.objects.filter(company=company)
-    if len(vertical)>= 3:
-        verticals =vertical[:3]
-        verticals2 = vertical[3:]
+    milestones = Milestone.objects.filter(company=company).order_by('id')[:3]
+    milestones2 = Milestone.objects.filter(company=company).order_by('id')[:3]
+    projects = Project.objects.filter(company=company).order_by('id')[:3]
+    projects2 = Project.objects.filter(company=company).order_by('id')[:3]
 
-    stories = SuccessStories.objects.filter(company=company)
-
-    if len(stories)>= 3:
-        stories = stories[:3]
-        stories2 = stories[3:]
-
-    revenues = AnnualRevenue.objects.filter(company=company)
-
-    if len(revenues)>= 3:
-        revenues = revenues[:3]
-        revenues2 = revenues[3:]
-
-    milestones = Milestone.objects.filter(company=company)
-
-    if len(milestones)>= 3:
-        milestones = milestones[:3]
-        milestones2 = milestones[3:]
-
-    project = Project.objects.filter(company=company)
-
-    if len(project)>= 3:
-        projects = project[:3]
-        projects2 = project[3:]
-
-    product = Product.objects.filter(company=company)
-
-    if len(product)>= 3:
-        products = product[:3]
-        products2 = product[3:]
-
+    products = Product.objects.filter(company=company).order_by('id')[:3]
+    products2 = Product.objects.filter(company=company).order_by('id')[:3]
 
     #Recommendations
     recommendation = Recommendation.objects.filter(company=company)
-
-    if len(recommendation)>= 3:
-        recommendations = recommendation[:3]
-        recommendations2 = recommendation[3:]
-
     # Similar 
 
     similar = []
-    similar_companies = Company.objects.filter(categories=company.categories)
+    similar_companies = Company.objects.filter(categories=company).order_by('id')[:3]
     for c in similar_companies:
         if c != company:
             similar.append(c)
@@ -349,7 +257,7 @@ def company_view(request, slug):
     return render_to_response(
         "company_page.html",
         {'company':company, 'companylinks':companylinks,'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
-        'management': management,'offices':office_list, 'competitors': competitors,"certifications":certifications,
+        'managements': managements,'offices':office_list, 'competitors': competitors,"certifications":certifications,
         'competitors2': competitors2,"certifications2":certifications2,"acquisitions":acquisitions,"customers":customers,
         "awards":awards, "awards2":awards2,"acquisitions2":acquisitions2, "fundings":fundings,  "pictures":pictures,
         # Similars
@@ -361,10 +269,8 @@ def company_view(request, slug):
         "alliances2":alliances2,"associations":associations,"associations2":associations2, "products":products, "products2":products2,
         # Recommendations
         "recommendations":recommendations,"recommendations2":recommendations2,
-
         },
         context_instance=RequestContext(request))
-
 
 
 @login_required
