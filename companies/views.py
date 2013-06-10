@@ -167,19 +167,19 @@ def company_view(request, slug):
         edit = False
 
     managements = Management.objects.filter(company= company).order_by('id')[:3]
-    managements2 = Management.objects.filter(company= company).order_by('id')[:3]
+    managements2 = Management.objects.filter(company= company).order_by('id')[3:]
 
     competitors = Competitors.objects.filter(company=company).order_by('id')[:3]
-    competitors2 = Competitors.objects.filter(company=company).order_by('id')[:3]
+    competitors2 = Competitors.objects.filter(company=company).order_by('id')[3:]
 
     certifications = Certification.objects.filter(company=company).order_by('id')[:3]
-    certifications2 = Certification.objects.filter(company=company).order_by('id')[:3]
+    certifications2 = Certification.objects.filter(company=company).order_by('id')[3:]
 
     customers = Customer.objects.filter(company=company).order_by('id')[:3]
-    customers2 = Customer.objects.filter(company=company).order_by('id')[:3]
+    customers2 = Customer.objects.filter(company=company).order_by('id')[3:]
 
     awards = Award.objects.filter(company=company).order_by('id')[:3]
-    awards2 = Award.objects.filter(company=company).order_by('id')[:3]
+    awards2 = Award.objects.filter(company=company).order_by('id')[3:]
 
 
     offices = Office.objects.filter(company=company).order_by('id')[:3]
@@ -188,10 +188,10 @@ def company_view(request, slug):
 #        co_list2 = ca[3:]
 
     acquisitions = Acquisition.objects.filter(company=company).order_by('id')[:3]
-    acquisitions2 = Acquisition.objects.filter(company=company).order_by('id')[:3]
+    acquisitions2 = Acquisition.objects.filter(company=company).order_by('id')[3:]
 
     fundings = Funding.objects.filter(company=company).order_by('id')[:3]
-    fundings2 = Funding.objects.filter(company=company).order_by('id')[:3]
+    fundings2 = Funding.objects.filter(company=company).order_by('id')[3:]
 
     pictures = Picture.objects.filter(company=company).order_by('id')
 
@@ -200,7 +200,7 @@ def company_view(request, slug):
 
 
     partnerships = Partnership.objects.filter(company=company).order_by('id')[:3]
-    partnerships2 = Partnership.objects.filter(company=company).order_by('id')[:3]
+    partnerships2 = Partnership.objects.filter(company=company).order_by('id')[3:]
 
     alliances = Alliance.objects.filter(company=company).order_by('id')[:3]
     alliances2 = Alliance.objects.filter(company=company).order_by('id')[3:]
@@ -209,27 +209,30 @@ def company_view(request, slug):
     associations2 = TechnicalAssociation.objects.filter(company=company).order_by('id')[3:]
 
     expertises = Expertise.objects.filter(company=company).order_by('id')[:3]
-    expertises2 = Expertise.objects.filter(company=company).order_by('id')[:3]
+    expertises2 = Expertise.objects.filter(company=company).order_by('id')[3:]
 
     verticals = Vertical.objects.filter(company=company).order_by('id')[:3]
     verticals2 = Vertical.objects.filter(company=company).order_by('id')[3:]
 
     stories = SuccessStories.objects.filter(company=company).order_by('id')[:3]
-    stories2 = SuccessStories.objects.filter(company=company).order_by('id')[:3]
+    stories2 = SuccessStories.objects.filter(company=company).order_by('id')[3:]
 
     revenues = AnnualRevenue.objects.filter(company=company).order_by('id')[:3]
-    revenues2 = AnnualRevenue.objects.filter(company=company).order_by('id')[:3]
+    revenues2 = AnnualRevenue.objects.filter(company=company).order_by('id')[3:]
 
     milestones = Milestone.objects.filter(company=company).order_by('id')[:3]
-    milestones2 = Milestone.objects.filter(company=company).order_by('id')[:3]
+    milestones2 = Milestone.objects.filter(company=company).order_by('id')[3:]
+
     projects = Project.objects.filter(company=company).order_by('id')[:3]
-    projects2 = Project.objects.filter(company=company).order_by('id')[:3]
+    projects2 = Project.objects.filter(company=company).order_by('id')[3:]
 
     products = Product.objects.filter(company=company).order_by('id')[:3]
-    products2 = Product.objects.filter(company=company).order_by('id')[:3]
+    products2 = Product.objects.filter(company=company).order_by('id')[3:]
 
     #Recommendations
-    recommendation = Recommendation.objects.filter(company=company)
+    recommendations = Recommendation.objects.filter(company=company).order_by('id')[:3]
+    recommendations2 = Recommendation.objects.filter(company=company).order_by('id')[3:]
+
     # Similar 
     similars = []
     similars2 = []
