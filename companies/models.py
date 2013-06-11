@@ -111,7 +111,10 @@ class Company(models.Model):
         #self.description_html = markdown(self.description)
         super(Company, self).save(*args, **kwargs)
         companylinks = CompanyLink(id=self.id, company=self)
-        companylinks.save()
+        if companylinks:
+            pass
+        else:
+            companylinks.save()
 
 
     @models.permalink

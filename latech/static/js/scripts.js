@@ -247,5 +247,127 @@
             $("#more-similar").removeClass("hide");
         });
 
+    var more_email = $("#more-email");
 
+    more_email.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-email").removeClass("hide");
+            $("#less-email").removeClass("hide");
+            $("#more-email").addClass("hide");
 
+        });
+
+    var less_email = $("#less-email");
+
+    less_email.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-email").addClass("hide");
+            $("#less-email").addClass("hide");            
+            $("#more-email").removeClass("hide");
+        });
+    var more_facebook = $("#more-facebook");
+
+    more_facebook.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-facebook").removeClass("hide");
+            $("#less-facebook").removeClass("hide");
+            $("#more-facebook").addClass("hide");
+
+        });
+
+    var less_facebook = $("#less-facebook");
+
+    less_facebook.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-facebook").addClass("hide");
+            $("#less-facebook").addClass("hide");            
+            $("#more-facebook").removeClass("hide");
+        });
+
+    var more_linkedin = $("#more-linkedin");
+
+    more_linkedin.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-linkedin").removeClass("hide");
+            $("#less-linkedin").removeClass("hide");
+            $("#more-linkedin").addClass("hide");
+
+        });
+
+    var less_linkedin = $("#less-linkedin");
+
+    less_linkedin.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-linkedin").addClass("hide");
+            $("#less-linkedin").addClass("hide");            
+            $("#more-linkedin").removeClass("hide");
+        });
+    var more_twitter = $("#more-twitter");
+
+    more_twitter.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-twitter").removeClass("hide");
+            $("#less-twitter").removeClass("hide");
+            $("#more-twitter").addClass("hide");
+
+        });
+
+    var less_twitter = $("#less-twitter");
+
+    less_twitter.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-twitter").addClass("hide");
+            $("#less-twitter").addClass("hide");            
+            $("#more-twitter").removeClass("hide");
+        });
+    var more_weburl = $("#more-weburl");
+
+    more_weburl.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-weburl").removeClass("hide");
+            $("#less-weburl").removeClass("hide");
+            $("#more-weburl").addClass("hide");
+
+        });
+
+    var less_weburl = $("#less-weburl");
+
+    less_weburl.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-weburl").addClass("hide");
+            $("#less-weburl").addClass("hide");            
+            $("#more-weburl").removeClass("hide");
+        });
+        
+
+    var more_blog = $("#more-blog");
+
+    more_blog.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-blog").removeClass("hide");
+            $("#less-blog").removeClass("hide");
+            $("#more-blog").addClass("hide");
+
+        });
+
+    var less_blog = $("#less-blog");
+
+    less_blog.click(
+        function(event){
+            event.preventDefault();
+            $(".plus-blog").addClass("hide");
+            $("#less-blog").addClass("hide"); 
+            $("#more-blog").removeClass("hide");
+        });
+    

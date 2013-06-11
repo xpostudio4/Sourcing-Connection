@@ -1,9 +1,17 @@
+
+
 {% extends "base.html" %}
 
 {% block title %}{{ company.name  }}{% endblock %}
 {% block external %}
     <script src="{{ STATIC_URL}}colorbox/jquery.colorbox-min.js"></script>
     <link rel="stylesheet" href="{{ STATIC_URL}}colorbox/colorbox.css" /> 
+    <style type="text/css">
+    .popover {
+        /*top: 71px !important;*/
+        left: 379px !important;
+    }
+    </style>
     <script>
         jQuery(document).ready(function () {
             jQuery('a.gallery').colorbox({ opacity:0.5 , rel:'group1' });
@@ -15,22 +23,8 @@
         //A list of all the classes and Id's of the elements to be treated as read only tags.
         var tag_ids  = ['#company-product','#company-certification', '#company-industries', '#company-customers', '#company-offices', '#company-tags', '#company-applications', '#company-technologies']; 
 
-        var company_tags = '{{ company.tags}}'
-
-        for(i in company_tags){
-
-            //Create read only tags for the degrees field
-            var tags =  company_tags.split(",");
-            var string_tags = ""; 
 
 
-            for( j  in tags){
-                string_tags += '<div class="label label-info">' + tags[j] + "</div>  ";
-            }
-
-            $("#co-tags").html(string_tags);
-
-        }
         //for(i in tag_ids){
 
             //Create read only tags for the degrees field
@@ -61,345 +55,778 @@
 {% endblock %}
 
 {% block content %}
+
 {% load humanize %}
 
-<div class="row">
-    <div class="span1"></div>
-    <div class="span2">
+
 
     {% if  user.is_staff or user.is_superuser or permission %}
-
+        <br/>
         {% if percentage_profile %}
-            <h5 class="pull-right">Profile {{ percentage_profile.percentage }}% complete</h5>
+            <h2 class="pagination-centered">Profile {{ percentage_profile.percentage }}% complete</h2>
             <div class="percentage-box ">
-                <br/>
-               <div class="progress" style="width: 80%;">
+                
+               <div class="progress span5">
+
                     <div class="bar" style="width: {{ percentage_profile.percentage }}%;"></div>
                </div>
             </div>
+
+
         {% endif %}
-    {% endif %}
-<br/>        
-        <div class="media pull-right">
-            <a href="#">
+        <br/>
+
+            
+                <div class="pull-right" style="margin-right:80px;">
+                    <button type="button" class="btn btn-primary" data-toggle="button" ONCLICK="window.location.href='/company/{{ company.slug }}'">  Edited  </button>
+                </div>
+         
+        {% endif %}
+<br/>
+        
+        <div class="media">
+            <a class="pull-left" href="#">
                 {% if company.logo %}
     
-                <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ company.logo }}" height="130" width="160">
+                <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ company.logo }}" height="130", width="178">
                 {% else %}
-                <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="96" width="140">
+                <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height=96, width=140  >
                 
                 {% endif %}
             </a>
+        <div class="pull-right" style="margin-right:80px;"> 
+        <div class="btn-group">
+            <button class="btn">Follow</button>
+                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a tabindex="-1" href="#">Contact Company</a></li>
+                <li><a tabindex="-1" href="#">Foll ow Blog</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="#">Something else here</a></li>
+            </ul>
+         </div>
         </div>
+
+
+    {% if  user.is_staff or user.is_superuser or permission %}
+
+     <div class="media">
+        <h2 class="media-heading">{{ company.name  }} </h2>
+
+        
+    </div>
+
+    <div class="span10">
 <br/>
+    <div class="media">
 
-        <div "media" style="margin-top: 5%;">
-
-            
-
-                 <table class="table-borderless">
-                    <th><h5>General Information</h5> </th>
-                {% if  user.is_staff or user.is_superuser or permission %}
-                        <tr>
-                            <td colspan="2"><strong>Phone:</strong></td>
-                         </tr><tr>
-                            <td colspan="2" data-type="tel" data-model="Company" data-url="/formfields/Company/{{ company.id }}/main_phone/" data-pk="{{ company.id }}"  data-title="Company Main Phone"  id="company-phone" class="editable-value" href="{{ company.main_phone }}">{{ company.main_phone }}<i class="icon-pencil"></i></td>
-                        </tr>
-                {% endif %}
-                {% if company.founding_date %}
-                    <tr>
-                            <td><strong>Founding Date:</strong></td>
-                            <td class="editable-value" data-type="number"  data-model="Company" data-url="/formfields/Company/{{ company.id }}/founding_date/" data-pk="{{ company.id }}" data-title="Company Since">{{ company.founding_date }}</td>
-                    </tr>
-
-                {% endif %}
-                {% if company.categories %}
-                    <tr>    
-                        <td colspan="2"><strong>Industry:</strong></td>
-                     </tr><tr>
-                        <td colspan="2">{{ company.categories }}</td >
-                    </tr>
-
-                {% endif %}
-                {% if company.applications %}
-                    <tr>    
-                        <td colspan="2"><strong>Applications:</strong></td>
-                    </tr><tr>
-                        <td colspan="2" data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/applications/" data-pk="{{ company.id }}"  data-title="Company Applications" class="editable-value" >{{ company.applications }}<i class="icon-pencil"></i></td>
-                    </tr>
-                {% endif %}
-
-                {% if company.employee_quantity %}
-                    <tr>
-                        <td colspan="2"><strong>No. Employees:</strong></td>
-                    </tr><tr>
-                        <td colspan="2" data-type="select" id="size-company" data-model="Company" data-url="/formfields/Company/{{ company.id }}/employee_quantity/" data-pk="{{ company.id }}" data-title="Company Size"> {{ company.get_employee_quantity_display }}</td>
-                    </tr>
- 
-                {% endif %}
-               </table>
-
-
-                <h5>Certifications:</h5>
-                {% if certifications %}
-                        {% for certification in certifications %}
-                        <div colspan="2" data-type="text" data-model="Certification" data-url="/formfields/Certification/{{ certification.id }}/name/" data-pk="{{ certification.id }}"  data-title="Certification" class="editable-value" >{{ certification.name }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                {% else %}
-                    <br/>
-
-                {% endif %}
-
-                {####Partnerships####}
-                <h5>Partnership:</h5>
-                {% if partnerships %}
-                        {% for partnership in partnerships%}
-                        <div colspan="2" data-type="text" data-model="Partnership" data-url="/formfields/Partnership/{{ partnership.id }}/name/" data-pk="{{ partnership.id }}"  data-title="partnership" id="partnership" class="editable-value">{{ partnership.name }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                {% else %}
-                    <br/>
-                {% endif %}
-
-
-                <h5>Expertise:</h5>
-                {% if expertises %}
-
-                        {% for expertise in expertises%}
-                        <div colspan="2" data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{ expertise.expertise }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                    {% if expertises2 %}
-                        {% for expertise in expertises2 %}
-                           <div colspan="2" data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value hide plus-expertise" data-title="Expertises">{{ expertise.expertise }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                    <a href="#" id="more-expertise">more >></a>
-                    <a href="#" id="less-expertise" class="hide">less <<</a>
-                    {% endif %}
-                {% else %}
-                    <br/>
-                {% endif %}
-
-
-                <h5>Verticals:</h5>
-                {% if verticals %}
-
-                    {% for vertical in verticals %}
-                        <div colspan="2" data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{ vertical.vertical }}<i class="icon-pencil"></i></div>
-                    {% endfor %}
-
-                    {% if verticals2 %}
-                        {% for vertical in verticals2 %}
-                           <div colspan="2" data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value hide plus-vertical" data-title="Vertical Name">{{ vertical.vertical }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                    <a href="#" id="more-vertical">more >></a>
-                    <a href="#" id="less-vertical" class="hide">less <<</a>
-                    {% endif %}
-                {% else %}
-                    <br/>
-                {% endif %}
-
-
-                <h5>Alliances:</h5>
-                {% if alliances %}
-                    
-                    {% for alliance in alliances %}
-                        <div colspan="2" data-type="text" data-model="Alliance" data-url="/formfields/Alliance/{{ alliance.id }}/name/" data-pk="{{ alliance.id }}"  data-title="alliance" class="editable-value">{{ alliance.name }}<i class="icon-pencil"></i></div>
-                    {% endfor %}
-
-                    {% if alliances2 %}
-                        {% for alliance in alliances2 %}
-                           <div colspan="2" data-type="text" data-model="Alliance" data-url="/formfields/Alliance/{{ alliance.id }}/name/" data-pk="{{ alliance.id }}"  data-title="alliance" class="hide plus-alliance editable-value">{{ alliance.name }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                    <a href="#" id="more-alliance">more >></a>
-                    <a href="#" id="less-alliance" class="hide">less <<</a>
-                    {% endif %}
-                {% else %}
-                    <br/>
-                {% endif %}
-
-
-
-                <h5>Technical Associations:</h5>
-                {% if associations %}
-                    {% for association in associations %}
-                        <div colspan="2" data-type="text" data-model="TechnicalAssociation" data-url="/formfields/TechnicalAssociation/{{ association.id }}/name/" data-pk="{{ association.id }}"  data-title="Association" class="editable-value">{{ association.name }}<i class="icon-pencil"></i></div>
-                    {% endfor %}
-
-                {% else %}
-                    <br/>
-                {% endif %}
-
-                <h5>Awards:</h5>
-                {% if awards %}
-                    {% for award in awards %}
-                        <div colspan="2" data-type="text" data-model="Award" data-url="/formfields/Award/{{ award.id }}/name/" data-pk="{{ award.id }}"  data-title="Award" class="editable-value">{{ award.name }}<i class="icon-pencil"></i></div>
-                    {% endfor %}
-
-                {% else %}
-                    <br/>
-                {% endif %}
-                
-            
-        </div>
-    </div>
-
-    <div class="span6">
-    
-        {% if  user.is_staff or user.is_superuser or permission %}
-            
-            <div class="pull-right" style="margin-right:80px;">
-                <a class="btn" href="/company/{{ company.slug }}/edit"><i class="icon-pencil"></i> Edit </a>
-            </div>
-        {% endif %}
-
-        <div class="media">
-            <h2 class="media-heading">{{ company.name  }} </h2>
-            <data-toggle="popover" data-placement="right" id="valuepop" data-content="Who is your customer:(Segments)<br/> What problem do you solve:<br/>How do you solve it:</br>How is it different from other available solutions: <br/> What is the benefit to your customer:" data-html="true" class="fade" title="Value Proposition"/><p><text class="editable-value muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="wysihtml5" >{{ company.value_proposition|safe  }}</text><i class="icon-pencil"></i></p>
-
-    
-        </div>
-        <div class="icons">
-                {% if company.email %}
-                    <a href="mailto:{{ company.email  }}"><span class="add-on"><img src="{{ STATIC_URL }}img/Mail-icon.png" height="16" width="16"></span></a>
-                {% else %}
-                    <span class="add-on"><img src="{{ STATIC_URL }}img/Mail-icon2.png" height="16" width="16"></span>
-                {% endif %}
-
-                {% for link in companylinks %}
-
-                {% if link.linkedin_url %}
-                    <a href="{{ link.linkedin_url }}"><span class="add-on"></span><img src="{{ STATIC_URL }}img/linkedin_icon.jpg" height="16" width="16"></span></a>
-                {% else %}
-                    <span class="add-on"><img src="{{ STATIC_URL }}img/linkedin_icon2.jpg" height="16" width="16"></span>
-                {% endif %}
-
-                {% if link.facebook_link %}
-                    <a href="{{ link.facebook_link }}"><span class="add-on"><img src="{{ STATIC_URL }}img/fb1.jpg" height="16" width="16"></span></a>
-                {% else %}
-                    <span class="add-on"><img src="{{ STATIC_URL }}img/fb2.jpg" height="16" width="16"></span>
-
-                {% endif %}
-
-                {% if link.twitter_url %}
-                    <a href="{{ link.twitter_url }}"><span class="add-on"><img src="{{ STATIC_URL }}img/twitter_icon1.jpg" height="16" width="16"></span></a>
-                {% else %}
-                    <span class="add-on"><img src="{{ STATIC_URL }}img/twitter_icon2.jpg" height="16" width="16"></span>
-                {% endif %}
-
-                {% if link.web_url %}
-                    <a href="{{ link.web_url }}"><i class="icon-home"></i></a>
-                {% else %}
-                    <a href="{{ link.web_url }}"><i class="icon-home"></i></a>
-                {% endif %}
-
-                {% if link.blog_url %}
-                    <a href="{{ link.blog_url }}"><i class="icon-user"></i></a>
-                {% else %}
-                    <i class="icon-user"></i>
-                {% endif %}
-
-                {% endfor%}
-                <a href="#"><i class="icon-pencil"></i></a>
-            </div>
-
-        <div class="media">
-            <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
-            <p><text id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="wysihtml5" class="editable-value" >{{ company.description|safe}}<i class="icon-pencil"></i> </text> </p> 
-        </div>
-        <div class="media">
-            {# To Change #}
-            {% if company.tags %}
-                <table> 
-                    <tr>
-                        <td><h4 class="media-heading muted">Related Categories:</h4></td>
-                    <tr></tr>
-                        <td data-model="Company" data-url="/formfields/Company/{{ company.id }}/tags/" data-pk="{{ company.id }}"  data-title="Company Tags" data-type="text" class="editable-value" id="co-tags">{{ company.tags }}</td>
-                    </tr>
-                </table>
-            {% endif %}
-        <br/>
-        {# Success Stories goes here #} 
-        <h4 class="muted">Success Stories:</h4>
-        {% if stories %}
-            {% for story in stories %}
-                 {% if story.link %}
-                    <div colspan="2"><a href="{{ story.link.url }}"><i class="icon-file"></i>{{ story.title }}</a></div>
-                {% endif %}
-                <br/>
-
-            {% endfor %}
-        {% else %}
-            <br/>
-       {% endif %}
-
-
-        {# Products goes here #} 
-        
-        <h4 class="muted">Products:</h4>
-        {% if products %}
-
-            <table class="table table-borderless" >
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                    </tr>
-              </thead>
-                <tbody>
-                    <tr>
-                {% for product in products %}
-                       <td data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/name/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name"><i class="icon-pencil"></i>{{ product.name }}</td>
-                       <td data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/price/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Price" >US ${{ product.price|intcomma }}<i class="icon-pencil"></i></td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <br/>
-       {% endif %}
-
-        {# Recommendations goes here #} 
-        
-       </div>
-        
-
-
-
-    </div>
-    <div class="span3">
+        <h4 class="media-heading"><strong class="muted">Value Proposition:</strong></h4>
+        <data-toggle="popover" data-placement="right" id="valuepop" data-content="Who is your customer:(Segments)<br/> What problem do you solve:<br/>How do you solve it:</br>How is it different from other available solutions: <br/> What is the benefit to your customer:" data-html="true" class="fade" title="Value Proposition"/><p><text class="editable-value muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="textarea" >{{ company.value_proposition|safe  }}</text></p>
       
-                <h5>Projects:</h5>
-                {% if projects %}
-                        {% for project in projects %}
-                        <div colspan="2" data-type="text" data-model="Project" data-url="/formfields/Project/{{ project.id }}/name/" data-pk="{{ project.id }}"  data-title="Project" class="editable-value ">{{ project.name }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                {% else %}
-                    <br/>
-                {% endif %}
 
-
-                <h5>Acquisitions:</h5>
-                {% if acquisitions %}
-                        {% for acquisition in acquisitions %}
-                        <div colspan="2" data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name" >{{ acquisition.name }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                    <br/>
-                {% endif %}
-
-
-
-        
     </div>
 
 
+
+    <div class="media">
+        <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
+        <p id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="textarea" class="editable-value" >{{ company.description|safe}}</p>
+    </div>
+
+    <div class="media">
+<table class="table">
+    <tbody>
+        {% for link in companylinks %}
+            <tr>
+                <td>Company Link:</td>
+                <td><a id="company-url" data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/web_url/" data-pk="{{ link.id }}" data-title="Company Link" data-type="url" class="editable-value" href="{{ link.web_url }}">{{ link.web_url }}</a></td>
+                <td>Company Blog:</td>
+                <td><a data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/blog_url/" data-pk="{{ link.id }}" data-title="Company Blog URL" data-type="url" id="company-blog-url" class="editable-value" href="{{ link.blog_url  }}">{{ link.blog_url  }}</a></td>
+            </tr>
+            <tr>
+                <td>Twitter:</td>
+                <td ><a data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/twitter_url/" data-pk="{{ link.id }}" data-title="Company Twitter" data-type="url" id = "company-twitter-url" class="editable-value" href="{{ link.twitter_url  }} ">{{ link.twitter_url  }}</a></td>
+
+                <td>Facebook:</td>
+                <td ><a data-model="CompanyLink" data-url="/formfields/CompanyLink/{{ link.id }}/facebook_link/" data-pk="{{ link.id }}" data-title="Company Facebook" data-type="url" id = "company-facebook-url" class="editable-value" href="{{ link.facebook_link  }} ">{{ link.facebook_link  }}</a></td>
+            </tr>
+        {% endfor%}
+
+        <tr>
+            <td>Email: </td>
+                <td><a data-model="Company" data-url="/formfields/Company/{{ company.id }}/email/" data-pk="{{ company.id }}" data-title="Company Description"  id="company-email" data-type="email" class="editable-value" href="mailto:{{ company.email  }}">{{ company.email  }} </a></td>
+
+            <td>Phone Contact:</td>
+                <td><a data-type="tel" data-model="Company" data-url="/formfields/Company/{{ company.id }}/main_phone/" data-pk="{{ company.id }}"  data-title="Company Main Phone"  id="company-phone" class="editable-value" href="{{ company.main_phone }}">{{ company.main_phone }} </a></td>
+
+        </tr>
+        <tr>
+            <td>Products:</td>
+            <td  id="company-product">{{ company.product }}</td >
+            <td>Applications:</td>
+            <td data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/applications/" data-pk="{{ company.id }}"  data-title="Company Applications" class="editable-value" id="company-applications">{{ company.applications }}</td>
+        </tr>
+        <tr>
+            <td>Related Categories:</td>
+            <td colspan="3"><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/tags/" data-pk="{{ company.id }}" data-title="Company Tags" id="company-tags" class="editable-value" >{{ company.tags }}</text></td>
+        </tr>
+
+    </tbody>
+
+</table>
 
 </div>
-    <script src="{{ STATIC_URL}}js/scripts.js"></script>  
+
+<div>
+
+<div class="media">
+    <h4 class="media-heading"><strong class="muted">Related Industries:</strong></h4>
+    <p><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/industries/" data-pk="{{ company.id }}"  data-title="Company Industries" id="company-industries" class="editable-value">{{ company.industries }}</text></p>
+
+        {####################################### Company Information Section #####################################}
+
+            {####################################### Industry #####################################}
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Industry:</strong></h4>
+            <ul class="pull-left inline">
+                <li class="editable-value" data-type="text">{{company.categories}}</li>
+            </ul>
+            </div>
+            
+            {####################################### Size #####################################}
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Size of Company: </strong></h4>
+            <ul class="pull-left inline">
+                <li data-type="select" id="size-company" data-model="Company" data-url="/formfields/Company/{{ company.id }}/employee_quantity/" data-pk="{{ company.id }}" data-title="Company Size">{{company.get_employee_quantity_display }}</li>
+            </ul>
+            </div>
+
+            {####################################### Founding #####################################}
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Date of Founding: </strong></h4>
+            <ul class="pull-left inline">
+                <li class="editable-value" data-type="number"  data-model="Company" data-url="/formfields/Company/{{ company.id }}/founding_date/" data-pk="{{ company.id }}" data-title="Company Since">{{company.founding_date }}</li>
+            </ul>
+            </div>
+
+            {############################################## Offices ##############################}
+
+            <div class="media">
+
+            <h4 class="media-heading"><strong class="muted">Offices:</strong></h4>
+                <ul class="nav nav-list pull-right">
+                    <p id="company-offices">{{ offices.description }}</p>
+                    <li><a class="add-element" data-model="Office" href="/company/{{ company.slug }}/office/new"><i class="icon-plus"></i> Add Office</a></li>
+                </ul>
+                <ul class="pull-left inline">
+                    {% for office in offices %}
+                     <li  id="office-{{ office.object.id }}" >
+                        <a class="link-delete pull-left" data-type="office" data-id="{{ office.object.id }}" id="{{ company.slug }}-office-{{ office.object.id }}" href="/company/{{ company.slug }}/office/{{ office.object.id }}/delete"><i class="icon-remove"></i></a>
+                        <address>
+                            <strong><a href="/company/{{company.slug }}/office/{{ office.object.id }}/update">{{ office.object.country }}</a></strong><br>
+                            {{ office.object.description }}<br>
+                            {{ office.object.address_1 }}<br>
+                            {{ office.object.address_2 }}<br>
+                            {% if office.object.phone %}
+                              <abbr title="Phone">P:</abbr> {{ office.object.phone }}<br>
+                            {% endif %}
+
+                        {% if office.ul  %}
+                            </ul><br>
+
+                            <ul class="pull-left inline">
+                        {% endif %}
+                    {% endfor %}
+                </ul><br>
+            </div>
+
+            {####################################### Annual Revenue #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Annual Revenue:</strong></h4>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="AnnualRevenue" href="#"><i class="icon-plus"></i> Add A Revenue</a></li>
+            </ul>
+
+            <ul class="pull-left inline">
+            {% for revenue in revenues  %}
+                <li><i class="editable-value" >{{ revenue.revenue|intcomma}}</i> in <i class="editable-value" data-type="number">{{ revenue.date|date:"Y" }}</i> </li>
+
+            {% endfor %}
+            </ul>
+            </div>
+            {####################################### Milestones #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Milestones:</strong></h4>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Milestone" href="#"><i class="icon-plus"></i> Add Milestones</a> </li>
+            </ul>
+
+
+            <ul class="pull-left inline">
+            {% for milestone in milestones  %}
+                <li><i class="editable-value" > {{ milestone.title }} </i>  {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            </ul>
+            </div>
+
+        {####################################### Company Experience Section #####################################}
+
+        <h3 class="media-heading"><strong class="muted">Experience: </strong></h3>
+            {####################################### Expertises #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Expertise:</strong></h4>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Expertise" href="#"><i class="icon-plus"></i> Add Expertirse</a></li>
+            </ul>
+
+            <ul class="pull-left inline">
+            {% for expertise in expertises  %}
+                <li id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{expertise.id}}/delete"><i class="icon-remove"></i></a>  <a href="/expertises/{{expertise.slug}}" data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{expertise.expertise}}</a> {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            </ul>
+            </div>
+
+            {####################################### Verticals #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Verticals:</strong></h4>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Vertical" href="#"><i class="icon-plus"></i> Add a New Verticals</a></li>
+            </ul>
+
+            <ul class="pull-left inline">
+            {% for vertical in verticals  %}
+                <li id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{vertical.id}}/delete"><i class="icon-remove"></i></a><a href="/verticals/{{ vertical.slug }}"  data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{vertical.vertical}}</a> {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            </ul>
+            </div>
+
+            {####################################### Projects #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Projects:</strong></h4>
+
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Project" href="#"><i class="icon-plus"></i> Add Project</a> </li>
+            </ul>
+
+            <ul class="pull-left inline">
+            {% for project in projects  %}
+                <li>{{ project.name }} for {{ project.client}} {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            </ul>
+            </div>
+
+            {####################################### Success Stories #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Success Stories:</strong></h4>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="SuccessStories" href="#"><i class="icon-plus"></i> Add a Success Story</a> </li>
+            </ul>
+
+            <ul class="pull-left inline">
+            {% for story in stories  %}
+                <li>{{ story.title }}, <a href="{{ story.link.url }}">more</a> {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            </ul>
+            </div>
+
+                {############################################## Awards ##############################}
+
+            <div class="media">
+
+
+            <h4 class="media-heading"><strong class="muted">Awards:</strong></h4></br>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Award" href="/company/{{ company.slug }}/awards/new"><i class="icon-plus"></i> Add award</a></li>
+            </ul>
+
+            <br/>
+            <ul class="pull-left inline">
+            {% for award in awards  %}
+
+                    <li id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/awards/{{award.id}}/update" data-type="text" data-model="Award" data-url="/formfields/Award/{{ award.id }}/name/" data-pk="{{ award.id }}" class="editable-value" data-title="Award Name">{{ award.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+
+            {% endfor %}
+            </ul>
+            </div>
+
+        {############################################## Certifications ##############################}
+        <div class="media">
+            <h4 class="media-heading"><strong class="muted">Certifications:</strong></h4></br>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Certification" href="/company/{{ company.slug }}/certifications/new"><i class="icon-plus"></i> Add Certification</a></li>
+            </ul>
+
+            <br/>
+            <ul class="pull-left inline">
+            {% for certification in certifications  %}
+
+                    <li id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/certifications/{{certification.id}}/update" data-type="text" data-model="Certification" data-url="/formfields/Certification/{{ certification.id }}/name/" data-pk="{{ certification.id }}"  data-title="Certification" class="editable-value" >{{ certification.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+
+            {% endfor %}
+            </ul>
+        </div>
+
+        {############################################## Customers ###################################}
+        <div class="media">
+
+
+                <h4 class="media-heading"><strong class="muted">Customers:</strong></h4></br>
+                <ul class="nav nav-list pull-right">
+                    <li><a class="add-element" data-model="Customer" href="/company/{{ company.slug }}/customers/new"><i class="icon-plus"></i> Add Customers</a></li>
+                </ul>
+
+                <br/>
+                <ul class="pull-left inline" id="Customer">
+                {% for customer in customers  %}
+
+                        <li id="customers-{{ customer.id }}"><a class="link-delete" data-type="customers" data-id="{{ customer.id }}"  id="{{ company.slug }}-customers-{{ customer.id }}" href="/company/{{ company.slug }}/customers/{{customer.id}}/delete" ><i class="icon-remove"></i></a>  <a data-type="text" data-model="Customer" data-url="/formfields/Customer/{{ customer.id }}/name/" data-pk="{{ customer.id }}" class="editable-value" data-title="Customer Name" href="/company/{{ company.slug }}/customers/{{customer.id}}/update">{{ customer.name }}</a>{% if not forloop.last %}, {% endif %}</li>
+                {% endfor %}
+                </ul>
+        </div>
+        {############################################## Partnerships ##############################}
+        <div class="media">
+            <h4 class="media-heading"><strong class="muted">Partnerships:</strong></h4></br>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Partnership" href="/company/{{ company.slug }}/partnerships/new"><i class="icon-plus"></i> Add Partnership</a></li>
+            </ul>
+
+            <br/>
+            <ul class="pull-left inline">
+            {% for partnership in partnerships  %}
+
+                    <li id="partnerships-{{ partnership.id }}"><a class="link-delete" data-type="partnerships" data-id="{{ partnership.id }}" id="{{ company.slug }}-partnerships-{{ partnership.id }}"  href="/company/{{ company.slug }}/partnerships/{{partnership.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/partnerships/{{partnership.id}}/update" data-type="text" data-model="Partnership" data-url="/formfields/Partnership/{{ partnership.id }}/name/" data-pk="{{ partnership.id }}"  data-title="partnership" class="editable-value" >{{ partnership.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+
+            {% endfor %}
+            </ul>
+        </div>
+
+        {############################################## Alliances ##############################}
+        <div class="media">
+            <h4 class="media-heading"><strong class="muted">Alliances:</strong></h4></br>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Alliance" href="/company/{{ company.slug }}/alliances/new"><i class="icon-plus"></i> Add Alliance</a></li>
+            </ul>
+
+            <br/>
+            <ul class="pull-left inline">
+            {% for alliance in alliances  %}
+
+                    <li id="alliances-{{ alliance.id }}"><a class="link-delete" data-type="alliances" data-id="{{ alliance.id }}" id="{{ company.slug }}-alliances-{{ alliance.id }}"  href="/company/{{ company.slug }}/alliances/{{alliance.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/alliances/{{alliance.id}}/update" data-type="text" data-model="Alliance" data-url="/formfields/Alliance/{{ alliance.id }}/name/" data-pk="{{ alliance.id }}"  data-title="alliance" class="editable-value" >{{ alliance.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+
+            {% endfor %}
+            </ul>
+        </div>
+
+
+        {############################################## Technical Associations ##############################}
+        <div class="media">
+            <h4 class="media-heading"><strong class="muted">Technical Associations:</strong></h4></br>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="TechnicalAssociation" href="/company/{{ company.slug }}/associations/new"><i class="icon-plus"></i> Add a Technical Association:</a></li>
+            </ul>
+
+            <br/>
+            <ul class="pull-left inline">
+            {% for association in associations  %}
+
+                    <li id="associations-{{ association.id }}"><a class="link-delete" data-type="associations" data-id="{{ association.id }}" id="{{ company.slug }}-associations-{{ association.id }}"  href="/company/{{ company.slug }}/associations/{{association.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/associations/{{association.id}}/update" data-type="text" data-model="TechnicalAssociation" data-url="/formfields/TechnicalAssociation/{{ association.id }}/name/" data-pk="{{ association.id }}"  data-title="association" class="editable-value" >{{ association.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+
+            {% endfor %}
+            </ul>
+        </div>
+            {####################################### Products #####################################}
+
+            <div class="media">
+            <h4 class="media-heading"><strong class="muted">Products:</strong></h4>
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Product" href="#"><i class="icon-plus"></i> Add a New Product</a></li>
+            </ul>
+
+            <ul class="pull-left inline">
+            {% for product in products  %}
+                <li id="products-{{ product.id }}"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{product.id}}/delete"><i class="icon-remove"></i></a><a href="/products/{{ product.slug }}"  data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/product/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name">{{ product.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+             {% endfor %}
+
+            {% if products2 %}
+            {% for product in products2 %}
+                <li id="products-{{ product.id }}"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{product.id}}/delete"><i class="icon-remove"></i></a><a href="/products/{{ product.slug }}"  data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/product/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name">{{ product.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+            {% endfor %}
+            {% endif %}
+
+            </ul>
+            </div>
+
+        {####################################### Technologies (To remove) #####################################}
+        <div class="media">
+            <h4 class="media-heading"><strong class="muted">Technologies:</strong></h4>
+            <p><text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/technologies/" data-pk="{{ company.id }}"  data-title="Company Techs" id="company-technologies" class="editable-value">{{ company.technologies }}</text></p>
+        </div>
+        
+        {####################################### Funding #####################################}
+        <div class="media">
+        <h4 class="media-heading"><strong class="muted">Funding:</strong></h4>
+        <br/>
+
+            <ul class="nav nav-list pull-right">
+                <li><a class="add-element" data-model="Funding" href="/company/{{ company.slug }}/fundings/new"><i class="icon-plus"></i> Add Funding</a></li>
+            </ul>
+
+
+            {% for funding in fundings %}
+                <li id="fundings-{{ funding.id }}"><a class="link-delete" data-type="fundings" data-id="{{ funding.id }}" id="{{ company.slug }}-fundings-{{ funding.id }}"  href="/company/{{ company.slug }}/fundings/{{funding.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/fundings/{{funding.id}}/update" data-type="select" data-model="Funding" data-url="/formfields/Funding/{{ funding.id }}/round/" data-pk="{{ funding.id }}"  data-title="Funding Round"  id="funding-round" >{{ funding.round }}</a> {% if not forloop.last %}{% endif %}
+
+                 <p>US$ <strong data-type="text" data-model="Funding" data-url="/formfields/Funding/{{ funding.id }}/raised/" data-pk="{{ funding.id }}"  data-title="Funding Raised" class="editable-value"> {{ funding.raised|intcomma}}</strong> </p>
+                 </li>
+
+
+            {% endfor %}
+        </br>
+    </div>
+
+
+
+        {############################################## Acquisition ####################################}
+        <div class="media">
+
+
+                <h4 class="media-heading"><strong class="muted">Acquisitions:</strong></h4></br>
+                <ul class="nav nav-list pull-right">
+                    <li><a class="add-element" data-model="Acquisition" href="/company/{{ company.slug }}/acquisitions/new"><i class="icon-plus"></i> Add Acquisitions</a></li>
+                </ul>
+
+                <br/>
+                <ul class="pull-left inline">
+                {% for acquisition in acquisitions  %}
+
+                    <li id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/delete"><i class="icon-remove"></i></a>  <a href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/update" data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name">{{ acquisition.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+                {% endfor %}
+                </ul>
+        </div>
+
+        {####################################### Management #####################################}
+    <div class="media">
+    <h4 class="media-heading"><strong class="muted">Management:</strong></h4>
+    <br/>
+
+        <ul class="nav nav-list pull-right">
+            <li><a class="add-element" data-model="Management" href="/company/{{ company.slug }}/management/new"><i class="icon-plus"></i> Add Manager</a></li>
+        </ul>
+
+
+        {% for manager in management %}
+            <ul id="management-{{ manager.id }}" class="nav nav-list pull-left">
+                <li><a class="link-delete" data-type="management" data-id="{{ manager.id }}" id="{{ company.slug }}-management-{{ manager.id }}" href="/company/{{ company.slug }}/management/{{manager.id}}/delete"><i class="icon-remove"></i></a></li>
+
+            {% if manager.user %}
+            <h5 class="media-heading text-info"> <a data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/full_name/" data-pk="{{ manager.id }}"  data-title="Manager full name" id="manager-name" class="editable-value" href="/profile/{{ manager.user.contact.id }}/">{{ manager.full_name }}</a></h5>
+            
+            {%else%}
+            <h5 class="media-heading text-info"> <a data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/full_name/" data-pk="{{ manager.id }}"  data-title="Manager full name" id="manager-name" class="editable-value" href="/company/{{ company.slug }}/management/{{ manager.id }}/update">{{ manager.full_name }}</a></h5>
+
+            {% endif %}
+
+
+                <p data-type="text" data-model="Management" data-url="/formfields/Management/{{ manager.id }}/title/"  data-pk="{{ manager.id }}" data-title="Manager Title" id="manager-title" class="editable-value"> {{ manager.title }}</p>
+             <li><a class="add-element" data-model="ManagementPicture" href="/company/{{ company.slug }}/management/{{ manager.pk }}/pictures/new"><i class="icon-plus"></i> Add pictures</a></li>
+            </ul>
+
+        {% endfor %}
+    </br>
+    </div>
+
+
+        {############################################## Competitors ##############################}
+
+    <div class="media">
+        <h4 class="media-heading"><strong class="muted">Competitors:</strong></h4>
+        <ul class="nav nav-list pull-right">
+            <li><a class="add-element" data-model="Competitor" href="/company/{{ company.slug }}/competitors/new"><i class="icon-plus"></i> Add Competitor</a></li>
+        </ul>
+
+        <br/>
+        <ul class="pull-left inline">
+        {% for competitor in competitors  %}
+
+                <li id="competitors-{{ competitor.id }}"><a class="link-delete" data-type="competitors" data-id="{{ competitor.id }}" id="{{ company.slug }}-competitors-{{ competitor.id }}" href="/company/{{ company.slug }}/competitors/{{competitor.id}}/delete"><i class="icon-remove"></i></a>  <a data-type="text" data-model="Competitor" data-url="/formfields/Competitors/{{ competitor.id }}/name/" data-pk="{{ competitor.id }}"  data-title="Competitor Name" class="editable-value" href="/company/{{ company.slug }}/competitors/{{competitor.id}}/update">{{ competitor.name }}</a> {% if not forloop.last %}, {% endif %}</li>
+
+        {% endfor %}
+        </ul>
+    </div>
+
+        {############################################## Pictures ####################################}
+        <div class="media">
+
+
+                <h4 class="media-heading"><strong class="muted">pictures:</strong></h4></br>
+                <ul class="nav nav-list pull-right">
+                    <li><a class="add-element" data-model="Picture" href="/company/{{ company.slug }}/pictures/new"><i class="icon-plus"></i> Add pictures</a></li></ul>
+
+                <br/>
+                <ul class="thumbnails pull-left inline">
+                  <div class="row-fluid">
+
+                {% for picture in pictures  %}
+
+
+                        <li id="pictures-{{ picture.id }}" class="span2" > <a class="link-delete" data-type="pictures" data-id="{{ picture.id }}" id="{{ company.slug }}-pictures-{{ picture.id }}" onclick="{{ company.slug }}_pictures_{{ picture.id }}(); return false;" href="/company/{{ company.slug }}/pictures/{{ picture.id }}/delete"><i class="icon-remove"></i></a>  <a class="gallery" href="{{ MEDIA_URL }}{{ picture.file}}" > <img  data-src="holder.js/160x120" src="{{ MEDIA_URL }}{{ picture.file}}" width="160" height="160"> </a></li>
+
+                    <script>
+                    function {{ company.slug }}_pictures_{{ picture.id }}(){
+                        var r = confirm("Are You sure You want to delete picture {{ picture.name }}");
+                        if( r == true){
+                            return document.location.href = "/company/{{ company.slug }}/pictures/{{picture.id}}/delete";
+                        }else{
+                            return false;
+                        }
+                    }
+                    </script>
+
+                {% endfor %}
+                    <br><br>
+
+                    </div>
+
+                </ul>
+        </div>
+
+    {% else %}
+        <h1> We sorry, but you don't have permissions to edit this company. Please, contact with the webmasters </h1>
+    {% endif %}
+
+
+
+
+
+    <div class="media">
+    <h4 class="media-heading"><strong class="muted">Latech Contact:</strong></h4>
+    <p> <text data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/contact/" data-pk="{{ company.id }}"  class="editable-value" data-title="Company Contact" id="company-contact">{{ company.contact }}</text></p>
+
+</div>
+
+</div>
+</div>
+<!--#    project = models.ManyToManyField("Project")
+
+#    links = models.ForeignKey("URLs") -->
+
+<div id="companyModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <h3 id="myModalLabel">Login</h3>
+    </div>
+    <div class="modal-body">
+            <div class="alert alert-success hide" id="success-notification">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              Congratulations! The new <strong id="succes-model"></strong> has been created on the database
+            </div>
+            <div class="alert alert-block alert-error hide" id="error-notification">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              Warning! The <strong id="error-model"></strong> element was not created in the database due to the following fields:
+
+              <ul id="error-list">
+              </ul>
+              Please verify the fields and fill them corretly.
+            </div>
+            <form enctype="multipart/form-data" id="new-form" method="POST" action="." >
+                {% csrf_token %}
+                <div class="modal-form" data-model="0" >
+                </div>
+                <a href="#"  id="create-item"  class="btn btn-primary">Create</a>
+                <a href="#"  id="add-another"  class="btn btn-info" >Create and Add another</a>
+                <a href="#" id="cancel-modal" class="btn btn-inverse">Cancel</a>
+
+            </form>
+    </div>
+    <div class="modal-footer">
+    </div>
+    </div>
+        <script type="text/javascript">
+            
+            //select all the links with the function or class delete
+           var link = $(".link-delete");
+
+link.click(
+    function(event){
+        //eliminate the default function
+        event.preventDefault();
+        //get the data from the link when clicked; data = ["type_deletion","id","company_name"]*company comes by default
+        
+        
+        var r = confirm("Are You sure You want to delete this item?");
+        if( r == true){
+            //pass the data to the ajax function to call the server
+            var data_type = $(this).data("type");
+            var id = $(this).data("id");
+            var company_name = "{{ company.slug }}";
+            $.ajax({
+                url: "/company/"+company_name+"/"+data_type+"/"+id+"/delete",
+                success: 
+                    function(result){
+                        $("#"+data_type+"-"+id).remove();  
+                    },
+                error: 
+                    function(){
+                        alert("We are experiencing problems wit error, please try again later");
+                    }
+            });
+
+    }else{
+        return false;
+    }});
+
+
+    var add = $(".add-element");
+
+add.click(
+        function(event){
+            var model = $(this).data("model");  
+            var id = $(this).data("id"); //can be form_id
+            event.preventDefault();
+
+            $.ajax({
+                url: "/forms/"+model+"/",
+                data: { 'csrfmiddlewaretoken': '{{csrf_token}}' }, 
+                type: "POST",
+                cache: false,
+
+                success: 
+                    function(result){
+                        $("#myModalLabel").html("Create a new "+ model +".");
+                        $("#success-notification").addClass("hide");
+                        $(".modal-form").html(result);
+                        $(".modal-form").data("model", model);
+                        $("#companyModal").modal("show");
+                        $('#id_date').datepicker();
+                        $('#id_acquired_date').datepicker();
+                    },
+                error: 
+                    function(xhr){
+                        alert("Error: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+            
+        });
+
+    var add_another = $('#add-another');
+add_another.click( 
+        function(event){
+
+            var model_name = $(".modal-form").data("model");
+            event.preventDefault();
+            $.ajax({
+                url: "/forms/{{ company.slug }}/"+model_name+"/",
+                type: "POST",
+                cache: false,
+                data:  $('#new-form').serialize(), 
+                success: 
+                    function(result){
+                        alert(result);
+                        $.ajax({
+                            url: "/forms/"+model_name+"/",
+                            data: { 'csrfmiddlewaretoken': '{{csrf_token}}' }, 
+                            type: "POST",
+                            dataType: 'json',
+                            cache: false,
+                            success:
+                                function(json){
+                                    if(json.errors !== undefined){
+                                        alert("Errors in the forms");
+
+                                    }else{
+                                       $("#succes-model").html(model_name); 
+                                       $("#success-notification").removeClass("hide"); 
+                                       $(".modal-form").trigger('reset');
+                                    }},
+                            error: 
+                                function(xhr){
+                                    alert("Error: " + xhr.statusText);
+                                    //alert("We are experiencing problems with the server , please try again later");
+                                    return false;
+                                },
+                            });
+                    },
+                error: 
+                    function(xhr){
+                        alert("Error 2: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+        });
+
+    var modal_btn = $('#modal-btn');
+    modal_btn.click( 
+        function(event){
+
+            event.preventDefault();
+            $.ajax({
+                url: "/forms/{{ company.slug }}/"+model+"/",
+                type: "POST",
+                cache: false,
+                data: { 'csrfmiddlewaretoken': '{{csrf_token}}' }, 
+                success: 
+                    function(result){
+                        alert("Success");
+                    },
+                error: 
+                    function(xhr){
+                        alert("Error: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+        })
+
+    var cancel_modal = $("#cancel-modal");
+
+    cancel_modal.click(
+        function(event){
+            event.preventDefault();
+            $("#companyModal").modal("hide");
+        });
+
+    var create_item = $('#create-item');
+create_item.click( 
+        function(event){
+
+            var model_name = $(".modal-form").data("model");
+            event.preventDefault();
+            $.ajax({
+                url: "/forms/{{ company.slug }}/"+model_name+"/",
+                type: "POST",
+                cache: false,
+                data:  $('#new-form').serialize(), 
+                success: 
+                    $("#companyModal").modal("hide")
+                    ,
+                error: 
+                    function(xhr){
+                        alert("Error: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+        })
+
+
+        </script>
     <link href="{{ STATIC_URL }}bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
     <script src="{{ STATIC_URL }}bootstrap-editable/js/bootstrap-editable.js"></script>
     <link href="{{ STATIC_URL }}inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet"> 
     <script src="{{ STATIC_URL }}inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.min.js"></script>  
     <script src="{{ STATIC_URL }}inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.min.js"></script>
     <script src="{{ STATIC_URL }}inputs-ext/wysihtml5/wysihtml5.js"></script>
+    <script src="{{ STATIC_URL }}js/moment.min.js"></script>
+    
     <script type="text/javascript">
     $.fn.editable.defaults.mode = 'inline';
 
@@ -445,6 +872,28 @@
 
         });
 
+    var more = $("#morere");
+
+    more.click(
+        function(event){
+            event.preventDefault();
+            $(".mas").removeClass("hide");
+            $("#lesss").removeClass("hide");
+            $("#morere").addClass("hide");
+
+        });
+
+    var lesss = $("#lesss");
+
+    lesss.click(
+        function(event){
+            event.preventDefault();
+            $(".mas").addClass("hide");
+            $("#lesss").addClass("hide");            
+            $("#morere").removeClass("hide");
+        });
+
+
         $('#size-company').editable({
 
             source: [
@@ -480,5 +929,4 @@
 </script>
 
 {% endblock %}
-</div>
 </div>

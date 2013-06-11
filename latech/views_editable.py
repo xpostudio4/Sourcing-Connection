@@ -14,7 +14,7 @@ from django.template.defaultfilters import slugify
 
 from companies.models import *
 from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingForm, AcquisitionForm, ManagementForm,\
- CompetitorsForm, OfficeForm, ContactForm
+ CompetitorsForm, OfficeForm, ContactForm, CompanyLinkForm
 from companies.functions import *
 from company_profile_extended.models import *
 from recommendations.models import Recommendation
@@ -171,9 +171,9 @@ def company_edit(request, slug):
         "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations,"products":products,
         # Recommendations
         "recommendations":recommendations,
-
          },
         context_instance=RequestContext(request))
+
 
 def company_edit2(request, slug):
 
@@ -264,7 +264,8 @@ def company_edit2(request, slug):
         "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations,"products":products,
         # Recommendations
         "recommendations":recommendations,
-
+        #Link Form
+        "link_form":companylink_form,
          },
         context_instance=RequestContext(request))
 
