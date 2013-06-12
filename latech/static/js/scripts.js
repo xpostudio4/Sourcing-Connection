@@ -256,6 +256,26 @@
             $("#less-email").removeClass("hide");
             $("#more-email").addClass("hide");
 
+            $("#more-facebook").removeClass("hide");
+            $("#less-facebook").addClass("hide");
+            $(".plus-facebook").addClass("hide");
+
+            $("#more-twitter").removeClass("hide");
+            $("#less-twitter").addClass("hide");
+            $(".plus-twitter").addClass("hide");
+
+            $("#more-linkedin").removeClass("hide");
+            $("#less-linkedin").addClass("hide");
+            $(".plus-linkedin").addClass("hide");
+
+            $("#more-weburl").removeClass("hide");
+            $("#less-weburl").addClass("hide");
+            $(".plus-weburl").addClass("hide");
+
+            $("#more-blog").removeClass("hide");
+            $("#less-blog").addClass("hide");
+            $(".plus-blog").addClass("hide");
+
         });
 
     var less_email = $("#less-email");
@@ -275,6 +295,27 @@
             $(".plus-facebook").removeClass("hide");
             $("#less-facebook").removeClass("hide");
             $("#more-facebook").addClass("hide");
+
+            $("#more-email").removeClass("hide");
+            $("#less-email").addClass("hide");
+            $(".plus-email").addClass("hide");
+
+            $("#more-twitter").removeClass("hide");
+            $("#less-twitter").addClass("hide");
+            $(".plus-twitter").addClass("hide");
+
+            $("#more-linkedin").removeClass("hide");
+            $("#less-linkedin").addClass("hide");
+            $(".plus-linkedin").addClass("hide");
+
+            $("#more-weburl").removeClass("hide");
+            $("#less-weburl").addClass("hide");
+            $(".plus-weburl").addClass("hide");
+
+            $("#more-blog").removeClass("hide");
+            $("#less-blog").addClass("hide");
+            $(".plus-blog").addClass("hide");
+
 
         });
 
@@ -297,6 +338,26 @@
             $("#less-linkedin").removeClass("hide");
             $("#more-linkedin").addClass("hide");
 
+            $("#more-facebook").removeClass("hide");
+            $("#less-facebook").addClass("hide");
+            $(".plus-facebook").addClass("hide");
+
+            $("#more-email").removeClass("hide");
+            $("#less-email").addClass("hide");
+            $(".plus-email").addClass("hide");
+
+            $("#more-twitter").removeClass("hide");
+            $("#less-twitter").addClass("hide");
+            $(".plus-twitter").addClass("hide");
+
+            $("#more-weburl").removeClass("hide");
+            $("#less-weburl").addClass("hide");
+            $(".plus-weburl").addClass("hide");
+
+            $("#more-blog").removeClass("hide");
+            $("#less-blog").addClass("hide");
+            $(".plus-blog").addClass("hide");
+
         });
 
     var less_linkedin = $("#less-linkedin");
@@ -317,6 +378,26 @@
             $("#less-twitter").removeClass("hide");
             $("#more-twitter").addClass("hide");
 
+            $("#more-facebook").removeClass("hide");
+            $("#less-facebook").addClass("hide");
+            $(".plus-facebook").addClass("hide");
+
+            $("#more-email").removeClass("hide");
+            $("#less-email").addClass("hide");
+            $(".plus-email").addClass("hide");
+
+            $("#more-linkedin").removeClass("hide");
+            $("#less-linkedin").addClass("hide");
+            $(".plus-linkedin").addClass("hide");
+
+            $("#more-weburl").removeClass("hide");
+            $("#less-weburl").addClass("hide");
+            $(".plus-weburl").addClass("hide");
+
+            $("#more-blog").removeClass("hide");
+            $("#less-blog").addClass("hide");
+            $(".plus-blog").addClass("hide");
+
         });
 
     var less_twitter = $("#less-twitter");
@@ -336,6 +417,27 @@
             $(".plus-weburl").removeClass("hide");
             $("#less-weburl").removeClass("hide");
             $("#more-weburl").addClass("hide");
+
+            $("#more-facebook").removeClass("hide");
+            $("#less-facebook").addClass("hide");
+            $(".plus-facebook").addClass("hide");
+
+            $("#more-email").removeClass("hide");
+            $("#less-email").addClass("hide");
+            $(".plus-email").addClass("hide");
+
+            $("#more-twitter").removeClass("hide");
+            $("#less-twitter").addClass("hide");
+            $(".plus-twitter").addClass("hide");
+
+            $("#more-linkedin").removeClass("hide");
+            $("#less-linkedin").addClass("hide");
+            $(".plus-linkedin").addClass("hide");
+
+            $("#more-blog").removeClass("hide");
+            $("#less-blog").addClass("hide");
+            $(".plus-blog").addClass("hide");
+
 
         });
 
@@ -358,6 +460,26 @@
             $(".plus-blog").removeClass("hide");
             $("#less-blog").removeClass("hide");
             $("#more-blog").addClass("hide");
+
+            $("#more-facebook").removeClass("hide");
+            $("#less-facebook").addClass("hide");
+            $(".plus-facebook").addClass("hide");
+
+            $("#more-email").removeClass("hide");
+            $("#less-email").addClass("hide");
+            $(".plus-email").addClass("hide");
+
+            $("#more-twitter").removeClass("hide");
+            $("#less-twitter").addClass("hide");
+            $(".plus-twitter").addClass("hide");
+
+            $("#more-linkedin").removeClass("hide");
+            $("#less-linkedin").addClass("hide");
+            $(".plus-linkedin").addClass("hide");
+
+            $("#more-weburl").removeClass("hide");
+            $("#less-weburl").addClass("hide");
+            $(".plus-weburl").addClass("hide");
 
         });
 

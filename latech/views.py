@@ -121,8 +121,8 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ acquisition.id }}", str(context.id))
-            template = template.replace("{{ acquisition.name }}", str(context.name))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ acquisition.id }}", str(context))
+            template = template.replace("{{ acquisition.name }}", str(context))
 
 
         elif model == "Award":
@@ -137,8 +137,8 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ award.id }}", str(context.id))
-            template = template.replace("{{ award.name }}", str(context.name))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ award.id }}", str(context))
+            template = template.replace("{{ award.name }}", str(context))
 
         elif model == "Certification":
 
@@ -152,8 +152,8 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ certification.id }}", str(context.id))
-            template = template.replace("{{ certification.name }}", str(context.name))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ certification.id }}", str(context))
+            template = template.replace("{{ certification.name }}", str(context))
 
 
         elif model == "Competitor":
@@ -168,8 +168,8 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ competitor.id }}", str(context.id))
-            template = template.replace("{{ competitor.name }}", str(context.name))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ competitor.id }}", str(context))
+            template = template.replace("{{ competitor.name }}", str(context))
 
         elif   model == "Customer":
             """Here is created the Customer model template to be returned via http request"""
@@ -184,8 +184,8 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ customer.id }}", str(context.id))
-            template = template.replace("{{ customer.name }}", str(context.name))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ customer.id }}", str(context))
+            template = template.replace("{{ customer.name }}", str(context))
         
         elif model == "Funding":
 
@@ -200,8 +200,8 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ certification.id }}", str(context.id))
-            template = template.replace("{{ certification.name }}", str(context.name))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ certification.id }}", str(context))
+            template = template.replace("{{ certification.name }}", str(context))
             
         elif model == "Management":
 
@@ -221,7 +221,7 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ manager.id }}", str(context.id))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ manager.id }}", str(context))
             template = template.replace("{{ manager.title }}", str(context.title)).replace("{{ manager.full_name }}", str(context.full_name))
         
         elif model == "Office":
@@ -240,7 +240,7 @@ def form_validation(request, slug, model):
             </li>
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ office.object.id }}", str(context.id))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ office.object.id }}", str(context))
             template = template.replace("{{ office.object.description }}", str(context.description))
             template = template.replace("{{ office.object.address_1 }}", str(context.address_1))
             template = template.replace("{{ office.object.address_2 }}", str(context.address_2))
@@ -257,7 +257,7 @@ def form_validation(request, slug, model):
                 </li>
             """
             
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ picture.id }}", str(context.id))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ picture.id }}", str(context))
             template = template.replace("{{ picture.file }}", context.file )
 
         elif model == "ManagementPicture":
@@ -272,7 +272,7 @@ def form_validation(request, slug, model):
                 </li>
             """
             
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ picture.id }}", str(context.id))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ picture.id }}", str(context))
             template = template.replace("{{ picture.file }}", context.file )
 
         # For Company extended Profile
@@ -290,8 +290,8 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ vertical.id }}", str(context.id))
-            template = template.replace("{{ vertical.vertical }}", str(context.name))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ vertical.id }}", str(context))
+            template = template.replace("{{ vertical.vertical }}", str(context))
 
         elif   model == "Expertise":
             """Here is created the expertise model template to be returned via http request"""
@@ -306,8 +306,8 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ expertise.id }}", str(context.id))
-            template = template.replace("{{ expertise.expertise }}", str(context.expertise))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ expertise.id }}", str(context))
+            template = template.replace("{{ expertise.expertise }}", str(context))
 
         elif   model == "SuccessStories":
             """Here is created the story model template to be returned via http request"""
@@ -322,8 +322,8 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ story.id }}", str(context.id))
-            template = template.replace("{{ story.title }}", str(context.title))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ story.id }}", str(context))
+            template = template.replace("{{ story.title }}", str(context))
 
         else:
             pass

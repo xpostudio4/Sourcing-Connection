@@ -424,6 +424,10 @@ def form_fields(request, id, model, field):
         o_model = get_object_or_404(Alliance, id=id)
         o_model.name = value
 
+    if model == "SuccessStories":
+        o_model = get_object_or_404(SuccessStories, id=id)
+        o_model.title = value
+
 
     if model == "Product":
         o_model = get_object_or_404(Product, id=id)

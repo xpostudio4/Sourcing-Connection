@@ -309,7 +309,7 @@
         {% if stories %}
             {% for story in stories %}
                  {% if story.link %}
-                    <div colspan="2"><a href="{{ story.link.url }}"><i class="icon-file"></i>{{ story.title }}</a></div>
+                    <div data-type="text" data-model="SuccessStories" data-url="/formfields/SuccessStories/{{ story.id }}/title/" data-pk="{{ story.id }}" class="editable-value" data-title="Story Name"><a class="link-delete" data-type="stories" data-id="{{ story.id }}" id="{{ company.slug }}-stories-{{ story.id }}" href="/company/{{ company.slug }}/stories/{{story.id}}/delete"><i class="icon-remove"></i></a>{{ story.title }}<i class="icon-pencil"></i></div>
                 {% endif %}
                 <br/>
 
@@ -334,7 +334,7 @@
                 <tbody>
                     <tr>
                 {% for product in products %}
-                       <td data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/name/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name"><i class="icon-pencil"></i>{{ product.name }}</td>
+                       <td data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/name/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{product.id}}/delete"><i class="icon-remove"></i></a>{{ product.name }}<i class="icon-pencil"></i></td>
                        <td data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/price/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Price" >US ${{ product.price|intcomma }}<i class="icon-pencil"></i></td>
                     </tr>
                 {% endfor %}
@@ -353,7 +353,7 @@
 
     </div>
     <div class="span3">
-        <ul class="nav nav-list pull-left">
+        <ul class="nav nav-list">
             <li><a class="add-element" data-model="Certification" href="/company/{{ company.slug }}/certifications/new"><i class="icon-plus"></i> Add Certification</a></li>
             <li><a class="add-element" data-model="Partnership" href="/company/{{ company.slug }}/partnerships/new"><i class="icon-plus"></i> Add Partnership</a></li>
             <li><a class="add-element" data-model="Expertise" href="#"><i class="icon-plus"></i> Add Expertirse</a></li>
@@ -363,13 +363,12 @@
             <li><a class="add-element" data-model="Award" href="/company/{{ company.slug }}/awards/new"><i class="icon-plus"></i> Add award</a></li>
             <li><a class="add-element" data-model="Product" href="#"><i class="icon-plus"></i> Add a New Product</a></li>
             <li><a class="add-element" data-model="Project" href="#"><i class="icon-plus"></i> Add Project</a> </li>
-            <li><a class="add-element" data-model="Acquisition" href="/company/{{ company.slug }}/acquisitions/new"><i class="icon-plus"></i> Add Acquisitions</a></li>
-
+            <li><a class="add-element" data-model="Acquisition" href="#"><i class="icon-plus"></i> Add Acquisitions</a></li>
+            
         </ul>
-        <br>
-        <br>
+
+
         <hr>
-      
         <h5>Projects:</h5>
         {% if projects %}
             {% for project in projects %}
@@ -379,7 +378,7 @@
             <br/>
     
         {% endif %}
-
+            
 
         <h5>Acquisitions:</h5>
         {% if acquisitions %}
@@ -485,7 +484,8 @@ add.click(
                     },
                 error: 
                     function(xhr){
-                        alert("Error: " + xhr.statusText);
+                        //alert("Error: " + xhr.statusText);
+                        alert("Aqui?: " + xhr.responseText);
                         //alert("We are experiencing problems with the server , please try again later");
                         return false;
                     }
@@ -494,7 +494,7 @@ add.click(
         });
 
     var add_another = $('#add-another');
-add_another.click( 
+    add_another.click( 
         function(event){
 
             var model_name = $(".modal-form").data("model");
