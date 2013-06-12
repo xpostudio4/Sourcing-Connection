@@ -143,7 +143,8 @@
                 <h5>Certifications:</h5>
                 {% if certifications %}
                         {% for certification in certifications %}
-                        <div colspan="2" data-type="text" data-model="Certification" data-url="/formfields/Certification/{{ certification.id }}/name/" data-pk="{{ certification.id }}"  data-title="Certification" class="editable-value" >{{ certification.name }}<i class="icon-pencil"></i></div>
+                        <div id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Certification" data-url="/formfields/Certification/{{ certification.id }}/name/" data-pk="{{ certification.id }}"  data-title="Certification" class="editable-value" >{{ certification.name }}</text> <i class="icon-pencil"></i></div>
+
                         {% endfor %}
                 {% else %}
                     <br/>
@@ -154,7 +155,7 @@
                 <h5>Partnership:</h5>
                 {% if partnerships %}
                         {% for partnership in partnerships%}
-                        <div colspan="2" data-type="text" data-model="Partnership" data-url="/formfields/Partnership/{{ partnership.id }}/name/" data-pk="{{ partnership.id }}"  data-title="partnership" id="partnership" class="editable-value">{{ partnership.name }}<i class="icon-pencil"></i></div>
+                        <div id="partnerships-{{ partnership.id }}"><a class="link-delete" data-type="partnerships" data-id="{{ partnership.id }}" id="{{ company.slug }}-partnerships-{{ partnership.id }}"  href="/company/{{ company.slug }}/partnerships/{{partnership.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Partnership" data-url="/formfields/Partnership/{{ partnership.id }}/name/" data-pk="{{ partnership.id }}"  data-title="partnership" class="editable-value" >{{ partnership.name }}</text> <i class="icon-pencil"></i></div>
                         {% endfor %}
                 {% else %}
                     <br/>
@@ -165,15 +166,8 @@
                 {% if expertises %}
 
                         {% for expertise in expertises%}
-                        <div colspan="2" data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{ expertise.expertise }}<i class="icon-pencil"></i></div>
+                        <div id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{expertise.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{expertise.expertise}}</text> <i class="icon-pencil"></i></div>
                         {% endfor %}
-                    {% if expertises2 %}
-                        {% for expertise in expertises2 %}
-                           <div colspan="2" data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value hide plus-expertise" data-title="Expertises">{{ expertise.expertise }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                    <a href="#" id="more-expertise">more >></a>
-                    <a href="#" id="less-expertise" class="hide">less <<</a>
-                    {% endif %}
                 {% else %}
                     <br/>
                 {% endif %}
@@ -183,16 +177,9 @@
                 {% if verticals %}
 
                     {% for vertical in verticals %}
-                        <div colspan="2" data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{ vertical.vertical }}<i class="icon-pencil"></i></div>
+                        <div id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{vertical.id}}/delete"><i class="icon-remove"></i></a><text data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{vertical.vertical}}</text> <i class="icon-pencil"></i></div>
                     {% endfor %}
 
-                    {% if verticals2 %}
-                        {% for vertical in verticals2 %}
-                           <div colspan="2" data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value hide plus-vertical" data-title="Vertical Name">{{ vertical.vertical }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                    <a href="#" id="more-vertical">more >></a>
-                    <a href="#" id="less-vertical" class="hide">less <<</a>
-                    {% endif %}
                 {% else %}
                     <br/>
                 {% endif %}
@@ -202,16 +189,10 @@
                 {% if alliances %}
                     
                     {% for alliance in alliances %}
-                        <div colspan="2" data-type="text" data-model="Alliance" data-url="/formfields/Alliance/{{ alliance.id }}/name/" data-pk="{{ alliance.id }}"  data-title="alliance" class="editable-value">{{ alliance.name }}<i class="icon-pencil"></i></div>
+                        <div id="alliances-{{ alliance.id }}"><a class="link-delete" data-type="alliances" data-id="{{ alliance.id }}" id="{{ company.slug }}-alliances-{{ alliance.id }}"  href="/company/{{ company.slug }}/alliances/{{alliance.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Alliance" data-url="/formfields/Alliance/{{ alliance.id }}/name/" data-pk="{{ alliance.id }}"  data-title="alliance" class="editable-value" >{{ alliance.name }}</text> <i class="icon-pencil"></i></div>
+
                     {% endfor %}
 
-                    {% if alliances2 %}
-                        {% for alliance in alliances2 %}
-                           <div colspan="2" data-type="text" data-model="Alliance" data-url="/formfields/Alliance/{{ alliance.id }}/name/" data-pk="{{ alliance.id }}"  data-title="alliance" class="hide plus-alliance editable-value">{{ alliance.name }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                    <a href="#" id="more-alliance">more >></a>
-                    <a href="#" id="less-alliance" class="hide">less <<</a>
-                    {% endif %}
                 {% else %}
                     <br/>
                 {% endif %}
@@ -221,7 +202,7 @@
                 <h5>Technical Associations:</h5>
                 {% if associations %}
                     {% for association in associations %}
-                        <div colspan="2" data-type="text" data-model="TechnicalAssociation" data-url="/formfields/TechnicalAssociation/{{ association.id }}/name/" data-pk="{{ association.id }}"  data-title="Association" class="editable-value">{{ association.name }}<i class="icon-pencil"></i></div>
+                        <div id="associations-{{ association.id }}"><a class="link-delete" data-type="associations" data-id="{{ association.id }}" id="{{ company.slug }}-associations-{{ association.id }}"  href="/company/{{ company.slug }}/associations/{{association.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="TechnicalAssociation" data-url="/formfields/TechnicalAssociation/{{ association.id }}/name/" data-pk="{{ association.id }}"  data-title="association" class="editable-value" >{{ association.name }}</text> <i class="icon-pencil"></i></div>
                     {% endfor %}
 
                 {% else %}
@@ -231,7 +212,7 @@
                 <h5>Awards:</h5>
                 {% if awards %}
                     {% for award in awards %}
-                        <div colspan="2" data-type="text" data-model="Award" data-url="/formfields/Award/{{ award.id }}/name/" data-pk="{{ award.id }}"  data-title="Award" class="editable-value">{{ award.name }}<i class="icon-pencil"></i></div>
+                        <div id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Award" data-url="/formfields/Award/{{ award.id }}/name/" data-pk="{{ award.id }}" class="editable-value" data-title="Award Name">{{ award.name }}</text> <i class="icon-pencil"></i></div>
                     {% endfor %}
 
                 {% else %}
@@ -372,33 +353,250 @@
 
     </div>
     <div class="span3">
+        <ul class="nav nav-list pull-left">
+            <li><a class="add-element" data-model="Certification" href="/company/{{ company.slug }}/certifications/new"><i class="icon-plus"></i> Add Certification</a></li>
+            <li><a class="add-element" data-model="Partnership" href="/company/{{ company.slug }}/partnerships/new"><i class="icon-plus"></i> Add Partnership</a></li>
+            <li><a class="add-element" data-model="Expertise" href="#"><i class="icon-plus"></i> Add Expertirse</a></li>
+            <li><a class="add-element" data-model="Vertical" href="#"><i class="icon-plus"></i> Add a New Verticals</a></li>
+            <li><a class="add-element" data-model="Alliance" href="/company/{{ company.slug }}/alliances/new"><i class="icon-plus"></i> Add Alliance</a></li>
+            <li><a class="add-element" data-model="TechnicalAssociation" href="/company/{{ company.slug }}/associations/new"><i class="icon-plus"></i> Add a Technical Association:</a></li>
+            <li><a class="add-element" data-model="Award" href="/company/{{ company.slug }}/awards/new"><i class="icon-plus"></i> Add award</a></li>
+            <li><a class="add-element" data-model="Product" href="#"><i class="icon-plus"></i> Add a New Product</a></li>
+            <li><a class="add-element" data-model="Project" href="#"><i class="icon-plus"></i> Add Project</a> </li>
+            <li><a class="add-element" data-model="Acquisition" href="/company/{{ company.slug }}/acquisitions/new"><i class="icon-plus"></i> Add Acquisitions</a></li>
+
+        </ul>
+        <br>
+        <br>
+        <hr>
       
-                <h5>Projects:</h5>
-                {% if projects %}
-                        {% for project in projects %}
-                        <div colspan="2" data-type="text" data-model="Project" data-url="/formfields/Project/{{ project.id }}/name/" data-pk="{{ project.id }}"  data-title="Project" class="editable-value ">{{ project.name }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                {% else %}
-                    <br/>
-                {% endif %}
+        <h5>Projects:</h5>
+        {% if projects %}
+            {% for project in projects %}
+                <div id="projects-{{ project.id }}"><a class="link-delete" data-type="projects" data-id="{{ project.id }}" id="{{ company.slug }}-projects-{{ project.id }}" href="/company/{{ company.slug }}/projects/{{project.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Project" data-url="/formfields/Project/{{ project.id }}/name/" data-pk="{{ project.id }}" class="editable-value" data-title="Project Name">{{ project.name }}</text> <i class="icon-pencil"></i></div>
+            {% endfor %}
+        {% else %}
+            <br/>
+    
+        {% endif %}
 
 
-                <h5>Acquisitions:</h5>
-                {% if acquisitions %}
-                        {% for acquisition in acquisitions %}
-                        <div colspan="2" data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name" >{{ acquisition.name }}<i class="icon-pencil"></i></div>
-                        {% endfor %}
-                    <br/>
-                {% endif %}
-
-
-
+        <h5>Acquisitions:</h5>
+        {% if acquisitions %}
+            {% for acquisition in acquisitions %}
+                <div id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name">{{ acquisition.name }}</text> <i class="icon-pencil"></i></div>
+            {% endfor %}
+                <br/>
+        {% endif %}
         
     </div>
 
 
 
 </div>
+<div id="companyModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <h3 id="myModalLabel">Login</h3>
+    </div>
+    <div class="modal-body">
+            <div class="alert alert-success hide" id="success-notification">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              Congratulations! The new <strong id="succes-model"></strong> has been created on the database
+            </div>
+            <div class="alert alert-block alert-error hide" id="error-notification">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              Warning! The <strong id="error-model"></strong> element was not created in the database due to the following fields:
+
+              <ul id="error-list">
+              </ul>
+              Please verify the fields and fill them corretly.
+            </div>
+            <form enctype="multipart/form-data" id="new-form" method="POST" action="." >
+                {% csrf_token %}
+                <div class="modal-form" data-model="0" >
+                </div>
+                <a href="#"  id="create-item"  class="btn btn-primary">Create</a>
+                <a href="#"  id="add-another"  class="btn btn-info" >Create and Add another</a>
+                <a href="#" id="cancel-modal" class="btn btn-inverse">Cancel</a>
+
+            </form>
+    </div>
+    <div class="modal-footer">
+    </div>
+    </div>
+        <script type="text/javascript">
+            
+            //select all the links with the function or class delete
+           var link = $(".link-delete");
+
+link.click(
+    function(event){
+        //eliminate the default function
+        event.preventDefault();
+        //get the data from the link when clicked; data = ["type_deletion","id","company_name"]*company comes by default
+        
+        
+        var r = confirm("Are You sure You want to delete this item?");
+        if( r == true){
+            //pass the data to the ajax function to call the server
+            var data_type = $(this).data("type");
+            var id = $(this).data("id");
+            var company_name = "{{ company.slug }}";
+            $.ajax({
+                url: "/company/"+company_name+"/"+data_type+"/"+id+"/delete",
+                success: 
+                    function(result){
+                        $("#"+data_type+"-"+id).remove();  
+                    },
+                error: 
+                    function(){
+                        alert("We are experiencing problems wit error, please try again later");
+                    }
+            });
+
+    }else{
+        return false;
+    }});
+
+
+    var add = $(".add-element");
+
+add.click(
+        function(event){
+            var model = $(this).data("model");  
+            var id = $(this).data("id"); //can be form_id
+            event.preventDefault();
+
+            $.ajax({
+                url: "/forms/"+model+"/",
+                data: { 'csrfmiddlewaretoken': '{{csrf_token}}' }, 
+                type: "POST",
+                cache: false,
+
+                success: 
+                    function(result){
+                        $("#myModalLabel").html("Create a new "+ model +".");
+                        $("#success-notification").addClass("hide");
+                        $(".modal-form").html(result);
+                        $(".modal-form").data("model", model);
+                        $("#companyModal").modal("show");
+                        $('#id_date').datepicker();
+                        $('#id_acquired_date').datepicker();
+                    },
+                error: 
+                    function(xhr){
+                        alert("Error: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+            
+        });
+
+    var add_another = $('#add-another');
+add_another.click( 
+        function(event){
+
+            var model_name = $(".modal-form").data("model");
+            event.preventDefault();
+            $.ajax({
+                url: "/forms/{{ company.slug }}/"+model_name+"/",
+                type: "POST",
+                cache: false,
+                data:  $('#new-form').serialize(), 
+                success: 
+                    function(result){
+                        alert(result);
+                        $.ajax({
+                            url: "/forms/"+model_name+"/",
+                            data: { 'csrfmiddlewaretoken': '{{csrf_token}}' }, 
+                            type: "POST",
+                            dataType: 'json',
+                            cache: false,
+                            success:
+                                function(json){
+                                    if(json.errors !== undefined){
+                                        alert("Errors in the forms");
+
+                                    }else{
+                                       $("#succes-model").html(model_name); 
+                                       $("#success-notification").removeClass("hide"); 
+                                       $(".modal-form").trigger('reset');
+                                    }},
+                            error: 
+                                function(xhr){
+                                    alert("Error: " + xhr.statusText);
+                                    //alert("We are experiencing problems with the server , please try again later");
+                                    return false;
+                                },
+                            });
+                    },
+                error: 
+                    function(xhr){
+                        alert("Error 2: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+        });
+
+    var modal_btn = $('#modal-btn');
+    modal_btn.click( 
+        function(event){
+
+            event.preventDefault();
+            $.ajax({
+                url: "/forms/{{ company.slug }}/"+model+"/",
+                type: "POST",
+                cache: false,
+                data: { 'csrfmiddlewaretoken': '{{csrf_token}}' }, 
+                success: 
+                    function(result){
+                        alert("Success");
+                    },
+                error: 
+                    function(xhr){
+                        alert("Error: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+        })
+
+    var cancel_modal = $("#cancel-modal");
+
+    cancel_modal.click(
+        function(event){
+            event.preventDefault();
+            $("#companyModal").modal("hide");
+        });
+
+    var create_item = $('#create-item');
+create_item.click( 
+        function(event){
+
+            var model_name = $(".modal-form").data("model");
+            event.preventDefault();
+            $.ajax({
+                url: "/forms/{{ company.slug }}/"+model_name+"/",
+                type: "POST",
+                cache: false,
+                data:  $('#new-form').serialize(), 
+                success: 
+                    $("#companyModal").modal("hide")
+                    ,
+                error: 
+                    function(xhr){
+                        alert("Error: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+        })
+
+
+        </script>
+
     <script src="{{ STATIC_URL}}js/scripts.js"></script>  
     <link href="{{ STATIC_URL }}bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
     <script src="{{ STATIC_URL }}bootstrap-editable/js/bootstrap-editable.js"></script>

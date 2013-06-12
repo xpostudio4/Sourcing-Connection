@@ -264,8 +264,6 @@ def company_edit2(request, slug):
         "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations,"products":products,
         # Recommendations
         "recommendations":recommendations,
-        #Link Form
-        "link_form":companylink_form,
          },
         context_instance=RequestContext(request))
 

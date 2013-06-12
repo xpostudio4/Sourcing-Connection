@@ -647,16 +647,16 @@
     <div class="modal-footer">
     </div>
     </div>
-        <script type="text/javascript">
+    <script type="text/javascript">
             
             //select all the links with the function or class delete
-           var link = $(".link-delete");
+   var link = $(".link-delete");
 
-link.click(
-    function(event){
-        //eliminate the default function
-        event.preventDefault();
-        //get the data from the link when clicked; data = ["type_deletion","id","company_name"]*company comes by default
+    link.click(
+        function(event){
+            //eliminate the default function
+            event.preventDefault();
+            //get the data from the link when clicked; data = ["type_deletion","id","company_name"]*company comes by default
         
         
         var r = confirm("Are You sure You want to delete this item?");
@@ -684,7 +684,7 @@ link.click(
 
     var add = $(".add-element");
 
-add.click(
+    add.click(
         function(event){
             var model = $(this).data("model");  
             var id = $(this).data("id"); //can be form_id
@@ -717,7 +717,8 @@ add.click(
         });
 
     var add_another = $('#add-another');
-add_another.click( 
+    
+    add_another.click( 
         function(event){
 
             var model_name = $(".modal-form").data("model");
@@ -795,7 +796,8 @@ add_another.click(
         });
 
     var create_item = $('#create-item');
-create_item.click( 
+
+    create_item.click( 
         function(event){
 
             var model_name = $(".modal-form").data("model");
