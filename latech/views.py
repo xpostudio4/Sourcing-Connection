@@ -106,6 +106,7 @@ def form_validation(request, slug, model):
         instance_models = {
             "Customer": Customer.objects.filter(id=f.id),
         }
+        template = []
 
         if model == "Acquisition":
 
