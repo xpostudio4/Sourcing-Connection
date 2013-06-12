@@ -334,8 +334,9 @@
                 <tbody>
                     <tr>
                 {% for product in products %}
-                       <td data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/name/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{product.id}}/delete"><i class="icon-remove"></i></a>{{ product.name }}<i class="icon-pencil"></i></td>
-                       <td data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/price/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Price" >US ${{ product.price|intcomma }}<i class="icon-pencil"></i></td>
+                    <td id="products-{{ product.id }}" data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/name/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{ product.id }}/delete"><i class="icon-remove"></i></a>{{ product.name }}<i class="icon-pencil"></i></td>
+
+                    <td data-type="text" class="products-{{ product.id }} editable-value" data-model="Product" data-url="/formfields/Product/{{ product.id }}/price/" data-pk="{{ product.id }}" data-id="{{ product.id }}"   data-title="Product Price" >{{ product.price|floatformat:"2" }}<i class="icon-pencil"></i></td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -446,6 +447,8 @@ link.click(
                 success: 
                     function(result){
                         $("#"+data_type+"-"+id).remove();  
+                        $("."+data_type+"-"+id).remove();  
+
                     },
                 error: 
                     function(){

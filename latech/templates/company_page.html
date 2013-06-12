@@ -387,14 +387,14 @@
                     <tr>
                 {% for product in products %}
                        <td>{{ product.name }}</td>
-                       <td>US ${{ product.price|intcomma }}</td>
+                       <td>US ${{ product.price|floatformat:"2"|intcomma }}</td>
                     </tr>
                 {% endfor %}
                 {% if products2 %}
                     <tr>
                     {% for product in products2 %}
                            <td class="hide plus-product">{{ product.name }}</td>
-                           <td class="hide plus-product">US ${{ product.price|intcomma }}</td>
+                           <td class="hide plus-product">US ${{ product.price|floatformat:"2"|intcomma }}</td>
                         </tr>
                     {% endfor %}
                 {% endif %}

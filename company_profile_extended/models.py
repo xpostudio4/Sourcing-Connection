@@ -25,6 +25,9 @@ class AnnualRevenue(models.Model):
     revenue = models.DecimalField(max_digits=12, decimal_places=2)
     date = models.DateField(blank=True,null=True)
 
+    class Meta:
+        ordering = ['id']
+
     def __unicode__(self):
         return ("%s: %.2f ") % (self.company, self.revenue)
 
@@ -34,6 +37,9 @@ class Milestone(models.Model):
     description = models.TextField(blank=True)
     from_date = models.DateField()
     to_date = models.DateField()
+
+    class Meta:
+        ordering = ['id']
 
     def __unicode__(self):
         return ('%s: %s') % (self.company, self.title)
@@ -45,6 +51,9 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     date = models.DateField()
     description = models.TextField()
+
+    class Meta:
+        ordering = ['id']
 
 
     def __unicode__(self):
@@ -58,6 +67,7 @@ class SuccessStories(models.Model):
     link = models.FileField(storage=gs, upload_to="companies/docs/", blank=True)
 
     class Meta:
+        ordering = ['id']
         verbose_name_plural = "Success Stories"
 
     def __unicode__(self):
@@ -67,6 +77,10 @@ class Expertise(models.Model):
     company = models.ForeignKey(Company, related_name='Company Expertise')
     expertise = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100)
+
+    class Meta:
+        ordering = ['id']
+
 
     def save(self, *args, **kwargs):
         self.slug = defaultfilters.slugify(self.expertise)
@@ -79,6 +93,9 @@ class Vertical(models.Model):
     company = models.ForeignKey(Company, related_name='Company Verticals')
     vertical = models.CharField(max_length=255)
     slug = models.SlugField(max_length=200)
+
+    class Meta:
+        ordering = ['id']
 
     def save(self, *args, **kwargs):
         self.slug = defaultfilters.slugify(self.vertical)
@@ -96,6 +113,9 @@ class Partnership(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
+    class Meta:
+        ordering = ['id']
+
     def __unicode__(self):
         return ("%s") % (self.name)
 
@@ -103,6 +123,9 @@ class Alliance(models.Model):
     company = models.ForeignKey(Company, related_name='Company Alliances')
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ['id']
 
     def __unicode__(self):
         return ("%s") % (self.name)
@@ -113,6 +136,9 @@ class TechnicalAssociation(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
+    class Meta:
+        ordering = ['id']
+
     def __unicode__(self):
         return ("%s") % (self.name)
 
@@ -121,17 +147,22 @@ class Competitor(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
+    class Meta:
+        ordering = ['id']
+        verbose_name_plural = "Competitors"
+
     def __unicode__(self):
         return str(self.company) +":" + str(self.name)
 
-    class Meta:
-         verbose_name_plural = "Competitors"
 
 class Product(models.Model):
     company = models.ForeignKey(Company, related_name="Company Products", blank=True)
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ['id']
  
     def __unicode__(self):
         return (self.name)

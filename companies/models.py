@@ -148,6 +148,7 @@ class CompanyRating(models.Model):
     rating_of_ownership = models.IntegerField(blank=True, null=True)
     gtb_overall_rating = models.IntegerField(blank=True, null=True)
 
+
     def __unicode__(self):
         return str(self.company) + " Ratings"
 
@@ -170,6 +171,9 @@ class Management(models.Model):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
 
+    class Meta:
+        ordering = ['id']
+
     def save(self, *args, **kwargs):
         if self.contact:
                 self.full_name = (("%s %s") % (self.contact.fr_name, self.contact.ls_name))
@@ -184,6 +188,9 @@ class ManagementPicture(models.Model):
     file = models.ImageField(storage=gs, upload_to="images/companies_imgs/")
     slug = models.SlugField(max_length=255, blank=True)
     manager = models.ForeignKey(Management, related_name="Management Images")
+
+    class Meta:
+        ordering = ['id']
 
     def __unicode__(self):
         return ("%s: %s") % (self.manager, self.slug)
@@ -202,6 +209,9 @@ class Funding(models.Model):
     company = models.ForeignKey(Company, related_name="Funds Delivered to", blank=True)
     round = models.CharField(max_length=16, choices=ROUND_CHOICES, default = 'Seed')
     raised = models.CharField(max_length=45)
+
+    class Meta:
+        ordering = ['id']
 
     def __unicode__(self):
         return str(self.company) +" : " + self.round
@@ -229,7 +239,8 @@ class Acquisition(models.Model):
         return str(self.company) +":" + str(self.name)
 
     class Meta:
-         verbose_name_plural = "Acquisitions"
+        ordering = ['id']
+        verbose_name_plural = "Acquisitions"
     
 
 class Competitors(models.Model):
@@ -240,7 +251,8 @@ class Competitors(models.Model):
         return str(self.company) +":" + str(self.name)
 
     class Meta:
-         verbose_name_plural = "Competitors"
+        ordering = ['id']
+        verbose_name_plural = "Competitors"
 
 #Comma separated list of certifications from Certification Table
 class Certification(models.Model):
@@ -251,7 +263,8 @@ class Certification(models.Model):
         return str(self.company) +":" + str(self.name)
 
     class Meta:
-         verbose_name_plural = "Certifications"
+        ordering = ['id']
+        verbose_name_plural = "Certifications"
 
 class Customer(models.Model):
     company = models.ForeignKey(Company, related_name="Company Customers", blank=True)
@@ -261,7 +274,8 @@ class Customer(models.Model):
         return str(self.company) +":" + str(self.name)
 
     class Meta:
-         verbose_name_plural = "Customers"
+        ordering = ['id']
+        verbose_name_plural = "Customers"
 
 class Award(models.Model):
     company = models.ForeignKey(Company, related_name="Company Awards", blank=True)
@@ -272,7 +286,8 @@ class Award(models.Model):
         return self.name
 
     class Meta:
-         verbose_name_plural = "Awards"
+        ordering = ['id']
+        verbose_name_plural = "Awards"
 
 class Office(models.Model):
     company = models.ForeignKey(Company, blank=True)
@@ -283,7 +298,10 @@ class Office(models.Model):
     phone = models.CharField(max_length=512, blank=True)
     zip_code = models.CharField(max_length=512, blank=True)
     country = models.ForeignKey(Country, related_name = "Office Country", null=True,  blank=True)
- 
+
+    class Meta:
+        ordering = ['id']
+
     
     def __unicode__(self):
         return str(self.company)+ ": Address No."+ str(self.id)+" :"+ self.description
@@ -305,13 +323,17 @@ class ContactCompany(models.Model):
         return str(self.first_name +" "+ self.last_name)
 
     class Meta:
-         verbose_name_plural = "Contact Company"
+        ordering = ['id']
+        verbose_name_plural = "Contact Company"
 
 class ProfileCompletion(models.Model):
     """The purpose of this class is to calculate the percentage of completion of the profile of companies."""
     
     company = models.ForeignKey(Company, related_name='Company Profile Completion ')
     completion = models.DecimalField(max_digits=3, decimal_places=2)
+
+    class Meta:
+        ordering = ['id']
 
     def __unicode__(self):
         return str(self.company)+ ":" + str(int(self.completion*100))+ "%"
