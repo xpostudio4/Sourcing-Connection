@@ -335,8 +335,9 @@ def form_validation(request, slug, model):
             'company': company.name,
             'template': template,
             }
-        if f.name:
-            d['name'] = f.name
+#        if f.name:
+#            d['name'] = f.name
+
         return json_response(d)
 
         #We must return the template for the item.
