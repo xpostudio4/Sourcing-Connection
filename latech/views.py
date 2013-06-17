@@ -106,60 +106,51 @@ def form_validation(request, slug, model):
         instance_models = {
             "Customer": Customer.objects.filter(id=f.id),
         }
-        template = []
 
         if model == "Acquisition":
 
-            context = Acquisition.objects.filter(id=f.id)
+            context = Acquisition.objects.get(id=f.id)
             
             template = """
-            <li id="acquisitions-{{ acquisition.id }}">
-                <a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{ acquisition.id }}/delete">
-                    <i class="icon-remove"></i>
-                </a>  
-                <a href="/company/{{ company.slug }}/acquisitions/{{ acquisition.id }}/update">{{ acquisition.name }}</a>
-            </li>
+
+                <div id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{ acquisition.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name">{{ acquisition.name }}</text> <i class="icon-pencil"></i></div>
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ acquisition.id }}", str(context))
-            template = template.replace("{{ acquisition.name }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ acquisition.id }}", str(context.id))
+            template = template.replace("{{ acquisition.name }}", str(context.name))
 
 
         elif model == "Award":
 
-            context = Award.objects.filter(id=f.id)
+            context = Award.objects.get(id=f.id)
             
             template = """
-                <li id="awards-{{ award.id }}">
-                <a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{ award.id }}/delete"><i class="icon-remove"></i></a>  
-                <a href="/company/{{ company.slug }}/awards/{{ award.id }}/update">{{ award.name }}</a>
-                </li>
-
+                <div id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{ award.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Award" data-url="/formfields/Award/{{ award.id }}/name/" data-pk="{{ award.id }}" class="editable-value" data-title="Award Name">{{ award.name }}</text> <i class="icon-pencil"></i></div>
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ award.id }}", str(context))
-            template = template.replace("{{ award.name }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ award.id }}", str(context.id))
+            template = template.replace("{{ award.name }}", str(context.name))
 
         elif model == "Certification":
 
-            context = Certification.objects.filter(id=f.id)
+            context = Certification.objects.get(id=f.id)
             
             template = """
-                <li id="certifications-{{ certification.id }}">
-                <a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{ certification.id }}/delete"><i class="icon-remove"></i></a>  
-                <a href="/company/{{ company.slug }}/certifications/{{ certification.id }}/update">{{ certification.name }}</a>
-                </li>
+                <div id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" 
+                id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{ certification.id }}/delete">
+                <i class="icon-remove"></i></a>  <text data-type="text" data-model="Certification" data-url="/formfields/Certification/{{ certification.id }}/name/"
+                data-pk="{{ certification.id }}"  data-title="Certification" class="editable-value" >{{ certification.name }}</text> <i class="icon-pencil"></i></div>
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ certification.id }}", str(context))
-            template = template.replace("{{ certification.name }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ certification.id }}", str(context.id))
+            template = template.replace("{{ certification.name }}", str(context.name))
 
 
         elif model == "Competitor":
 
-            context = Competitor.objects.filter(id = f.id)
+            context = Competitor.objects.get(id = f.id)
 
             template = """
                 <li id="competitors-{{ competitor.id }}">
@@ -169,13 +160,13 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ competitor.id }}", str(context))
-            template = template.replace("{{ competitor.name }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ competitor.id }}", str(context.id))
+            template = template.replace("{{ competitor.name }}", str(context.name))
 
         elif   model == "Customer":
             """Here is created the Customer model template to be returned via http request"""
 
-            context = Customer.objects.filter(id=f.id)
+            context = Customer.objects.get(id=f.id)
 
             template = """
                 <li id="customers-{{ customer.id }}">
@@ -185,12 +176,12 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ customer.id }}", str(context))
-            template = template.replace("{{ customer.name }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ customer.id }}", str(context.id))
+            template = template.replace("{{ customer.name }}", str(context.name))
         
         elif model == "Funding":
 
-            context = Funding.objects.filter(id=f.id)
+            context = Funding.objects.get(id=f.id)
 
             template = """
                 <li id="fundings-{{ funding.id }}">
@@ -201,12 +192,25 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ certification.id }}", str(context))
-            template = template.replace("{{ certification.name }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ certification.id }}", str(context.id))
+            template = template.replace("{{ certification.name }}", str(context.name))
+
+        elif model == "Alliance":
+
+            context = Alliance.objects.get(id=f.id)
+
+            template = """
+
+                <div id="alliances-{{ alliance.id }}"><a class="link-delete" data-type="alliances" data-id="{{ alliance.id }}" id="{{ company.slug }}-alliances-{{ alliance.id }}"  href="/company/{{ company.slug }}/alliances/{{ alliance.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Alliance" data-url="/formfields/Alliance/{{ alliance.id }}/name/" data-pk="{{ alliance.id }}"  data-title="alliance" class="editable-value" >{{ alliance.name }}</text> <i class="icon-pencil"></i></div>
+            """
+
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ alliance.id }}", str(context.id))
+            template = template.replace("{{ alliance.name }}", str(context.name))
+
             
         elif model == "Management":
 
-            context = Management.objects.filter(id=f.id)
+            context = Management.objects.get(id=f.id)
             
             template = """
                 <ul id="management-{{ manager.id }}" class="nav nav-list pull-left">
@@ -216,17 +220,17 @@ def form_validation(request, slug, model):
                         </a>
                     </li>
 
-            <h5 class="media-heading text-info"> <a href="/company/{{company.slug }}/management/{{ manager.id }}/update">{{ manager.full_name }}</a></h5>
+            <h5 class="media-heading text-info"> <a href="/company/{{ company.slug }}/management/{{ manager.id }}/update">{{ manager.full_name }}</a></h5>
                 <p> {{ manager.title }}</p>
             </ul>
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ manager.id }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ manager.id }}", str(context.id))
             template = template.replace("{{ manager.title }}", str(context.title)).replace("{{ manager.full_name }}", str(context.full_name))
         
         elif model == "Office":
-            context = Office.objects.filter(id=f.id)
+            context = Office.objects.get(id=f.id)
 
             template="""
             <li  id="office-{{ office.object.id }}" >
@@ -241,7 +245,7 @@ def form_validation(request, slug, model):
             </li>
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ office.object.id }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ office.object.id }}", str(context.id))
             template = template.replace("{{ office.object.description }}", str(context.description))
             template = template.replace("{{ office.object.address_1 }}", str(context.address_1))
             template = template.replace("{{ office.object.address_2 }}", str(context.address_2))
@@ -249,7 +253,7 @@ def form_validation(request, slug, model):
 
         elif model == "Picture":
 
-            context = Picture.objects.filter(id = f.id)
+            context = Picture.objects.get(id = f.id)
 
             template = """
                 <li id="pictures-{{ picture.id }}" class="span2"> 
@@ -258,13 +262,13 @@ def form_validation(request, slug, model):
                 </li>
             """
             
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ picture.id }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ picture.id }}", str(context.id))
             template = template.replace("{{ picture.file }}", context.file )
 
         elif model == "ManagementPicture":
 
             manager = get_object_or_404(Management, pk=pk)
-            context = ManagementPicture.objects.filter(id=f.id)
+            context = ManagementPicture.objects.get(id=f.id)
 
             template = """
                 <li id="managerpictures-{{ managementpicture.id }}" class="span2"> 
@@ -273,7 +277,7 @@ def form_validation(request, slug, model):
                 </li>
             """
             
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ picture.id }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ picture.id }}", str(context.id))
             template = template.replace("{{ picture.file }}", context.file )
 
         # For Company extended Profile
@@ -281,39 +285,99 @@ def form_validation(request, slug, model):
         elif   model == "Vertical":
             """Here is created the Vertical model template to be returned via http request"""
 
-            context = Vertical.objects.filter(id=f.id)
+            context = Vertical.objects.get(id=f.id)
 
             template = """
-                <li id="verticals-{{ vertical.id }}">
-                <a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}"  id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{ vertical.id }}/delete" ><i class="icon-remove"></i></a>  
-                <a href="/company/{{ company.slug }}/verticals/{{ vertical.id }}/update">{{ vertical.vertical }}</a>
-                </li>
+                <div id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{ vertical.id }}/delete"><i class="icon-remove"></i></a><text data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{ vertical.name }}</text> <i class="icon-pencil"></i></div>
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ vertical.id }}", str(context))
-            template = template.replace("{{ vertical.vertical }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ vertical.id }}", str(context.id))
+            template = template.replace("{{ vertical.name }}", str(context.name))
 
         elif   model == "Expertise":
             """Here is created the expertise model template to be returned via http request"""
 
-            context = Expertise.objects.filter(id=f.id)
+            context = Expertise.objects.get(id=f.id)
 
             template = """
-                <li id="expertises-{{ expertise.id }}">
-                <a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}"  id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{ expertise.id }}/delete" ><i class="icon-remove"></i></a>  
-                <a href="/company/{{ company.slug }}/expertises/{{ expertise.id }}/update">{{ expertise.expertise }}</a>
-                </li>
+                <div id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" 
+                id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{ expertise.id }}/delete">
+                <i class="icon-remove"></i></a>  <text data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" 
+                data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{ expertise.name }}</text> <i class="icon-pencil"></i></div>
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ expertise.id }}", str(context))
-            template = template.replace("{{ expertise.expertise }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ expertise.id }}", str(context.id))
+            template = template.replace("{{ expertise.name }}", str(context.name))
+
+        elif   model == "Partnership":
+            """Here is created the expertise model template to be returned via http request"""
+
+            context = Partnership.objects.get(id=f.id)
+
+            template = """
+                <div id="partnerships-{{ partnership.id }}"><a class="link-delete" data-type="partnerships" data-id="{{ partnership.id }}" id="{{ company.slug }}-partnerships-{{ partnership.id }}"  href="/company/{{ company.slug }}/partnerships/{{ partnership.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Partnership" data-url="/formfields/Partnership/{{ partnership.id }}/name/" data-pk="{{ partnership.id }}"  data-title="partnership" class="editable-value" >{{ partnership.name }}</text> <i class="icon-pencil"></i></div>
+                        
+            """
+
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ expertise.id }}", str(context.id))
+            template = template.replace("{{ partnership.name }}", str(context.name))
+
+
+        elif   model == "TechnicalAssociation":
+            """Here is created the Technical Associations model template to be returned via http request"""
+
+            context = TechnicalAssociation.objects.get(id=f.id)
+
+            template = """
+
+                <div id="associations-{{ association.id }}"><a class="link-delete" data-type="associations" data-id="{{ association.id }}" id="{{ company.slug }}-associations-{{ association.id }}"  href="/company/{{ company.slug }}/associations/{{ association.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="TechnicalAssociation" data-url="/formfields/TechnicalAssociation/{{ association.id }}/name/" data-pk="{{ association.id }}"  data-title="association" class="editable-value" >{{ association.name }}</text> <i class="icon-pencil"></i></div>
+                        
+            """
+
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ association.id }}", str(context.id))
+            template = template.replace("{{ association.name }}", str(context.name))
+
+
+        elif   model == "Product":
+            """Here is created the Product model template to be returned via http request"""
+
+            context = Product.objects.get(id=f.id)
+
+            template = """
+            
+                <td id="products-{{ product.id }}" data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/name/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{ product.id }}/delete"><i class="icon-remove"></i></a>{{ product.name }}<i class="icon-pencil"></i></td>
+
+                <td data-type="text" class="products-{{ product.id }} editable-value" data-model="Product" data-url="/formfields/Product/{{ product.id }}/price/" data-pk="{{ product.id }}" data-id="{{ product.id }}"   data-title="Product Price" >{{ product.price|floatformat:"2" }}<i class="icon-pencil"></i></td>
+                        
+            """
+
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ product.id }}", str(context.id))
+            template = template.replace("{{ product.name }}", str(context.name))
+            template = template.replace('{{ product.price|floatformat:"2" }}', str(context.price))
+
+
+        elif   model == "Project":
+            """Here is created the Project model template to be returned via http request"""
+
+            context = Project.objects.get(id=f.id)
+
+            template = """
+            
+                <div id="projects-{{ project.id }}"><a class="link-delete" data-type="projects" data-id="{{ project.id }}" id="{{ company.slug }}-projects-{{ project.id }}" href="/company/{{ company.slug }}/projects/{{ project.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Project" data-url="/formfields/Project/{{ project.id }}/name/" data-pk="{{ project.id }}" class="editable-value" data-title="Project Name">{{ project.name }}</text> <i class="icon-pencil"></i></div>
+                        
+            """
+
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ project.id }}", str(context.id))
+            template = template.replace("{{ project.name }}", str(context.name))
+
+
 
         elif   model == "SuccessStories":
             """Here is created the story model template to be returned via http request"""
 
-            context = SuccessStories.objects.filter(id=f.id)
+            context = SuccessStories.objects.get(id=f.id)
 
             template = """
                 <li id="stories-{{ story.id }}">
@@ -323,8 +387,8 @@ def form_validation(request, slug, model):
 
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ story.id }}", str(context))
-            template = template.replace("{{ story.title }}", str(context))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ story.id }}", str(context.id))
+            template = template.replace("{{ story.title }}", str(context.title))
 
         else:
             pass
@@ -335,9 +399,8 @@ def form_validation(request, slug, model):
             'company': company.name,
             'template': template,
             }
-#        if f.name:
-#            d['name'] = f.name
-
+        if f.name:
+            d['name'] = f.name
         return json_response(d)
 
         #We must return the template for the item.
@@ -499,9 +562,3 @@ def asana_create(request):
 
   else: 
     return HttpResponseRedirect("/ticket")
-
-
-  
-  
-  
-  

@@ -64,6 +64,7 @@ class SuccessStories(models.Model):
     company = models.ForeignKey(Company, related_name='Company Stories')
     title = models.CharField(max_length=200)
     description = models.TextField()
+    story_image = models.ImageField(blank=True, null=True, storage=gs, upload_to="images/companies_imgs/")
     link = models.FileField(storage=gs, upload_to="companies/docs/", blank=True)
 
     class Meta:
@@ -75,7 +76,7 @@ class SuccessStories(models.Model):
 
 class Expertise(models.Model):
     company = models.ForeignKey(Company, related_name='Company Expertise')
-    expertise = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100)
 
     class Meta:
@@ -83,27 +84,27 @@ class Expertise(models.Model):
 
 
     def save(self, *args, **kwargs):
-        self.slug = defaultfilters.slugify(self.expertise)
+        self.slug = defaultfilters.slugify(self.name)
         super(Expertise, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return self.expertise
+        return self.name
     
 class Vertical(models.Model):
     company = models.ForeignKey(Company, related_name='Company Verticals')
-    vertical = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=200)
 
     class Meta:
         ordering = ['id']
 
     def save(self, *args, **kwargs):
-        self.slug = defaultfilters.slugify(self.vertical)
+        self.slug = defaultfilters.slugify(self.name)
         #self.description_html = markdown(self.description)
         super(Vertical, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return self.vertical
+        return self.name
     
 
 # All Models separated:
@@ -160,6 +161,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(blank=True)
+    product_image = models.ImageField(blank=True, null=True, storage=gs, upload_to="images/companies_imgs/products/")
 
     class Meta:
         ordering = ['id']

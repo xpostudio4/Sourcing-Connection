@@ -5,7 +5,7 @@ from django import forms
 class ContactForm(ModelForm):
     class Meta:
        model = Contact
-       exclude = ('user', 'slug', 'latech_contact')
+       exclude = ('user', 'slug', 'm_name', 'latech_contact')
 
 class ContactUrlForm(ModelForm):
     class Meta:

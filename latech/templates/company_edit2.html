@@ -286,7 +286,7 @@
 
             <ul class="pull-left inline">
             {% for expertise in expertises  %}
-                <li id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{expertise.id}}/delete"><i class="icon-remove"></i></a>  <a href="/expertises/{{expertise.slug}}" data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{expertise.expertise}}</a> {% if not forloop.last %}, {% endif %}</li>
+                <li id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{expertise.id}}/delete"><i class="icon-remove"></i></a>  <a href="/expertises/{{expertise.slug}}" data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{expertise.name}}</a> {% if not forloop.last %}, {% endif %}</li>
             {% endfor %}
             </ul>
             </div>
@@ -301,7 +301,7 @@
 
             <ul class="pull-left inline">
             {% for vertical in verticals  %}
-                <li id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{vertical.id}}/delete"><i class="icon-remove"></i></a><a href="/verticals/{{ vertical.slug }}"  data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{vertical.vertical}}</a> {% if not forloop.last %}, {% endif %}</li>
+                <li id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{vertical.id}}/delete"><i class="icon-remove"></i></a><a href="/verticals/{{ vertical.slug }}"  data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{vertical.name}}</a> {% if not forloop.last %}, {% endif %}</li>
             {% endfor %}
             </ul>
             </div>
@@ -638,8 +638,9 @@
                 {% csrf_token %}
                 <div class="modal-form" data-model="0" >
                 </div>
-                <a href="#"  id="create-item"  class="btn btn-primary">Create</a>
-                <a href="#"  id="add-another"  class="btn btn-info" >Create and Add another</a>
+                <a href="#" id="create-item"><button class="btn btn-primary">Create</button></a>
+                {#<a href="#"  id="create-item"  class="btn btn-primary hide">Create</a> #} 
+                <a href="#"  id="add-another"  class="btn btn-info hide" >Create and Add another</a>
                 <a href="#" id="cancel-modal" class="btn btn-inverse">Cancel</a>
 
             </form>
@@ -794,6 +795,42 @@
             event.preventDefault();
             $("#companyModal").modal("hide");
         });
+
+    var feature_names = $('#id_name');
+    feature_names.keyup(function() {
+        $.ajax({
+           type: "post",
+           timeout: 5000,
+           url: "/sss/",
+           data: { 
+            'id' : feature_names.val(),
+            'csrfmiddlewaretoken': '{{ csrf_token }}', },
+           dataType: "json",
+           async: 'true',
+           cache: false,
+           success: 
+                function(data){ 
+//             alert( "Se guardaron los datos: " + data);
+
+//            results = $(data).find('#results').html();
+            $("#results").html("<span>" + data + "</data>");
+            if ($('div').hasClass('alert alert-success'))
+                {
+                    //$("#save-company").removeClass("hide"); 
+                    $("#create-item").removeClass("hide");
+                    $("#add-another").removeClass("hide");
+                }else if ($('div').hasClass('alert alert-error')){
+                    $("#create-item").addClass("hide"); 
+                    $("#add-another").removeClass("hide"); 
+                }
+            
+
+            },
+           error:function(xhr) {
+               alert("error in getting from server: " + xhr.responseText);
+           },
+        });
+    })
 
     var create_item = $('#create-item');
 

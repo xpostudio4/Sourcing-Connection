@@ -141,6 +141,8 @@
 
 
                 <h5>Certifications:</h5>
+                <div id="certifications">
+
                 {% if certifications %}
                         {% for certification in certifications %}
                         <div colspan="2">{{ certification.name }}</div>
@@ -157,6 +159,8 @@
 
                 {% endif %}
 
+                    
+                </div>
                 {####Partnerships####}
                 <h5>Partnership:</h5>
                 {% if partnerships %}
@@ -180,11 +184,11 @@
                 {% if expertises %}
 
                         {% for expertise in expertises%}
-                        <div colspan="2">{{ expertise.expertise }}</div>
+                        <div colspan="2">{{ expertise.name }}</div>
                         {% endfor %}
                     {% if expertises2 %}
                         {% for expertise in expertises2 %}
-                           <div colspan="2" class="hide plus-expertise">{{ expertise.expertise }}</div>
+                           <div colspan="2" class="hide plus-expertise">{{ expertise.name }}</div>
                         {% endfor %}
                     <a href="#" id="more-expertise">more >></a>
                     <a href="#" id="less-expertise" class="hide">less <<</a>
@@ -198,12 +202,12 @@
                 {% if verticals %}
 
                     {% for vertical in verticals %}
-                        <div colspan="2">{{ vertical.vertical }}</div>
+                        <div colspan="2">{{ vertical.name }}</div>
                     {% endfor %}
 
                     {% if verticals2 %}
                         {% for vertical in verticals2 %}
-                           <div colspan="2" class="hide plus-vertical">{{ vertical.vertical }}</div>
+                           <div colspan="2" class="hide plus-vertical">{{ vertical.name }}</div>
                         {% endfor %}
                     <a href="#" id="more-vertical">more >></a>
                     <a href="#" id="less-vertical" class="hide">less <<</a>
@@ -287,6 +291,21 @@
             <p><text class="muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="wysihtml5" >{{ company.value_proposition|safe  }}</text> </p>
 
         </div>
+        <div class="pull-right" style="margin-right:80px;"> 
+        <div class="btn-group">
+            <button class="btn">Follow</button>
+                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a tabindex="-1" href="#">Contact Company</a></li>
+                <li><a tabindex="-1" href="#">Foll ow Blog</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="#">Something else here</a></li>
+            </ul>
+         </div>
+        </div>
+
         <div class="icons">
                 {% if company.email %}
                     <a href="mailto:{{ company.email  }}"><span class="add-on"><img src="{{ STATIC_URL }}img/Mail-icon.png" height="16" width="16"></span></a>
@@ -351,6 +370,7 @@
         {% if stories %}
             {% for story in stories %}
                  {% if story.link %}
+                    <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL}}{{ story.story_image}}" height="96", width="140">
                     <div colspan="2"><a href="{{ story.link.url }}"><i class="icon-file"></i>{{ story.title }}</a></div>
                 {% endif %}
                 <br/>
@@ -428,7 +448,7 @@
                         <div>
                         {% if similar.logo %}
             
-                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ similar.logo }}" height="130", width="178">
+                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ similar.logo }}" height="96", width="140">
                         {% else %}
                         <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height=96, width=140  >
                         

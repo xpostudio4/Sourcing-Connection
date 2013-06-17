@@ -141,6 +141,8 @@
 
 
                 <h5>Certifications:</h5>
+
+                <div id="certifications">
                 {% if certifications %}
                         {% for certification in certifications %}
                         <div id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Certification" data-url="/formfields/Certification/{{ certification.id }}/name/" data-pk="{{ certification.id }}"  data-title="Certification" class="editable-value" >{{ certification.name }}</text> <i class="icon-pencil"></i></div>
@@ -151,8 +153,13 @@
 
                 {% endif %}
 
+                        
+                </div>
+
+
                 {####Partnerships####}
                 <h5>Partnership:</h5>
+                <div id="partnerships">
                 {% if partnerships %}
                         {% for partnership in partnerships%}
                         <div id="partnerships-{{ partnership.id }}"><a class="link-delete" data-type="partnerships" data-id="{{ partnership.id }}" id="{{ company.slug }}-partnerships-{{ partnership.id }}"  href="/company/{{ company.slug }}/partnerships/{{partnership.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Partnership" data-url="/formfields/Partnership/{{ partnership.id }}/name/" data-pk="{{ partnership.id }}"  data-title="partnership" class="editable-value" >{{ partnership.name }}</text> <i class="icon-pencil"></i></div>
@@ -160,32 +167,42 @@
                 {% else %}
                     <br/>
                 {% endif %}
+                  
 
+                </div>
 
                 <h5>Expertise:</h5>
+                <div id="expertises">
                 {% if expertises %}
 
                         {% for expertise in expertises%}
-                        <div id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{expertise.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{expertise.expertise}}</text> <i class="icon-pencil"></i></div>
+                        <div id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{expertise.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{expertise.name}}</text> <i class="icon-pencil"></i></div>
                         {% endfor %}
                 {% else %}
                     <br/>
                 {% endif %}
+                    
+                </div>
 
 
                 <h5>Verticals:</h5>
+                <div id="verticals">
                 {% if verticals %}
 
                     {% for vertical in verticals %}
-                        <div id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{vertical.id}}/delete"><i class="icon-remove"></i></a><text data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{vertical.vertical}}</text> <i class="icon-pencil"></i></div>
+                        <div id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{vertical.id}}/delete"><i class="icon-remove"></i></a><text data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{vertical.name}}</text> <i class="icon-pencil"></i></div>
                     {% endfor %}
 
                 {% else %}
                     <br/>
                 {% endif %}
+                    
+                </div>
 
 
                 <h5>Alliances:</h5>
+
+                <div id="alliances">
                 {% if alliances %}
                     
                     {% for alliance in alliances %}
@@ -197,9 +214,12 @@
                     <br/>
                 {% endif %}
 
+                    
+                </div>
 
 
                 <h5>Technical Associations:</h5>
+                <div id="technicalassociations">
                 {% if associations %}
                     {% for association in associations %}
                         <div id="associations-{{ association.id }}"><a class="link-delete" data-type="associations" data-id="{{ association.id }}" id="{{ company.slug }}-associations-{{ association.id }}"  href="/company/{{ company.slug }}/associations/{{association.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="TechnicalAssociation" data-url="/formfields/TechnicalAssociation/{{ association.id }}/name/" data-pk="{{ association.id }}"  data-title="association" class="editable-value" >{{ association.name }}</text> <i class="icon-pencil"></i></div>
@@ -209,7 +229,12 @@
                     <br/>
                 {% endif %}
 
+                    
+                </div>
+
+
                 <h5>Awards:</h5>
+                <div id="awards">
                 {% if awards %}
                     {% for award in awards %}
                         <div id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Award" data-url="/formfields/Award/{{ award.id }}/name/" data-pk="{{ award.id }}" class="editable-value" data-title="Award Name">{{ award.name }}</text> <i class="icon-pencil"></i></div>
@@ -218,6 +243,9 @@
                 {% else %}
                     <br/>
                 {% endif %}
+                    
+                </div>
+
                 
             
         </div>
@@ -322,6 +350,8 @@
         {# Products goes here #} 
         
         <h4 class="muted">Products:</h4>
+        <div id="products">
+
         {% if products %}
 
             <table class="table table-borderless" >
@@ -344,6 +374,8 @@
         {% else %}
             <br/>
        {% endif %}
+            
+        </div>
 
         {# Recommendations goes here #} 
         
@@ -371,6 +403,8 @@
 
         <hr>
         <h5>Projects:</h5>
+        <div id="projects">
+
         {% if projects %}
             {% for project in projects %}
                 <div id="projects-{{ project.id }}"><a class="link-delete" data-type="projects" data-id="{{ project.id }}" id="{{ company.slug }}-projects-{{ project.id }}" href="/company/{{ company.slug }}/projects/{{project.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Project" data-url="/formfields/Project/{{ project.id }}/name/" data-pk="{{ project.id }}" class="editable-value" data-title="Project Name">{{ project.name }}</text> <i class="icon-pencil"></i></div>
@@ -380,14 +414,20 @@
     
         {% endif %}
             
+            
+        </div>
 
         <h5>Acquisitions:</h5>
+        <div id="acquisitions">
+
         {% if acquisitions %}
             {% for acquisition in acquisitions %}
-                <div id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{acquisition.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name">{{ acquisition.name }}</text> <i class="icon-pencil"></i></div>
+                <div id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{ acquisition.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name">{{ acquisition.name }}</text> <i class="icon-pencil"></i></div>
             {% endfor %}
                 <br/>
         {% endif %}
+            
+        </div>
         
     </div>
 
@@ -447,7 +487,7 @@ link.click(
                 success: 
                     function(result){
                         $("#"+data_type+"-"+id).remove();  
-                        $("."+data_type+"-"+id).remove();  
+                        $("."+data_type+"-"+id).remove();
 
                     },
                 error: 
@@ -463,9 +503,10 @@ link.click(
 
     var add = $(".add-element");
 
-add.click(
+    add.click(
         function(event){
-            var model = $(this).data("model");  
+            var model = $(this).data("model");
+            var data_type = $(this).data("type");
             var id = $(this).data("id"); //can be form_id
             event.preventDefault();
 
@@ -484,6 +525,7 @@ add.click(
                         $("#companyModal").modal("show");
                         $('#id_date').datepicker();
                         $('#id_acquired_date').datepicker();
+                        $("#"+data_type+"-"+id).add();
                     },
                 error: 
                     function(xhr){
@@ -574,19 +616,29 @@ add.click(
             $("#companyModal").modal("hide");
         });
 
+
+    
     var create_item = $('#create-item');
-create_item.click( 
+    create_item.click( 
         function(event){
 
             var model_name = $(".modal-form").data("model");
+            var id = $(this).data("id"); //can be form_id
+
             event.preventDefault();
             $.ajax({
                 url: "/forms/{{ company.slug }}/"+model_name+"/",
                 type: "POST",
                 cache: false,
                 data:  $('#new-form').serialize(), 
-                success: 
-                    $("#companyModal").modal("hide")
+                success :
+                    function(result){
+                        $('#'+result.model.toLowerCase()+"s").append(result.template);
+                        $("#companyModal").modal("hide");
+                 } 
+                    
+                    
+                    
                     ,
                 error: 
                     function(xhr){

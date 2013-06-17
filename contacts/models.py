@@ -23,7 +23,7 @@ class Contact(models.Model):
     user = models.OneToOneField(User)
     fr_name = models.CharField(max_length=255, blank=True, verbose_name="First Name")
     ls_name = models.CharField(max_length=255, blank=True, verbose_name="Last Name")
-    m_name = models.CharField(max_length=255, blank=True)
+    m_name = models.CharField(max_length=255, blank=True, verbose_name="Middle Name")
     email = models.EmailField(blank=True)
     #Special Information about contact
     overview = models.TextField(blank=True)

@@ -33,12 +33,27 @@ def form_update(request, model, slug, id):
     }
     return HttpResponse(models[model].as_p())
 
-def sss(request):
-
-    return render_to_response('test.html', context_instance=RequestContext(request) )
 
 @require_POST
 def company_create_modal(request):
+    if request.method == 'POST':
+        if request.POST.get('name') != "" or " ": 
+            value = request.POST.get('name')
+            val = Company.objects.filter(name__iexact=value)
+            if val:
+                message = u'%s <div id="alerts" class="alert alert-error" >Exists in DB </div>\
+                    <div class="btn btn-danger"></div>' % value
+            else:
+                message = u'%s <div id="alerts" class="alert alert-success" >Not Exists in DB </div>\
+                    <div class="btn btn-success">' % value
+        else:
+            message = 'Waiting for an Input'
+    else:
+        message =""
+    return HttpResponse(json.dumps(message), mimetype="application/json")
+
+@require_POST
+def feature_names_modal(request):
     if request.method == 'POST':
         if request.POST.get('name') != "" or " ": 
             value = request.POST.get('name')
@@ -294,6 +309,23 @@ def ssss(request):
         message =""
     return HttpResponse(json.dumps(message), mimetype="application/json")
 
+@require_POST
+def sss(request):
+    if request.method == 'POST':
+        if request.POST.get('id') != "" or " ": 
+            value = request.POST.get('id').strip()
+            val = Company.objects.filter(name__iexact=value)
+            if val:
+                message = u'<div class="alert alert-error"> <strong>%s</strong> Exists in DB </div>' % value
+            else:
+
+                message = u'<div class="alert alert-success" > <strong>%s</strong> Not Exists in DB </div>' % value
+        else:
+            message = 'Waiting for an Input'
+    else:
+        message =""
+    return HttpResponse(json.dumps(message), mimetype="application/json")
+
 
 
 @require_POST
@@ -405,11 +437,11 @@ def form_fields(request, id, model, field):
      # From Company Extended Profile
     if model == "Expertise":
         o_model = get_object_or_404(Expertise, id=id)
-        o_model.expertise = value
+        o_model.name = value
 
     if model == "Vertical":
         o_model = get_object_or_404(Vertical, id=id)
-        o_model.vertical = value
+        o_model.name = value
         o_model.slug = slugify(value)
 
     if model == "Partnership":
