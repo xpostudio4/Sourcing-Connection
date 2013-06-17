@@ -455,9 +455,11 @@
                         <div>
                         {% if similar.logo %}
             
-                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ similar.logo }}" height="96", width="140">
+                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ similar.logo }}" height="65" width="115" >
+
                         {% else %}
-                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height=96, width=140  >
+
+                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115">
                         
                         {% endif %}
                             
