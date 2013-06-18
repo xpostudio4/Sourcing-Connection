@@ -81,13 +81,34 @@ class Contact(models.Model):
             return str(self.user)
 
     def __init__(self, *args, **kwargs):
+        """
+        Overwritting of __init__ to take some initial values from User's models needed in this application
+        """
+
         super(Contact, self).__init__(*args, **kwargs)
-        self.fr_name = self.user.first_name
-        self.ls_name = self.user.last_name
-        self.email = self.user.email
+        if not self.fr_name:
+            self.fr_name = self.user.first_name
+
+        if not self.ls_name:
+            self.ls_name = self.user.last_name
+
+        if not self.email:
+            self.email = self.user.email
+        
+        
 
 
     def save(self,*args, **kwargs):
+        if not self.user.first_name:
+            self.user.first_name =self.fr_name
+        
+        if not self.user.last_name:
+            self.user.last_name = self.ls_name
+
+        if not self.user.email:
+            self.user.email = self.email
+
+
         super(Contact, self).save(*args, **kwargs)
         contact_url = Contact_Urls(latech_contact=self)
         contact_url.save()
