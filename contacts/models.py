@@ -8,6 +8,10 @@ from location.models import Country, City
 from companies.models import Company
 from django.forms import ModelForm
 from django.core.files.base import ContentFile
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import dispatcher
+from django.dispatch import receiver
+
 #from storages.backends.gs import GSBotoStorage
 from django.core.files.storage import FileSystemStorage
 from storagess.backends.gs import GSBotoStorage
@@ -67,7 +71,21 @@ class Contact(models.Model):
     application = models.CharField(max_length=255, blank=True)
 
     def __unicode__(self):
-        return str(self.fr_name +" "+ self.ls_name)
+        if self.fr_name and self.ls_name:
+            return str(self.fr_name +" "+ self.ls_name)
+
+        elif not self.fr_name and not self.ls_name and self.user.first_name and self.user.last_name:
+            return str(self.user.first_name +" "+ self.user.last_name)
+
+        else:
+            return str(self.user)
+
+    def __init__(self, *args, **kwargs):
+        super(Contact, self).__init__(*args, **kwargs)
+        self.fr_name = self.user.first_name
+        self.ls_name = self.user.last_name
+        self.email = self.user.email
+
 
     def save(self,*args, **kwargs):
         super(Contact, self).save(*args, **kwargs)
@@ -78,8 +96,9 @@ class Contact(models.Model):
     def get_absolute_url(self):
           return ("/profile/%s/" % self.user)
     
+
 class Contact_Urls(models.Model):
-    latech_contact = models.ForeignKey(Contact)
+    latech_contact = models.OneToOneField(Contact)
    #Ptr to LinkedIn profile
     ld_url = models.URLField(blank=True, null=True, verbose_name="LinkedIn Url")
 
@@ -99,3 +118,9 @@ class Contact_Urls(models.Model):
         verbose_name_plural="Contact Urls"
     
 
+@receiver(post_save, sender=User)
+def create_contact(sender, instance, created, **kwargs):
+    if created:
+        
+        contact = Contact.objects.create(user=instance)
+ 
