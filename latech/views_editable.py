@@ -149,6 +149,7 @@ def company_edit(request, slug):
     fundings = Funding.objects.filter(company=company)
     pictures = Picture.objects.filter(company=company)
     companylinks = CompanyLink.objects.filter(company=company)
+
     # From Company Extended Profile
     partnerships = Partnership.objects.filter(company=company) 
     alliances = Alliance.objects.filter(company=company) 

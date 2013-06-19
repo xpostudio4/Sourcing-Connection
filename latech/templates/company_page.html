@@ -365,6 +365,18 @@
                 </table>
             {% endif %}
         <br/>
+        <div id="country"> 
+        <h4 class="muted">Country:</h4>
+        {% if company.country %}
+        <div id="world-map" style="width: 600px; height: 400px"></div>
+
+        <p>{{ company.country }}</p>        
+        {% else %}
+            <br/>
+        {% endif %}
+
+        </div>
+        
         {# Success Stories goes here #} 
         <h4 class="muted">Success Stories:</h4>
         {% if stories %}
@@ -532,7 +544,28 @@
 
 
 </div>
+<link href="{{ STATIC_URL }}css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+<script src="{{ STATIC_URL }}js/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery-jvectormap-world-mill-en.js"></script>
 <script src="{{ STATIC_URL}}js/scripts.js"></script>  
+<script>
+    $(function(){
+        $('#world-map').vectorMap({
+            map: 'world_mill_en',
+            zoomOnScroll: true,
+            zoomMax:8,
+            zoomMin:4,
+            series: {
+                  regions: [{
+                    values: {
+                        {{ company.country.country_code }}:'#0071A4',
+                    }
+                }]
+            }
+                    
+        });
+    });
+  </script>
 {% endblock %}
 </div>
 </div>

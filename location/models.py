@@ -6,6 +6,7 @@ from django.db import models
 
 class Country(models.Model):
     name = models.CharField(max_length=100)
+    country_code = models.CharField(max_length=2, blank=True)
     #flag = models.Imagefield()
     government_type = models.CharField(max_length=80, blank=True)
     stability_rating = models.CharField(max_length=30, blank=True)

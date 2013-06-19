@@ -111,7 +111,8 @@ class Contact(models.Model):
 
         super(Contact, self).save(*args, **kwargs)
         contact_url = Contact_Urls(latech_contact=self)
-        contact_url.save()
+        if not contact_url:
+            contact_url.save()
 
     @models.permalink
     def get_absolute_url(self):
