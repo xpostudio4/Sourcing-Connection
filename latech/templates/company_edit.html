@@ -332,6 +332,14 @@
                 </table>
             {% endif %}
         <br/>
+        <div id="country"> 
+        <h4 class="muted">Country:</h4>
+
+        <p><text data-type="select" id="company-country" data-model="Company" data-url="/formfields/Company/{{ company.id }}/country/" data-pk="{{ company.id }}" data-title="Company Country">{{ company.country }}<i class="icon-pencil"></i></text></p>        
+
+        </div>
+
+
         {# Success Stories goes here #} 
         <h4 class="muted">Success Stories:</h4>
         {% if stories %}
@@ -695,6 +703,27 @@ link.click(
                   {value: 'Venture Round', text: 'Venture Round'},
                   {value: 'Post IPO Equity', text: 'Post IPO Equity'},
                   {value: 'Post IPO Debt', text: 'Post IPO Debt'},
+                ],
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+
+        });
+
+        $('#company-country').editable({
+            {% if company.country %}
+                 value: "{{ company.country.id }}",
+            {% endif %}
+
+           
+            source: [
+
+                {% for country in countries %}
+                 {value: "{{ country.id }}", text: "{{ country.name }}"},  
+                {% endfor %}
+
                 ],
             params: function(params) {
                 //originally params contain pk, name and value

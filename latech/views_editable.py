@@ -20,6 +20,7 @@ from company_profile_extended.models import *
 from recommendations.models import Recommendation
 from contacts.models import *
 from fileupload.models import *
+from location.models import Country
 
 # testing Bootstrap editable
 
@@ -163,6 +164,7 @@ def company_edit(request, slug):
     products = Product.objects.filter(company=company)
     #Recommendations
     recommendations = Recommendation.objects.filter(company=company)
+    countries = Country.objects.all().order_by('id')
 
 
     office_list = []
@@ -187,6 +189,7 @@ def company_edit(request, slug):
         "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations,"products":products,
         # Recommendations
         "recommendations":recommendations,
+        "countries":countries,
          },
         context_instance=RequestContext(request))
 
@@ -363,7 +366,10 @@ def form_fields(request, id, model, field):
         elif field == "tags":
             o_model.tags = value
         elif field == "country":
-            o_model.country = value
+            country = Country.objects.get(id=value)
+            o_model.country = country
+#            country = Country.objects.get()
+ #           Country.objects.get(country=value)
         else:
             o_model.contact = value
 
