@@ -549,12 +549,11 @@
 <script src="{{ STATIC_URL }}js/jquery-jvectormap-world-mill-en.js"></script>
 <script src="{{ STATIC_URL}}js/scripts.js"></script>  
 <script>
+
     $(function(){
         $('#world-map').vectorMap({
             map: 'world_mill_en',
-            zoomOnScroll: true,
-            zoomMax:8,
-            zoomMin:4,
+            zoomButtons : false,
             series: {
                   regions: [{
                     values: {
@@ -565,6 +564,7 @@
                     
         });
     });
+
   </script>
 {% endblock %}
 </div>
