@@ -350,12 +350,20 @@ def form_validation(request, slug, model):
                 <td id="products-{{ product.id }}" data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/name/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{ product.id }}/delete"><i class="icon-remove"></i></a>{{ product.name }}<i class="icon-pencil"></i></td>
 
                 <td data-type="text" class="products-{{ product.id }} editable-value" data-model="Product" data-url="/formfields/Product/{{ product.id }}/price/" data-pk="{{ product.id }}" data-id="{{ product.id }}"   data-title="Product Price" >{{ product.price|floatformat:"2" }}<i class="icon-pencil"></i></td>
+
+                {% if product.product_image %}
+                    <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td>
+                {% else %}
+                    <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td>
+                {% endif %}
+
                         
             """
 
             template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ product.id }}", str(context.id))
             template = template.replace("{{ product.name }}", str(context.name))
             template = template.replace('{{ product.price|floatformat:"2" }}', str(context.price))
+            template = template.replace("{{ product.product_image }}", str(context.product_image))
 
 
         elif   model == "Project":
