@@ -117,7 +117,11 @@
                     <tr>    
                         <td colspan="2"><strong>Industry:</strong></td>
                      </tr><tr>
-                        <td colspan="2">{{ company.categories }}</td >
+                        <!-- 
+                                # TO FIX TO SOMETHING LIKE: 
+                            <td colspan="2"><a href="{{ company.categories.get_absolute_url }}">{{ company.categories }}</a></td>
+                        -->
+                        <td colspan="2"><a href="/industry/{{ company.categories.slug }}">{{ company.categories }}</a></td>
                     </tr>
 
                 {% endif %}
@@ -202,12 +206,18 @@
                 {% if verticals %}
 
                     {% for vertical in verticals %}
-                        <div colspan="2">{{ vertical.name }}</div>
+                    <!-- 
+                                # TO FIX TO SOMETHING LIKE: 
+                            <td colspan="2"><a href="{{ company.categories.get_absolute_url }}">{{ company.categories }}</a></td>
+                            <div colspan="2"><a href="{{ vertical.get_absolute_url }}">{{ vertical.name }}</a></div>
+                        -->
+                        <div colspan="2"><a href="/verticals/{{ vertical.slug }}">{{ vertical.name }}</a></div>
+
                     {% endfor %}
 
                     {% if verticals2 %}
                         {% for vertical in verticals2 %}
-                           <div colspan="2" class="hide plus-vertical">{{ vertical.name }}</div>
+                            <div colspan="2" class="hide plus-vertical"><a href="/verticals/{{ vertical.slug }}">{{ vertical.name }}</a></div>
                         {% endfor %}
                     <a href="#" id="more-vertical">more >></a>
                     <a href="#" id="less-vertical" class="hide">less <<</a>

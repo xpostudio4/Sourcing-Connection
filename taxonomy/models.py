@@ -1,5 +1,6 @@
 from django.db import models
 from django.template import defaultfilters
+from django.core.urlresolvers import resolve
 # Create your models here.
 
 class Industry(models.Model): 
@@ -33,7 +34,9 @@ class Category(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-          return ("/categories/%s/" % self.slug)
+        return ('taxonomy_category', (), { 'category_slug': self.slug })
+
+          #return ("/categories/%s/" % self.slug)
 
     class Meta:
          verbose_name_plural = "Categories"

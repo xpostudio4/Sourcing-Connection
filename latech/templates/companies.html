@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block external %} 
+{% endblock %}
+{% block content %}
+{% if company_list %}
+    <h2 class="lead">Companies</h2>
+    <ul class="companies">
+              
+        <script type="text/javascript">
+            $('#excel_button').tooltip("show");
+        </script>
+
+      <table class="table table-hover">
+
+            <tbody>
+
+        {% for company in company_list %}
+        <tr>
+          <td>
+                  <div class="media">
+                    <div class="span2">
+                      <a class="pull-left thumbnail" href="/company/{{ company.slug }}">
+                        {% if company.logo %}
+                          <img class="media-object" src="{{ MEDIA_URL }}{{ company.logo }}" height="130" width="178">
+                        {% else %}
+                          <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png"  >
+                        {% endif %}
+                      </a>
+                    </div>
+                      <div class="media-body">
+                <h3 class="media-heading" >
+                          <a href="/company/{{ company.slug }}">
+                         {{ company.name }}
+                      </a>
+                      </h3>
+                  
+                    <h4 class="mute"> {{ company.categories }} </h4>
+                  <p class="mute"> 
+                      {% if company.country%}
+                          {{ company.country }} 
+                      {% endif %}
+                       {% if company.employee_quantity%}
+                         | {{ company.employee_quantity }}  employees
+                      {% endif %}
+                      {% if company.industries%}
+                         | {{ company.industries }}
+                      {% endif %}
+
+                  </p>
+                      </div>
+                  </div>
+              </td>   
+        </tr>
+             
+        {% endfor %}
+ 
+         </tbody>
+        </table>
+         <hr/>
+
+    </ul>
+{% endif %}
+  
+{% endblock content %}

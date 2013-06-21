@@ -155,6 +155,7 @@ urlpatterns = patterns('',
 
     # URLs from Company Profile Extended
      url(r'^company/', include('company_profile_extended.urls')),
+     url(r'^industry/(?P<slug>[\w-]+)/$', 'latech.views.categories'),
 
      url(r'^admin/', include(admin.site.urls)),
  

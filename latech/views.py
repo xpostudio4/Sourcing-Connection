@@ -421,6 +421,12 @@ def tagit(request):
     f = simplejson.dumps(result)
     return render_to_response("tagit.html", {'f':f},context_instance=RequestContext(request))
 
+def categories(request, slug):
+    category = Category.objects.get(slug=slug)
+    company_list = Company.objects.filter(categories=category)
+    return render_to_response("companies.html",{'company_list': company_list}, 
+    context_instance=RequestContext(request))
+
 def base(request):
     return render_to_response("index.html",{'user': request.user}, 
     context_instance=RequestContext(request))
