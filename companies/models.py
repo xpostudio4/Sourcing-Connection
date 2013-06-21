@@ -111,10 +111,8 @@ class Company(models.Model):
         #self.description_html = markdown(self.description)
         super(Company, self).save(*args, **kwargs)
         companylinks = CompanyLink(id=self.id, company=self)
-        if companylinks:
-            pass
-        else:
-            companylinks.save()
+#        if not companylinks:
+        companylinks.save()
 
 
     @models.permalink
@@ -126,7 +124,7 @@ class Company(models.Model):
          ordering = ['id']
 
 class CompanyLink(models.Model):
-    company = models.ForeignKey(Company, related_name="Links for Companies")
+    company = models.OneToOneField(Company, related_name="Links for Companies")
     web_url = models.URLField(blank=True)
     linkedin_url = models.URLField(blank=True)    
     blog_url = models.URLField(blank=True)

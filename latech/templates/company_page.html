@@ -377,23 +377,17 @@
         <div id="world-map" style="width: 600px; height: 400px"></div>
 
         <p>{{ company.country }}</p>   
-        {% if offices %}
-        <h4 class="muted">With offices in :</h4>
-        <ul >
-            {% for office in offices %}
-                <li>{{ office.object.country}}</li>
-            {% endfor %}
-
-            
-        </ul>
-                 
-        {% endif %}     
         {% else %}
             <br/>
         {% endif %}
 
         </div>
-        
+        <ul class="nav nav-tabs">
+          <li><a href="#success-stories-tabs" data-toggle="tab">Success Stories</a></li>
+          <li><a href="#products-tabs" data-toggle="tab">Products</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane" id="success-stories-tabs">
         {# Success Stories goes here #} 
         <h4 class="muted">Success Stories:</h4>
         {% if stories %}
@@ -428,8 +422,9 @@
         {% else %}
             <br/>
        {% endif %}
-
-
+              
+          </div>
+          <div class="tab-pane" id="products-tabs">
         {# Products goes here #} 
         
         <h4 class="muted">Products:</h4>
@@ -482,6 +477,12 @@
         {% else %}
             <br/>
        {% endif %}
+              
+          </div>
+        </div>
+        
+
+
 
         {# Recommendations goes here #} 
         
@@ -591,7 +592,7 @@
                   regions: [{
                     values: {
                         {% for office in offices %}
-                            {{ office.object.country.country_code }}: '#00A287',
+                            {{ office.object.country.country_code }}: '#0071A4',
                         {% endfor %}
                         {{ company.country.country_code }}:'#0071A4',
 
