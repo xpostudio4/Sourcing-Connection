@@ -376,7 +376,18 @@
         {% if company.country %}
         <div id="world-map" style="width: 600px; height: 400px"></div>
 
-        <p>{{ company.country }}</p>        
+        <p>{{ company.country }}</p>   
+        {% if offices %}
+        <h4 class="muted">With offices in :</h4>
+        <ul >
+            {% for office in offices %}
+                <li>{{ office.object.country}}</li>
+            {% endfor %}
+
+            
+        </ul>
+                 
+        {% endif %}     
         {% else %}
             <br/>
         {% endif %}
@@ -401,7 +412,10 @@
                 {% for story in stories2 %}
                     {% if story.link %}
                     {% if story.story_image %}
-                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ story.story_image}}" height="96", width="140">                        
+                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ story.story_image}}" height="96", width="140">
+                    {% else %}
+                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115">
+        
                     {% endif %}
 
                         <div colspan="2"><a href="{{ story.link.url }}">{{ story.title }}</a></div>
@@ -435,7 +449,7 @@
                     <td>{{ product.name }}</td>
                     <td>US ${{ product.price|floatformat:"2"|intcomma }}</td>
                     {% if product.product_image %}
-                        <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}{{ product.product_image }}" height="65" width="115"></td>
+                        <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td>
                     {% else %}
                         <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td>
                     {% endif %}
@@ -576,10 +590,10 @@
             series: {
                   regions: [{
                     values: {
-                        {{ company.country.country_code }}:'#0071A4',
                         {% for office in offices %}
                             {{ office.object.country.country_code }}: '#00A287',
                         {% endfor %}
+                        {{ company.country.country_code }}:'#0071A4',
 
                     }
                 }]

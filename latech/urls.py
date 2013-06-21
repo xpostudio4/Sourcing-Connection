@@ -121,6 +121,7 @@ urlpatterns = patterns('',
 
      url(r'^login/$', 'latech.views.authentication_view'),
      url(r'^logout/$', 'latech.views.logout_page'),
+     url(r'^password/change/$', 'django.contrib.auth.views.password_change',{'post_change_redirect': '/'}),
 
      # Search Urls
      url(r'^search/$', 'latech.search.search_page'),
