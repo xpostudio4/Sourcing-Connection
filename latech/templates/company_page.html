@@ -278,20 +278,17 @@
     </div>
 
     <div class="span6">
-    
         {% if  user.is_staff or user.is_superuser or permission %}
-            
+        <div class="media">
             <div class="pull-right" style="margin-right:80px;">
                 <a class="btn" href="/company/{{ company.slug }}/edit"><i class="icon-pencil"></i> Edit </a>
             </div>
+            
+        </div>
+
         {% endif %}
 
-        <div class="media">
-            <h2 class="media-heading">{{ company.name  }} </h2>
-            <p><text class="muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="wysihtml5" >{{ company.value_proposition|safe  }}</text> </p>
-
-        </div>
-        <div class="pull-right" style="margin-right:80px;"> 
+    <div class="pull-right" style="margin-right:80px;"> 
         <div class="btn-group">
             <button class="btn">Follow</button>
                 <button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -306,7 +303,13 @@
          </div>
         </div>
 
-        <div class="icons">
+
+        <div class="media">
+            <h2 class="media-heading">{{ company.name  }} </h2>
+            <p><text class="muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="wysihtml5" >{{ company.value_proposition|safe  }}</text> </p>
+
+        </div>
+                <div class="icons">
                 {% if company.email %}
                     <a href="mailto:{{ company.email  }}"><span class="add-on"><img src="{{ STATIC_URL }}img/Mail-icon.png" height="16" width="16"></span></a>
                 {% else %}
@@ -349,6 +352,8 @@
                 {% endfor%}
             </div>
 
+
+        
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
             <p id="company-description">{{ company.description|safe}}</p>
@@ -420,20 +425,33 @@
                     <tr>
                         <th>Product</th>
                         <th>Price</th>
+                        <th>Picture</th>
                     </tr>
               </thead>
                 <tbody>
                     <tr>
                 {% for product in products %}
-                       <td>{{ product.name }}</td>
-                       <td>US ${{ product.price|floatformat:"2"|intcomma }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>US ${{ product.price|floatformat:"2"|intcomma }}</td>
+                    {% if product.product_image %}
+                        <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}{{ product.product_image }}" height="65" width="115"></td>
+                    {% else %}
+                        <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td>
+                    {% endif %}
+                       
                     </tr>
                 {% endfor %}
                 {% if products2 %}
                     <tr>
                     {% for product in products2 %}
-                           <td class="hide plus-product">{{ product.name }}</td>
-                           <td class="hide plus-product">US ${{ product.price|floatformat:"2"|intcomma }}</td>
+                        <td class="hide plus-product">{{ product.name }}</td>
+                        <td class="hide plus-product">US ${{ product.price|floatformat:"2"|intcomma }}</td>
+                        {% if product.product_image %}
+                            <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}{{ product.product_image }}" height="65" width="115"></td>
+                        {% else %}
+                            <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td>
+                        {% endif %}
+
                         </tr>
                     {% endfor %}
                 {% endif %}
@@ -558,12 +576,17 @@
                   regions: [{
                     values: {
                         {{ company.country.country_code }}:'#0071A4',
+                        {% for office in offices %}
+                            {{ office.object.country.country_code }}: '#00A287',
+                        {% endfor %}
+
                     }
                 }]
             }
                     
         });
     });
+
 
   </script>
 {% endblock %}
