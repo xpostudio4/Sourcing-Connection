@@ -336,7 +336,7 @@
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
         <a href="#" id="save-company" class="hide"><button class="btn btn-primary">Save Company</button></a>
         {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
-             <a href="/company/{{ company.slug }}/edit" id="webmaster" class="hide"><button class="btn btn-danger">Edit Company</button></a>
+             <a href="#" id="edit-company-page" class="hide"><button class="btn">Edit Company</button></a>
         {% else %}
             <a href="#" id="webmaster" class="hide"><button class="btn btn-danger">Contact Webmaster</button></a>
 
@@ -463,7 +463,11 @@ var slug = function(str) {
                     $("#wm_contact").addClass("hide");
                 }else if ($('div').hasClass('alert alert-error')){
                     $("#save-company").addClass("hide"); 
-                    $("#webmaster").removeClass("hide"); 
+                    $("#webmaster").removeClass("hide");
+                    var url="/company/"+name.val()+"/edit/";
+                    $("#edit-company-page").removeClass("hide");
+                    $("#edit-company-page").html('<a href='+url+' id="edit-company-page"><button class="btn">Edit Company</button></a>');
+
                 }
             
 
