@@ -145,6 +145,10 @@ urlpatterns = patterns('',
      url(r'events/new$', EventNewView.as_view()),
 
 
+     # URLs for industries and verticals
+     url(r'^industry/(?P<slug>[\w-]+)/$', 'latech.views.categories'),
+     url(r'^vertical/(?P<slug>[\w-]+)/$', 'latech.views.verticals'),
+     
 
 #     url(r'^advance_search/', 'latech.views.advance_search'),
 #     url(r'^$', "latech.search.advance_contact_search"),
@@ -155,10 +159,8 @@ urlpatterns = patterns('',
 
     # URLs from Company Profile Extended
      url(r'^company/', include('company_profile_extended.urls')),
-     url(r'^industry/(?P<slug>[\w-]+)/$', 'latech.views.categories'),
 
      url(r'^admin/', include(admin.site.urls)),
  
 
 )
-
