@@ -313,13 +313,22 @@
         {% endfor %}
 
 
-            <data-toggle="popover" data-placement="right" id="valuepop" data-content="Who is your customer:(Segments)<br/> What problem do you solve:<br/>How do you solve it:</br>How is it different from other available solutions: <br/> What is the benefit to your customer:" data-html="true" class="fade" title="Value Proposition"/><p><text class="editable-value muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="wysihtml5" >{{ company.value_proposition|safe  }}</text><i class="icon-pencil"></i></p>
-
     
         </div>
+<!--
+                <i data-toggle="popover" data-placement="right" id="valuepop" data-content="Who is your customer:(Segments)<br/> What problem do you solve:<br/>How do you solve it:</br>How is it different from other available solutions: <br/> What is the benefit to your customer:" data-html="true" class="fade" title="Value Proposition"><p><text class="editable-value muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="wysihtml5" >{{ company.value_proposition|safe  }}</text><i class="icon-pencil"></i></p></i>
+
+-->
+        <div class="media">
+            <i data-toggle="popover" data-placement="right" id="valuepop" data-content="Who is your customer:(Segments)<br/> What problem do you solve:<br/>How do you solve it:</br>How is it different from other available solutions: <br/> What is the benefit to your customer:" data-html="true" class="icon-pencil"></i><p class="editable-value muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="textarea" >{{ company.value_proposition|safe  }}
+                
+            </p>
+        </div>
+
+
         <div class="media">
             <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
-            <p><text id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="wysihtml5" class="editable-value" >{{ company.description|safe}}<i class="icon-pencil"></i> </text> </p> 
+            <p><text id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="textarea" class="editable-value" >{{ company.description|safe}}<i class="icon-pencil"></i> </text> </p> 
         </div>
         <div class="media">
             {# To Change #}
