@@ -435,13 +435,16 @@
                     {% if stories %}
                         {% for story in stories %}
                              {% if story.link %}
+<!-- 
                                 {% if story.story_image %}
                                     <a href="{{ story.link.url }}"><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ story.story_image}}" height="96", width="140"></a>
                                 {% else %}
                                     <a href="{{ story.link.url }}"><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="96", width="140"></a>
                                 {% endif %}
 
-                                <div colspan="2"><a href="{{ story.link.url }}">{{ story.title }}</a></div>
+-->
+
+                                <div colspan="2"><a href="{{ story.link.url }}"><i class="icon-file"></i>{{ story.title }}</a></div>
                             {% endif %}
                             <br/>
 
@@ -489,7 +492,7 @@
                                 <td>{{ product.name }}</td>
                                 <td>US ${{ product.price|floatformat:"2"|intcomma }}</td>
                                 {% if product.product_image %}
-                                    <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td>
+                                    <td><a class="gallery" href="{{ MEDIA_URL }}{{ product.product_image }}" ><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></a></td>
                                 {% else %}
                                     <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td>
                                 {% endif %}
@@ -642,7 +645,7 @@
                             //{{ office.object.country.country_code }}['name'] : 'Hola Mundo!',
                             //{{ office.object.country.country_code }}: '#0071A4',
                         {% endfor %}
-                        //{{ company.country.country_code }}:'Hola Mundo',
+                        {{ company.country.country_code }}:'#0071A4',
 
                     }
                 }]

@@ -337,7 +337,7 @@
             {% if company.tags %}
                 <table> 
                     <tr>
-                        <td><h4 class="media-heading muted">Related Categories:</h4></td>
+                        <td><h4 class="media-heading muted">Related Categories:</h4> <i data-toggle="popover" data-placement="right" data-content="These are the related categories. Click any of them to edit" class="icon-question-sign valuepop" data-title="Related Categories"></i></td>
                     <tr></tr>
                         <td data-model="Company" data-url="/formfields/Company/{{ company.id }}/tags/" data-pk="{{ company.id }}"  data-title="Company Tags" data-type="text" class="editable-value" id="co-tags">{{ company.tags }}</td>
                     </tr>
@@ -428,7 +428,7 @@
         <ul class="nav nav-list">
             <li><a class="add-element" data-model="Certification" href="/company/{{ company.slug }}/certifications/new"><i class="icon-plus"></i> Add Certification</a></li>
             <li><a class="add-element" data-model="Partnership" href="/company/{{ company.slug }}/partnerships/new"><i class="icon-plus"></i> Add Partnership</a></li>
-            <li><a class="add-element" data-model="Expertise" href="#"><i class="icon-plus"></i> Add Expertirse</a></li>
+            <li><a class="add-element" data-model="Expertise" href="#"><i class="icon-plus"></i> Add Expertise</a></li>
             <li><a class="add-element" data-model="Vertical" href="#"><i class="icon-plus"></i> Add a New Verticals</a></li>
             <li><a class="add-element" data-model="Alliance" href="/company/{{ company.slug }}/alliances/new"><i class="icon-plus"></i> Add Alliance</a></li>
             <li><a class="add-element" data-model="TechnicalAssociation" href="/company/{{ company.slug }}/associations/new"><i class="icon-plus"></i> Add a Technical Association:</a></li>
