@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.template import defaultfilters
 from django.core.files.storage import FileSystemStorage
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
 
 #Models
 from location.models import *
@@ -108,11 +110,12 @@ class Company(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = defaultfilters.slugify(self.name)
-        #self.description_html = markdown(self.description)
         super(Company, self).save(*args, **kwargs)
-        companylinks = CompanyLink(id=self.id, company=self)
+#        companylinks = CompanyLink(id=self.id, company=self)
 #        if not companylinks:
-        companylinks.save()
+#            companylinks.save()
+#        else:
+#            companylinks.update()
 
 
     @models.permalink
@@ -335,3 +338,10 @@ class ProfileCompletion(models.Model):
 
     def __unicode__(self):
         return str(self.company)+ ":" + str(int(self.completion*100))+ "%"
+
+#Signals for company links
+@receiver(post_save, sender=Company)
+def create_companylink(sender, instance, created, **kwargs):
+    if created:
+        
+        companylink = CompanyLink.objects.create(company=instance)

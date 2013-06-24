@@ -62,6 +62,7 @@ def form_create(request, model):
         "Expertise":ExpertiseForm(),
         "Vertical":VerticalForm(),
         "AnnualRevenue":AnnualRevenueForm(),
+        #"ProductPictureForm":ProductPictureForm(),
 
     }
     return HttpResponse(models[model].as_p())
@@ -91,6 +92,7 @@ def form_validation(request, slug, model):
         "Expertise":ExpertiseForm(request.POST),
         "Vertical":VerticalForm(request.POST),
         "AnnualRevenue":AnnualRevenueForm(request.POST),
+        #"ProductPictureForm":ProductPictureForm(request.POST),
 
     }
 

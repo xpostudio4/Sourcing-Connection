@@ -1,19 +1,84 @@
 {% extends "base.html" %}
-{% block external %} 
+<title>{% block title %}Globaltech - Your connection to the enterprise world{% endblock %}</title>
+
+
+
+{% block external %}
+
+    <script src="{{ STATIC_URL }}js/html5slider.js"></script>
+
+    <script type="text/javascript">
+        onload = function() {
+          document.getElementById('one').onchange = function() {
+              document.getElementById('uno').innerHTML = this.value+"%";
+          };
+          document.getElementById('one').onchange();
+          document.getElementById('two').onchange = function() {
+              document.getElementById('dos').innerHTML = this.value+"%";
+          };
+          document.getElementById('two').onchange();
+        };
+    </script>
+
 {% endblock %}
+
+
+
 {% block content %}
-{% if company_list %}
-    <h2 class="lead">Companies</h2>
-    <ul class="companies">
-              
-        <script type="text/javascript">
-            $('#excel_button').tooltip("show");
-        </script>
 
-      <table class="table table-hover">
+    <div class="container">
+        <div class="row">
+            <div class="span3">
+                <div class="tabbable"> <!-- Only required for left/right tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#company-tab" data-toggle="tab">Companies</a></li>
 
-            <tbody>
+                            {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
+                                <li><a class="mute" href="#employee-tab" data-toggle="tab">Contacts</a></li>
+                            {% endif%}
 
+                    </ul>
+                    
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="company-tab">
+                            <form id="search-company-form" method="get" action=".">
+                                {{ company_form.as_p }}
+        
+                                {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
+                         
+                                    {{ company_status_form.as_p }}
+                                    <!-- Search by Porcentage code --> 
+                                    
+                                    <input name="minimum" type="range" min="0" max="100" value="0" id="one" /> 
+                                    <p><div id="uno">&nbsp;</div><p>
+
+                                    <input name="maximum" type="range" min="0" max="100" value="100" id="two" />
+                                    <p><div id="dos">&nbsp;</div><p>
+                                {% endif%}
+
+                            <input type="submit" value="search">
+                            </form>
+                        </div>
+
+
+                        {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
+                            <div class="tab-pane" id="employee-tab">
+        
+                                <form id="search-contact-form" method="get" action=".">
+                                    {{ contact_form.as_p }}
+                                    <input type="submit" value="search">
+                                </form>
+                            
+                            </div>
+ 
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+
+
+        <div class="span8">
         {% for company in company_list %}
         <tr>
           <td>
@@ -53,12 +118,13 @@
         </tr>
              
         {% endfor %}
- 
-         </tbody>
-        </table>
-         <hr/>
 
-    </ul>
-{% endif %}
-  
-{% endblock content %}
+
+
+
+        </div>
+
+    </div>
+
+{% endblock %}
+

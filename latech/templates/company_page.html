@@ -99,13 +99,22 @@
 
                  <table>
                     <th><h5>General Information</h5> </th>
+
+<!--
+
+{## 
+
                 {% if  user.is_staff or user.is_superuser or permission %}
+
                         <tr>
                             <td colspan="2"><strong>Phone:</strong></td>
                          </tr><tr>
                             <td colspan="2">{{ company.main_phone }}</td>
                         </tr>
                 {% endif %}
+##}
+
+-->
                 {% if company.founding_date %}
                     <tr>
                             <td><strong>Founding Date:</strong></td>
@@ -366,129 +375,156 @@
 
         
         <div class="media">
-            <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
-            <p id="company-description">{{ company.description|safe}}</p>
-        </div>
-        <div class="media">
-            {# To Change #}
-            {% if company.tags %}
-                <table> 
-                    <tr>
-                        <td><h4 class="media-heading muted">Related Categories:</h4></td>
-                    <tr></tr>
-                        <td id="co-tags"></td>
-                    </tr>
-                </table>
-            {% endif %}
-        <br/>
-        <div id="country"> 
-        <h4 class="muted">Country:</h4>
-        {% if company.country %}
-        <div id="world-map" style="width: 600px; height: 400px"></div>
-
-        <p>{{ company.country }}</p>   
-        {% else %}
             <br/>
-        {% endif %}
 
-        </div>
-        <ul class="nav nav-tabs">
-          <li><a href="#success-stories-tabs" data-toggle="tab">Success Stories</a></li>
-          <li><a href="#products-tabs" data-toggle="tab">Products</a></li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane" id="success-stories-tabs">
-        {# Success Stories goes here #} 
-        <h4 class="muted">Success Stories:</h4>
-        {% if stories %}
-            {% for story in stories %}
-                 {% if story.link %}
-                    {% if story.story_image %}
-                        <a href="{{ story.link.url }}"><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ story.story_image}}" height="96", width="140"></a>
+
+            <ul class="nav nav-tabs">
+                <li><a href="#location-tabs" data-toggle="tab">Locations</a></li>
+                <li><a href="#description-tabs" data-toggle="tab">Description</a></li>
+                <li><a href="#success-stories-tabs" data-toggle="tab">Success Stories</a></li>
+                <li><a href="#related-tabs" data-toggle="tab">Related Categories</a></li>
+                <li><a href="#products-tabs" data-toggle="tab">Products</a></li>
+
+            </ul>
+
+
+            <div class="tab-content ">
+
+                {# Company Description #}
+                <div class="tab-pane" id="description-tabs"> 
+                    <div class="media">
+                        <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
+                        <p id="company-description">{{ company.description|safe}}</p>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="related-tabs"> 
+                    <div class="media">
+
+                    {# Related Categories #}
+                    {% if company.tags %}
+                        <table> 
+                            <tr>
+                                <td><h4 class="media-heading muted">Related Categories:</h4></td>
+                            <tr></tr>
+                                <td id="co-tags"></td>
+                            </tr>
+                        </table>
                     {% endif %}
 
-                    <div colspan="2"><a href="{{ story.link.url }}"><i class="icon-file"></i>{{ story.title }}</a></div>
-                {% endif %}
-                <br/>
+                    </div>
+                </div>
 
-            {% endfor %}
-            {% if stories2 %}
-                {% for story in stories2 %}
-                    {% if story.link %}
-                    {% if story.story_image %}
-                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ story.story_image}}" height="96", width="140">
+
+                {# Locations #}
+                <div class="tab-pane active" id="location-tabs"> 
+                    <h4 class="muted">Country:</h4>
+                    {% if company.country %}
+                    <div id="world-map" style="width: 500px; height: 350px"></div>
                     {% else %}
-                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115">
-        
+                        <br/>
                     {% endif %}
 
-                        <div colspan="2"><a href="{{ story.link.url }}">{{ story.title }}</a></div>
-                    {% endif %}
-                    <br/>
-                {% endfor %}
-                <a href="#" id="more-stories">More >></a>
-                <a href="#" id="less-stories" class="hide">less <<</a>
-            {% endif %}
-        {% else %}
-            <br/>
-       {% endif %}
-              
-          </div>
-          <div class="tab-pane" id="products-tabs">
-        {# Products goes here #} 
-        
-        <h4 class="muted">Products:</h4>
-        {% if products %}
+                </div>
 
-            <table class="table table-borderless" >
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Picture</th>
-                    </tr>
-              </thead>
-                <tbody>
-                    <tr>
-                {% for product in products %}
-                    <td>{{ product.name }}</td>
-                    <td>US ${{ product.price|floatformat:"2"|intcomma }}</td>
-                    {% if product.product_image %}
-                        <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td>
+
+
+                <div class="tab-pane" id="success-stories-tabs">
+                    {# Success Stories goes here #} 
+                    <h4 class="muted">Success Stories:</h4>
+                    {% if stories %}
+                        {% for story in stories %}
+                             {% if story.link %}
+                                {% if story.story_image %}
+                                    <a href="{{ story.link.url }}"><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ story.story_image}}" height="96", width="140"></a>
+                                {% else %}
+                                    <a href="{{ story.link.url }}"><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="96", width="140"></a>
+                                {% endif %}
+
+                                <div colspan="2"><a href="{{ story.link.url }}">{{ story.title }}</a></div>
+                            {% endif %}
+                            <br/>
+
+                        {% endfor %}
+                        {% if stories2 %}
+                            {% for story in stories2 %}
+                                {% if story.link %}
+                                {% if story.story_image %}
+                                    <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ story.story_image}}" height="96", width="140">
+                                {% else %}
+                                    <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115">
+                    
+                                {% endif %}
+
+                                    <div colspan="2"><a href="{{ story.link.url }}">{{ story.title }}</a></div>
+                                {% endif %}
+                                <br/>
+                            {% endfor %}
+                            <a href="#" id="more-stories">More >></a>
+                            <a href="#" id="less-stories" class="hide">less <<</a>
+                        {% endif %}
                     {% else %}
-                        <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td>
+                        <br/>
                     {% endif %}
-                       
-                    </tr>
-                {% endfor %}
-                {% if products2 %}
-                    <tr>
-                    {% for product in products2 %}
-                        <td class="hide plus-product">{{ product.name }}</td>
-                        <td class="hide plus-product">US ${{ product.price|floatformat:"2"|intcomma }}</td>
-                        {% if product.product_image %}
-                            <td class="hide plus-product"><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td>
-                        {% else %}
-                            <td class="hide plus-product"><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td>
+                          
+                </div>
+
+                <div class="tab-pane" id="products-tabs">
+                    {# Products goes here #} 
+                
+                    <h4 class="muted">Products:</h4>
+                    {% if products %}
+
+                        <table class="table table-borderless" >
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Picture</th>
+                                </tr>
+                          </thead>
+                            <tbody>
+                                <tr>
+                            {% for product in products %}
+                                <td>{{ product.name }}</td>
+                                <td>US ${{ product.price|floatformat:"2"|intcomma }}</td>
+                                {% if product.product_image %}
+                                    <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td>
+                                {% else %}
+                                    <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td>
+                                {% endif %}
+                                   
+                                </tr>
+                            {% endfor %}
+                            {% if products2 %}
+                                <tr>
+                                {% for product in products2 %}
+                                    <td class="hide plus-product">{{ product.name }}</td>
+                                    <td class="hide plus-product">US ${{ product.price|floatformat:"2"|intcomma }}</td>
+                                    {% if product.product_image %}
+                                        <td class="hide plus-product"><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td>
+                                    {% else %}
+                                        <td class="hide plus-product"><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td>
+                                    {% endif %}
+
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                            </tbody>
+                        </table>
+
+                        {# Trick to display more/less bottom the table #}
+                        {% if products2 %}
+                            <a href="#" id="more-product">more >></a>
+                            <a href="#" id="less-product" class="hide">less <<</a>
                         {% endif %}
 
-                        </tr>
-                    {% endfor %}
-                {% endif %}
-                </tbody>
-            </table>
-
-            {# Trick to display more/less bottom the table #}
-            {% if products2 %}
-                <a href="#" id="more-product">more >></a>
-                <a href="#" id="less-product" class="hide">less <<</a>
-            {% endif %}
-
-        {% else %}
-            <br/>
-       {% endif %}
-              
-          </div>
+                    {% else %}
+                        <br/>
+                    {% endif %}
+                  
+            </div>
+        
         </div>
         
 
@@ -603,8 +639,10 @@
                     values: {
                         {% for office in offices %}
                             {{ office.object.country.country_code }}: '#0071A4',
+                            //{{ office.object.country.country_code }}['name'] : 'Hola Mundo!',
+                            //{{ office.object.country.country_code }}: '#0071A4',
                         {% endfor %}
-                        {{ company.country.country_code }}:'#0071A4',
+                        //{{ company.country.country_code }}:'Hola Mundo',
 
                     }
                 }]

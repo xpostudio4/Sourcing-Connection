@@ -101,37 +101,39 @@
                     <th><h5>General Information</h5> </th>
                 {% if  user.is_staff or user.is_superuser or permission %}
                         <tr>
-                            <td colspan="2"><strong>Phone:</strong></td>
+                            <td colspan="2"><strong>Phone:</strong> <i data-toggle="popover" data-placement="right" data-content="This is the principal phone number of the company. To edit the phone, click it" data-html="true" class="icon-question-sign valuepop" data-title="Company Foundation"></i></td>
                          </tr><tr>
-                            <td colspan="2" data-type="tel" data-model="Company" data-url="/formfields/Company/{{ company.id }}/main_phone/" data-pk="{{ company.id }}"  data-title="Company Main Phone"  id="company-phone" class="editable-value" href="{{ company.main_phone }}">{{ company.main_phone }}<i class="icon-pencil"></i></td>
+                            <td colspan="2" data-type="tel" data-model="Company" data-url="/formfields/Company/{{ company.id }}/main_phone/" data-pk="{{ company.id }}"  data-title="Company Main Phone"  id="company-phone" class="editable-value" href="{{ company.main_phone }}">{{ company.main_phone }}</td>
                         </tr>
                 {% endif %}
                 {% if company.founding_date %}
                     <tr>
-                            <td><strong>Founding Date:</strong></td>
+                            <td><strong>Founding Date:</strong><i data-toggle="popover" data-placement="right" data-content="Year company foundation. To edit it, just click it" data-html="true" class="icon-question-sign valuepop" data-title="Company Phone Number "></i></td>
                             <td class="editable-value" data-type="number"  data-model="Company" data-url="/formfields/Company/{{ company.id }}/founding_date/" data-pk="{{ company.id }}" data-title="Company Since">{{ company.founding_date }}</td>
                     </tr>
 
                 {% endif %}
-                {% if company.categories %}
+                <div id="industry"> 
                     <tr>    
-                        <td colspan="2"><strong>Industry:</strong></td>
+                        <td colspan="2"><strong>Industry:</strong> <i data-toggle="popover" data-placement="right" data-content="The thing we do for our clients" data-html="true" class="icon-question-sign valuepop" data-title="Company Industry"></i></td>
                      </tr><tr>
-                        <td colspan="2">{{ company.categories }}</td >
+                        <td colspan="2" data-type="select" id="company-industry" data-model="Company" data-url="/formfields/Company/{{ company.id }}/categories/" data-pk="{{ company.id }}" data-title="Company Category">{{ company.categories }}</td >
                     </tr>
 
-                {% endif %}
+                </div>
+
+
                 {% if company.applications %}
                     <tr>    
-                        <td colspan="2"><strong>Applications:</strong></td>
+                        <td colspan="2"><strong>Applications:</strong> <i data-toggle="popover" data-placement="right" data-content="Kind of companies we have working. Just click it to edit " data-html="true" class="icon-question-sign valuepop" data-title="Company Applications "></i></td>
                     </tr><tr>
-                        <td colspan="2" data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/applications/" data-pk="{{ company.id }}"  data-title="Company Applications" class="editable-value" >{{ company.applications }}<i class="icon-pencil"></i></td>
+                        <td colspan="2" data-type="text" data-model="Company" data-url="/formfields/Company/{{ company.id }}/applications/" data-pk="{{ company.id }}"  data-title="Company Applications" class="editable-value" >{{ company.applications }}</td>
                     </tr>
                 {% endif %}
 
                 {% if company.employee_quantity %}
                     <tr>
-                        <td colspan="2"><strong>No. Employees:</strong></td>
+                        <td colspan="2"><strong>No. Employees:</strong> <i data-toggle="popover" data-placement="right" data-content="A range of quantity the company have. Just click it to edit " data-html="true" class="icon-question-sign valuepop" data-title="Size of company "></i></td>
                     </tr><tr>
                         <td colspan="2" data-type="select" id="size-company" data-model="Company" data-url="/formfields/Company/{{ company.id }}/employee_quantity/" data-pk="{{ company.id }}" data-title="Company Size"> {{ company.get_employee_quantity_display }}</td>
                     </tr>
@@ -140,12 +142,12 @@
                </table>
 
 
-                <h5>Certifications:</h5>
+                <h5>Certifications:  <i data-toggle="popover" data-placement="right" data-content="Certifications. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Company Certifications"></i></h5>
 
                 <div id="certifications">
                 {% if certifications %}
                         {% for certification in certifications %}
-                        <div id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Certification" data-url="/formfields/Certification/{{ certification.id }}/name/" data-pk="{{ certification.id }}"  data-title="Certification" class="editable-value" >{{ certification.name }}</text> <i class="icon-pencil"></i></div>
+                        <div id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{certification.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Certification" data-url="/formfields/Certification/{{ certification.id }}/name/" data-pk="{{ certification.id }}"  data-title="Certification" class="editable-value" >{{ certification.name }}</text></div>
 
                         {% endfor %}
                 {% else %}
@@ -158,11 +160,11 @@
 
 
                 {####Partnerships####}
-                <h5>Partnership:</h5>
+                <h5>Partnership: <i data-toggle="popover" data-placement="right" data-content="Company Partners. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Partnerships"></i></h5>
                 <div id="partnerships">
                 {% if partnerships %}
                         {% for partnership in partnerships%}
-                        <div id="partnerships-{{ partnership.id }}"><a class="link-delete" data-type="partnerships" data-id="{{ partnership.id }}" id="{{ company.slug }}-partnerships-{{ partnership.id }}"  href="/company/{{ company.slug }}/partnerships/{{partnership.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Partnership" data-url="/formfields/Partnership/{{ partnership.id }}/name/" data-pk="{{ partnership.id }}"  data-title="partnership" class="editable-value" >{{ partnership.name }}</text> <i class="icon-pencil"></i></div>
+                        <div id="partnerships-{{ partnership.id }}"><a class="link-delete" data-type="partnerships" data-id="{{ partnership.id }}" id="{{ company.slug }}-partnerships-{{ partnership.id }}"  href="/company/{{ company.slug }}/partnerships/{{partnership.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Partnership" data-url="/formfields/Partnership/{{ partnership.id }}/name/" data-pk="{{ partnership.id }}"  data-title="partnership" class="editable-value" >{{ partnership.name }}</text></div>
                         {% endfor %}
                 {% else %}
                     <br/>
@@ -171,12 +173,12 @@
 
                 </div>
 
-                <h5>Expertise:</h5>
+                <h5>Expertise: <i data-toggle="popover" data-placement="right" data-content="Company strong areas. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Expertises"></i></h5>
                 <div id="expertises">
                 {% if expertises %}
 
                         {% for expertise in expertises%}
-                        <div id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{expertise.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{expertise.name}}</text> <i class="icon-pencil"></i></div>
+                        <div id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{expertise.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{expertise.name}}</text></div>
                         {% endfor %}
                 {% else %}
                     <br/>
@@ -185,12 +187,12 @@
                 </div>
 
 
-                <h5>Verticals:</h5>
+                <h5>Verticals: <i data-toggle="popover" data-placement="right" data-content="Industries where we have working for. Click a determinate association to edit" data-html="false" class="icon-question-sign valuepop" data-title="Verticals"></i></h5>
                 <div id="verticals">
                 {% if verticals %}
 
                     {% for vertical in verticals %}
-                        <div id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{vertical.id}}/delete"><i class="icon-remove"></i></a><text data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{vertical.name}}</text> <i class="icon-pencil"></i></div>
+                        <div id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{vertical.id}}/delete"><i class="icon-remove"></i></a><text data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{vertical.name}}</text> </div>
                     {% endfor %}
 
                 {% else %}
@@ -200,13 +202,13 @@
                 </div>
 
 
-                <h5>Alliances:</h5>
+                <h5>Alliances:  <i data-toggle="popover" data-placement="right" data-content="These are our alliances. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Alliances"></i></h5>
 
                 <div id="alliances">
                 {% if alliances %}
                     
                     {% for alliance in alliances %}
-                        <div id="alliances-{{ alliance.id }}"><a class="link-delete" data-type="alliances" data-id="{{ alliance.id }}" id="{{ company.slug }}-alliances-{{ alliance.id }}"  href="/company/{{ company.slug }}/alliances/{{alliance.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Alliance" data-url="/formfields/Alliance/{{ alliance.id }}/name/" data-pk="{{ alliance.id }}"  data-title="alliance" class="editable-value" >{{ alliance.name }}</text> <i class="icon-pencil"></i></div>
+                        <div id="alliances-{{ alliance.id }}"><a class="link-delete" data-type="alliances" data-id="{{ alliance.id }}" id="{{ company.slug }}-alliances-{{ alliance.id }}"  href="/company/{{ company.slug }}/alliances/{{alliance.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Alliance" data-url="/formfields/Alliance/{{ alliance.id }}/name/" data-pk="{{ alliance.id }}"  data-title="alliance" class="editable-value" >{{ alliance.name }}</text></div>
 
                     {% endfor %}
 
@@ -218,11 +220,11 @@
                 </div>
 
 
-                <h5>Technical Associations:</h5>
+                <h5>Technical Association:<i data-toggle="popover" data-placement="right" data-content="Company technical associations. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Technical Associations"></i></h5>
                 <div id="technicalassociations">
                 {% if associations %}
                     {% for association in associations %}
-                        <div id="associations-{{ association.id }}"><a class="link-delete" data-type="associations" data-id="{{ association.id }}" id="{{ company.slug }}-associations-{{ association.id }}"  href="/company/{{ company.slug }}/associations/{{association.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="TechnicalAssociation" data-url="/formfields/TechnicalAssociation/{{ association.id }}/name/" data-pk="{{ association.id }}"  data-title="association" class="editable-value" >{{ association.name }}</text> <i class="icon-pencil"></i></div>
+                        <div id="associations-{{ association.id }}"><a class="link-delete" data-type="associations" data-id="{{ association.id }}" id="{{ company.slug }}-associations-{{ association.id }}"  href="/company/{{ company.slug }}/associations/{{association.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="TechnicalAssociation" data-url="/formfields/TechnicalAssociation/{{ association.id }}/name/" data-pk="{{ association.id }}"  data-title="association" class="editable-value" >{{ association.name }}</text> </div>
                     {% endfor %}
 
                 {% else %}
@@ -233,11 +235,11 @@
                 </div>
 
 
-                <h5>Awards:</h5>
+                <h5>Awards: <i data-toggle="popover" data-placement="right" data-content="National and International recognitions for this company. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Company Awards"></i></h5>
                 <div id="awards">
                 {% if awards %}
                     {% for award in awards %}
-                        <div id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Award" data-url="/formfields/Award/{{ award.id }}/name/" data-pk="{{ award.id }}" class="editable-value" data-title="Award Name">{{ award.name }}</text> <i class="icon-pencil"></i></div>
+                        <div id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{award.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Award" data-url="/formfields/Award/{{ award.id }}/name/" data-pk="{{ award.id }}" class="editable-value" data-title="Award Name">{{ award.name }}</text></div>
                     {% endfor %}
 
                 {% else %}
@@ -284,7 +286,7 @@
                 <a href="#" id="less-blog" class="hide"><i class="icon-user"></i></a>
 
                 {% endfor%}
-                <i class="icon-pencil"></i>
+                <i data-toggle="popover" data-placement="right" data-content="Click over the determinate button to update it" data-html="true" class="icon-question-sign valuepop" data-title="Company Urls"></i>
                 
             </div>
 
@@ -316,19 +318,19 @@
     
         </div>
 <!--
-                <i data-toggle="popover" data-placement="right" id="valuepop" data-content="Who is your customer:(Segments)<br/> What problem do you solve:<br/>How do you solve it:</br>How is it different from other available solutions: <br/> What is the benefit to your customer:" data-html="true" class="fade" title="Value Proposition"><p><text class="editable-value muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="wysihtml5" >{{ company.value_proposition|safe  }}</text><i class="icon-pencil"></i></p></i>
+                <i data-toggle="popover" data-placement="right" class="valuepop" data-content="Who is your customer:(Segments)<br/> What problem do you solve:<br/>How do you solve it:</br>How is it different from other available solutions: <br/> What is the benefit to your customer:" data-html="true" class="fade" title="Value Proposition"><p><text class="editable-value muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="wysihtml5" >{{ company.value_proposition|safe  }}</text><i class="icon-question-sign"></i></p></i>
 
 -->
         <div class="media">
-            <i data-toggle="popover" data-placement="right" id="valuepop" data-content="Who is your customer:(Segments)<br/> What problem do you solve:<br/>How do you solve it:</br>How is it different from other available solutions: <br/> What is the benefit to your customer:" data-html="true" class="icon-pencil"></i><p class="editable-value muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="textarea" >{{ company.value_proposition|safe  }}
+            <i data-toggle="popover" data-placement="right" class="valuepop" data-content="Who is your customer:(Segments)<br/> What problem do you solve:<br/>How do you solve it:</br>How is it different from other available solutions: <br/> What is the benefit to your customer:" data-html="true" class="icon-question-sign" data-title="Value Proposition "></i><p class="editable-value muted" data-model="Company" data-url="/formfields/Company/{{ company.id }}/value_proposition/" data-pk="{{ company.id }}"  data-title="Value Proposition " id="company-value-proposition" data-type="textarea" >{{ company.value_proposition|safe  }}
                 
             </p>
         </div>
 
 
         <div class="media">
-            <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
-            <p><text id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="textarea" class="editable-value" >{{ company.description|safe}}<i class="icon-pencil"></i> </text> </p> 
+            <h4 class="media-heading"><strong class="muted">Company Description:</strong> <i data-toggle="popover" data-placement="right" data-content="A description for the company. To edit the description, just click over the current description" class="icon-question-sign valuepop" data-title="Description"></i></h4>
+            <p><text id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="textarea" class="editable-value" >{{ company.description|safe}}</text> </p> 
         </div>
         <div class="media">
             {# To Change #}
@@ -345,7 +347,7 @@
         <div id="country"> 
         <h4 class="muted">Country:</h4>
 
-        <p><text data-type="select" id="company-country" data-model="Company" data-url="/formfields/Company/{{ company.id }}/country/" data-pk="{{ company.id }}" data-title="Company Country">{{ company.country }}<i class="icon-pencil"></i></text></p>        
+        <p><text data-type="select" id="company-country" data-model="Company" data-url="/formfields/Company/{{ company.id }}/country/" data-pk="{{ company.id }}" data-title="Company Country">{{ company.country }}<i class="icon-question-sign"></i></text></p>
 
         </div>
 
@@ -355,7 +357,14 @@
         {% if stories %}
             {% for story in stories %}
                  {% if story.link %}
-                    <div data-type="text" data-model="SuccessStories" data-url="/formfields/SuccessStories/{{ story.id }}/title/" data-pk="{{ story.id }}" class="editable-value" data-title="Story Name"><a class="link-delete" data-type="stories" data-id="{{ story.id }}" id="{{ company.slug }}-stories-{{ story.id }}" href="/company/{{ company.slug }}/stories/{{story.id}}/delete"><i class="icon-remove"></i></a>{{ story.title }}<i class="icon-pencil"></i></div>
+                    {% if story.story_image %}
+                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ story.story_image}}" height="96", width="140">
+                    {% else %}
+                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115">
+        
+                    {% endif %}
+
+                    <div data-type="text" data-model="SuccessStories" data-url="/formfields/SuccessStories/{{ story.id }}/title/" data-pk="{{ story.id }}" class="editable-value" data-title="Story Name"><a class="link-delete" data-type="stories" data-id="{{ story.id }}" id="{{ company.slug }}-stories-{{ story.id }}" href="/company/{{ company.slug }}/stories/{{story.id}}/delete"><i class="icon-remove"></i></a>{{ story.title }}</div>
                 {% endif %}
                 <br/>
 
@@ -367,7 +376,7 @@
 
         {# Products goes here #} 
         
-        <h4 class="muted">Products:</h4>
+        <h4 class="muted">Products: <i data-toggle="popover" data-placement="right" data-content="Company Products. Click the product name and/or product price to edit" data-html="true" class="icon-question-sign valuepop" data-title="Company Products "></i></h4>
         <div id="products">
 
         {% if products %}
@@ -383,14 +392,18 @@
                 <tbody>
                     <tr>
                 {% for product in products %}
-                    <td id="products-{{ product.id }}" data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/name/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{ product.id }}/delete"><i class="icon-remove"></i></a>{{ product.name }}<i class="icon-pencil"></i></td>
+                    <td id="products-{{ product.id }}" data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/name/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{ product.id }}/delete"><i class="icon-remove"></i></a>{{ product.name }}</td>
 
-                    <td data-type="text" class="products-{{ product.id }} editable-value" data-model="Product" data-url="/formfields/Product/{{ product.id }}/price/" data-pk="{{ product.id }}" data-id="{{ product.id }}"   data-title="Product Price" >{{ product.price|floatformat:"2" }}<i class="icon-pencil"></i></td>
+                    <td data-type="text" class="products-{{ product.id }} editable-value" data-model="Product" data-url="/formfields/Product/{{ product.id }}/price/" data-pk="{{ product.id }}" data-id="{{ product.id }}"   data-title="Product Price" >{{ product.price|floatformat:"2" }}</td>
 
                     {% if product.product_image %}
-                        <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td>
+                        <td  data-toggle="popover" data-placement="top" data-content='<form type="file" enctype="multipart/form-data method="get" action=".">  {{ product_picture_form.as_p }} <input type="submit" value="Upload Image"> </form>' data-html="true" class="valuepopfile products-{{ product.id }}" data-title="Company Products "><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td>
                     {% else %}
-                        <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td>
+<!--
+                        <a class="add-element" data-model="Alliance" href="/company/{{ company.slug }}/alliances/new"><td  data-toggle="popover" data-placement="top" data-content='Change: <input type="file" name="logo" id="id_logo" />' data-html="true" class="valuepopfile products-{{ product.id }}" data-title="Company Products "><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td></a>
+
+-->
+                        <td  data-toggle="popover" data-placement="top" data-content='Change: <input type="file" name="logo" id="id_logo" />' data-html="true" class="valuepopfile products-{{ product.id }}" data-title="Company Products "><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td>
                     {% endif %}
 
                     </tr>
@@ -428,12 +441,12 @@
 
 
         <hr>
-        <h5>Projects:</h5>
+        <h5>Projects: <i data-toggle="popover" data-placement="right" data-content="The things we do for our clients. Click a determinate project to edit" data-html="true" class="icon-question-sign valuepop" data-title="Company Projects"></i></h5>
         <div id="projects">
 
         {% if projects %}
             {% for project in projects %}
-                <div id="projects-{{ project.id }}"><a class="link-delete" data-type="projects" data-id="{{ project.id }}" id="{{ company.slug }}-projects-{{ project.id }}" href="/company/{{ company.slug }}/projects/{{project.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Project" data-url="/formfields/Project/{{ project.id }}/name/" data-pk="{{ project.id }}" class="editable-value" data-title="Project Name">{{ project.name }}</text> <i class="icon-pencil"></i></div>
+                <div id="projects-{{ project.id }}"><a class="link-delete" data-type="projects" data-id="{{ project.id }}" id="{{ company.slug }}-projects-{{ project.id }}" href="/company/{{ company.slug }}/projects/{{project.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Project" data-url="/formfields/Project/{{ project.id }}/name/" data-pk="{{ project.id }}" class="editable-value" data-title="Project Name">{{ project.name }}</text> </div>
             {% endfor %}
         {% else %}
             <br/>
@@ -443,12 +456,12 @@
             
         </div>
 
-        <h5>Acquisitions:</h5>
+        <h5>Acquisitions: <i data-toggle="popover" data-placement="right" data-content="These are the companies adquired by {{ company.name }}" data-html="true" class="icon-question-sign valuepop" data-title="Adquired Companies"></i></h5>
         <div id="acquisitions">
 
         {% if acquisitions %}
             {% for acquisition in acquisitions %}
-                <div id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{ acquisition.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name">{{ acquisition.name }}</text> <i class="icon-pencil"></i></div>
+                <div id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{ acquisition.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name">{{ acquisition.name }}</text></div>
             {% endfor %}
                 <br/>
         {% endif %}
@@ -688,11 +701,17 @@ link.click(
     <script type="text/javascript">
     $.fn.editable.defaults.mode = 'inline';
 
-        $('#valuepop').popover(
+        $('.valuepop').popover(
+            {
+                trigger:'hover',
+                delay: 1000,
+            });
+        $('.valuepopfile').popover(
             {
                 trigger:'click',
-                delay: 2000,
+                delay: 1000,
             });
+
         $('#valtip').tooltip('show');
 
         $('.competitor').editable({
@@ -750,6 +769,28 @@ link.click(
             },
 
         });
+
+        $('#company-industry').editable({
+            {% if company.categories %}
+                 value: "{{ company.categories.id }}",
+            {% endif %}
+
+           
+            source: [
+
+                {% for industry in industries %}
+                 {value: "{{ industry.id }}", text: "{{ industry.name }}"},  
+                {% endfor %}
+
+                ],
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+
+        });
+
 
         $('#size-company').editable({
 

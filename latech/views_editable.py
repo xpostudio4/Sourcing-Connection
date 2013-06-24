@@ -17,6 +17,7 @@ from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingF
  CompetitorsForm, OfficeForm, ContactForm, CompanyLinkForm
 from companies.functions import *
 from company_profile_extended.models import *
+from company_profile_extended.forms import *
 from recommendations.models import Recommendation
 from contacts.models import *
 from fileupload.models import *
@@ -165,6 +166,14 @@ def company_edit(request, slug):
     #Recommendations
     recommendations = Recommendation.objects.filter(company=company)
     countries = Country.objects.all().order_by('id')
+    industries = Category.objects.all().order_by('id')
+
+    # Product Picture Form
+#    product_reference = get_object_or_404(Product, id=request.GET["product_id"], company=company)
+
+    product_picture_form = ProductPictureForm()#, instance=product_reference)
+    if product_picture_form.is_valid():
+        product_picture_form.save()
 
 
     office_list = []
@@ -189,7 +198,10 @@ def company_edit(request, slug):
         "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations,"products":products,
         # Recommendations
         "recommendations":recommendations,
-        "countries":countries,
+        # Calling All objects from these models to update them in place
+        "countries":countries,"industries":industries,
+        #Picture Form
+        "product_picture_form":product_picture_form,#'product_reference':product_reference,
          },
         context_instance=RequestContext(request))
 
@@ -368,6 +380,10 @@ def form_fields(request, id, model, field):
         elif field == "country":
             country = Country.objects.get(id=value)
             o_model.country = country
+        elif field == "categories":
+            categories = Category.objects.get(id=value)
+            o_model.categories = categories
+
 #            country = Country.objects.get()
  #           Country.objects.get(country=value)
         else:

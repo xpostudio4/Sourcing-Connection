@@ -336,7 +336,7 @@
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
         <a href="#" id="save-company" class="hide"><button class="btn btn-primary">Save Company</button></a>
         {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
-             <a href="#" id="edit-company-page" class="hide"><button class="btn">Edit Company</button></a>
+             <a href="#" id="view-company-page" class="hide"><button class="btn">Edit Company</button></a>
         {% else %}
             <a href="#" id="webmaster" class="hide"><button class="btn btn-danger">Contact Webmaster</button></a>
 
@@ -405,6 +405,7 @@ var slug = function(str) {
             $(".alert-error").addClass('hide');
             $("#webmaster").addClass('hide');
             $("#save-company").addClass('hide');
+            $("#view-company-page").addClass("hide");
             $('#company-name-modal').modal({
                 show: true, 
                 backdrop: 'static',
@@ -461,12 +462,13 @@ var slug = function(str) {
                     $("#save-company").removeClass("hide"); 
                     $("#webmaster").addClass("hide");
                     $("#wm_contact").addClass("hide");
+                    $("#view-company-page").addClass("hide");
                 }else if ($('div').hasClass('alert alert-error')){
                     $("#save-company").addClass("hide"); 
                     $("#webmaster").removeClass("hide");
-                    var url="/company/"+name.val()+"/edit/";
-                    $("#edit-company-page").removeClass("hide");
-                    $("#edit-company-page").html('<a href='+url+' id="edit-company-page"><button class="btn">Edit Company</button></a>');
+                    var url="/company/"+slug(name.val())+"/";
+                    $("#view-company-page").removeClass("hide");
+                    $("#view-company-page").html('<a href='+url+' id="view-company-page"><button class="btn">View this company</button></a>');
 
                 }
             

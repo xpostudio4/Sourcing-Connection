@@ -61,3 +61,8 @@ class ProductForm(ModelForm):
     class Meta:
        model = Product
        exclude = ("company",)
+
+class ProductPictureForm(ModelForm):
+    class Meta:
+       model = Product
+       fields = ("product_image",)
