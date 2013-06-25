@@ -418,7 +418,7 @@
 
                 {# Locations #}
                 <div class="tab-pane active" id="location-tabs"> 
-                    <h4 class="muted">Country:</h4>
+                    <h4 class="muted">Locations:</h4>
                     {% if company.country %}
                     <div id="world-map" style="width: 500px; height: 350px"></div>
                     {% else %}
@@ -636,14 +636,42 @@
     $(function(){
         $('#world-map').vectorMap({
             map: 'world_mill_en',
+/*
+            onRegionLabelShow: function(event, label, code){
+
+            if (code == 'CA') {
+              event.preventDefault();
+            } else if (code == 'RU') {
+              label.text('Bears, vodka, balalaika');
+            }
+          },
+*/
+/*                if (code == '{{ office.country.country_code }}') {
+
+                  label.html(
+                    'In {{ office.country }}:<br>{{ office.description }}<br>{% if user.is_superuser %}{{ office.phone }}{% endif %}'
+                    )}
+*/
+
+            onRegionLabelShow: function(event, label, code){
+
+            {% for office in offices %} 
+//                if (code in '{{ office.country.country_code }}' ) {
+                if ('{{ office.country.country_code }}' == code) {
+                    label.html(
+                    'In {{ office.country }}:<br>{{ office.description }}<br>{% if user.is_superuser %}{{ office.phone }}{% endif %}'
+                    )
+                };
+                    
+            {% endfor %}
+            },
+
             zoomButtons : false,
             series: {
                   regions: [{
                     values: {
                         {% for office in offices %}
-                            {{ office.object.country.country_code }}: '#0071A4',
-                            //{{ office.object.country.country_code }}['name'] : 'Hola Mundo!',
-                            //{{ office.object.country.country_code }}: '#0071A4',
+                            {{ office.country.country_code }}: '#0071A4',
                         {% endfor %}
                         {{ company.country.country_code }}:'#0071A4',
 
