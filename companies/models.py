@@ -63,6 +63,7 @@ class Company(models.Model):
 #    created_by = models.ForeignKey(User, related_name="LATech user")
     main_phone = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
+    created_by = models.ForeignKey(User, blank=True,null=True)
 
     #Founding Date
     founding_date = models.PositiveIntegerField(choices=YEARS, null=True, blank=True)

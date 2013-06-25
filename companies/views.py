@@ -49,7 +49,9 @@ def CompanyCreate(request):
         #last_id = company.objects.latest('id').id+1
 
         if company_form.is_valid():
-            company = company_form.save()
+            company = company_form.save(commit=False)
+            company.created_by = request.user
+            company.save()
 
             #create a company completion element for this company
             #Create company percentage object in that table.
@@ -182,10 +184,7 @@ def company_view(request, slug):
     awards2 = Award.objects.filter(company=company).order_by('id')[3:]
 
 
-    offices = Office.objects.filter(company=company).order_by('id')[:3]
-#    if len(offices)>= 3:
-#        offices = offices[:3]
-#        co_list2 = ca[3:]
+    offices = Office.objects.filter(company=company).order_by('id')
 
     acquisitions = Acquisition.objects.filter(company=company).order_by('id')[:3]
     acquisitions2 = Acquisition.objects.filter(company=company).order_by('id')[3:]
@@ -243,24 +242,41 @@ def company_view(request, slug):
     similars = similar[:3]
     similars2 = similar[3:7]
 
-
-    office_list = []
-    count = 0
+#    offices_list = {
+#        "CO": {"name": "Colombia", "Continent": "America"}, 
+#        "US": {"name": "United States", "Continent": "America"}
+#    }
     
-    for i in offices:
-        count += 1
-        if (count)%3==0:
-            office_list.append({"object":i, "ul":True})
-        else:
-            office_list.append({"object":i})
+#    offices_list = {}
+
+#    for i in offices:
+#        if i.country.country_code in offices_list:
+#            offices_list[i.country.country_code] = offices_list[i.country.country_code] + [i.description]
+#        else:
+#            offices_list[i.country.country_code] = [i.description]
+
+
+
+#    office_list = []
+#    count = 0
+    
+#    for i in offices:
+#        count += 1
+#        if (count)%3==0:
+#            office_list.append({"object":i, "ul":True})
+#        else:
+#            office_list.append({"object":i})
 
 
     return render_to_response(
         "company_page.html",
         {'company':company, 'companylinks':companylinks,'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
-        'managements': managements,'offices':office_list, 'competitors': competitors,"certifications":certifications,
+        'managements': managements, 'competitors': competitors,"certifications":certifications,
         'competitors2': competitors2,"certifications2":certifications2,"acquisitions":acquisitions,"customers":customers,
         "awards":awards, "awards2":awards2,"acquisitions2":acquisitions2, "fundings":fundings,  "pictures":pictures,
+        #Offices
+        #'offices':office_list,
+        'offices':offices,
         # Similars
         "similars":similars, "similars2":similars2,
         # From Company Extended Profile

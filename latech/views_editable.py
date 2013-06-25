@@ -252,7 +252,10 @@ def company_edit2(request, slug):
     certifications = Certification.objects.filter(company=company)
     customers = Customer.objects.filter(company=company)
     awards = Award.objects.filter(company=company)
-    offices = Office.objects.filter(company=company)
+    #offices = Office.objects.filter(company=company)
+    offices = company.office_set.all()
+
+
     acquisitions = Acquisition.objects.filter(company=company)
     fundings = Funding.objects.filter(company=company)
     pictures = Picture.objects.filter(company=company)
@@ -304,7 +307,7 @@ def company_name(request):
     if request.method == 'POST':
         if request.POST.get('name') != "" or " ": 
             value = request.POST.get('name')
-            company = Company.objects.create(name=value, slug=slugify(value))
+            company = Company.objects.create(name=value, slug=slugify(value), created_by=request.user)
             return HttpResponseRedirect('/company/%s' % company.slug)
 
 
