@@ -111,6 +111,7 @@ class Company(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = defaultfilters.slugify(self.name)
+        #self.created_by = 
         super(Company, self).save(*args, **kwargs)
 #        companylinks = CompanyLink(id=self.id, company=self)
 #        if not companylinks:
@@ -321,12 +322,13 @@ class ContactCompany(models.Model):
     last_name = models.CharField(max_length=255, blank=True, verbose_name="Last Name")
     contact = models.ForeignKey('contacts.Contact', blank=True, null=True, related_name = "Contact's Profile")
 
-    def __unicode__(self):
-        return str(self.first_name +" "+ self.last_name)
-
     class Meta:
         ordering = ['id']
         verbose_name_plural = "Contact Company"
+
+    def __unicode__(self):
+        return ("%s %s: %s") %(self.contact.fr_name, self.contact.ls_name,self.company)
+
 
 class ProfileCompletion(models.Model):
     """The purpose of this class is to calculate the percentage of completion of the profile of companies."""

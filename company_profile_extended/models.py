@@ -1,4 +1,4 @@
-#Python Libraries
+#Python Librariess
 import os
 from datetime import datetime
 
@@ -21,7 +21,7 @@ else:
 
 # Company Information
 class AnnualRevenue(models.Model):
-    company = models.ForeignKey(Company, related_name='Company Annual Revenue')
+    company = models.ForeignKey(Company, related_name='annual_revenues')
     revenue = models.DecimalField(max_digits=12, decimal_places=2)
     date = models.DateField(blank=True,null=True)
 
@@ -32,7 +32,7 @@ class AnnualRevenue(models.Model):
         return ("%s: %.2f ") % (self.company, self.revenue)
 
 class Milestone(models.Model):
-    company = models.ForeignKey(Company, related_name='Company Milestones')
+    company = models.ForeignKey(Company, related_name='milestones')
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     from_date = models.DateField()
@@ -46,8 +46,8 @@ class Milestone(models.Model):
 
 # Company Experience
 class Project(models.Model):
-    company = models.ForeignKey(Company, related_name='Company Projects')
-    client = models.ForeignKey(Company, related_name='Company Clients')
+    company = models.ForeignKey(Company, related_name='projects')
+    client = models.ForeignKey(Company, related_name='clients')
     name = models.CharField(max_length=200)
     date = models.DateField()
     description = models.TextField()
@@ -61,7 +61,7 @@ class Project(models.Model):
 
 
 class SuccessStories(models.Model):
-    company = models.ForeignKey(Company, related_name='Company Stories')
+    company = models.ForeignKey(Company, related_name='success_stories')
     title = models.CharField(max_length=200)
     description = models.TextField()
     story_image = models.ImageField(blank=True, null=True, storage=gs, upload_to="images/companies_imgs/")
@@ -75,7 +75,7 @@ class SuccessStories(models.Model):
         return self.title
 
 class Expertise(models.Model):
-    company = models.ForeignKey(Company, related_name='Company Expertise')
+    company = models.ForeignKey(Company, related_name='expertises')
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100)
 
@@ -91,7 +91,8 @@ class Expertise(models.Model):
         return self.name
     
 class Vertical(models.Model):
-    company = models.ForeignKey(Company, related_name='Company Verticals')
+#    company = models.ForeignKey(Company, related_name='Verticals')
+    company = models.ForeignKey(Company, related_name='verticals')
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=200)
 
@@ -110,7 +111,7 @@ class Vertical(models.Model):
 # All Models separated:
 
 class Partnership(models.Model):
-    company = models.ForeignKey(Company, related_name='Company Partnerships')
+    company = models.ForeignKey(Company, related_name='partnerships')
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
@@ -121,7 +122,7 @@ class Partnership(models.Model):
         return ("%s") % (self.name)
 
 class Alliance(models.Model):
-    company = models.ForeignKey(Company, related_name='Company Alliances')
+    company = models.ForeignKey(Company, related_name='alliances')
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
@@ -133,7 +134,7 @@ class Alliance(models.Model):
 
 
 class TechnicalAssociation(models.Model):
-    company = models.ForeignKey(Company, related_name='Company Technical Association')
+    company = models.ForeignKey(Company, related_name='technical_association')
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
@@ -144,7 +145,7 @@ class TechnicalAssociation(models.Model):
         return ("%s") % (self.name)
 
 class Competitor(models.Model):
-    company = models.ForeignKey(Company, related_name="Company Competitors", blank=True)
+    company = models.ForeignKey(Company, related_name="company_competitors", blank=True)
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
@@ -157,7 +158,7 @@ class Competitor(models.Model):
 
 
 class Product(models.Model):
-    company = models.ForeignKey(Company, related_name="Company Products", blank=True)
+    company = models.ForeignKey(Company, related_name="company_products", blank=True)
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(blank=True)

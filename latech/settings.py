@@ -67,8 +67,8 @@ if os.getenv('HEROKU_ENV') == 'True':
     DEBUG = False
     
 else:
-
-    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2', 'NAME':'latech_db','USER': 'latech_user', 'PASSWORD': 'Latech123$%&'}}
+#    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
     MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
     MEDIA_URL = '/media/'
     STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
@@ -208,6 +208,15 @@ INSTALLED_APPS = (
 
 )
 
+########EMAIL FIELDS########
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'jalcantara@stancelabs.com'
+EMAIL_HOST_PASSWORD = 'stancelabs'
+
+############################
 
 ACCOUNT_INVITATION_DAYS = 1
 INVITATIONS_PER_USER = 1
@@ -241,5 +250,3 @@ LOGGING = {
         },
     }
 }
-# Parse database configuration from $DATABASE_URL
-#DATABASES['default'] =  dj_database_url.config()

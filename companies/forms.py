@@ -12,12 +12,6 @@ class CompanyCategoryForm(ModelForm):
 		model = Company
 		field = ("Categories")
 
-class ContactForm(forms.Form):
-    subject = forms.CharField(max_length=100)
-    message = forms.CharField()
-    sender = forms.EmailField()
-    cc_myself = forms.BooleanField(required=False)
-
 class CompanyLinkForm(ModelForm):
 	class Meta:
 		model = CompanyLink

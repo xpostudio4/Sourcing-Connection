@@ -91,7 +91,7 @@
                             <a href="/">Home</a>
                         </li>
                         <li>
-                            <a href="/profile/{{ user.id }}">Profile</a>
+                            <a href="/profile/{{ user.contact.id }}">Profile</a>
                         </li>
                         <li>
                             <a href="#">Messages</a>
@@ -344,26 +344,27 @@
         
       </div>
       <!--{% include "webmaster_form.html" %}-->
-      <form method="POST" action="/contact/" id="wm_contact" class="hide">{% csrf_token %} 
-        <div><input type="text" id="contact_name" name="name" placeholder="Email"></div>
-        <div><input type="text" id="msg_title" name="msg_title" placeholder="Title"></div>
+      <form method="POST" action="/contact/" id="wm_contact" class="hide">{% csrf_token %}
+        <div><input type="text" id="msg_subject" name="msg_subject" placeholder="Title"></div>
         <div><textarea id="msg_content" name="msg_content" rows="5"> </textarea></div>
         <div class="modal-footer">
           <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-          <a href="#" id="webmaster" <button class="btn btn-danger">Contact Webmaster</button></a>
+          <a href="#" id="send_msg" <button class="btn btn-danger">Contact Webmaster</button></a>
         </div>
       </form>
 </div>
 </div>
 
 <!-- Modal -->
+<!--
 <div id="wm_contact2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="WebmasterLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="WebmasterLabel">Contact to WebMasters</h3>
   </div>
   <div class="modal-body">
-      <form method="POST" action="/webmaster/">{% csrf_token %} 
+      <form method="POST" action="/webmaster/">{% csrf_token %}
+
         <div><input type="text" id="contact_name" name="name" placeholder="Email"></div>
         <div><input type="text" id="msg_title" name="msg_title" placeholder="Title"></div>
         <div><textarea id="msg_content" name="msg_content" rows="5"> </textarea></div>
@@ -375,6 +376,8 @@
 
   </div>
 </div>
+
+-->
 
 <script type="text/javascript">
         $('.dropdown-toggle').dropdown();
@@ -404,6 +407,7 @@ var slug = function(str) {
             $(".alert-success").addClass('hide');
             $(".alert-error").addClass('hide');
             $("#webmaster").addClass('hide');
+            $('#wm_contact').addClass('hide');
             $("#save-company").addClass('hide');
             $("#view-company-page").addClass("hide");
             $('#company-name-modal').modal({
@@ -413,21 +417,18 @@ var slug = function(str) {
              })
     });
 
-      var webmaster_contact = $('#webmaster');
-          webmaster_contact.click( 
+      var send_msg = $('#send_msg');
+          send_msg.click( 
           function(event){
-            $('#wm_contact').removeClass('hide');
-            var co_name = $('#name');
             event.preventDefault();
-/*            $.ajax({
-                url: "/companies/name/",
+            $.ajax({
+                url: "/user_msg/",
                 type: "POST",
                 cache: false,
-                data:  co_name, 
-
+                data: $('#wm_contact').serialize(),
                 success: 
-                    $("#wm_contact").modal("hide")
-                    ,
+                    //$("#wm_contact").modal("hide"),
+                    $('#company-name-modal').modal("hide"),
                 error: 
                     function(xhr){
                         alert("Error: " + xhr.statusText);
@@ -435,7 +436,16 @@ var slug = function(str) {
                         return false;
                     }
             });
-*/        })
+        })
+
+      var webmaster_contact = $('#webmaster');
+          webmaster_contact.click( 
+          function(event){
+            $('#wm_contact').removeClass('hide');
+            var co_name = $('#name');
+            event.preventDefault();
+        })
+
 
     $(function () {
         var name = $('#name');
@@ -444,7 +454,7 @@ var slug = function(str) {
            $.ajax({
            type: "post",
            timeout: 5000,
-           url: "/ssss/",
+           url: "/name_verify/",
            data: { 
             'name' : name.val(),
             'csrfmiddlewaretoken': '{{csrf_token}}', },
@@ -458,12 +468,20 @@ var slug = function(str) {
 //            results = $(data).find('#results').html();
             $("#results").html("<span>" + data + "</span>");
             if ($('div').hasClass('alert alert-success'))
+
                 {
                     $("#save-company").removeClass("hide"); 
                     $("#webmaster").addClass("hide");
                     $("#wm_contact").addClass("hide");
                     $("#view-company-page").addClass("hide");
                 }else if ($('div').hasClass('alert alert-error')){
+                {% if user.contact.latech_contact or user.is_superuser or user.is_staff %}
+                    $("#results").html("<span>" + data + "</span>");
+                {% else %}
+                    var existing = "<div class='alert alert-error'>You don't have permissions to edit this company.<br> Please contact the Webmasters </div>"
+                    $("#results").html("<span>" + data + existing +"</span>");
+                {% endif %}
+
                     $("#save-company").addClass("hide"); 
                     $("#webmaster").removeClass("hide");
                     var url="/company/"+slug(name.val())+"/";

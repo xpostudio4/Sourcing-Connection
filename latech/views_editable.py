@@ -14,11 +14,12 @@ from django.template.defaultfilters import slugify
 
 from companies.models import *
 from companies.forms import CustomerForm, AwardForm, CertificationForm, FundingForm, AcquisitionForm, ManagementForm,\
- CompetitorsForm, OfficeForm, ContactForm, CompanyLinkForm
+ CompetitorsForm, OfficeForm, CompanyLinkForm
 from companies.functions import *
 from company_profile_extended.models import *
 from company_profile_extended.forms import *
 from recommendations.models import Recommendation
+from latech.forms import ContactForm
 from contacts.models import *
 from fileupload.models import *
 from location.models import Country
@@ -72,32 +73,50 @@ def feature_names_modal(request):
         message =""
     return HttpResponse(json.dumps(message), mimetype="application/json")
 
-def contact(request):
-    if request.method == 'POST': # If the form has been submitted...
-        wm_form = ContactForm(request.POST) # A form bound to the POST data
-        if wm_form.is_valid(): # All validation rules pass
-            # Process the data in form.cleaned_data
-            # ...
-            subject = wm_form.cleaned_data['subject']
-            message = wm_form.cleaned_data['message']
-            sender = wm_form.cleaned_data['sender']
-            cc_myself = wm_form.cleaned_data['cc_myself']
 
-            recipients = ['jeasoft@gmail.com']
-            if cc_myself:
-                recipients.append(sender)
+def webmaster_contact(request):
+    if request.method == 'POST': # If the form has been submitted...
+        webmaster_contact_form = ContactForm(request.POST) # A form bound to the POST data
+        if webmaster_contact_form.is_valid(): # All validation rules pass
+            subject = ("%s sents the next message: %s") % (request.user,webmaster_contact_form.cleaned_data['subject'])
+            message = webmaster_contact_form.cleaned_data['message']
+            sender = request.user.email
+            #cc_myself = webmaster_contact_form.cleaned_data['cc_myself']
+
+            recipients = ['jalcantara@stancelabs.com', 'jeasoft@gmail.com']
+#            if cc_myself:
+#                recipients.append(sender)
 
             from django.core.mail import send_mail
             send_mail(subject, message, sender, recipients)
 
             return HttpResponseRedirect('/thanks/') # Redirect after POST
     else:
-        form = ContactForm() # An unbound form
+        webmaster_contact_form = ContactForm() # An unbound form
 
 
     return render(request, 'webmaster_form.html', {
-        'form': form,
+        'form': webmaster_contact_form,
     })
+
+
+@require_POST
+def webmaster(request):
+
+    if request.method == 'POST':
+        subject = ("%s: %s") % (request.user.get_full_name(), request.REQUEST["msg_subject"])
+        message = request.REQUEST["msg_content"]
+
+        sender = request.user.email
+        recipients = ['jalcantara@stancelabs.com', 'samuel@globaltechbridge.com']
+        from django.core.mail import send_mail
+        send_mail(subject, message, sender, recipients)
+
+    return HttpResponse("")
+
+
+
+    #return HttpResponse(json.dumps(message), mimetype="application/json")
 
 
 def company_edit(request, slug):
@@ -303,7 +322,7 @@ def company_edit2(request, slug):
 
 
 @require_POST
-def company_name(request):
+def company_name_redirect(request):
     if request.method == 'POST':
         if request.POST.get('name') != "" or " ": 
             value = request.POST.get('name')
@@ -312,13 +331,14 @@ def company_name(request):
 
 
 @require_POST
-def ssss(request):
+def company_name_verification(request):
     if request.method == 'POST':
         if request.POST.get('name') != "" or " ": 
             value = request.POST.get('name').strip()
             val = Company.objects.filter(name__iexact=value)
             if val:
-                message = u'<div class="alert alert-error"> <strong>%s</strong> Exists in DB </div>' % value
+                message = u'''<div class="alert alert-error"> <strong>%s</strong> Exists in DB
+                    </div>''' % value
             else:
 
                 message = u'<div class="alert alert-success" > <strong>%s</strong> Not Exists in DB </div>' % value
@@ -327,24 +347,6 @@ def ssss(request):
     else:
         message =""
     return HttpResponse(json.dumps(message), mimetype="application/json")
-
-@require_POST
-def sss(request):
-    if request.method == 'POST':
-        if request.POST.get('id') != "" or " ": 
-            value = request.POST.get('id').strip()
-            val = Company.objects.filter(name__iexact=value)
-            if val:
-                message = u'<div class="alert alert-error"> <strong>%s</strong> Exists in DB </div>' % value
-            else:
-
-                message = u'<div class="alert alert-success" > <strong>%s</strong> Not Exists in DB </div>' % value
-        else:
-            message = 'Waiting for an Input'
-    else:
-        message =""
-    return HttpResponse(json.dumps(message), mimetype="application/json")
-
 
 
 @require_POST

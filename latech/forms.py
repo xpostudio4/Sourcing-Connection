@@ -121,3 +121,7 @@ class TicketForm(forms.Form):
         label=u'What error presented the application',
         widget=forms.Textarea(attrs={'class':"input-xlarge",'size':20})
         )
+
+class ContactForm(forms.Form):
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)
