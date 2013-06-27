@@ -130,7 +130,9 @@
                                 # TO FIX TO SOMETHING LIKE: 
                             <td colspan="2"><a href="{{ company.categories.get_absolute_url }}">{{ company.categories }}</a></td>
                         -->
-                        <td colspan="2"><a href="/industry/{{ company.categories.slug }}">{{ company.categories }}</a></td>
+                        
+                        <td colspan="2"><a href="/?keywords=&category_company={{ company.categories.id }}&country_company=&industry_company=&technology_company=&company_status=&minimum=0&maximum=100">{{ company.categories }}</a></td>
+                        <!--<td colspan="2"><a href="/industry/{{ company.categories.slug }}">{{ company.categories }}</a></td>-->
                     </tr>
 
                 {% endif %}
