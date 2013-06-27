@@ -379,6 +379,10 @@
 
             <ul class="nav nav-tabs">
                 <li><a href="#location-tabs" data-toggle="tab">Locations</a></li>
+                {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
+                    <li><a href="#phones-tabs" data-toggle="tab">Phones</a></li>                    
+                {% endif %}
+
                 <li><a href="#description-tabs" data-toggle="tab">Description</a></li>
                 <li><a href="#success-stories-tabs" data-toggle="tab">Success Stories</a></li>
                 <li><a href="#related-tabs" data-toggle="tab">Related Categories</a></li>
@@ -426,7 +430,31 @@
 
                 </div>
 
+                {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
 
+                {# Phones, only available for latech contacts #}
+
+                <div class="tab-pane" id="phones-tabs"> 
+                    <h4 class="muted">Phones:</h4>
+                    {% if company.main_phone  %}
+                        <p>Main Phone: {{company.main_phone}}</p>
+                        {% for office in offices %} 
+                            {% if office.phone %}
+                                <p>{{ office.description}}: {{ office.phone}} </p>
+                                
+                            {% endif %}
+                            
+
+                        {% endfor %}
+                        {% else %}
+                            <p> No phones Availables</p>
+                            <br/>
+                        {% endif %}
+
+
+    
+                </div>
+                {% endif %}
 
                 <div class="tab-pane" id="success-stories-tabs">
                     {# Success Stories goes here #} 
