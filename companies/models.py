@@ -5,6 +5,7 @@ from django.forms import ModelForm
 from django.template import defaultfilters
 from django.core.files.storage import FileSystemStorage
 from django.db.models.signals import post_save, pre_save
+from django.core.signals import request_finished
 from django.dispatch import receiver
 
 #Models

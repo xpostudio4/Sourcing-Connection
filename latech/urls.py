@@ -131,6 +131,9 @@ urlpatterns = patterns('',
      url(r'ticket/$','latech.views.ticket_create'),
      url(r'create/$','latech.views.asana_create'),
 
+     # Reset the ID sequences for companylinks
+     url(r'reset/$','latech.views.reset'),
+     
      #django comment frameworks
      url(r'^comments/', include('django.contrib.comments.urls')),
 
@@ -148,6 +151,7 @@ urlpatterns = patterns('',
      # URLs for industries and verticals
      url(r'^industry/(?P<slug>[\w-]+)/$', 'latech.views.categories'),
      url(r'^vertical/(?P<slug>[\w-]+)/$', 'latech.views.verticals'),
+
      
 
 #     url(r'^advance_search/', 'latech.views.advance_search'),

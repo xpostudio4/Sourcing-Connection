@@ -588,3 +588,14 @@ def asana_create(request):
 
   else: 
     return HttpResponseRedirect("/ticket")
+
+from django.db import connection, transaction
+
+# Following this Post, this is to reset the ID sequences on PostgreSQL for this table:
+# http://jesiah.net/post/23173834683/postgresql-primary-key-syncing-issues
+# Note, is recommended to run this after deleting a company
+def reset(request):
+    cursor = connection.cursor()
+    cursor.execute("SELECT setval('companies_companylink_id_seq', (SELECT MAX(id) FROM   companies_companylink)+1);")
+    success = simplejson.dumps({'success':'success',})
+    return HttpResponse(success, mimetype='application/json')
