@@ -14,9 +14,10 @@ BROWSER = (
     )
 
 class SearchForm(forms.Form):
+
     query = forms.CharField(
-        label=u'Enter a keyword to search for',
-        widget=forms.TextInput(attrs={'size': 20})
+        label=u"",
+        widget=forms.TextInput(attrs={'size': 20, 'placeholder':'Enter a keyword to search for',})
     )
 
 class CompanyStatusForm(forms.Form):

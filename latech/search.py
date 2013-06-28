@@ -1,7 +1,7 @@
 import tablib
 from latech.forms import SearchForm, CompanySearchForm, ContactSearchForm, UserForm, CompanyStatusForm
 from django.template import RequestContext, Context
-from django.shortcuts import render_to_response, HttpResponse
+from django.shortcuts import render_to_response, HttpResponse, redirect
 from taxonomy.models import *
 from companies.models import *
 from company_profile_extended.models import Vertical
@@ -11,9 +11,6 @@ from django.db.models import Q, F
 from django.contrib.auth.forms import AuthenticationForm
 from latech.views import hacked_news
 from news.functions import news
-
-def search_page():
-    pass
 
 
 def empty_search_form():
@@ -25,6 +22,8 @@ def search_function(request):
     contact_form, company_form = empty_search_form()
     company_status_form = CompanyStatusForm()
     contact_list = []
+    maximum = 100
+    minimum = 0
     company_list = Company.objects.all()
     q = Q()
 
@@ -61,26 +60,40 @@ def search_function(request):
             # Category Search
             if category_company:
                 q = q & Q(categories__id__contains=category_company)
+            else:
+                company_list = Company.objects.all()
 
             #Splitting Industries
-            industry_keys = industry_company.split()
-            for ikey in industry_keys:
-               q = q & (Q(industries__icontains=ikey))
+            if industry_company:
+
+                industry_keys = industry_company.split()
+                for ikey in industry_keys:
+                   q = q & (Q(industries__icontains=ikey))
+
+            else:
+                company_list = Company.objects.all()
+
             
             # Splitting Technologies
-            technology_keys = technology_company.split()
-            for tkey in technology_keys:
-               q = q & (Q(technologies__icontains=tkey))
+            if technology_company:
+                technology_keys = technology_company.split()
+                for tkey in technology_keys:
+                   q = q & (Q(technologies__icontains=tkey))
+            else:
+                company_list = Company.objects.all()
 
             #Splitting Verticals
-            company_ids =[]
-            vertical_keys = vertical_company
-            verticals = Vertical.objects.filter(name__icontains=vertical_keys)
-            for vkey in verticals:
-                company_ids.append(vkey.company.id)
-                q = q & (Q(id__in=company_ids))
+            if vertical_company:
 
+                company_ids =[]
+                vertical_keys = vertical_company
+                verticals = Vertical.objects.filter(name__icontains=vertical_keys)
+                for vkey in verticals:
+                    company_ids.append(vkey.company.id)
+                    q = q & (Q(id__in=company_ids))
 
+            else:
+                company_list = Company.objects.all()
 
             company_form = CompanySearchForm({
                 'keywords':keywords,
@@ -88,10 +101,10 @@ def search_function(request):
                 'industry_company':industry_company, 
                 'category_company':category_company, 
                 'country_company':country_company,
+                'vertical_company':vertical_company,
 
             })
     
-
 #            company_list = Company.objects.filter(q)
         
    # Company Status Search
@@ -108,9 +121,10 @@ def search_function(request):
                 'company_status':company_status
             })
 
-#        elif company_status == 0 or None:
-#            show_results = True
-#            company_list = Company.objects.all()
+        else:
+
+            company_list = Company.objects.all()
+
 
     if 'maximum' in request.GET:
         maximum = request.GET['maximum']
@@ -118,9 +132,11 @@ def search_function(request):
         if maximum or minimum:
             minimum = float(minimum)/100.0
             maximum = float(maximum)/100.0
-            show_results = True
-            q = q & Q(pk__in=ProfileCompletion.objects.filter(completion__range=(minimum, maximum)))
-    
+
+#            q = q &Q(id__in=ProfileCompletion.objects.filter(completion__range=(minimum, maximum)))
+    else:
+        company_list = Company.objects.all()
+
     company_list = Company.objects.filter(q)
            
     if 'terms' in request.GET:
@@ -237,3 +253,9 @@ def export(request, filename='export', format="xlsx"):
     return response
 
 
+def search_page(request):
+    if 'q' in request.GET:
+       query = request.GET['q']#.strip()
+#        if query:
+#           keywords = query.split()
+    return redirect(("/?keywords=%s&category_company=&country_company=&industry_company=&vertical_company=&technology_company=&company_status=&minimum=0&maximum=100") % (query))
