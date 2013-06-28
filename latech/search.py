@@ -4,6 +4,7 @@ from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, HttpResponse
 from taxonomy.models import *
 from companies.models import *
+from company_profile_extended.models import Vertical
 from companies.functions import percentage_completion
 from contacts.models import *
 from django.db.models import Q, F
@@ -35,8 +36,9 @@ def search_function(request):
         country_company = request.GET['country_company']
         industry_company = request.GET['industry_company'].strip()
         technology_company = request.GET['technology_company'].strip()
+        vertical_company = request.GET['vertical_company'].strip() 
 
-        if (keywords or category_company or country_company or industry_company or technology_company):
+        if (keywords or category_company or country_company or industry_company or technology_company or vertical_company):
 
             show_results = True
         
@@ -70,6 +72,16 @@ def search_function(request):
             for tkey in technology_keys:
                q = q & (Q(technologies__icontains=tkey))
 
+            #Splitting Verticals
+            company_ids =[]
+            vertical_keys = vertical_company
+            verticals = Vertical.objects.filter(name__icontains=vertical_keys)
+            for vkey in verticals:
+                company_ids.append(vkey.company.id)
+                q = q & (Q(id__in=company_ids))
+
+
+
             company_form = CompanySearchForm({
                 'keywords':keywords,
                 'technology_company':technology_company, 
@@ -79,6 +91,7 @@ def search_function(request):
 
             })
     
+
 #            company_list = Company.objects.filter(q)
         
    # Company Status Search
@@ -222,3 +235,5 @@ def export(request, filename='export', format="xlsx"):
         )
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
     return response
+
+

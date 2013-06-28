@@ -431,9 +431,12 @@ def categories(request, slug):
 
 def verticals(request, slug):
     company_list = []
+    company_ids = []
     vertical = Vertical.objects.filter(slug=slug)
     for i in vertical:
-        company_list.append(i.company)
+        company_ids.append(i.company.id)
+        #company_list.append(i.company.id)
+    company_list = Company.objects.filter(id__in=company_ids)
         
     return render_to_response("companies.html",{'company_list': company_list}, 
     context_instance=RequestContext(request))

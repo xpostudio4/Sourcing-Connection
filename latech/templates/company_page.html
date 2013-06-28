@@ -218,11 +218,11 @@
 
                     {% for vertical in verticals %}
                     <!-- 
-                                # TO FIX TO SOMETHING LIKE: 
-                            <td colspan="2"><a href="{{ company.categories.get_absolute_url }}">{{ company.categories }}</a></td>
-                            <div colspan="2"><a href="{{ vertical.get_absolute_url }}">{{ vertical.name }}</a></div>
+                            <div colspan="2"><a href="/vertical/{{ vertical.slug }}">{{ vertical.name }}</a></div>
+
                         -->
-                        <div colspan="2"><a href="/vertical/{{ vertical.slug }}">{{ vertical.name }}</a></div>
+                        <div colspan="2"><a href="http://localhost:8000/?keywords=&category_company=&country_company=&industry_company=&vertical_company={{ vertical.slug }}&technology_company=&company_status=&minimum=0&maximum=100">{{ vertical.name }}</a></div>
+                        
 
                     {% endfor %}
 

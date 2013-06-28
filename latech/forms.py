@@ -51,6 +51,11 @@ class CompanySearchForm(forms.Form):
         widget=forms.TextInput(attrs={'size': 20}),
         required = False
     )
+    vertical_company = forms.CharField(
+        label=u'Verticals',
+        widget=forms.TextInput(attrs={'size': 20}),
+        required = False
+    )
     technology_company = forms.CharField(
         label=u'Technologies',
         widget=forms.TextInput(attrs={'size': 20}),
