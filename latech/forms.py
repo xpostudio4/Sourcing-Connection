@@ -35,7 +35,7 @@ class CompanySearchForm(forms.Form):
                 required = False
     )
     category_company = forms.ModelChoiceField(
-        label=u'Categories',
+        label=u'Industry',
         queryset=Category.objects.all(),
         empty_label = "Any",
         required = False
@@ -47,11 +47,6 @@ class CompanySearchForm(forms.Form):
         required = False
     )
 
-    industry_company = forms.CharField(
-        label=u'Industries',
-        widget=forms.TextInput(attrs={'size': 20}),
-        required = False
-    )
     vertical_company = forms.CharField(
         label=u'Verticals',
         widget=forms.TextInput(attrs={'size': 20}),

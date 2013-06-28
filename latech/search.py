@@ -4,7 +4,7 @@ from django.template import RequestContext, Context
 from django.shortcuts import render_to_response, HttpResponse, redirect
 from taxonomy.models import *
 from companies.models import *
-from company_profile_extended.models import Vertical
+from company_profile_extended.models import *
 from companies.functions import percentage_completion
 from contacts.models import *
 from django.db.models import Q, F
@@ -33,54 +33,16 @@ def search_function(request):
         keywords = request.GET['keywords'].strip()
         category_company = request.GET['category_company']
         country_company = request.GET['country_company']
-        industry_company = request.GET['industry_company'].strip()
         technology_company = request.GET['technology_company'].strip()
         vertical_company = request.GET['vertical_company'].strip() 
 
-        if (keywords or category_company or country_company or industry_company or technology_company or vertical_company):
+        if (keywords or category_company or country_company  or technology_company or vertical_company):
 
             show_results = True
         
             # Country Search
             if country_company:
                 q = q & Q(country__id__icontains=country_company)
-
-            #Keywords Search    
-            if keywords !="*":
-                keys = keywords.split()
-                
-                #Splitting keywords      
-                for key in keys:
-                    q = q & (Q(name__icontains=key)|
-                        Q(description__icontains=key)|
-                        Q(overview__icontains=key))
-            else:
-                company_list = Company.objects.all()
-
-            # Category Search
-            if category_company:
-                q = q & Q(categories__id__contains=category_company)
-            else:
-                company_list = Company.objects.all()
-
-            #Splitting Industries
-            if industry_company:
-
-                industry_keys = industry_company.split()
-                for ikey in industry_keys:
-                   q = q & (Q(industries__icontains=ikey))
-
-            else:
-                company_list = Company.objects.all()
-
-            
-            # Splitting Technologies
-            if technology_company:
-                technology_keys = technology_company.split()
-                for tkey in technology_keys:
-                   q = q & (Q(technologies__icontains=tkey))
-            else:
-                company_list = Company.objects.all()
 
             #Splitting Verticals
             if vertical_company:
@@ -95,10 +57,65 @@ def search_function(request):
             else:
                 company_list = Company.objects.all()
 
+            #Keywords Search    
+            if keywords !="*":
+                keys = keywords.split()
+                vertical_company_ids =[]
+                expertise_company_ids =[]
+                certification_company_ids =[]
+                partnership_company_ids =[]
+                association_company_ids =[]
+                award_company_ids =[]
+                verticals = Vertical.objects.filter(name__icontains=keywords)
+                for vkey in verticals:
+                    vertical_company_ids.append(vkey.company.id)                
+                
+                expertises = Expertise.objects.filter(name__icontains=keywords)
+                for ekey in expertises:
+                    expertise_company_ids.append(ekey.company.id)
+
+                certifications = Certification.objects.filter(name__icontains=keywords)
+                for ckey in certifications:
+                    certification_company_ids.append(ckey.company.id)
+
+                
+                #Splitting keywords      
+                for key in keys:
+                    q = q & (Q(name__icontains=key)|
+                        Q(description__icontains=key)|
+                        Q(overview__icontains=key)|
+                        Q(tags__icontains=key)|
+                        Q(categories__id__contains=key)|
+                        Q(id__in=vertical_company_ids)|
+                        Q(id__in=expertise_company_ids)|
+                        Q(id__in=certification_company_ids)
+                        )
+            else:
+                company_list = Company.objects.all()
+
+            # Category Search
+            if category_company:
+                q = q & Q(categories__id__contains=category_company)
+            else:
+                company_list = Company.objects.all()
+
+            # Splitting Technology Expertises
+            if technology_company:
+
+                expertise_company_ids =[]
+                expertise_keys = technology_company
+                expertises = Expertise.objects.filter(name__icontains=expertise_keys)
+                for ekey in expertises:
+                    expertise_company_ids.append(ekey.company.id)
+                    q = q & (Q(id__in=expertise_company_ids))
+
+            else:
+                company_list = Company.objects.all()
+
+
             company_form = CompanySearchForm({
                 'keywords':keywords,
                 'technology_company':technology_company, 
-                'industry_company':industry_company, 
                 'category_company':category_company, 
                 'country_company':country_company,
                 'vertical_company':vertical_company,
@@ -255,7 +272,7 @@ def export(request, filename='export', format="xlsx"):
 
 def search_page(request):
     if 'q' in request.GET:
-       query = request.GET['q']#.strip()
-#        if query:
-#           keywords = query.split()
+        query = request.GET['q']#.strip()
+        if query:
+           keywords = query.split()
     return redirect(("/?keywords=%s&category_company=&country_company=&industry_company=&vertical_company=&technology_company=&company_status=&minimum=0&maximum=100") % (query))
