@@ -78,6 +78,17 @@ def search_function(request):
                 for ckey in certifications:
                     certification_company_ids.append(ckey.company.id)
 
+                associations = TechnicalAssociation.objects.filter(name__icontains=keywords)
+                for association_key in associations:
+                    association_company_ids.append(association_key.company.id)
+
+                partnerships = Partnership.objects.filter(name__icontains=keywords)
+                for partnership_key in certifications:
+                   partnership_company_ids.append(partnership_key.company.id)
+
+                awards = Award.objects.filter(name__icontains=keywords)
+                for award_key in awards:
+                   award_company_ids.append(partnership_key.company.id)
                 
                 #Splitting keywords      
                 for key in keys:
@@ -88,7 +99,11 @@ def search_function(request):
                         Q(categories__id__contains=key)|
                         Q(id__in=vertical_company_ids)|
                         Q(id__in=expertise_company_ids)|
-                        Q(id__in=certification_company_ids)
+                        Q(id__in=certification_company_ids)|
+                        Q(id__in=partnership_company_ids)|
+                        Q(id__in=association_company_ids)|
+                        Q(id__in=award_company_ids)
+                        #Q(id__in=certification_company_ids)
                         )
             else:
                 company_list = Company.objects.all()

@@ -22,7 +22,7 @@ class ProjectForm(ModelForm):
 class SuccessStoriesForm(ModelForm):
     class Meta:
        model = SuccessStories
-       exclude = ("company",)
+       exclude = ("company","story_image")
 
 class ExpertiseForm(ModelForm):
     class Meta:

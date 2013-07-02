@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from companies.models import *
+from company_profile_extended.models import *
 from contacts.models import *
 from location.models import *
 from django.contrib.auth.models import User 
@@ -31,7 +32,7 @@ class CompanyStatusForm(forms.Form):
 class CompanySearchForm(forms.Form):
     keywords = forms.CharField(
         label=u'Keywords',
-        widget=forms.TextInput(attrs={'size': 20, 'placeholder': "For all the companies use *"} ),
+        widget=forms.TextInput(attrs={'size': 20} ),
                 required = False
     )
     category_company = forms.ModelChoiceField(
@@ -126,3 +127,13 @@ class TicketForm(forms.Form):
 class ContactForm(forms.Form):
     subject = forms.CharField(max_length=100)
     message = forms.CharField(widget=forms.Textarea)
+
+class CompanyLogoForm(ModelForm):
+    class Meta:
+        model = Company
+        fields = ["logo",]
+
+class ProductImageForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ["product_image",]        

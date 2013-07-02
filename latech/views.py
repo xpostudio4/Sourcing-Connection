@@ -115,7 +115,7 @@ def form_validation(request, slug, model):
             
             template = """
 
-                <div id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{ acquisition.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name">{{ acquisition.name }}</text> <i class="icon-pencil"></i></div>
+                <div id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{ acquisition.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name">{{ acquisition.name }}</text> </div>
 
             """
 
@@ -128,7 +128,7 @@ def form_validation(request, slug, model):
             context = Award.objects.get(id=f.id)
             
             template = """
-                <div id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{ award.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Award" data-url="/formfields/Award/{{ award.id }}/name/" data-pk="{{ award.id }}" class="editable-value" data-title="Award Name">{{ award.name }}</text> <i class="icon-pencil"></i></div>
+                <div id="awards-{{ award.id }}"><a class="link-delete" data-type="awards" data-id="{{ award.id }}" id="{{ company.slug }}-awards-{{ award.id }}"  href="/company/{{ company.slug }}/awards/{{ award.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Award" data-url="/formfields/Award/{{ award.id }}/name/" data-pk="{{ award.id }}" class="editable-value" data-title="Award Name">{{ award.name }}</text> </div>
             """
 
             template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ award.id }}", str(context.id))
@@ -142,7 +142,7 @@ def form_validation(request, slug, model):
                 <div id="certifications-{{ certification.id }}"><a class="link-delete" data-type="certifications" data-id="{{ certification.id }}" 
                 id="{{ company.slug }}-certifications-{{ certification.id }}"  href="/company/{{ company.slug }}/certifications/{{ certification.id }}/delete">
                 <i class="icon-remove"></i></a>  <text data-type="text" data-model="Certification" data-url="/formfields/Certification/{{ certification.id }}/name/"
-                data-pk="{{ certification.id }}"  data-title="Certification" class="editable-value" >{{ certification.name }}</text> <i class="icon-pencil"></i></div>
+                data-pk="{{ certification.id }}"  data-title="Certification" class="editable-value" >{{ certification.name }}</text> </div>
 
             """
 
@@ -203,7 +203,7 @@ def form_validation(request, slug, model):
 
             template = """
 
-                <div id="alliances-{{ alliance.id }}"><a class="link-delete" data-type="alliances" data-id="{{ alliance.id }}" id="{{ company.slug }}-alliances-{{ alliance.id }}"  href="/company/{{ company.slug }}/alliances/{{ alliance.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Alliance" data-url="/formfields/Alliance/{{ alliance.id }}/name/" data-pk="{{ alliance.id }}"  data-title="alliance" class="editable-value" >{{ alliance.name }}</text> <i class="icon-pencil"></i></div>
+                <div id="alliances-{{ alliance.id }}"><a class="link-delete" data-type="alliances" data-id="{{ alliance.id }}" id="{{ company.slug }}-alliances-{{ alliance.id }}"  href="/company/{{ company.slug }}/alliances/{{ alliance.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Alliance" data-url="/formfields/Alliance/{{ alliance.id }}/name/" data-pk="{{ alliance.id }}"  data-title="alliance" class="editable-value" >{{ alliance.name }}</text> </div>
             """
 
             template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ alliance.id }}", str(context.id))
@@ -290,7 +290,7 @@ def form_validation(request, slug, model):
             context = Vertical.objects.get(id=f.id)
 
             template = """
-                <div id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{ vertical.id }}/delete"><i class="icon-remove"></i></a><text data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{ vertical.name }}</text> <i class="icon-pencil"></i></div>
+                <div id="verticals-{{ vertical.id }}"><a class="link-delete" data-type="verticals" data-id="{{ vertical.id }}" id="{{ company.slug }}-verticals-{{ vertical.id }}" href="/company/{{ company.slug }}/verticals/{{ vertical.id }}/delete"><i class="icon-remove"></i></a><text data-type="text" data-model="Vertical" data-url="/formfields/Vertical/{{ vertical.id }}/vertical/" data-pk="{{ vertical.id }}" class="editable-value" data-title="Vertical Name">{{ vertical.name }}</text> </div>
 
             """
 
@@ -306,7 +306,7 @@ def form_validation(request, slug, model):
                 <div id="expertises-{{ expertise.id }}"><a class="link-delete" data-type="expertises" data-id="{{ expertise.id }}" 
                 id="{{ company.slug }}-expertises-{{ expertise.id }}" href="/company/{{ company.slug }}/expertises/{{ expertise.id }}/delete">
                 <i class="icon-remove"></i></a>  <text data-type="text" data-model="Expertise" data-url="/formfields/Expertise/{{ expertise.id }}/name/" 
-                data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{ expertise.name }}</text> <i class="icon-pencil"></i></div>
+                data-pk="{{ expertise.id }}" class="editable-value" data-title="Expertises">{{ expertise.name }}</text> </div>
 
             """
 
@@ -319,7 +319,7 @@ def form_validation(request, slug, model):
             context = Partnership.objects.get(id=f.id)
 
             template = """
-                <div id="partnerships-{{ partnership.id }}"><a class="link-delete" data-type="partnerships" data-id="{{ partnership.id }}" id="{{ company.slug }}-partnerships-{{ partnership.id }}"  href="/company/{{ company.slug }}/partnerships/{{ partnership.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Partnership" data-url="/formfields/Partnership/{{ partnership.id }}/name/" data-pk="{{ partnership.id }}"  data-title="partnership" class="editable-value" >{{ partnership.name }}</text> <i class="icon-pencil"></i></div>
+                <div id="partnerships-{{ partnership.id }}"><a class="link-delete" data-type="partnerships" data-id="{{ partnership.id }}" id="{{ company.slug }}-partnerships-{{ partnership.id }}"  href="/company/{{ company.slug }}/partnerships/{{ partnership.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Partnership" data-url="/formfields/Partnership/{{ partnership.id }}/name/" data-pk="{{ partnership.id }}"  data-title="partnership" class="editable-value" >{{ partnership.name }}</text> </div>
                         
             """
 
@@ -334,7 +334,7 @@ def form_validation(request, slug, model):
 
             template = """
 
-                <div id="associations-{{ association.id }}"><a class="link-delete" data-type="associations" data-id="{{ association.id }}" id="{{ company.slug }}-associations-{{ association.id }}"  href="/company/{{ company.slug }}/associations/{{ association.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="TechnicalAssociation" data-url="/formfields/TechnicalAssociation/{{ association.id }}/name/" data-pk="{{ association.id }}"  data-title="association" class="editable-value" >{{ association.name }}</text> <i class="icon-pencil"></i></div>
+                <div id="associations-{{ association.id }}"><a class="link-delete" data-type="associations" data-id="{{ association.id }}" id="{{ company.slug }}-associations-{{ association.id }}"  href="/company/{{ company.slug }}/associations/{{ association.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="TechnicalAssociation" data-url="/formfields/TechnicalAssociation/{{ association.id }}/name/" data-pk="{{ association.id }}"  data-title="association" class="editable-value" >{{ association.name }}</text> </div>
                         
             """
 
@@ -349,9 +349,9 @@ def form_validation(request, slug, model):
 
             template = """
             
-                <td id="products-{{ product.id }}" data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/name/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{ product.id }}/delete"><i class="icon-remove"></i></a>{{ product.name }}<i class="icon-pencil"></i></td>
+                <td id="products-{{ product.id }}" data-type="text" data-model="Product" data-url="/formfields/Product/{{ product.id }}/name/" data-pk="{{ product.id }}" class="editable-value" data-title="Product Name"><a class="link-delete" data-type="products" data-id="{{ product.id }}" id="{{ company.slug }}-products-{{ product.id }}" href="/company/{{ company.slug }}/products/{{ product.id }}/delete"><i class="icon-remove"></i></a>{{ product.name }}</td>
 
-                <td data-type="text" class="products-{{ product.id }} editable-value" data-model="Product" data-url="/formfields/Product/{{ product.id }}/price/" data-pk="{{ product.id }}" data-id="{{ product.id }}"   data-title="Product Price" >{{ product.price|floatformat:"2" }}<i class="icon-pencil"></i></td>
+                <td data-type="text" class="products-{{ product.id }} editable-value" data-model="Product" data-url="/formfields/Product/{{ product.id }}/price/" data-pk="{{ product.id }}" data-id="{{ product.id }}"   data-title="Product Price" >{{ product.price|floatformat:"2" }}</td>
 
                 {% if product.product_image %}
                     <td><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td>
@@ -375,7 +375,7 @@ def form_validation(request, slug, model):
 
             template = """
             
-                <div id="projects-{{ project.id }}"><a class="link-delete" data-type="projects" data-id="{{ project.id }}" id="{{ company.slug }}-projects-{{ project.id }}" href="/company/{{ company.slug }}/projects/{{ project.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Project" data-url="/formfields/Project/{{ project.id }}/name/" data-pk="{{ project.id }}" class="editable-value" data-title="Project Name">{{ project.name }}</text> <i class="icon-pencil"></i></div>
+                <div id="projects-{{ project.id }}"><a class="link-delete" data-type="projects" data-id="{{ project.id }}" id="{{ company.slug }}-projects-{{ project.id }}" href="/company/{{ company.slug }}/projects/{{ project.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Project" data-url="/formfields/Project/{{ project.id }}/name/" data-pk="{{ project.id }}" class="editable-value" data-title="Project Name">{{ project.name }}</text> </div>
                         
             """
 

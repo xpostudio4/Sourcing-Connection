@@ -19,7 +19,7 @@ from companies.functions import *
 from company_profile_extended.models import *
 from company_profile_extended.forms import *
 from recommendations.models import Recommendation
-from latech.forms import ContactForm
+from latech.forms import ContactForm, CompanyLogoForm, ProductImageForm
 from contacts.models import *
 from fileupload.models import *
 from location.models import Country
@@ -114,12 +114,17 @@ def webmaster(request):
 
     return HttpResponse("")
 
+@require_POST
+def product_picture(request, id, slug):
+
+    if request.method == 'POST':
+        request.REQUEST["product-image"]
+        product
+    return HttpResponse("")
 
 
-    #return HttpResponse(json.dumps(message), mimetype="application/json")
 
-
-def company_edit(request, slug):
+def company_edit(request, slug, **kwargs):
 
     company = get_object_or_404(Company,slug=slug)
 
@@ -189,10 +194,17 @@ def company_edit(request, slug):
 
     # Product Picture Form
 #    product_reference = get_object_or_404(Product, id=request.GET["product_id"], company=company)
+    company_logo_form = CompanyLogoForm(request.POST, request.FILES, instance=company)
+#    image_reference = get_object_or_404(Product, id=id,company=company)
+#    product_picture_form = ProductPictureForm(request.POST, request.FILES)#, instance=company.company_products__id)
+    
+    if request.method == 'POST':
 
-    product_picture_form = ProductPictureForm()#, instance=product_reference)
-    if product_picture_form.is_valid():
-        product_picture_form.save()
+#        if product_picture_form.is_valid():
+#            product_picture_form.save()
+    
+        if company_logo_form.is_valid():
+            company_logo_form.save()
 
 
     office_list = []
@@ -220,12 +232,14 @@ def company_edit(request, slug):
         # Calling All objects from these models to update them in place
         "countries":countries,"industries":industries,
         #Picture Form
-        "product_picture_form":product_picture_form,#'product_reference':product_reference,
+        #"product_picture_form":product_picture_form,#'product_reference':product_reference,
+        "company_logo_form":company_logo_form,
          },
         context_instance=RequestContext(request))
 
 
 def company_edit2(request, slug):
+
 
     company = get_object_or_404(Company,slug=slug)
 
@@ -329,6 +343,17 @@ def company_name_redirect(request):
             company = Company.objects.create(name=value, slug=slugify(value), created_by=request.user)
             return HttpResponseRedirect('/company/%s' % company.slug)
 
+@require_POST
+def company_logo(request, slug):
+    if request.method == 'POST':
+        if request.FILES.get('file'): 
+            file = request.FILES.get['file']
+            company = get_object_or_404(Company, slug=slug, logo= file)
+            company.save()
+        return HttpResponse("")
+
+            #return HttpResponseRedirect('/company/%s' % company.slug)
+
 
 @require_POST
 def company_name_verification(request):
@@ -372,6 +397,8 @@ def form_fields(request, id, model, field):
             o_model.founding_date = value
         elif field == "main_phone":
             o_model.main_phone = value
+        elif field == "logo":
+            o_model.logo = value
         elif field == "email":
             o_model.email = value
         elif field == "industries":
@@ -495,6 +522,9 @@ def form_fields(request, id, model, field):
             o_model.name = value
         elif field == "price":
             o_model.price = value
+        elif field == "product_image":
+            o_model.product_image = value
+
 
 #    if model == "Vertical":
 #        o_model = get_object_or_404(Vertical, id=id)
@@ -565,3 +595,59 @@ def user_form_fields(request, id, model, field):
     o_model.save()
 
     return HttpResponse("")
+
+def logo_update(request, slug):
+    """The purpose of this view is to update the info of the management page"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    logo_form = CompanyLogoForm(instance=company)
+
+    #verifies the person has access to the company or is an incubator employee
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    #if the request is GET presents info, 
+    if request.method == 'GET':
+        return render_to_response('pictures.html',{'form':logo_form },context_instance=RequestContext(request))
+    else:
+        logo_form = CompanyLogoForm(request.POST, request.FILES, instance=company)
+        #if is POST Validates the form is well filled and save it redirecting to the company page 
+        if logo_form.is_valid():
+            logo_form.save()
+
+
+            # To FIX
+            return HttpResponseRedirect('/company/%s/edit/' % str(slug))
+        #if not well filled redirect to the original update page and display error
+        else:
+            return render_to_response('pictures.html', 
+                {'form': logo_form, 'form_errors': logo_form.errors},
+                context_instance=RequestContext(request))
+
+
+def product_image_update(request, slug, id):
+    """The purpose of this view is to update the info of the management page"""
+    #verifies if the company exists if not returns a 404 page
+    company =get_object_or_404(Company,slug=slug)
+    image_reference = get_object_or_404(Product, id=id,company=company)
+    product_image_form = ProductImageForm(instance=image_reference)
+
+    #verifies the person has access to the company or is an incubator employee
+    edit = validate_user_company_access_or_redirect(request,company)
+
+    #if the request is GET presents info, 
+    if request.method == 'GET':
+        return render_to_response('pictures.html',{'form':product_image_form },context_instance=RequestContext(request))
+    else:
+        product_image_form = ProductImageForm(request.POST, request.FILES, instance=image_reference)
+        #if is POST Validates the form is well filled and save it redirecting to the company page 
+        if product_image_form.is_valid():
+            product_image_form.save()
+
+
+            # To FIX
+            return HttpResponseRedirect('/company/%s/edit/' % str(slug))
+        #if not well filled redirect to the original update page and display error
+        else:
+            return render_to_response('pictures.html', 
+                {'form': product_image_form, 'form_errors': product_image_update.errors},
+                context_instance=RequestContext(request))

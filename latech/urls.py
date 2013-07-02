@@ -23,6 +23,7 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/$','companies.views.company_view'),
      url(r'^company/(?P<slug>[\w-]+)/edit/$','latech.views_editable.company_edit'),
      url(r'^company/(?P<slug>[\w-]+)/edit2/$','latech.views_editable.company_edit2'),
+     url(r'^company/(?P<slug>[\w-]+)/logo/$','latech.views_editable.company_logo'),
 
 #     url(r'^companies/$', CompanyList.as_view(), name='company_list'),
      #Loading Companies from the CSV file
@@ -38,10 +39,11 @@ urlpatterns = patterns('',
       url(r'^contact/$', 'latech.views_editable.webmaster_contact'),
       url(r'^user_msg/$', 'latech.views_editable.webmaster'),
       url(r'^companies/name/$','latech.views_editable.company_name_redirect'),
-     # For testing: bootstrap-editable
+
+     # Using X-Editable for Editing In-place
+
       url(r'^formfields/(?P<model>[\w-]+)/(?P<id>[\d]+)/(?P<field>[\w-]+)/$','latech.views_editable.form_fields'),
       url(r'^userfields/(?P<model>[\w-]+)/(?P<id>[\d]+)/(?P<field>[\w-]+)/$','latech.views_editable.user_form_fields'),
-#      url(r'^formfields/(?P<slug>[\w-]+)/(?P<model>[\w-]+)/$','latech.views.form_validation2'),
       
 
      #Management for the item
@@ -79,6 +81,8 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/update/$','fileupload.views.picture_update'),
      url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/delete/$','fileupload.views.picture_delete'),
      url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/$','fileupload.views.picture_view'),
+     url(r'^company/(?P<slug>[\w-]+)/logo/update/$','latech.views_editable.logo_update'),
+     url(r'^company/(?P<slug>[\w-]+)/product_image/(?P<id>[\d]+)/update/$','latech.views_editable.product_image_update'),
 
      # ManagerPicture urls
      url(r'^company/(?P<slug>[\w-]+)/management/(?P<pk>[\w-]+)/pictures/new/$','fileupload.views.managerpicture_create'),

@@ -81,7 +81,11 @@
     {% endif %}
 <br/>        
         <div class="media pull-right">
-            <a href="#">
+            <!--<a data-toggle="modal" class="pull-left picture-update" href="/company/{{ company.slug}}/logo/update/">-->
+            <a data-toggle="modal" id="company-logo-update" class="pull-left" href="#logo-update-modal" data-model="Company" data-url="/formfields/Company/{{ company.id }}/logo/" data-pk="{{ company.id }}">
+
+            {#<a data-toggle="modal" id="company-picture" class="pull-left" href="/company/{{ company.slug}}/logo/update/">#}
+                
                 {% if company.logo %}
     
                 <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ company.logo }}" height="130" width="160">
@@ -396,14 +400,21 @@
 
                     <td data-type="text" class="products-{{ product.id }} editable-value" data-model="Product" data-url="/formfields/Product/{{ product.id }}/price/" data-pk="{{ product.id }}" data-id="{{ product.id }}"   data-title="Product Price" >{{ product.price|floatformat:"2" }}</td>
 
+                    
+                    
                     {% if product.product_image %}
-                        <td  data-toggle="popover" data-placement="top" data-content='<form type="file" enctype="multipart/form-data method="get" action=".">  {{ product_picture_form.as_p }} <input type="submit" value="Upload Image"> </form>' data-html="true" class="valuepopfile products-{{ product.id }}" data-title="Company Products "><img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td>
+                    
+                        <td>
+                            <a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"  data-target="#product-image-update"> 
+                        
+                            <!--<a data-toggle="modal" id="product-picture" class="pull-left" href="#product-image-update">-->
+                            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td></a>
+                     
                     {% else %}
-<!--
-                        <a class="add-element" data-model="Alliance" href="/company/{{ company.slug }}/alliances/new"><td  data-toggle="popover" data-placement="top" data-content='Change: <input type="file" name="logo" id="id_logo" />' data-html="true" class="valuepopfile products-{{ product.id }}" data-title="Company Products "><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td></a>
-
--->
-                        <td  data-toggle="popover" data-placement="top" data-content='Change: <input type="file" name="logo" id="id_logo" />' data-html="true" class="valuepopfile products-{{ product.id }}" data-title="Company Products "><img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></td>
+                        
+                        <td><a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"  data-target="#product-image-update">
+                            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></a></td>
+                    
                     {% endif %}
 
                     </tr>
@@ -413,7 +424,7 @@
         {% else %}
             <br/>
        {% endif %}
-            
+
         </div>
 
         {# Recommendations goes here #} 
@@ -474,6 +485,38 @@
 
 
 </div>
+
+        {# Modal for company logo update#}
+    <div id="logo-update-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="CompanyLogoLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="CompanyLogoLabel">Updating Company Logo</h3>
+        </div>
+        <div class="modal-body">
+            <form enctype="multipart/form-data" method="post" id="company-logo-form" action=".">
+                {# <input type="file"  value="file" name="logo" id="id_logo" >{% csrf_token %} #}
+                {{ company_logo_form.as_p }}{% csrf_token %} 
+                
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <button type="submit" class="btn">Submit Form</button>
+            </div>
+
+            </form>
+        </div>
+    </div>
+
+{# Modal for product image update#}
+<div id="product-image-update" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="PictureLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="PictureLabel">Updating Image</h3>
+    </div>
+    <div class="modal-body">
+    </div>
+</div>
+
+
 <div id="companyModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <h3 id="myModalLabel">Login</h3>
@@ -591,7 +634,8 @@ link.click(
                 data:  $('#new-form').serialize(), 
                 success: 
                     function(result){
-                        alert(result);
+                        $('#'+result.model.toLowerCase()+"s").append(result.template);
+//                        $('#id_name').text("");
                         $.ajax({
                             url: "/forms/"+model_name+"/",
                             data: { 'csrfmiddlewaretoken': '{{csrf_token}}' }, 
@@ -610,7 +654,7 @@ link.click(
                                     }},
                             error: 
                                 function(xhr){
-                                    alert("Error: " + xhr.statusText);
+                                    console.log("Error: " + xhr.statusText);
                                     //alert("We are experiencing problems with the server , please try again later");
                                     return false;
                                 },
@@ -618,7 +662,7 @@ link.click(
                     },
                 error: 
                     function(xhr){
-                        alert("Error 2: " + xhr.statusText);
+                        console.log("Error 2: " + xhr.statusText);
                         //alert("We are experiencing problems with the server , please try again later");
                         return false;
                     }
@@ -688,6 +732,66 @@ link.click(
                     }
             });
         })
+
+/*
+Updating Company Logo
+*/
+
+    var logo_update = $('#company-logo-update');
+        logo_update.click( 
+        function(event){
+            event.preventDefault();
+            $('#logo-update-modal').removeClass('hide');
+
+
+        });
+
+/*
+    var save_logo = $('#update-company-logo');
+    save_logo.click( 
+
+        function(event){
+            event.preventDefault();
+            $.ajax({
+                url: "/formfields/Company/{{ company.id }}/logo/",
+                type: "POST",
+                cache: false,
+                data: $('#company-logo-form').serialize(),  
+
+                success :
+                    $("#logo-update-modal").modal("hide"),
+                error: 
+                    function(xhr){
+                        alert("Error: " + xhr.statusText);
+                        //alert("We are experiencing problems with the server , please try again later");
+                        return false;
+                    }
+            });
+        });
+*/
+
+/*
+Updating Product Images
+*/
+    //var picture_update = $('#picture-update');
+    var picture_update = $('#product-picture');
+          picture_update.click( 
+          function(event){
+            $('#product-image-update').removeClass('hide');
+            event.preventDefault();
+        });
+                    $('#product-picture-form').live('submit', function() {
+                        $.ajax({ 
+                            type: $(this).attr('method'), 
+                            url: this.action, 
+                            data: $(this).serialize(),
+                            context: this,
+                            success: function(data, status) {
+                                $('#product-image-update').html(data);
+                            }
+                        });
+                        return false;
+                    });
 
 
         </script>
@@ -822,6 +926,9 @@ link.click(
                 return params;
             },
         }); 
+
+
+
 
 </script>
 
