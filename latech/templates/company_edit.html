@@ -405,14 +405,16 @@
                     {% if product.product_image %}
                     
                         <td>
-                            <a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"  data-target="#product-image-update"> 
+                            <!--<a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"  data-target="#product-image-update"> -->
+                            <a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"> 
                         
                             <!--<a data-toggle="modal" id="product-picture" class="pull-left" href="#product-image-update">-->
                             <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td></a>
                      
                     {% else %}
                         
-                        <td><a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"  data-target="#product-image-update">
+                        <td><!--<a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"  data-target="#product-image-update"> -->
+                            <a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"> 
                             <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></a></td>
                     
                     {% endif %}
