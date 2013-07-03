@@ -93,7 +93,7 @@
                 <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="96" width="140">
                 
                 {% endif %}
-            </a>
+            </a><i data-toggle="popover" data-placement="right" data-content="Click here to change the company logo" data-html="true" class="icon-pencil valuepop" data-title="Company Logo"></i>
         </div>
 <br/>
 
@@ -409,13 +409,13 @@
                             <a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"> 
                         
                             <!--<a data-toggle="modal" id="product-picture" class="pull-left" href="#product-image-update">-->
-                            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"></td></a>
+                            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"><i data-toggle="popover" data-placement="right" data-content="Click here to change the product picture" data-html="true" class="icon-pencil valuepop" data-title="Product Picture"></i></a></td>
                      
                     {% else %}
                         
                         <td><!--<a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"  data-target="#product-image-update"> -->
                             <a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"> 
-                            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"></a></td>
+                            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"><i data-toggle="popover" data-placement="right" data-content="Click here to change the product picture" data-html="true" class="icon-pencil valuepop" data-title="Product Picture"></i></a></td>
                     
                     {% endif %}
 
