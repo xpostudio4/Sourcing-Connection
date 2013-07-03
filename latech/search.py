@@ -66,6 +66,11 @@ def search_function(request):
                 partnership_company_ids =[]
                 association_company_ids =[]
                 award_company_ids =[]
+                project_company_ids =[]
+                product_company_ids =[]
+                acquired_company_ids =[]
+                alliance_company_ids =[]
+
                 verticals = Vertical.objects.filter(name__icontains=keywords)
                 for vkey in verticals:
                     vertical_company_ids.append(vkey.company.id)                
@@ -88,8 +93,25 @@ def search_function(request):
 
                 awards = Award.objects.filter(name__icontains=keywords)
                 for award_key in awards:
-                   award_company_ids.append(partnership_key.company.id)
+                   award_company_ids.append(award_key.company.id)
                 
+                projects = Project.objects.filter(name__icontains=keywords)
+                for project_key in projects:
+                   project_company_ids.append(project_key.company.id)
+
+                products = Product.objects.filter(name__icontains=keywords)
+                for product_key in products:
+                   product_company_ids.append(product_key.company.id)
+
+                acquisitions = Acquisition.objects.filter(name__icontains=keywords)
+                for acquired_key in acquisitions:
+                   acquired_company_ids.append(acquired_key.company.id)
+
+                alliances = Alliance.objects.filter(name__icontains=keywords)
+                for alliance_key in alliances:
+                   alliance_company_ids.append(alliance_key.company.id)
+
+
                 #Splitting keywords      
                 for key in keys:
                     q = q & (Q(name__icontains=key)|
@@ -102,8 +124,11 @@ def search_function(request):
                         Q(id__in=certification_company_ids)|
                         Q(id__in=partnership_company_ids)|
                         Q(id__in=association_company_ids)|
+                        Q(id__in=product_company_ids)|
+                        Q(id__in=project_company_ids)|
+                        Q(id__in=acquired_company_ids)|
+                        Q(id__in=alliance_company_ids)|
                         Q(id__in=award_company_ids)
-                        #Q(id__in=certification_company_ids)
                         )
             else:
                 company_list = Company.objects.all()
