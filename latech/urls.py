@@ -44,7 +44,11 @@ urlpatterns = patterns('',
 
       url(r'^formfields/(?P<model>[\w-]+)/(?P<id>[\d]+)/(?P<field>[\w-]+)/$','latech.views_editable.form_fields'),
       url(r'^userfields/(?P<model>[\w-]+)/(?P<id>[\d]+)/(?P<field>[\w-]+)/$','latech.views_editable.user_form_fields'),
-      
+
+
+# TESTING PRODUCT IMAGE FIELDS
+      url(r'^imagefields/(?P<model>[\w-]+)/(?P<id>[\d]+)/(?P<field>[\w-]+)/$','latech.views_editable.product_image_fields'),
+
 
      #Management for the item
      url(r'^company/(?P<slug>[\w-]+)/management/new/$','companies.views.management_create'),
@@ -83,6 +87,7 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/pictures/(?P<id>[\d]+)/$','fileupload.views.picture_view'),
      url(r'^company/(?P<slug>[\w-]+)/logo/update/$','latech.views_editable.logo_update'),
      url(r'^company/(?P<slug>[\w-]+)/product_image/(?P<id>[\d]+)/update/$','latech.views_editable.product_image_update'),
+     url(r'^company/(?P<slug>[\w-]+)/product_img/(?P<id>[\d]+)/update/$','latech.views_editable.product_picture'),
 
      # ManagerPicture urls
      url(r'^company/(?P<slug>[\w-]+)/management/(?P<pk>[\w-]+)/pictures/new/$','fileupload.views.managerpicture_create'),

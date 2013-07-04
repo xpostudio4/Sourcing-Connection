@@ -406,16 +406,15 @@
                     
                         <td>
                             <!--<a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"  data-target="#product-image-update"> -->
-                            <a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"> 
                         
-                            <!--<a data-toggle="modal" id="product-picture" class="pull-left" href="#product-image-update">-->
-                            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" height="65" width="115"><i data-toggle="popover" data-placement="right" data-content="Click here to change the product picture" data-html="true" class="icon-pencil valuepop" data-title="Product Picture"></i></a></td>
+                            <a data-toggle="modal" class="product-picture" data-id="{{ product.id }}" href="#product-image-update" data-pk="{{ product.id }}"  data-title="Product" class="pull-left">
+                            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" data-id="{{ product.id }}" height="65" width="115"><i data-toggle="popover" data-placement="right" data-content="Click here to change the product picture" data-html="true" class="icon-pencil valuepop image-id" data-title="Product Picture"></i></a></td>
                      
                     {% else %}
                         
                         <td><!--<a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"  data-target="#product-image-update"> -->
-                            <a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"> 
-                            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"><i data-toggle="popover" data-placement="right" data-content="Click here to change the product picture" data-html="true" class="icon-pencil valuepop" data-title="Product Picture"></i></a></td>
+                            <a data-toggle="modal" class="product-picture" data-id="{{ product.id }}" href="#product-image-update" data-title="Product" class="pull-left"> 
+                            <img class="img-polaroid" data-src="holder.js/64x64" data-id="{{ product.id }}"src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"><i data-toggle="popover" data-placement="right" data-content="Click here to change the product picture" data-html="true" class="icon-pencil valuepop" data-title="Product Picture"></i></a></td>
                     
                     {% endif %}
 
@@ -514,7 +513,16 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="PictureLabel">Updating Image</h3>
     </div>
+
     <div class="modal-body">
+        <form method="POST" enctype="multipart/form-data" id="product-img-form" action=".">{% csrf_token %} 
+            <input type="file" name="product_image" id="id_product_image" >
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-primary" id="save-product-picture" data-id="0">Save changes</button>
+
+        </div>
+        </form>
     </div>
 </div>
 
@@ -749,19 +757,42 @@ Updating Company Logo
         });
 
 /*
-    var save_logo = $('#update-company-logo');
-    save_logo.click( 
+Updating Product Images
+*/
+    //var picture_update = $('#picture-update');
+    var picture_update = $('.product-picture');
+        picture_update.click( 
+          function(event){
+            $('#product-image-update').removeClass('hide');
+            //$('#save-product-picture').data("id") = $(this).data("id");
+            $('#hidden-val').data("id") = $(this).data("id");
 
+            event.preventDefault();
+        });
+
+    var save_product_picture = $('#save-product-picture');
+    save_product_picture.click( 
         function(event){
+
+            var model_name = "Product";
+            //var id = $("#").data("id"); //can be form_id
+            var id = $(".product-picture").data("id");
+
+
+
             event.preventDefault();
             $.ajax({
-                url: "/formfields/Company/{{ company.id }}/logo/",
+                //url: "/forms/{{ company.slug }}/"+model_name+"/",
+                url: "/imagefields/Product/"+id+"/product_image/",
                 type: "POST",
                 cache: false,
-                data: $('#company-logo-form').serialize(),  
-
+                data:  $('#product-img-form').serialize(), 
                 success :
-                    $("#logo-update-modal").modal("hide"),
+                    function(result){
+//                        $('#'+result.model.toLowerCase()+"s").append(result.template);
+                        $("#product-image-update").modal("hide");
+                 } 
+                    ,
                 error: 
                     function(xhr){
                         alert("Error: " + xhr.statusText);
@@ -769,32 +800,7 @@ Updating Company Logo
                         return false;
                     }
             });
-        });
-*/
-
-/*
-Updating Product Images
-*/
-    //var picture_update = $('#picture-update');
-    var picture_update = $('#product-picture');
-          picture_update.click( 
-          function(event){
-            $('#product-image-update').removeClass('hide');
-            event.preventDefault();
-        });
-                    $('#product-picture-form').live('submit', function() {
-                        $.ajax({ 
-                            type: $(this).attr('method'), 
-                            url: this.action, 
-                            data: $(this).serialize(),
-                            context: this,
-                            success: function(data, status) {
-                                $('#product-image-update').html(data);
-                            }
-                        });
-                        return false;
-                    });
-
+        })
 
         </script>
 

@@ -136,4 +136,7 @@ class CompanyLogoForm(ModelForm):
 class ProductImageForm(ModelForm):
     class Meta:
         model = Product
-        fields = ["product_image",]        
+        fields = ["product_image",]  
+
+class ProductImgForm(forms.Form):
+    picture = forms.ImageField(required=False)
