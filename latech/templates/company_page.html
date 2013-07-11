@@ -131,7 +131,7 @@
                             <td colspan="2"><a href="{{ company.categories.get_absolute_url }}">{{ company.categories }}</a></td>
                         -->
                         
-                        <td colspan="2"><a href="/?keywords=&category_company={{ company.categories.id }}&country_company=&industry_company=&technology_company=&company_status=&minimum=0&maximum=100">{{ company.categories }}</a></td>
+                        <td colspan="2"><a href="/?keywords=&category_company={{ company.categories.id }}&country_company=&industry_company=&technology_company=&company_status=&vertical_company=&minimum=0&maximum=100">{{ company.categories }}</a></td>
                         <!--<td colspan="2"><a href="/industry/{{ company.categories.slug }}">{{ company.categories }}</a></td>-->
                     </tr>
 
@@ -221,7 +221,7 @@
                             <div colspan="2"><a href="/vertical/{{ vertical.slug }}">{{ vertical.name }}</a></div>
 
                         -->
-                        <div colspan="2"><a href="http://localhost:8000/?keywords=&category_company=&country_company=&industry_company=&vertical_company={{ vertical.slug }}&technology_company=&company_status=&minimum=0&maximum=100">{{ vertical.name }}</a></div>
+                        <div colspan="2"><a href="/?keywords=&category_company=&country_company=&industry_company=&vertical_company={{ vertical.slug }}&technology_company=&company_status=&minimum=0&maximum=100">{{ vertical.name }}</a></div>
                         
 
                     {% endfor %}

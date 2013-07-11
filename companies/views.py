@@ -9,6 +9,7 @@ from fileupload.forms import *
 from recommendations.models import *
 from taxonomy.models import Category
 
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404, render 
@@ -234,7 +235,36 @@ def company_view(request, slug):
 
     # Similar 
     similar = []
-    similar_companies = Company.objects.filter(categories=company.categories).order_by('id')
+    vnames = []
+    enames = []
+    similar_ids = []
+    
+    # Similar By Vertical functionality
+    for i in Vertical.objects.filter(company=company):
+        vnames.append(i.name)
+        
+    # Similar By Expertise functionality
+    for i in Expertise.objects.filter(company=company):
+        vnames.append(i.name)
+
+    s_v = Vertical.objects.filter(name__in=vnames)
+    s_e = Expertise.objects.filter(name__in=enames)    
+
+    for i in s_v:
+        similar_ids.append(i.company.id)
+
+    for y in s_e:
+        similar_ids.append(y.company.id)
+        
+    
+    
+    s_ids = list(set(similar_ids))
+    q = Q()
+    q = q & Q(id__in=s_ids)
+    
+#    similar_companies = Company.objects.filter(categories=company.categories).order_by('id')
+    similar_companies = Company.objects.filter(q)
+    
     for c in similar_companies:
         if c != company:
             similar.append(c)
@@ -242,11 +272,7 @@ def company_view(request, slug):
     similars = similar[:3]
     similars2 = similar[3:7]
 
-#    offices_list = {
-#        "CO": {"name": "Colombia", "Continent": "America"}, 
-#        "US": {"name": "United States", "Continent": "America"}
-#    }
-    
+
 #    offices_list = {}
 
 #    for i in offices:
