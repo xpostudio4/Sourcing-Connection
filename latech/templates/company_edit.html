@@ -338,6 +338,7 @@
         </div>
         <div class="media">
             {# To Change #}
+<!--
             {% if company.tags %}
                 <table> 
                     <tr>
@@ -348,6 +349,14 @@
                 </table>
             {% endif %}
         <br/>
+-->
+        <div id="gtb-status"> 
+        <h4 class="muted">GTB Status:<i class="icon-question-sign"></i></h4>
+
+        <p><text data-type="select" id="company-status" data-model="Company" data-url="/formfields/Company/{{ company.id }}/company_status/" data-pk="{{ company.id }}" data-title="Company Status">{{ company.get_company_status_display }}</text></p>
+
+        </div>
+
         <div id="country"> 
         <h4 class="muted">Country:</h4>
 
@@ -861,6 +870,32 @@ Updating Product Images
             },
 
         });
+
+        $('#company-status').editable({
+            {% if company.company_status %}
+                 value: "{{ company.company_status }}",
+            {% endif %}
+
+           
+            source: [
+
+
+                 {value: "", text: "Any"},
+                 {value: 1, text: "GTB-0"},
+                 {value: 2, text: "GTB-1"},
+                 {value: 3, text: "GTB-2"},
+                 {value: 4, text: "GTB-3"},
+                 {value: 5, text: "GTB-4"},
+                ],
+            params: function(params) {
+                //originally params contain pk, name and value
+                params.csrfmiddlewaretoken = '{{csrf_token}}';
+                return params;
+            },
+
+        });
+
+
 
         $('#company-country').editable({
             {% if company.country %}

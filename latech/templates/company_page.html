@@ -455,33 +455,6 @@
                 </div>
 
 
-
-                {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
-
-                {# Phones, only available for latech contacts #}
-
-                <div class="tab-pane" id="phones-tabs"> 
-                    <h4 class="muted">Phones:</h4>
-                    {% if company.main_phone  %}
-                        <p>Main Phone: {{company.main_phone}}</p>
-                        {% for office in offices %} 
-                            {% if office.phone %}
-                                <p>{{ office.description}}: {{ office.phone}} </p>
-                                
-                            {% endif %}
-                            
-
-                        {% endfor %}
-                        {% else %}
-                            <p> No phones Availables</p>
-                            <br/>
-                        {% endif %}
-
-
-    
-                </div>
-                {% endif %}
-
                 <div class="tab-pane" id="success-stories-tabs">
                     {# Success Stories goes here #} 
                     <h4 class="muted">Success Stories:</h4>
