@@ -350,12 +350,14 @@
             {% endif %}
         <br/>
 -->
+        {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
         <div id="gtb-status"> 
         <h4 class="muted">GTB Status:<i class="icon-question-sign"></i></h4>
 
         <p><text data-type="select" id="company-status" data-model="Company" data-url="/formfields/Company/{{ company.id }}/company_status/" data-pk="{{ company.id }}" data-title="Company Status">{{ company.get_company_status_display }}</text></p>
 
         </div>
+        {% endif %}
 
         <div id="country"> 
         <h4 class="muted">Country:</h4>
