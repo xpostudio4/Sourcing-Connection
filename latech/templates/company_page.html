@@ -380,14 +380,9 @@
 
 
             <ul class="nav nav-tabs">
-                <li><a href="#location-tabs" data-toggle="tab">Locations</a></li>
-                {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
-                    <li><a href="#phones-tabs" data-toggle="tab">Phones</a></li>                    
-                {% endif %}
-
-                <li><a href="#description-tabs" data-toggle="tab">Description</a></li>
+                <li><a href="#overview-tab" data-toggle="tab">Overview</a></li>
                 <li><a href="#success-stories-tabs" data-toggle="tab">Success Stories</a></li>
-                <li><a href="#related-tabs" data-toggle="tab">Related Categories</a></li>
+{#                <li><a href="#related-tabs" data-toggle="tab">Related Categories</a></li>  #}
                 <li><a href="#products-tabs" data-toggle="tab">Products</a></li>
 
             </ul>
@@ -395,12 +390,51 @@
 
             <div class="tab-content ">
 
-                {# Company Description #}
-                <div class="tab-pane" id="description-tabs"> 
+                {# Overview #}
+                <div class="tab-pane active" id="overview-tab"> 
                     <div class="media">
                         <h4 class="media-heading"><strong class="muted">Company Description:</strong></h4>
                         <p id="company-description">{{ company.description|safe}}</p>
                     </div>
+
+                {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
+                {# GTB Status #}
+
+                    <div class="media">
+                        <h4 class="media-heading"><strong class="muted">Company Status:</strong></h4>
+                        <p id="company-description">{{ company.get_company_status_display }}</p>
+                    </div>
+
+                {# Phone number #}
+
+                    <h4 class="muted">Phones:</h4>
+                    {% if company.main_phone  %}
+                        <p>Main Phone: {{company.main_phone}}</p>
+                        {% for office in offices %} 
+                            {% if office.phone %}
+                                <p>{{ office.description}}: {{ office.phone}} </p>
+                                
+                            {% endif %}
+                            
+
+                        {% endfor %}
+                        {% else %}
+                            <p> No phones Availables</p>
+                            <br/>
+                        {% endif %}
+
+                {% endif %}
+
+                    <h4 class="muted">Locations:</h4>
+                    {% if company.country %}
+                    <div id="world-map" style="width: 500px; height: 350px"></div>
+                    {% else %}
+                        <br/>
+                    {% endif %}
+
+
+                    
+		
                 </div>
 
                 <div class="tab-pane" id="related-tabs"> 
@@ -421,16 +455,6 @@
                 </div>
 
 
-                {# Locations #}
-                <div class="tab-pane active" id="location-tabs"> 
-                    <h4 class="muted">Locations:</h4>
-                    {% if company.country %}
-                    <div id="world-map" style="width: 500px; height: 350px"></div>
-                    {% else %}
-                        <br/>
-                    {% endif %}
-
-                </div>
 
                 {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
 
