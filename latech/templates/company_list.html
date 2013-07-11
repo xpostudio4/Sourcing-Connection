@@ -45,7 +45,7 @@
                           {{ company.country }} 
                       {% endif %}
                        {% if company.employee_quantity%}
-                         | {{ company.employee_quantity }}  employees
+                         | {{ company.get_employee_quantity_display }} employees
                       {% endif %}
                       {% if company.industries%}
                          | {{ company.industries }}

@@ -242,16 +242,19 @@ def company_view(request, slug):
     # Similar By Vertical functionality
     for i in Vertical.objects.filter(company=company):
         vnames.append(i.name)
-        
+
+    s_v = Vertical.objects.filter(name__in=vnames)
+            
+    for i in s_v:
+        similar_ids.append(i.company.id)
+
+
     # Similar By Expertise functionality
     for i in Expertise.objects.filter(company=company):
         vnames.append(i.name)
 
-    s_v = Vertical.objects.filter(name__in=vnames)
-    s_e = Expertise.objects.filter(name__in=enames)    
 
-    for i in s_v:
-        similar_ids.append(i.company.id)
+    s_e = Expertise.objects.filter(name__in=enames)    
 
     for y in s_e:
         similar_ids.append(y.company.id)
