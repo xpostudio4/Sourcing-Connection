@@ -233,40 +233,39 @@ def company_view(request, slug):
     recommendations = Recommendation.objects.filter(company=company).order_by('id')[:3]
     recommendations2 = Recommendation.objects.filter(company=company).order_by('id')[3:]
 
-    # Similar 
+    
+    # Similar Companies
+    
+    # For Query objects
+    q = Q()
+    
     similar = []
     vnames = []
     enames = []
+    ids = []
     similar_ids = []
     
     # Similar By Vertical functionality
-    for i in Vertical.objects.filter(company=company):
+    for i in Vertical.objects.filter(company=1):
         vnames.append(i.name)
+        for y in Vertical.objects.filter(name__in=vnames):
+            ids.append(y.company.id)
+            q = q & Q(id__in=ids)
 
-    s_v = Vertical.objects.filter(name__in=vnames)
-            
-    for i in s_v:
-        similar_ids.append(i.company.id)
+    for i in Expertise.objects.filter(company=1):
+        enames.append(i.name)
+        for y in Expertise.objects.filter(name__in=enames):
+            ids.append(y.company.id)
+            q = q & Q(id__in=ids)
 
-
-    # Similar By Expertise functionality
-    for i in Expertise.objects.filter(company=company):
-        vnames.append(i.name)
-
-
-    s_e = Expertise.objects.filter(name__in=enames)    
-
-    for y in s_e:
-        similar_ids.append(y.company.id)
-        
+       
     
-    
-    s_ids = list(set(similar_ids))
-    q = Q()
-    q = q & Q(id__in=s_ids)
+#    q = q&Q(categories=company.categories)
+#    q = q & Q(id__in=s_ids)
     
 #    similar_companies = Company.objects.filter(categories=company.categories).order_by('id')
-    similar_companies = Company.objects.filter(q)
+    similar_companies = Company.objects.filter(q).filter(categories=company.categories)
+#    similar_companies = Company.objects.filter(pk__in=s_ids).filter(categories=company.categories)
     
     for c in similar_companies:
         if c != company:
