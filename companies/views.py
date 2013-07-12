@@ -247,13 +247,22 @@ def company_view(request, slug):
     #Similar companies IDs    
     ids = []
 
-    
+    # Display all the companies with the same category/industry
+    similar_companies = Company.objects.filter(categories=company.categories)
+        
+    for c in similar_companies:
+        if c != company:
+            similar.append(c.id)
+            q = q & Q(id__in=similar)
+
+
     # Similar By Vertical functionality
     for i in Vertical.objects.filter(company=company):
         vnames.append(i.name)
         for y in Vertical.objects.filter(name__in=vnames):
             ids.append(y.company.id)
             q = q & Q(id__in=ids)
+
 
     # Similar By Expertise functionality
     for i in Expertise.objects.filter(company=company):
@@ -263,15 +272,18 @@ def company_view(request, slug):
             q = q & Q(id__in=ids)
     
     
-    similar_companies = Company.objects.filter(q).filter(categories=company.categories)
+    # Made the distance operation with these companies
 
-    
-    for c in similar_companies:
-        if c != company:
-            similar.append(c)
+    # Distance between employee quantitys
+#    q = q &Q(employee_quantity=company.employee_quantity)
 
-    similars = similar[:3]
-    similars2 = similar[3:7]
+    # By Country
+    q = q &Q(country=company.country)
+    # Distance between employee quantitys
+        
+    similar_ids = Company.objects.filter(q).filter(id__in=similar)
+    similars = similar_ids[:3]
+    similars2 = similar_ids[3:7]
 
 
 #    office_list = []

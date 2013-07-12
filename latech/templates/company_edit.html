@@ -95,8 +95,8 @@
                 {% endif %}
             </a><i data-toggle="popover" data-placement="right" data-content="Click here to change the company logo" data-html="true" class="icon-pencil valuepop" data-title="Company Logo"></i>
         </div>
-<br/>
 <hr/>
+<br/><br/>
 
         <div "media" style="margin-top: 5%;">
 
@@ -136,14 +136,13 @@
                     </tr>
                 {% endif %}
 
-                {% if company.employee_quantity %}
                     <tr>
                         <td colspan="2"><strong>No. Employees:</strong> <i data-toggle="popover" data-placement="right" data-content="A range of quantity the company have. Just click it to edit " data-html="true" class="icon-question-sign valuepop" data-title="Size of company "></i></td>
                     </tr><tr>
                         <td colspan="2" data-type="select" id="size-company" data-model="Company" data-url="/formfields/Company/{{ company.id }}/employee_quantity/" data-pk="{{ company.id }}" data-title="Company Size"> {{ company.get_employee_quantity_display }}</td>
                     </tr>
  
-                {% endif %}
+ 
                </table>
 
 
@@ -944,6 +943,9 @@ Updating Product Images
 
 
         $('#size-company').editable({
+           {% if company.employee_quantity %}
+                 value: "{{ company.employee_quantity }}",
+            {% endif %}
 
             source: [
                   {value: 1, text: '1 -10'},
