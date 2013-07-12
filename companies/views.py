@@ -234,38 +234,37 @@ def company_view(request, slug):
     recommendations2 = Recommendation.objects.filter(company=company).order_by('id')[3:]
 
     
-    # Similar Companies
+    # Similar Companies Functionality
     
     # For Query objects
     q = Q()
     
     similar = []
+    # Vertical names
     vnames = []
+    # Expertise names
     enames = []
+    #Similar companies IDs    
     ids = []
-    similar_ids = []
+
     
     # Similar By Vertical functionality
-    for i in Vertical.objects.filter(company=1):
+    for i in Vertical.objects.filter(company=company):
         vnames.append(i.name)
         for y in Vertical.objects.filter(name__in=vnames):
             ids.append(y.company.id)
             q = q & Q(id__in=ids)
 
-    for i in Expertise.objects.filter(company=1):
+    # Similar By Expertise functionality
+    for i in Expertise.objects.filter(company=company):
         enames.append(i.name)
         for y in Expertise.objects.filter(name__in=enames):
             ids.append(y.company.id)
             q = q & Q(id__in=ids)
-
-       
     
-#    q = q&Q(categories=company.categories)
-#    q = q & Q(id__in=s_ids)
     
-#    similar_companies = Company.objects.filter(categories=company.categories).order_by('id')
     similar_companies = Company.objects.filter(q).filter(categories=company.categories)
-#    similar_companies = Company.objects.filter(pk__in=s_ids).filter(categories=company.categories)
+
     
     for c in similar_companies:
         if c != company:
@@ -273,16 +272,6 @@ def company_view(request, slug):
 
     similars = similar[:3]
     similars2 = similar[3:7]
-
-
-#    offices_list = {}
-
-#    for i in offices:
-#        if i.country.country_code in offices_list:
-#            offices_list[i.country.country_code] = offices_list[i.country.country_code] + [i.description]
-#        else:
-#            offices_list[i.country.country_code] = [i.description]
-
 
 
 #    office_list = []
