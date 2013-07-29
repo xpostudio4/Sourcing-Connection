@@ -382,9 +382,9 @@
 
             <ul class="nav nav-tabs">
                 <li><a href="#overview-tab" data-toggle="tab">Overview</a></li>
-                <li><a href="#success-stories-tabs" data-toggle="tab">Success Stories</a></li>
+                <li><a href="#experience-tabs" data-toggle="tab">Experience</a></li>
 {#                <li><a href="#related-tabs" data-toggle="tab">Related Categories</a></li>  #}
-                <li><a href="#products-tabs" data-toggle="tab">Products</a></li>
+                <li><a href="#products-services-tabs" data-toggle="tab">Products and Services</a></li>
 
             </ul>
 
@@ -432,10 +432,29 @@
                     {% else %}
                         <br/>
                     {% endif %}
+                             <h5>Offices:</h5>
+                <div id="offices">
+                {% if offices %}
+                    <ul class="pull-left inline">
+                    {% for office in offices %}
+                        <li id="office-{{ office.id }}">
+                            <address>
+                            <strong>{{ office.description }}</strong><br>
+                            <i>{{ office.address_1 }}</i><br>
+                            <i>{{ office.address_2 }}</i><br>
+                            <abbr title="Phone">P:</abbr><i>{{ office.phone }}</i>
+                            </address>
+                        </li>
+                    {% endfor %}
+                </ul>
 
+                {% else %}
+                    <br/>
 
-                    
+                {% endif %}
+ 
 		
+                </div>
                 </div>
 
                 <div class="tab-pane" id="related-tabs"> 
@@ -456,7 +475,7 @@
                 </div>
 
 
-                <div class="tab-pane" id="success-stories-tabs">
+                <div class="tab-pane" id="experience-tabs">
                     {# Success Stories goes here #} 
                     <h4 class="muted">Success Stories:</h4>
                     {% if stories %}
@@ -478,16 +497,7 @@
                         {% endfor %}
                         {% if stories2 %}
                             {% for story in stories2 %}
-                                {% if story.link %}
-                                {% if story.story_image %}
-                                    <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ story.story_image}}" height="96", width="140">
-                                {% else %}
-                                    <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115">
-                    
-                                {% endif %}
-
-                                    <div colspan="2"><a href="{{ story.link.url }}">{{ story.title }}</a></div>
-                                {% endif %}
+                                <div colspan="2"><a href="{{ story.link.url }}">{{ story.title }}</a></div>
                                 <br/>
                             {% endfor %}
                             <a href="#" id="more-stories">More >></a>
@@ -496,19 +506,38 @@
                     {% else %}
                         <br/>
                     {% endif %}
+
+                    {# Projects#}
+
+                        <h4 class="muted">Projects:</h4>
+                        {% if projects %}
+                                {% for project in projects %}
+                                <div colspan="2">{{ project.name }}</div>
+                                {% endfor %}
+                            {% if projects2 %}
+                                {% for project in projects2 %}
+                                   <div colspan="2" class="hide plus-project">{{ project.name }}</div>
+                                {% endfor %}
+                            <a href="#" id="more-project">more >></a>
+                            <a href="#" id="less-project" class="hide">less <<</a>
+                            {% endif %}
+                        {% else %}
+                            <br/>
+                        {% endif %}
+
                           
                 </div>
 
-                <div class="tab-pane" id="products-tabs">
+                <div class="tab-pane" id="products-services-tabs">
                     {# Products goes here #} 
                 
-                    <h4 class="muted">Products:</h4>
+                    <h4 class="muted">Products and Services:</h4>
                     {% if products %}
 
                         <table class="table table-borderless" >
                             <thead>
                                 <tr>
-                                    <th>Product</th>
+                                    <th>Product/Service</th>
                                     <th>Price</th>
                                     <th>Picture</th>
                                 </tr>
@@ -612,42 +641,6 @@
                     <br/>
                 {% endif %}
 
-
-                <h5>Projects:</h5>
-                {% if projects %}
-                        {% for project in projects %}
-                        <div colspan="2">{{ project.name }}</div>
-                        {% endfor %}
-                    {% if projects2 %}
-                        {% for project in projects2 %}
-                           <div colspan="2" class="hide plus-project">{{ project.name }}</div>
-                        {% endfor %}
-                    <a href="#" id="more-project">more >></a>
-                    <a href="#" id="less-project" class="hide">less <<</a>
-                    {% endif %}
-                {% else %}
-                    <br/>
-                {% endif %}
-
-
-                <h5>Acquisitions:</h5>
-                {% if acquisitions %}
-                        {% for acquisition in acquisitions %}
-                        <div colspan="2">{{ acquisition.name }}</div>
-                        {% endfor %}
-                    {% if acquisitions2 %}
-                        {% for acquisition in acquisitions2 %}
-                           <div colspan="2" class="hide plus-acquisition">{{ acquisition.name }}</div>
-                        {% endfor %}
-                    <a href="#" id="more-acquisition">more >></a>
-                    <a href="#" id="less-acquisition" class="hide">less <<</a>
-                    {% endif %}
-                {% else %}
-                    <br/>
-                {% endif %}
-
-
-
         
     </div>
 
@@ -683,7 +676,6 @@
             onRegionLabelShow: function(event, label, code){
 
             {% for office in offices %} 
-//                if (code in '{{ office.country.country_code }}' ) {
                 if ('{{ office.country.country_code }}' == code) {
                     label.html(
                     'In {{ office.country }}:<br>{{ office.description }}<br>{% if user.is_superuser %}{{ office.phone }}{% endif %}'

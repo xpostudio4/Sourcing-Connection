@@ -105,10 +105,6 @@ def form_validation(request, slug, model):
         f.company = company
         f.save()
 
-        instance_models = {
-            "Customer": Customer.objects.filter(id=f.id),
-        }
-
         if model == "Acquisition":
 
             context = Acquisition.objects.get(id=f.id)
@@ -231,27 +227,29 @@ def form_validation(request, slug, model):
             template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ manager.id }}", str(context.id))
             template = template.replace("{{ manager.title }}", str(context.title)).replace("{{ manager.full_name }}", str(context.full_name))
         
+
         elif model == "Office":
             context = Office.objects.get(id=f.id)
 
-            template="""
-            <li  id="office-{{ office.object.id }}" >
-                <a class="link-delete pull-left" data-type="office" data-id="{{ office.object.id }}" id="{{ company.slug }}-office-{{ office.object.id }}" href="/company/{{ company.slug }}/office/{{ office.object.id }}/delete"><i class="icon-remove"></i></a>
-                <address>
-                    <strong><a href="/company/{{ company.slug }}/office/{{ office.object.id }}/update">{{ office.object.country }}</a></strong><br>
-                    {{ office.object.description }}<br>
-                    {{ office.object.address_1 }}<br>
-                    {{ office.object.address_2 }}<br>
-                      <abbr title="Phone">P:</abbr> {{ office.object.phone }}<br>
-                </address>
-            </li>
+            template= """
+                                <li id="offices-{{ office.id }}" class="pull-left inline">
+                                    <address>
+                                    <a class="link-delete" data-type="office" data-id="{{ office.id }}" id="{{ company.slug }}-offices-{{ office.id }}"  href="/company/{{ company.slug }}/office/{{ office.id}}/delete/"><i class="icon-remove"></i></a><strong data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/description/" data-pk="{{ office.id }}"  data-title="Office" class="editable-value" >{{ office.description }}</strong><br>
+                                    <i data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/address_1/" data-pk="{{ office.id }}"  data-title="Office" class="editable-value">{{ office.address_1 }}</i><br>
+                                    <i data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/address_2/" data-pk="{{ office.id }}"  data-title="Office" class="editable-value">{{ office.address_2 }}</i><br>
+                                    <abbr title="Phone">P:</abbr><i data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/phone/" data-pk="{{ office.id }}"  data-title="Office Phone {{ office.id}}" class="editable-value">{{ office.phone }}</i>
+                                    <br><i>{{ office.country }} </i>
+                                    </address>
+                                </li>            
             """
 
-            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ office.object.id }}", str(context.id))
-            template = template.replace("{{ office.object.description }}", str(context.description))
-            template = template.replace("{{ office.object.address_1 }}", str(context.address_1))
-            template = template.replace("{{ office.object.address_2 }}", str(context.address_2))
-            template = template.replace("{{ office.object.phone }}", str(context.phone))
+            template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ office.id }}", str(context.id))
+            template = template.replace("{{ office.description }}", str(context.description))
+            template = template.replace("{{ office.address_1 }}", str(context.address_1))
+            template = template.replace("{{ office.address_2 }}", str(context.address_2))
+            template = template.replace("{{ office.phone }}", str(context.phone))
+            template = template.replace("{{ office.country }}", str(context.country))
+
 
         elif model == "Picture":
 
@@ -261,8 +259,8 @@ def form_validation(request, slug, model):
                 <li id="pictures-{{ picture.id }}" class="span2"> 
                 <a class="link-delete" data-type="pictures" data-id="{{ picture.id }}" id="{{ company.slug }}-pictures-{{ picture.id }}" onclick="{{ company.slug }}_pictures_{{ picture.id }}(); return false;" href="/company/{{ company.slug }}/pictures/{{ picture.id }}/delete"><i class="icon-remove"></i></a>  
                 <a class="gallery" href="{{ MEDIA_URL }}{{ picture.file }}" > <img data-src="holder.js/160x120" src="{{ MEDIA_URL }}{{ picture.file }}" width="160" height="160"> </a>
-                </li>
-            """
+                </li
+>            """
             
             template = template.replace("{{ company.slug }}", str(company.slug)).replace("{{ picture.id }}", str(context.id))
             template = template.replace("{{ picture.file }}", context.file )
@@ -409,7 +407,7 @@ def form_validation(request, slug, model):
             'company': company.name,
             'template': template,
             }
-        if f.name:
+        if hasattr(f, 'name'):
             d['name'] = f.name
         return json_response(d)
 

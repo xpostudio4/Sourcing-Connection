@@ -282,7 +282,7 @@ class Customer(models.Model):
         verbose_name_plural = "Customers"
 
 class Award(models.Model):
-    company = models.ForeignKey(Company, related_name="Company Awards", blank=True)
+    company = models.ForeignKey(Company, related_name="company_awards", blank=True)
     name = models.CharField(max_length=255, verbose_name='Customer Name')
     date = models.DateField(blank=True, null=True)
 
@@ -301,7 +301,7 @@ class Office(models.Model):
     city = models.ForeignKey(City, related_name="location", blank=True, null=True)
     phone = models.CharField(max_length=512, blank=True)
     zip_code = models.CharField(max_length=512, blank=True)
-    country = models.ForeignKey(Country, related_name = "Office Country", null=True,  blank=True)
+    country = models.ForeignKey(Country, related_name = "company_offices", null=True,  blank=True)
 
     class Meta:
         ordering = ['id']

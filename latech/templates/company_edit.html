@@ -147,6 +147,7 @@
 
 
                 <h5>Certifications:  <i data-toggle="popover" data-placement="right" data-content="Certifications. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Company Certifications"></i></h5>
+                <a class="add-element" data-model="Certification" href="/company/{{ company.slug }}/certifications/new"><i class="icon-plus"></i> Add Certification</a>
 
                 <div id="certifications">
                 {% if certifications %}
@@ -163,8 +164,9 @@
                 </div>
 
 
+
                 {####Partnerships####}
-                <h5>Partnership: <i data-toggle="popover" data-placement="right" data-content="Company Partners. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Partnerships"></i></h5>
+                <h5>Partnership: <i data-toggle="popover" data-placement="right" data-content="Company Partners. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Partnerships"></i></h5><a class="add-element" data-model="Partnership" href="/company/{{ company.slug }}/partnerships/new"><i class="icon-plus"></i> Add Partnership</a>
                 <div id="partnerships">
                 {% if partnerships %}
                         {% for partnership in partnerships%}
@@ -178,6 +180,7 @@
                 </div>
 
                 <h5>Technology Expertise: <i data-toggle="popover" data-placement="right" data-content="Company strong areas. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Expertises"></i></h5>
+                <a class="add-element" data-model="Expertise" href="#"><i class="icon-plus"></i> Add Expertise</a>
                 <div id="expertises">
                 {% if expertises %}
 
@@ -192,6 +195,7 @@
 
 
                 <h5>Verticals: <i data-toggle="popover" data-placement="right" data-content="Industries where we have working for. Click a determinate association to edit" data-html="false" class="icon-question-sign valuepop" data-title="Verticals"></i></h5>
+                <a class="add-element" data-model="Vertical" href="#"><i class="icon-plus"></i> Add a New Verticals</a>
                 <div id="verticals">
                 {% if verticals %}
 
@@ -207,6 +211,7 @@
 
 
                 <h5>Alliances:  <i data-toggle="popover" data-placement="right" data-content="These are our alliances. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Alliances"></i></h5>
+                <a class="add-element" data-model="Alliance" href="/company/{{ company.slug }}/alliances/new"><i class="icon-plus"></i> Add Alliance</a>
 
                 <div id="alliances">
                 {% if alliances %}
@@ -225,6 +230,7 @@
 
 
                 <h5>Technical Association:<i data-toggle="popover" data-placement="right" data-content="Company technical associations. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Technical Associations"></i></h5>
+                <a class="add-element" data-model="TechnicalAssociation" href="/company/{{ company.slug }}/associations/new"><i class="icon-plus"></i> Add a Technical Association:</a>
                 <div id="technicalassociations">
                 {% if associations %}
                     {% for association in associations %}
@@ -240,6 +246,7 @@
 
 
                 <h5>Awards: <i data-toggle="popover" data-placement="right" data-content="National and International recognitions for this company. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Company Awards"></i></h5>
+                <a class="add-element" data-model="Award" href="/company/{{ company.slug }}/awards/new"><i class="icon-plus"></i> Add award</a>
                 <div id="awards">
                 {% if awards %}
                     {% for award in awards %}
@@ -331,67 +338,106 @@
             </p>
         </div>
 
-
         <div class="media">
-            <h4 class="media-heading"><strong class="muted">Company Description:</strong> <i data-toggle="popover" data-placement="right" data-content="A description for the company. To edit the description, just click over the current description" class="icon-question-sign valuepop" data-title="Description"></i></h4>
-            <p><text id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="textarea" class="editable-value" >{{ company.description|safe}}</text> </p> 
-        </div>
-        <div class="media">
-            {# To Change #}
-<!--
-            {% if company.tags %}
-                <table> 
-                    <tr>
-                        <td><h4 class="media-heading muted">Related Categories:</h4> <i data-toggle="popover" data-placement="right" data-content="These are the related categories. Click any of them to edit" class="icon-question-sign valuepop" data-title="Related Categories"></i></td>
-                    <tr></tr>
-                        <td data-model="Company" data-url="/formfields/Company/{{ company.id }}/tags/" data-pk="{{ company.id }}"  data-title="Company Tags" data-type="text" class="editable-value" id="co-tags">{{ company.tags }}</td>
-                    </tr>
-                </table>
-            {% endif %}
-        <br/>
--->
-        {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
-        <div id="gtb-status"> 
-        <h4 class="muted">GTB Status:<i class="icon-question-sign"></i></h4>
-
-        <p><text data-type="select" id="company-status" data-model="Company" data-url="/formfields/Company/{{ company.id }}/company_status/" data-pk="{{ company.id }}" data-title="Company Status">{{ company.get_company_status_display }}</text></p>
-
-        </div>
-        {% endif %}
-
-        <div id="country"> 
-        <h4 class="muted">Country:</h4>
-
-        <p><text data-type="select" id="company-country" data-model="Company" data-url="/formfields/Company/{{ company.id }}/country/" data-pk="{{ company.id }}" data-title="Company Country">{{ company.country }}<i class="icon-question-sign"></i></text></p>
-
-        </div>
 
 
-        {# Success Stories goes here #} 
-        <h4 class="muted">Success Stories:</h4>
-        {% if stories %}
-            {% for story in stories %}
-                 {% if story.link %}
-                    {% if story.story_image %}
-                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ story.story_image}}" height="96", width="140">
-                    {% else %}
-                        <img class="img-polaroid" data-src="holder.js/64x64" src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115">
-        
-                    {% endif %}
+            <ul class="nav nav-tabs">
+                <li><a href="#overview-tab" data-toggle="tab">Overview</a></li>
+                <li><a href="#experience-tabs" data-toggle="tab">Experience</a></li>
+                <li><a href="#products-services-tabs" data-toggle="tab">Products and Services</a></li>
 
-                    <div data-type="text" data-model="SuccessStories" data-url="/formfields/SuccessStories/{{ story.id }}/title/" data-pk="{{ story.id }}" class="editable-value" data-title="Story Name"><a class="link-delete" data-type="stories" data-id="{{ story.id }}" id="{{ company.slug }}-stories-{{ story.id }}" href="/company/{{ company.slug }}/stories/{{story.id}}/delete"><i class="icon-remove"></i></a>{{ story.title }}</div>
+            </ul>
+            <div class="tab-content ">
+                <div class="tab-pane active" id="overview-tab">
+                    <div class="media">
+                    <h4 class="media-heading"><strong class="muted">Company Description:</strong> <i data-toggle="popover" data-placement="right" data-content="A description for the company. To edit the description, just click over the current description" class="icon-question-sign valuepop" data-title="Description"></i></h4>
+                    <p><text id="company-description" data-model="Company" data-url="/formfields/Company/{{ company.id }}/description/" data-pk="{{ company.id }}"  data-title="Company Description" data-type="textarea" class="editable-value" >{{ company.description|safe}}</text> </p> 
+                    </div>
+                        {% if user.contact.latech_contact or user.is_staff or user.is_superuser %}
+                        <div id="gtb-status"> 
+                        <h4 class="muted">GTB Status:<i class="icon-question-sign"></i></h4>
+
+                        <p><text data-type="select" id="company-status" data-model="Company" data-url="/formfields/Company/{{ company.id }}/company_status/" data-pk="{{ company.id }}" data-title="Company Status">{{ company.get_company_status_display }}</text></p>
+
+                        </div>
+                        {% endif %}
+
+                        <div id="country"> 
+                        <h4 class="muted">Country:</h4>
+
+                        <p><text data-type="select" id="company-country" data-model="Company" data-url="/formfields/Company/{{ company.id }}/country/" data-pk="{{ company.id }}" data-title="Company Country">{{ company.country }}<i class="icon-question-sign"></i></text></p>
+
+                        </div>
+
+                    {#  Offices #}
+
+
+                     <h4 class="muted">Offices:  <i data-toggle="popover" data-placement="right" data-content="Offices. Click a determinate association to edit" data-html="true" class="icon-question-sign valuepop" data-title="Company Offices"></i></h4>
+                        <a class="add-element" data-model="Office" href="/company/{{ company.slug }}/offices/new"><i class="icon-plus-sign"></i></a>
+                        
+                        <div id="offices">
+                        {% if offices %}
+                            <ul class="pull-left inline">
+                            {% for office in offices %}
+                                <li id="office-{{ office.id }}">
+                                    <address>
+                                    <a class="link-delete" data-type="office" data-id="{{ office.id }}" id="{{ company.slug }}-offices-{{ office.id }}"  href="/company/{{ company.slug }}/office/{{ office.id}}/delete/"><i class="icon-remove"></i></a><strong data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/description/" data-pk="{{ office.id }}"  data-title="Office" class="editable-value" >{{ office.description }}</strong><br>
+                                    <i data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/address_1/" data-pk="{{ office.id }}"  data-title="Office" class="editable-value">{{ office.address_1 }}</i><br>
+                                    <i data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/address_2/" data-pk="{{ office.id }}"  data-title="Office" class="editable-value">{{ office.address_2 }}</i><br>
+                                    <abbr title="Phone">P:</abbr><i data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/phone/" data-pk="{{ office.id }}"  data-title="Office Phone {{ office.id}}" class="editable-value">{{ office.phone }}</i>
+                                    <br><i>{{ office.country }} </i>
+                                    </address>
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                        {% else %}
+                            <br/>
+
+                        {% endif %}
+
+                                
+                        </div>
+
+                    </div>
+
+                 <div class="tab-pane" id="experience-tabs">
+               {# Success Stories goes here #} 
+                <h4 class="muted">Success Stories:</h4>
+                <a class="add-element" data-model="SuccessStories" href="#"><i class="icon-plus"></i> Add A Success Story</a>
+                {% if stories %}
+                    {% for story in stories %}
+                            <div data-type="text" data-model="SuccessStories" data-url="/formfields/SuccessStories/{{ story.id }}/title/" data-pk="{{ story.id }}" class="editable-value" data-title="Story Name"><a class="link-delete" data-type="stories" data-id="{{ story.id }}" id="{{ company.slug }}-stories-{{ story.id }}" href="/company/{{ company.slug }}/stories/{{story.id}}/delete"><i class="icon-remove"></i></a>{{ story.title }}</div>
+                       {% endfor %}
+                {% else %}
+                    <br/>
+               {% endif %}                    
+
+
+                {# Projects here#}
+                <h5>Projects: <i data-toggle="popover" data-placement="right" data-content="The things we do for our clients. Click a determinate project to edit" data-html="true" class="icon-question-sign valuepop" data-title="Company Projects"></i></h5>
+                <a class="add-element" data-model="Project" href="#"><i class="icon-plus"></i> Add Project</a>
+                <div id="projects">
+
+                {% if projects %}
+                    {% for project in projects %}
+                        <div id="projects-{{ project.id }}"><a class="link-delete" data-type="projects" data-id="{{ project.id }}" id="{{ company.slug }}-projects-{{ project.id }}" href="/company/{{ company.slug }}/projects/{{project.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Project" data-url="/formfields/Project/{{ project.id }}/name/" data-pk="{{ project.id }}" class="editable-value" data-title="Project Name">{{ project.name }}</text> </div>
+                    {% endfor %}
+                {% else %}
+                    <br/>
+            
                 {% endif %}
-                <br/>
-
-            {% endfor %}
-        {% else %}
-            <br/>
-       {% endif %}
+                    
+                    
+                </div>
+            </div>
 
 
+                 <div class="tab-pane" id="products-services-tabs">
         {# Products goes here #} 
         
         <h4 class="muted">Products: <i data-toggle="popover" data-placement="right" data-content="Company Products. Click the product name and/or product price to edit" data-html="true" class="icon-question-sign valuepop" data-title="Company Products "></i></h4>
+        <a class="add-element" data-model="Product" href="#"><i class="icon-plus"></i> Add a New Product</a>
         <div id="products">
 
         {% if products %}
@@ -413,21 +459,21 @@
 
                     
                     
+                    <td class="products-{{ product.id }}" >
                     {% if product.product_image %}
                     
-                        <td>
                             <!--<a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"  data-target="#product-image-update"> -->
                         
-                            <a data-toggle="modal" class="product-picture" data-id="{{ product.id }}" href="#product-image-update" data-pk="{{ product.id }}"  data-title="Product" class="pull-left">
-                            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" data-id="{{ product.id }}" height="65" width="115"><i data-toggle="popover" data-placement="right" data-content="Click here to change the product picture" data-html="true" class="icon-pencil valuepop image-id" data-title="Product Picture"></i></a></td>
-                     
+                            <a data-toggle="modal" class="product-picture " data-id="{{ product.id }}" href="#product-image-update" data-pk="{{ product.id }}"  data-title="Product" class="pull-left">
+                            <img class="img-polaroid" data-src="holder.js/64x64" src="{{ MEDIA_URL }}{{ product.product_image }}" data-id="{{ product.id }}" height="65" width="115"><i data-toggle="popover" data-placement="right" data-content="Click here to change the product picture" data-html="true" class="icon-pencil valuepop image-id" data-title="Product Picture"></i></a>
                     {% else %}
-                        
-                        <td><!--<a data-toggle="modal" href="/company/{{ company.slug }}/product_image/{{ product.id }}/update/"  data-target="#product-image-update"> -->
                             <a data-toggle="modal" class="product-picture" data-id="{{ product.id }}" href="#product-image-update" data-title="Product" class="pull-left"> 
-                            <img class="img-polaroid" data-src="holder.js/64x64" data-id="{{ product.id }}"src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"><i data-toggle="popover" data-placement="right" data-content="Click here to change the product picture" data-html="true" class="icon-pencil valuepop" data-title="Product Picture"></i></a></td>
+                            <img class="img-polaroid" data-src="holder.js/64x64" data-id="{{ product.id }}"src="{{ STATIC_URL }}images/no_logo.png" height="65" width="115"><i data-toggle="popover" data-placement="right" data-content="Click here to change the product picture" data-html="true" class="icon-pencil valuepop" data-title="Product Picture"></i></a>
+
+                       
                     
                     {% endif %}
+                     </td>
 
                     </tr>
                 {% endfor %}
@@ -439,6 +485,28 @@
 
         </div>
 
+                 </div>
+
+            </div>
+
+        </div>
+ 
+        <div class="media">
+            {# To Change #}
+<!--
+            {% if company.tags %}
+                <table> 
+                    <tr>
+                        <td><h4 class="media-heading muted">Related Categories:</h4> <i data-toggle="popover" data-placement="right" data-content="These are the related categories. Click any of them to edit" class="icon-question-sign valuepop" data-title="Related Categories"></i></td>
+                    <tr></tr>
+                        <td data-model="Company" data-url="/formfields/Company/{{ company.id }}/tags/" data-pk="{{ company.id }}"  data-title="Company Tags" data-type="text" class="editable-value" id="co-tags">{{ company.tags }}</td>
+                    </tr>
+                </table>
+            {% endif %}
+        <br/>
+-->
+
+
         {# Recommendations goes here #} 
         
        </div>
@@ -448,49 +516,9 @@
 
     </div>
     <div class="span3">
-        <ul class="nav nav-list">
-            <li><a class="add-element" data-model="Certification" href="/company/{{ company.slug }}/certifications/new"><i class="icon-plus"></i> Add Certification</a></li>
-            <li><a class="add-element" data-model="Partnership" href="/company/{{ company.slug }}/partnerships/new"><i class="icon-plus"></i> Add Partnership</a></li>
-            <li><a class="add-element" data-model="Expertise" href="#"><i class="icon-plus"></i> Add Expertise</a></li>
-            <li><a class="add-element" data-model="Vertical" href="#"><i class="icon-plus"></i> Add a New Verticals</a></li>
-            <li><a class="add-element" data-model="Alliance" href="/company/{{ company.slug }}/alliances/new"><i class="icon-plus"></i> Add Alliance</a></li>
-            <li><a class="add-element" data-model="TechnicalAssociation" href="/company/{{ company.slug }}/associations/new"><i class="icon-plus"></i> Add a Technical Association:</a></li>
-            <li><a class="add-element" data-model="Award" href="/company/{{ company.slug }}/awards/new"><i class="icon-plus"></i> Add award</a></li>
-            <li><a class="add-element" data-model="Product" href="#"><i class="icon-plus"></i> Add a New Product</a></li>
-            <li><a class="add-element" data-model="SuccessStories" href="#"><i class="icon-plus"></i> Add A Success Story</a></li>
-            <li><a class="add-element" data-model="Project" href="#"><i class="icon-plus"></i> Add Project</a> </li>
-            <li><a class="add-element" data-model="Acquisition" href="#"><i class="icon-plus"></i> Add Acquisitions</a></li>
-            
-        </ul>
-
+  
 
         <hr>
-        <h5>Projects: <i data-toggle="popover" data-placement="right" data-content="The things we do for our clients. Click a determinate project to edit" data-html="true" class="icon-question-sign valuepop" data-title="Company Projects"></i></h5>
-        <div id="projects">
-
-        {% if projects %}
-            {% for project in projects %}
-                <div id="projects-{{ project.id }}"><a class="link-delete" data-type="projects" data-id="{{ project.id }}" id="{{ company.slug }}-projects-{{ project.id }}" href="/company/{{ company.slug }}/projects/{{project.id}}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Project" data-url="/formfields/Project/{{ project.id }}/name/" data-pk="{{ project.id }}" class="editable-value" data-title="Project Name">{{ project.name }}</text> </div>
-            {% endfor %}
-        {% else %}
-            <br/>
-    
-        {% endif %}
-            
-            
-        </div>
-
-        <h5>Acquisitions: <i data-toggle="popover" data-placement="right" data-content="These are the companies adquired by {{ company.name }}" data-html="true" class="icon-question-sign valuepop" data-title="Adquired Companies"></i></h5>
-        <div id="acquisitions">
-
-        {% if acquisitions %}
-            {% for acquisition in acquisitions %}
-                <div id="acquisitions-{{ acquisition.id }}"><a class="link-delete" data-type="acquisitions" data-id="{{ acquisition.id }}" id="{{ company.slug }}-acquisitions-{{ acquisition.id }}" href="/company/{{ company.slug }}/acquisitions/{{ acquisition.id }}/delete"><i class="icon-remove"></i></a>  <text data-type="text" data-model="Acquisition" data-url="/formfields/Acquisition/{{ acquisition.id }}/name/" data-pk="{{ acquisition.id }}" class="editable-value" data-title="Acquired Name">{{ acquisition.name }}</text></div>
-            {% endfor %}
-                <br/>
-        {% endif %}
-            
-        </div>
         
     </div>
 
@@ -590,7 +618,7 @@ link.click(
                 url: "/company/"+company_name+"/"+data_type+"/"+id+"/delete",
                 success: 
                     function(result){
-                        $("#"+data_type+"-"+id).remove();  
+                        $("#"+data_type+"-"+id).remove();
                         $("."+data_type+"-"+id).remove();
 
                     },
@@ -630,6 +658,8 @@ link.click(
                         $('#id_date').datepicker();
                         $('#id_acquired_date').datepicker();
                         $("#"+data_type+"-"+id).add();
+                        $("#"+data_type+'s'+"-"+id).add();
+
                     },
                 error: 
                     function(xhr){
@@ -734,6 +764,8 @@ link.click(
             $.ajax({
                 url: "/forms/{{ company.slug }}/"+model_name+"/",
                 type: "POST",
+                dataType: "json",
+
                 cache: false,
                 data:  $('#new-form').serialize(), 
                 success :
@@ -742,8 +774,7 @@ link.click(
                         $("#companyModal").modal("hide");
                  } 
                     
-                    
-                    
+  
                     ,
                 error: 
                     function(xhr){

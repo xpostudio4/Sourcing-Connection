@@ -259,6 +259,8 @@ def company_edit(request, slug, **kwargs):
         {'company':company, 'companylinks':companylinks,'pictures':pictures, 'permission': edit, "percentage_profile": percentage_profile,
         'management': management,'offices':office_list, 'competitors': competitors,"certifications":certifications,
         "customers":customers, "awards":awards,"acquisitions":acquisitions, "fundings":fundings,  "pictures":pictures,
+        #Offices
+        'offices':offices,
         # From Company Extended Profile
         "expertises":expertises, "verticals":verticals,"stories":stories,"revenues":revenues, "milestones":milestones,
         "projects":projects, "partnerships":partnerships, "alliances":alliances, "associations":associations,"products":products,
@@ -488,6 +490,23 @@ def form_fields(request, id, model, field):
             o_model.round = value
         else:
             o_model.raised = value
+
+    if model =="Office":
+
+        o_model = get_object_or_404(Office, id=id)
+
+
+        if field == "description":
+            o_model.description = value
+        elif  field == "address_1":
+            o_model.address_1 = value
+        elif field == "address_2":
+            o_model.address_2  = value
+        elif field == "phone":
+            o_model.phone  = value
+        else:
+            o_model.country = value
+
 
     if model == "Acquisition":
 
