@@ -25,6 +25,12 @@ def search_function(request):
     maximum = 100
     minimum = 0
     company_list = Company.objects.all()
+
+    #All companies IDs, 
+    ca_id = []
+    for i in Company.objects.all():
+        ca_id.append(i.id)
+
     q = Q()
 
     show_results = False
@@ -58,7 +64,7 @@ def search_function(request):
                 company_list = Company.objects.all()
 
             #Keywords Search    
-            if keywords !="*":
+            if keywords != " ":
                 keys = keywords.split()
                 vertical_company_ids =[]
                 expertise_company_ids =[]
@@ -130,8 +136,8 @@ def search_function(request):
                         Q(id__in=alliance_company_ids)|
                         Q(id__in=award_company_ids)
                         )
-            else:
-                company_list = Company.objects.all()
+        else:
+            company_list = Company.objects.all()
 
             # Category Search
             if category_company:
@@ -150,6 +156,7 @@ def search_function(request):
                     q = q & (Q(id__in=expertise_company_ids))
 
             else:
+                show_results = True
                 company_list = Company.objects.all()
 
 

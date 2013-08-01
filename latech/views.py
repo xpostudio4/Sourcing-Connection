@@ -232,9 +232,9 @@ def form_validation(request, slug, model):
             context = Office.objects.get(id=f.id)
 
             template= """
-                                <li id="offices-{{ office.id }}" class="pull-left inline">
+                                <li style="list-style: none;" id="offices-{{ office.id }}" class="pull-left inline">
                                     <address>
-                                    <a class="link-delete" data-type="office" data-id="{{ office.id }}" id="{{ company.slug }}-offices-{{ office.id }}"  href="/company/{{ company.slug }}/office/{{ office.id}}/delete/"><i class="icon-remove"></i></a><strong data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/description/" data-pk="{{ office.id }}"  data-title="Office" class="editable-value" >{{ office.description }}</strong><br>
+                                    <a class="link-delete" data-type="office" data-id="{{ office.id }}" id="{{ company.slug }}-offices-{{ office.id }}"  href="/company/{{ company.slug }}/office/{{ office.id }}/delete/"><i class="icon-remove"></i></a><strong data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/description/" data-pk="{{ office.id }}"  data-title="Office" class="editable-value" >{{ office.description }}</strong><br>
                                     <i data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/address_1/" data-pk="{{ office.id }}"  data-title="Office" class="editable-value">{{ office.address_1 }}</i><br>
                                     <i data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/address_2/" data-pk="{{ office.id }}"  data-title="Office" class="editable-value">{{ office.address_2 }}</i><br>
                                     <abbr title="Phone">P:</abbr><i data-type="text" data-model="Office" data-url="/formfields/Office/{{ office.id }}/phone/" data-pk="{{ office.id }}"  data-title="Office Phone {{ office.id}}" class="editable-value">{{ office.phone }}</i>

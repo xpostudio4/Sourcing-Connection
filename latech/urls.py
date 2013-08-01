@@ -174,6 +174,4 @@ urlpatterns = patterns('',
      url(r'^company/', include('company_profile_extended.urls')),
 
      url(r'^admin/', include(admin.site.urls)),
- 
-
 )
