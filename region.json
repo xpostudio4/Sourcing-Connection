@@ -1,0 +1,1034 @@
+[
+    {
+        "pk": 1, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Valle del Cauca", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Distrito Nacional", 
+            "country": 18, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Amazonas", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Antioquia", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Bogot\u00e1", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Arauca", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Atl\u00e1ntico", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Bol\u00edvar", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Alabama", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Alaska", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Arizona", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Arkansas", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "California", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Colorado", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Connecticut", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Delaware", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Florida", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Georgia", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Hawaii", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Idaho", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Illinois", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Indiana", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Iowa", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Kansas", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Kentucky", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Louisiana", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Maine", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Maryland", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Massachusetts", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Michigan", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Minnesota", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Mississippi", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Missouri", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Montana", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Nebraska", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Nevada", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "New Hampshire", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "New Jersey", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "New Mexico", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "New York", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "North Carolina", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "North Dakota", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Ohio", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Oklahoma", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Oregon", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Pennsylvania", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Rhode Island", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "South Carolina", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "South Dakota", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Tennessee", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Texas", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Utah", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Vermont", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Virginia", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Washington", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "West Virginia", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Wisconsin", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Wyoming", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "District of Columbia", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Arauca", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Boyac\u00e1", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Caldas", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Caquet\u00e1", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Casanare", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 65, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Cauca", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Cesar", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 67, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Choc\u00f3", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 68, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "C\u00f3rdoba", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 69, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Cundinamarca", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 70, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Guain\u00eda", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 71, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Guaviare", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 72, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Huila", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 73, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "La Guajira", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 74, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Magdalena", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 75, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Meta", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 76, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Nari\u00f1o", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 77, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Norte de Santander", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 78, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Putumayo", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 79, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Quind\u00edo", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 80, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Risaralda", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 81, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "San Andr\u00e9s y Providencia\u00a0\u00a0", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 82, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Santander", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 83, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Sucre", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 84, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Tolima", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 85, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Vaup\u00e9s", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 86, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Vichada", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }
+]

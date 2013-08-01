@@ -27,7 +27,7 @@ urlpatterns = patterns('',
 
 #     url(r'^companies/$', CompanyList.as_view(), name='company_list'),
      #Loading Companies from the CSV file
-#     url(r'^companies/load/$','latech.views.load_company'),
+     #url(r'^load/$','latech.views.load_usstates'),
 
      #Loading Countries information from the CSV file
      #url(r'^country/load/$','latech.views.load_countries_info'),
