@@ -17,6 +17,7 @@ from taxonomy.models import *
 from datetime import datetime
 from storagess.backends.gs import GSBotoStorage
 from wysihtml5.fields import Wysihtml5TextField
+from smart_selects.db_fields import ChainedForeignKey 
 
 
 # Detecting Heroku Deployment
@@ -298,10 +299,17 @@ class Office(models.Model):
     description = models.CharField(max_length=255)
     address_1 = models.CharField(max_length=512, blank=True)
     address_2 = models.CharField(max_length=512, blank=True)
-    city = models.ForeignKey(City, related_name="location", blank=True, null=True)
+    country = models.ForeignKey(Country, related_name = "company_offices", null=True,  blank=True)
+    city = ChainedForeignKey(
+        City, 
+        chained_field="country",
+        chained_model_field="country", 
+        show_all=False, 
+        auto_choose=True
+    )    
+#    city = models.ForeignKey(City, related_name="location", blank=True, null=True)
     phone = models.CharField(max_length=512, blank=True)
     zip_code = models.CharField(max_length=512, blank=True)
-    country = models.ForeignKey(Country, related_name = "company_offices", null=True,  blank=True)
 
     class Meta:
         ordering = ['id']

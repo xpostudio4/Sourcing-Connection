@@ -59,10 +59,11 @@ class OfficeForm(ModelForm):
 			"description",
 			"address_1",
 			"address_2",
+			"country",
 			"city",
 			"phone",
 			"zip_code",
-			"country")
+			)
 
 class ManagementForm(ModelForm):
 	class Meta:

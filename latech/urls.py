@@ -173,5 +173,7 @@ urlpatterns = patterns('',
     # URLs from Company Profile Extended
      url(r'^company/', include('company_profile_extended.urls')),
 
+     url(r'^chaining/', include('smart_selects.urls')),
+
      url(r'^admin/', include(admin.site.urls)),
 )

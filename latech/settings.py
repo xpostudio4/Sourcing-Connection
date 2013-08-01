@@ -8,7 +8,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
 
-#INTERNAL_IPS = ('127.0.0.1',)
+INTERNAL_IPS = ('127.0.0.1',)
 
 AUTH_PROFILE_MODULE ='contacts.Contact'
 
@@ -55,6 +55,7 @@ MANAGERS = ADMINS
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 if os.getenv('HEROKU_ENV') == 'True':
+    DEBUG = False
 #    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',}}
     DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
     GS_BUCKET_NAME=os.environ.get('GS_BUCKET_NAME')
@@ -64,15 +65,16 @@ if os.getenv('HEROKU_ENV') == 'True':
     GS_ACCESS_KEY_ID=os.environ.get('GS_SECRET_KEY_ID')
     GS_SECRET_ACCESS_KEY=os.environ.get('GS_SECRET_ACCESS_KEY')
     DEFAULT_FILE_STORAGE = 'storages.backends.gs.GSBotoStorage'
-    DEBUG = False
+
     
 else:
+    DEBUG = True
     DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2', 'NAME':'latech_db','USER': 'latech_user', 'PASSWORD': 'Latech123$%&'}}
 #    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': 'latech.db',}}
     MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
     MEDIA_URL = '/media/'
     STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
-    DEBUG = True
+
 
 
 # Local time zone for this installation. Choices can be found here:
@@ -105,14 +107,6 @@ USE_TZ = True
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 #MEDIA_URL = '/media/'
-
-#ADMIN_MEDIA_PREFIX = '/static/'
-
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-#STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
 
 
 # URL prefix for static files.
@@ -151,7 +145,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-#    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -199,11 +193,10 @@ INSTALLED_APPS = (
     'south',
     'storagess',
     'wysihtml5',
+    'smart_selects', 
 #    'debug_toolbar',
 
 #    'subscriptions',
-#    'django_boto',    
-#    'projects',
 #    'urls',
 
 )
@@ -221,6 +214,9 @@ EMAIL_HOST_PASSWORD = 'stancelabs'
 ACCOUNT_INVITATION_DAYS = 1
 INVITATIONS_PER_USER = 1
 
+#DEBUG_TOOLBAR_CONFIG = {
+#    'INTERCEPT_REDIRECTS':False
+#}
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

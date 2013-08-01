@@ -24,7 +24,7 @@ class Country(models.Model):
 
 class Region(models.Model):
     country = models.ForeignKey(Country, related_name="countries",max_length=30)
-    region_name = models.CharField(max_length=30)
+    region_name = models.CharField(max_length=30, verbose_name=u'Region or State')
     accesiblity_rating = models.CharField(max_length=30,blank=True)
     transportations = models.CharField(max_length=30, blank=True)
     url_wolfram= models.URLField(blank=True)
