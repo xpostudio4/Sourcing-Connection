@@ -1,0 +1,6038 @@
+[
+    {
+        "pk": 14, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Colombia", 
+            "name": "Colombia", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "CO", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Colombia&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Costa_Rica", 
+            "name": "Costa Rica", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "CR", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Costa+Rica&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Argentina", 
+            "name": "Argentina", 
+            "government_type": "Federal representative presidential republic", 
+            "stability_rating": "", 
+            "country_code": "AR", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Argentina&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Mexico", 
+            "name": "Mexico", 
+            "government_type": "Federal presidentialconstitutional republic", 
+            "stability_rating": "", 
+            "country_code": "MX", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Mexico&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Dominican_Republic", 
+            "name": "Dominican Republic", 
+            "government_type": "Unitary representative democratic republic", 
+            "stability_rating": "", 
+            "country_code": "DO", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Dominican+Republic&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Anguilla", 
+            "name": "Anguilla", 
+            "government_type": " british overseas territory ", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Anguilla&lk=1&a=ClashPrefs_*Country.Anguilla-", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Antigua_and_barbuda", 
+            "name": "Antigua and Barbuda", 
+            "government_type": "federal, parliamentary, representative democratic monarchy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Antigua+and+barbuda&x=-1229&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Aruba", 
+            "name": "Aruba", 
+            "government_type": "Constitutional monarchy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Aruba&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Bahamas", 
+            "name": "Bahamas", 
+            "government_type": "Unitary parliamentary\ndemocracy under\nconstitutional monarchy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Bahamas&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Barbados", 
+            "name": "Barbados", 
+            "government_type": "Parliamentary democracy\nunder constitutional monarchy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Barbados&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Belize", 
+            "name": "Belize", 
+            "government_type": "Unitary parliamentary constitutional monarchy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Belize&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Bermuda", 
+            "name": "Bermuda", 
+            "government_type": "Parliamentary democracy\n(British Overseas Territory)", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Bermuda&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Bolivia", 
+            "name": "Bolivia", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Bolivia&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Brazil", 
+            "name": "Brazil", 
+            "government_type": "Federal presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Brazil&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Canada", 
+            "name": "Canada", 
+            "government_type": "Federal parliamentary\ndemocracy under\nconstitutional monarchy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Canada&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Cayman_Islands", 
+            "name": "Cayman Islands", 
+            "government_type": "British Overseas Territory", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Cayman+Islands&x=-1330&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Cuba", 
+            "name": "Cuba", 
+            "government_type": "Unitary Marxist-Leninist\nsocialist semi-presidential\nrepublic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Cuba&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Dominica", 
+            "name": "Dominica", 
+            "government_type": "Unitary parliamentary republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Dominica&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Ecuador", 
+            "name": "Ecuador", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Ecuador&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/El_Salvador", 
+            "name": "El Salvador", 
+            "government_type": "Presidential constitutional\nrepublic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=El+Salvador&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Falkland_Islands", 
+            "name": "Falkland Islands", 
+            "government_type": "British Overseas Territory", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Falkland+Islands&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/French_Guiana", 
+            "name": "French Guiana", 
+            "government_type": "overseas region of Franc", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=French+Guiana&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Grenada", 
+            "name": "Grenada", 
+            "government_type": "Parliamentary democracy under constitutional monarchy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Grenada&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Guadeloupe", 
+            "name": "Guadeloupe (French)", 
+            "government_type": "overseas region of France", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Guadeloupe+%28French%29&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Guatemala", 
+            "name": "Guatemala", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Guatemala&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Guyana", 
+            "name": "Guyana", 
+            "government_type": "Unitary semi-presidential republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Guyana&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Haiti", 
+            "name": "Haiti", 
+            "government_type": "Unitary semi-presidential republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Haiti&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Honduras", 
+            "name": "Honduras", 
+            "government_type": "Constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://www4a.wolframalpha.com/input/?i=Honduras&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Jamaica", 
+            "name": "Jamaica", 
+            "government_type": "Parliamentary democracy under constitutional monarchy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Jamaica&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Martinique", 
+            "name": "Martinique (French)", 
+            "government_type": "overseas region of France", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Martinique+%28French%29&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Montserrat", 
+            "name": "Montserrat", 
+            "government_type": "British Overseas Territory", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Montserrat&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Netherlands_Antilles", 
+            "name": "Netherlands Antilles", 
+            "government_type": "Constitutional monarchy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Netherlands+Antilles&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Nicaragua", 
+            "name": "Nicaragua", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Nicaragua&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Paraguay", 
+            "name": "Paraguay", 
+            "government_type": "Unitary constitutional representative participatory pluralist democracy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Panama&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Peru", 
+            "name": "Peru", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Peru&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Puerto_Rico", 
+            "name": "Puerto Rico", 
+            "government_type": "Commonwealth / Organized Unincorporated Territory", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Puerto+Rico&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Saint_Kitts_and_Nevis", 
+            "name": "Saint Kitts and Nevis", 
+            "government_type": "Parliamentary democracy\nunder federal constitutional\nmonarchy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Saint+Kitts+and+Nevis&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Saint_Lucia", 
+            "name": "Saint Lucia", 
+            "government_type": "Parliamentary democracy under constitutional monarchy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Saint+Lucia&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Saint_Pierre_and_Miquelon", 
+            "name": "Saint Pierre and Miquelon", 
+            "government_type": "Overseas collectivity", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Saint+Pierre+and+Miquelon&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Saint_Vincent_and_Grenadines", 
+            "name": "Saint Vincent and Grenadines", 
+            "government_type": "Parliamentary democracy under constitutional monarchy", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Saint+Vincent+and+Grenadines&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/South_Georgia_and_South_Sandwich_Islands", 
+            "name": "South Georgia and South Sandwich Islands", 
+            "government_type": "British overseas territory", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Suriname", 
+            "name": "Suriname", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Suriname&x=-1330&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Trinidad_and_Tobago", 
+            "name": "Trinidad and Tobago", 
+            "government_type": "Unitary parliamentary constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Trinidad+and+Tobago&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Turks_and_Caicos_Islands", 
+            "name": "Turks and Caicos Islands", 
+            "government_type": "British overseas territory", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Turks+and+Caicos+Islands&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Uruguay", 
+            "name": "Uruguay", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Uruguay&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Virgin_Islands", 
+            "name": "Virgin Islands", 
+            "government_type": "overseas territory of the United Kingdom", 
+            "stability_rating": "", 
+            "country_code": "", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Virgin+Islands&x=-1313&y=-71&js=off", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Chile", 
+            "name": "Chile", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "CL", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Chile&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Panama", 
+            "name": "Panama", 
+            "government_type": "Unitary presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "PA", 
+            "url_wolfram": "http://www4a.wolframalpha.com/input/?i=Panama", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/United_States", 
+            "name": "United States", 
+            "government_type": "Federal two-party presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "US", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=United+States&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "location.country", 
+        "fields": {
+            "url_wiki": "http://en.wikipedia.org/wiki/Venezuela", 
+            "name": "Venezuela", 
+            "government_type": "Federal presidential constitutional republic", 
+            "stability_rating": "", 
+            "country_code": "VE", 
+            "url_wolfram": "http://m.wolframalpha.com/input/?i=Venezuela&x=-1313&y=-71", 
+            "policy_favorability_Rating": ""
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Valle del Cauca", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Distrito Nacional", 
+            "country": 18, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Amazonas", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Antioquia", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Bogot\u00e1", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Arauca", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Atl\u00e1ntico", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Bol\u00edvar", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Alabama", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Alaska", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Arizona", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Arkansas", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "California", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Colorado", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Connecticut", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Delaware", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Florida", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Georgia", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Hawaii", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Idaho", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Illinois", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Indiana", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Iowa", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Kansas", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Kentucky", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Louisiana", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Maine", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Maryland", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Massachusetts", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Michigan", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Minnesota", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Mississippi", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Missouri", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Montana", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Nebraska", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Nevada", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "New Hampshire", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "New Jersey", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "New Mexico", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "New York", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "North Carolina", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "North Dakota", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Ohio", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Oklahoma", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Oregon", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Pennsylvania", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Rhode Island", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "South Carolina", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "South Dakota", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Tennessee", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Texas", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Utah", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Vermont", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Virginia", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Washington", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "West Virginia", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Wisconsin", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Wyoming", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "District of Columbia", 
+            "country": 47, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Arauca", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Boyac\u00e1", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Caldas", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Caquet\u00e1", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Casanare", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 65, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Cauca", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Cesar", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 67, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Choc\u00f3", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 68, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "C\u00f3rdoba", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 69, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Cundinamarca", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 70, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Guain\u00eda", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 71, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Guaviare", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 72, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Huila", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 73, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "La Guajira", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 74, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Magdalena", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 75, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Meta", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 76, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Nari\u00f1o", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 77, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Norte de Santander", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 78, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Putumayo", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 79, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Quind\u00edo", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 80, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Risaralda", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 81, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "San Andr\u00e9s y Providencia\u00a0\u00a0", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 82, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Santander", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 83, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Sucre", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 84, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Tolima", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 85, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Vaup\u00e9s", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 86, 
+        "model": "location.region", 
+        "fields": {
+            "transportations": "", 
+            "region_name": "Vichada", 
+            "country": 14, 
+            "url_wiki": "", 
+            "accesiblity_rating": "", 
+            "url_wolfram": ""
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 1, 
+            "country": 14, 
+            "city_name": "Cali", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 2, 
+            "country": 18, 
+            "city_name": "Distrito Nacional", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 5, 
+            "country": 14, 
+            "city_name": "Bogot\u00e1", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 4, 
+            "country": 14, 
+            "city_name": "Medell\u00edn", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 6, 
+            "country": 14, 
+            "city_name": "Arauca", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 7, 
+            "country": 14, 
+            "city_name": "Barranquilla", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 8, 
+            "country": 14, 
+            "city_name": "Cartagena de Indias", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 9, 
+            "country": 47, 
+            "city_name": "Birmingham", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 9, 
+            "country": 47, 
+            "city_name": "Montgomery", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 9, 
+            "country": 47, 
+            "city_name": "Mobile", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 9, 
+            "country": 47, 
+            "city_name": "Huntsville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 10, 
+            "country": 47, 
+            "city_name": "Anchorage", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 11, 
+            "country": 47, 
+            "city_name": "Phoenix", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 11, 
+            "country": 47, 
+            "city_name": "Tucson", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 11, 
+            "country": 47, 
+            "city_name": "Mesa", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 11, 
+            "country": 47, 
+            "city_name": "Chandler", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 11, 
+            "country": 47, 
+            "city_name": "Glendale", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 11, 
+            "country": 47, 
+            "city_name": "Scottsdale", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 11, 
+            "country": 47, 
+            "city_name": "Gilbert", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 11, 
+            "country": 47, 
+            "city_name": "Tempe", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 11, 
+            "country": 47, 
+            "city_name": "Peoria", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 11, 
+            "country": 47, 
+            "city_name": "Surprise", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 12, 
+            "country": 47, 
+            "city_name": "Little Rock", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "San Diego", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "San Jos\u00e9", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "San Francisco", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Fresno", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Sacramento", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Long Beach", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Oakland", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Bakersfield", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Anaheim", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Santa Ana", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Riverside", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Stockton", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Chula Vista", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Fremont", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Irvine", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "San Bernardino", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Modesto", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Oxnard", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Fontana", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Moreno Valley", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Glendale", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Huntington Beach", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Santa Clarita", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Garden Grove", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Santa Rosa", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Oceanside", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Rancho Cucamonga", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Ontario", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Lancaster", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Elk Grove", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Palmdale", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Corona", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Salinas", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Pomona", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Torrance", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Hayward", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Escondido", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Sunnyvale", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Pasadena", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Orange", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 65, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Fullerton", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Thousand Oaks", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 67, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Visalia", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 68, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Simi Valley", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 69, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Concord", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 70, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Roseville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 71, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Santa Clara", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 72, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Vallejo", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 73, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Victorville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 74, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "El Monte", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 75, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Berkeley", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 76, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Downey", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 77, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Costa Mesa", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 78, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Inglewood", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 79, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Ventura", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 80, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "West Covina", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 81, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Norwalk", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 82, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Carlsbad", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 83, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Fairfield", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 84, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Richmond", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 85, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Murrieta", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 86, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Burbank", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 87, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Antioch", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 88, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Daly City", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 89, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Temecula", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 90, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 41, 
+            "country": 47, 
+            "city_name": "Charlotte", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 91, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 41, 
+            "country": 47, 
+            "city_name": "Raleigh", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 92, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 41, 
+            "country": 47, 
+            "city_name": "Greensboro", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 93, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 41, 
+            "country": 47, 
+            "city_name": "Winston-Salem", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 94, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 41, 
+            "country": 47, 
+            "city_name": "Durham", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 95, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 41, 
+            "country": 47, 
+            "city_name": "Fayetteville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 96, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 41, 
+            "country": 47, 
+            "city_name": "Cary", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 97, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 41, 
+            "country": 47, 
+            "city_name": "Wilmington", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 98, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 41, 
+            "country": 47, 
+            "city_name": "High Point", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 99, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 48, 
+            "country": 47, 
+            "city_name": "Columbia", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 100, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 48, 
+            "country": 47, 
+            "city_name": "Charleston", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 101, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 14, 
+            "country": 47, 
+            "city_name": "Denver", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 102, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 14, 
+            "country": 47, 
+            "city_name": "Colorado Springs", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 103, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 14, 
+            "country": 47, 
+            "city_name": "Aurora", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 104, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 14, 
+            "country": 47, 
+            "city_name": "Fort Collins", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 105, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 14, 
+            "country": 47, 
+            "city_name": "Lakewood", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 106, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 14, 
+            "country": 47, 
+            "city_name": "Thornton", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 107, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 14, 
+            "country": 47, 
+            "city_name": "Pueblo", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 108, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 14, 
+            "country": 47, 
+            "city_name": "Arvada", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 109, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 14, 
+            "country": 47, 
+            "city_name": "Westminster", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 110, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 14, 
+            "country": 47, 
+            "city_name": "Centennial", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 111, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 15, 
+            "country": 47, 
+            "city_name": "Bridgeport", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 112, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 15, 
+            "country": 47, 
+            "city_name": "New Haven", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 113, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 15, 
+            "country": 47, 
+            "city_name": "Hartford", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 114, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 15, 
+            "country": 47, 
+            "city_name": "Stamford", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 115, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 15, 
+            "country": 47, 
+            "city_name": "Waterbury", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 116, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 42, 
+            "country": 47, 
+            "city_name": "Fargo", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 117, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 49, 
+            "country": 47, 
+            "city_name": "Sioux Falls", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 118, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 59, 
+            "country": 47, 
+            "city_name": "55", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 119, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Jacksonville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 120, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Miami", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 121, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Tampa", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 122, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "San Petersburgo", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 123, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Orlando", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 124, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Hialeah", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 125, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Tallahassee", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 126, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Fort Lauderdale", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 127, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Port St. Lucie", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 128, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Pembroke Pines", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 129, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Cape Coral", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 130, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Hollywood", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 131, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Gainesville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 132, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Miramar", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 133, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Coral Springs", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 134, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Clearwater", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 135, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Miami Gardens", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 136, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 17, 
+            "country": 47, 
+            "city_name": "Palm Bay", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 137, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 18, 
+            "country": 47, 
+            "city_name": "Atlanta", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 138, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 18, 
+            "country": 47, 
+            "city_name": "Augusta", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 139, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 18, 
+            "country": 47, 
+            "city_name": "Columbus", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 140, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 18, 
+            "country": 47, 
+            "city_name": "Savannah", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 141, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 18, 
+            "country": 47, 
+            "city_name": "Athens", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 142, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 19, 
+            "country": 47, 
+            "city_name": "Honolul\u00fa", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 143, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 20, 
+            "country": 47, 
+            "city_name": "Boise", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 144, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 21, 
+            "country": 47, 
+            "city_name": "Chicago", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 145, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 21, 
+            "country": 47, 
+            "city_name": "Aurora", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 146, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 21, 
+            "country": 47, 
+            "city_name": "Rockford", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 147, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 21, 
+            "country": 47, 
+            "city_name": "Joliet", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 148, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 21, 
+            "country": 47, 
+            "city_name": "Naperville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 149, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 21, 
+            "country": 47, 
+            "city_name": "Springfield", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 150, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 21, 
+            "country": 47, 
+            "city_name": "Peoria", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 151, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 21, 
+            "country": 47, 
+            "city_name": "Elgin", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 152, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 22, 
+            "country": 47, 
+            "city_name": "Indiannapolis", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 153, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 22, 
+            "country": 47, 
+            "city_name": "Fort Wayne", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 154, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 22, 
+            "country": 47, 
+            "city_name": "Evansville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 155, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 22, 
+            "country": 47, 
+            "city_name": "South Bend", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 156, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 23, 
+            "country": 47, 
+            "city_name": "Des Moines", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 157, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 23, 
+            "country": 47, 
+            "city_name": "Cedar Rapids", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 158, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 24, 
+            "country": 47, 
+            "city_name": "Wichita", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 159, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 24, 
+            "country": 47, 
+            "city_name": "Overland Park", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 160, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 24, 
+            "country": 47, 
+            "city_name": "Kansas City", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 161, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 24, 
+            "country": 47, 
+            "city_name": "Topeka", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 162, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 24, 
+            "country": 47, 
+            "city_name": "Olathe", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 163, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 25, 
+            "country": 47, 
+            "city_name": "Louisville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 164, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 25, 
+            "country": 47, 
+            "city_name": "Lexington", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 165, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 26, 
+            "country": 47, 
+            "city_name": "New Orleans", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 166, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 26, 
+            "country": 47, 
+            "city_name": "Baton Rouge", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 167, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 26, 
+            "country": 47, 
+            "city_name": "Shreveport", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 168, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 26, 
+            "country": 47, 
+            "city_name": "Metairie", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 169, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 26, 
+            "country": 47, 
+            "city_name": "Lafayette", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 170, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 28, 
+            "country": 47, 
+            "city_name": "Baltimore", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 171, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 29, 
+            "country": 47, 
+            "city_name": "Boston", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 172, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 29, 
+            "country": 47, 
+            "city_name": "Worcester", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 173, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 29, 
+            "country": 47, 
+            "city_name": "Springfield", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 174, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 29, 
+            "country": 47, 
+            "city_name": "Lowell", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 175, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 29, 
+            "country": 47, 
+            "city_name": "Cambridge", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 176, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 30, 
+            "country": 47, 
+            "city_name": "Detroit", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 177, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 30, 
+            "country": 47, 
+            "city_name": "Grand Rapids", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 178, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 30, 
+            "country": 47, 
+            "city_name": "Warren", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 179, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 30, 
+            "country": 47, 
+            "city_name": "Sterling Heights", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 180, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 30, 
+            "country": 47, 
+            "city_name": "Ann Arbor", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 181, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 30, 
+            "country": 47, 
+            "city_name": "Lansing", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 182, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 30, 
+            "country": 47, 
+            "city_name": "Flint", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 183, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 31, 
+            "country": 47, 
+            "city_name": "Minneapolis", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 184, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 31, 
+            "country": 47, 
+            "city_name": "St Paul", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 185, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 31, 
+            "country": 47, 
+            "city_name": "Rochester", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 186, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 32, 
+            "country": 47, 
+            "city_name": "Jackson", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 187, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 33, 
+            "country": 47, 
+            "city_name": "Kansas City (Missouri)", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 188, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 33, 
+            "country": 47, 
+            "city_name": "San Luis", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 189, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 33, 
+            "country": 47, 
+            "city_name": "Springfield", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 190, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 33, 
+            "country": 47, 
+            "city_name": "Independence", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 191, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 33, 
+            "country": 47, 
+            "city_name": "Columbia", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 192, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 34, 
+            "country": 47, 
+            "city_name": "Billings", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 193, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 35, 
+            "country": 47, 
+            "city_name": "Omaha", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 194, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 35, 
+            "country": 47, 
+            "city_name": "Lincoln", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 195, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 36, 
+            "country": 47, 
+            "city_name": "Las Vegas", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 196, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 36, 
+            "country": 47, 
+            "city_name": "Henderson", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 197, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 36, 
+            "country": 47, 
+            "city_name": "Reno", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 198, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 36, 
+            "country": 47, 
+            "city_name": "Paradise", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 199, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 36, 
+            "country": 47, 
+            "city_name": "North Las Vegas", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 200, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 38, 
+            "country": 47, 
+            "city_name": "Newark", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 201, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 38, 
+            "country": 47, 
+            "city_name": "Jersey City", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 202, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 38, 
+            "country": 47, 
+            "city_name": "Paterson", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 203, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 38, 
+            "country": 47, 
+            "city_name": "Elizabeth", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 204, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 40, 
+            "country": 47, 
+            "city_name": "New York", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 205, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 40, 
+            "country": 47, 
+            "city_name": "B\u00fafalo", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 206, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 40, 
+            "country": 47, 
+            "city_name": "Rochester", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 207, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 40, 
+            "country": 47, 
+            "city_name": "Yonkers", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 208, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 40, 
+            "country": 47, 
+            "city_name": "Siracusa", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 209, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 37, 
+            "country": 47, 
+            "city_name": "Manchester", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 210, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 39, 
+            "country": 47, 
+            "city_name": "Albuquerque", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 211, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 43, 
+            "country": 47, 
+            "city_name": "Columbus", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 212, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 43, 
+            "country": 47, 
+            "city_name": "Cleveland", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 213, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 43, 
+            "country": 47, 
+            "city_name": "Cincinnati", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 214, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 43, 
+            "country": 47, 
+            "city_name": "Toledo", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 215, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 43, 
+            "country": 47, 
+            "city_name": "Akron", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 216, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 43, 
+            "country": 47, 
+            "city_name": "Dayton", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 217, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 44, 
+            "country": 47, 
+            "city_name": "Oklahoma City", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 218, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 44, 
+            "country": 47, 
+            "city_name": "Tulsa", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 219, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 44, 
+            "country": 47, 
+            "city_name": "Norman", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 220, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 45, 
+            "country": 47, 
+            "city_name": "Portland", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 221, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 45, 
+            "country": 47, 
+            "city_name": "Eugene", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 222, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 45, 
+            "country": 47, 
+            "city_name": "Salem", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 223, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 45, 
+            "country": 47, 
+            "city_name": "Gresham", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 224, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 46, 
+            "country": 47, 
+            "city_name": "Philadelfia", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 225, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 46, 
+            "country": 47, 
+            "city_name": "Pittsburgh", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 226, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 46, 
+            "country": 47, 
+            "city_name": "Allentown", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 227, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 46, 
+            "country": 47, 
+            "city_name": "Erie", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 228, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 47, 
+            "country": 47, 
+            "city_name": "Providence", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 229, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 50, 
+            "country": 47, 
+            "city_name": "Memphis", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 230, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 50, 
+            "country": 47, 
+            "city_name": "Nashville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 231, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 50, 
+            "country": 47, 
+            "city_name": "Knoxville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 232, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 50, 
+            "country": 47, 
+            "city_name": "Chattanooga", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 233, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 50, 
+            "country": 47, 
+            "city_name": "Clarksville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 234, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 50, 
+            "country": 47, 
+            "city_name": "Murfreesboro", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 235, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Houston", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 236, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "San Antonio", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 237, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Dallas", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 238, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Austin", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 239, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Fort Worth", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 240, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "El Paso", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 241, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Arlington", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 242, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Corpus Christi", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 243, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Plano", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 244, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Laredo", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 245, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Lubbock", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 246, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Garland", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 247, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Irving", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 248, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Amarillo", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 249, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Grand Prairie", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 250, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Brownsville", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 251, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Pasadena", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 252, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Mesquite", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 253, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "McKinney", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 254, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "McAllen", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 255, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Killeen", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 256, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Waco", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 257, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Carrollton", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 258, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Beaumont", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 259, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Abilene", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 260, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Frisco", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 261, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Denton", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 262, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Midland", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 263, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 51, 
+            "country": 47, 
+            "city_name": "Wichita Falls", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 264, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 52, 
+            "country": 47, 
+            "city_name": "Salt Lake City", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 265, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 52, 
+            "country": 47, 
+            "city_name": "West Valley City", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 266, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 52, 
+            "country": 47, 
+            "city_name": "Provo", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 267, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 52, 
+            "country": 47, 
+            "city_name": "West Jordan", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 268, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 54, 
+            "country": 47, 
+            "city_name": "Virginia Beach", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 269, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 54, 
+            "country": 47, 
+            "city_name": "Norfolk", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 270, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 54, 
+            "country": 47, 
+            "city_name": "Chesapeake", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 271, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 54, 
+            "country": 47, 
+            "city_name": "Arlington", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 272, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 54, 
+            "country": 47, 
+            "city_name": "Richmond", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 273, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 54, 
+            "country": 47, 
+            "city_name": "Newport News", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 274, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 54, 
+            "country": 47, 
+            "city_name": "Alexandr\u00eda", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 275, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 54, 
+            "country": 47, 
+            "city_name": "Hampton", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 276, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 55, 
+            "country": 47, 
+            "city_name": "Seattle", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 277, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 55, 
+            "country": 47, 
+            "city_name": "Spokane", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 278, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 55, 
+            "country": 47, 
+            "city_name": "Tacoma", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 279, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 55, 
+            "country": 47, 
+            "city_name": "Vancouver", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 280, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 55, 
+            "country": 47, 
+            "city_name": "Bellevue", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 281, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 55, 
+            "country": 47, 
+            "city_name": "Everett", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 282, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 57, 
+            "country": 47, 
+            "city_name": "Milwaukee", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 283, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 57, 
+            "country": 47, 
+            "city_name": "Madison", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 284, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 57, 
+            "country": 47, 
+            "city_name": "Green Bay", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 13, 
+            "country": 47, 
+            "city_name": "Los Angeles", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 285, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 60, 
+            "country": 14, 
+            "city_name": "Arauca", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 286, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 61, 
+            "country": 14, 
+            "city_name": "Tunja", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 287, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 62, 
+            "country": 14, 
+            "city_name": "Manizales", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 288, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 63, 
+            "country": 14, 
+            "city_name": "Florencia", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 289, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 64, 
+            "country": 14, 
+            "city_name": "Yopal", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 290, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 65, 
+            "country": 14, 
+            "city_name": "Popay\u00e1n", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 291, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 66, 
+            "country": 14, 
+            "city_name": "Valledupar", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 292, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 67, 
+            "country": 14, 
+            "city_name": "Quibd\u00f3", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 293, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 68, 
+            "country": 14, 
+            "city_name": "Monter\u00eda", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 294, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 69, 
+            "country": 14, 
+            "city_name": "Bogot\u00e1", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 295, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 70, 
+            "country": 14, 
+            "city_name": "Inirida", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 296, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 71, 
+            "country": 14, 
+            "city_name": "San Jos\u00e9 del Guaviare\u00a0\u00a0", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 297, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 72, 
+            "country": 14, 
+            "city_name": "Neiva", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 298, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 73, 
+            "country": 14, 
+            "city_name": "Riohacha", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 299, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 74, 
+            "country": 14, 
+            "city_name": "Santa Marta", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 300, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 75, 
+            "country": 14, 
+            "city_name": "Villavicencio", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 301, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 76, 
+            "country": 14, 
+            "city_name": "Pasto", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 302, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 77, 
+            "country": 14, 
+            "city_name": "C\u00facuta", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 303, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 78, 
+            "country": 14, 
+            "city_name": "Mocoa", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 304, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 79, 
+            "country": 14, 
+            "city_name": "Armenia", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 305, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 80, 
+            "country": 14, 
+            "city_name": "Pereira", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 306, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 81, 
+            "country": 14, 
+            "city_name": "San Andr\u00e9s", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 307, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 82, 
+            "country": 14, 
+            "city_name": "Bucaramanga", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 308, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 83, 
+            "country": 14, 
+            "city_name": "Sincelejo", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 309, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 84, 
+            "country": 14, 
+            "city_name": "Ibagu\u00e9", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 310, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 85, 
+            "country": 14, 
+            "city_name": "Mit\u00fa", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }, 
+    {
+        "pk": 311, 
+        "model": "location.city", 
+        "fields": {
+            "universities": "", 
+            "url_wiki": "", 
+            "region_name": 86, 
+            "country": 14, 
+            "city_name": "Puerto Carre\u00f1o", 
+            "url_wolfram": "", 
+            "telecom_facilities": "", 
+            "local_talent_pool_rating": ""
+        }
+    }
+]

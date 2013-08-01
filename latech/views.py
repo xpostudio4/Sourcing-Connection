@@ -31,7 +31,7 @@ import csv
 import operator
 import requests
 
-
+from location.models import *
 
 def json_response(x):
     import json
@@ -524,6 +524,23 @@ def load_company(request):
         company = Company(name=row[0], slug=row[1], industries=row[3], technologies=row[7], applications=row[9] )
         company.save()
     return HttpResponseRedirect('/')    
+
+#def load_usstates2(request):
+#    reader = csv.reader(open("colci.csv"), dialect='excel')
+#    for row in reader:
+#        country = Country.objects.get(id=14)
+#        state = Region(country=country, region_name=row[0])
+#        state.save()
+#    return HttpResponseRedirect('/')
+
+#def load_usstates(request):
+#    reader = csv.reader(open("colci.csv"), dialect='excel')
+#    for row in reader:
+#        country = Country.objects.get(id=14)
+#        city = City(country=country, region_name=Region.objects.get(id=row[0]), city_name=row[1])
+#        city.save()
+#    return HttpResponseRedirect('/')
+
 
 def ticket_create(request):
     """This view generates the view of the ticket form"""

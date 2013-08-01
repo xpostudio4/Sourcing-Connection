@@ -1,10 +1,15 @@
 from django.db import models
+from smart_selects.db_fields import ChainedForeignKey 
+
 
 # Create your models here.
 
 #Country_Table
 
 class Country(models.Model):
+    class Meta:
+         ordering = ['id']
+
     name = models.CharField(max_length=100)
     country_code = models.CharField(max_length=2, blank=True)
     #flag = models.Imagefield()
@@ -23,6 +28,9 @@ class Country(models.Model):
 #Region_Table
 
 class Region(models.Model):
+    class Meta:
+         ordering = ['id']
+
     country = models.ForeignKey(Country, related_name="countries",max_length=30)
     region_name = models.CharField(max_length=30, verbose_name=u'Region or State')
     accesiblity_rating = models.CharField(max_length=30,blank=True)
@@ -36,8 +44,19 @@ class Region(models.Model):
 #City_Tablet
 
 class City(models.Model):
+    class Meta:
+         ordering = ['id']
+
     country = models.ForeignKey(Country, related_name="country",max_length=50)
-    region_name = models.ForeignKey(Region, related_name="region",max_length=50) 
+    region_name = ChainedForeignKey(
+        Region, 
+        related_name="region",
+        chained_field="country",
+        chained_model_field="country", 
+        show_all=False, 
+        auto_choose=True
+    )    
+    #region_name = models.ForeignKey(Region, related_name="region") 
     city_name = models.CharField(max_length=30)
     universities = models.CharField(max_length=30,blank=True)
     telecom_facilities = models.CharField(max_length=30, blank=True)
