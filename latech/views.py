@@ -525,14 +525,6 @@ def load_company(request):
         company.save()
     return HttpResponseRedirect('/')    
 
-#def load_usstates2(request):
-#    reader = csv.reader(open("colci.csv"), dialect='excel')
-#    for row in reader:
-#        country = Country.objects.get(id=14)
-#        state = Region(country=country, region_name=row[0])
-#        state.save()
-#    return HttpResponseRedirect('/')
-
 #def load_usstates(request):
 #    reader = csv.reader(open("colci.csv"), dialect='excel')
 #    for row in reader:

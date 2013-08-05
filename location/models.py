@@ -31,7 +31,7 @@ class Region(models.Model):
     class Meta:
          ordering = ['id']
 
-    country = models.ForeignKey(Country, related_name="countries",max_length=30)
+    country = models.ForeignKey(Country, related_name="countries",max_length=150)
     region_name = models.CharField(max_length=30, verbose_name=u'Region or State')
     accesiblity_rating = models.CharField(max_length=30,blank=True)
     transportations = models.CharField(max_length=30, blank=True)
@@ -47,7 +47,7 @@ class City(models.Model):
     class Meta:
          ordering = ['id']
 
-    country = models.ForeignKey(Country, related_name="country",max_length=50)
+    country = models.ForeignKey(Country, related_name="country")
     region_name = ChainedForeignKey(
         Region, 
         related_name="region",
@@ -57,7 +57,7 @@ class City(models.Model):
         auto_choose=True
     )    
     #region_name = models.ForeignKey(Region, related_name="region") 
-    city_name = models.CharField(max_length=30)
+    city_name = models.CharField(max_length=150)
     universities = models.CharField(max_length=30,blank=True)
     telecom_facilities = models.CharField(max_length=30, blank=True)
     local_talent_pool_rating = models.CharField(max_length=30, blank=True)

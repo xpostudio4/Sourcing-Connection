@@ -26,8 +26,8 @@ urlpatterns = patterns('',
      url(r'^company/(?P<slug>[\w-]+)/logo/$','latech.views_editable.company_logo'),
 
 #     url(r'^companies/$', CompanyList.as_view(), name='company_list'),
-     #Loading Companies from the CSV file
-     #url(r'^load/$','latech.views.load_usstates'),
+     #Loading Cities and states/provinces/districts from the CSV files
+ #    url(r'^load/$','latech.views.load_usstates'),
 
      #Loading Countries information from the CSV file
      #url(r'^country/load/$','latech.views.load_countries_info'),
